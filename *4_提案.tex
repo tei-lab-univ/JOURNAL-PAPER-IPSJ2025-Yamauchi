@@ -80,14 +80,14 @@ $\lambda \in \Lambda$の$rids_{\lambda}$に複数の監視モデルの$id$を格
 \end{algorithmic}
 \end{algorithm}
 
-Algorithm\ref{algorithm:CSDCS_huristic}では，Algorithm\ref{algorithm:huristic}を用いて監視モデルごとに部分合成する$\Lambda$を導出する（1行目）．その後，$\Lambda$で合成される全ての部分制御器の$cid$を$cids$として用意し（2行目），$i_{\lambda}$が1の$\lambda \in \Lambda$から順に$eids_{\lambda}$に$cid$が何個含まれているか確認する（3-5行目）．
+Algorithm\ref{algorithm:CSDCS_huristic}では，Algorithm\ref{algorithm:huristic}を用いて各監視モデルごとに部分合成する$\Lambda$を導出する（1行目）．その後，$\Lambda$で合成される全ての部分制御器の$cid$を$cids$として用意し（2行目），$i_{\lambda}$が1の$\lambda \in \Lambda$から順に$eids_{\lambda}$に$cid$がいくつ含まれるか確認する（3-5行目）．
 $eids_{\lambda}$に含まれる$cid$が1つの時（5行目），その唯一の$cid$を合成する$\lambda^*$と$\lambda$を統合する（6-10行目）．
 統合された$\lambda$は$\{i_{\lambda^*}, eids^*, rids^*, cid_{\lambda}\}$で表さる．
 $eids^*$は$eids_{\lambda}$に含まれる$cid_{\lambda^*}$と$eid_{\lambda^*}$を置き換えた$id$の集合で表される（8行目）．
 $rids^*$は$rids_{\lambda}$と$rid_{\lambda^*}$の和集合で表される（9行目）．
 その後，統合された$\lambda$と，統合元となった$\lambda$と$\lambda^*$を，$\Lambda$において置き換える（10行目）．
-$eids_{\lambda}$に含まれる$cid$が2つ以上，もしくは$cid$が含まれない場合は，統合によって減った$\lambda$数に合わせて$i_{\lambda}$を振り直す（11-14行目）．
-以上の工程を全ての$\lambda \in \Lambda$において繰り返し実行し， $n(eids_{\lambda} \cap cids) = 1$となる$\lambda$の統合を行う．
+$eids_{\lambda}$に含まれる$cid$が2つ以上，もしくは$cid$が含まれない場合は，統合で減った$\lambda$に合わせて$i_{\lambda}$を振り直す（11-14行目）．
+以上の工程を全ての$\lambda \in \Lambda$において繰り返し実行し， $n(eids_{\lambda} \cap cids) = 1$である$\lambda$の統合を行う．
 
 {\color{red}
 このとき，Algorithm\ref{algorithm:CSDCS_huristic}では$n(eids_{\lambda} \cap cids) = 1$となる$\lambda$を統合した．
@@ -103,21 +103,21 @@ $eids_{\lambda}$に含まれる$cid$が2つ以上，もしくは$cid$が含ま�
 
 \begin{pro}
     \label{prf:proof1}
-    1以上の自然数$i$と$j$において，環境モデル$E = \{e_1, e_2, \ldots, e_i\}$，監視モデル$R = \{r_1, r_2, \ldots, r_j\}$が与えられるとき，{\bf Algorithm \ref{algorithm:basic_controller_synthesis}($E$, $R$)}の出力$c$と，{\bf Algorithm \ref{algorithm:CSDCS}($E$, $R$)}の出力$c$は同じとなる．
+    1以上の自然数$i$と$j$において，環境モデル$E = \{e_1, e_2, \ldots, e_i\}$，監視モデル$R = \{r_1, r_2, \ldots, r_j\}$が与えられるとき，{\bf Algorithm \ref{algorithm:basic_controller_synthesis}($E$, $R$)}の出力$c$と，{\bf Algorithm \ref{algorithm:CSDCS}($E$, $R$)}の出力$c$は同じである．
 \end{pro}
 \begin{proof}
     % 本証明では，同じ$E$と$R$が与えられるとき，Algorithm\ref{algorithm:CSDCS}（CSDCS）とAlgorithm\ref{algorithm:SDCS}（SDCS）が同じ$c$を合成することを示す．そして，Algorithm\ref{algorithm:SDCS}（SDCS）がAlgorithm\ref{algorithm:basic_controller_synthesis}（basic DCS）と同じ$c$を合成することを示すことで，命題\ref{prf:proof1}が成り立つことを証明する．
-    同じ$E$と$R$が与えられるとき，Algorithm\ref{algorithm:SDCS}（SDCS）とAlgorithm\ref{algorithm:basic_controller_synthesis}（basic DCS）は同じ$c$を合成できる\cite{yamauchi:IEICEJ2023}．よって，式\ref{equation:SDCS_basicDCS}が成り立つ．
+    同じ$E$と$R$が与えられるとき，Algorithm\ref{algorithm:SDCS}（SDCS）とAlgorithm\ref{algorithm:basic_controller_synthesis}（basic DCS）は同じ$c$を合成する\cite{yamauchi:IEICEJ2023}．よって，式\ref{equation:SDCS_basicDCS}が成り立つ．
     \begin{equation}
     \label{equation:SDCS_basicDCS}
         {\bf Algorithm \ref{algorithm:SDCS}(E, R)} = {\bf Algorithm \ref{algorithm:basic_controller_synthesis}(E, R)}
     \end{equation}
 
-    次に，Algorithm\ref{algorithm:SDCS}（SDCS）とAlgorithm\ref{algorithm:CSDCS}（CSDCS）は同じ制御器を合成できることを証明する．
-    Algorithm\ref{algorithm:CSDCS}では，Consolidated Game Composition，Algorithm\ref{algorithm:SDCS}ではParallel Composition，Modified Parallel Composition，Error State Abstractionの3つを用いて$g'$を合成する．
-    同じ$E^*$と$R^*$が与えられるとき，Consolidated Game Compositionによって合成される$g'$と，Parallel Composition，Modified Parallel Composition，Error State Abstractionの3つを通して合成される$g'$は同じとなる\cite{yamauchi:IPSJ2024}．
-    よって，同じ$E$と$R$が与えられるとき，Algorithm\ref{algorithm:CSDCS}とAlgorithm\ref{algorithm:SDCS}で合成される$g'$は常に同じとなる．
-    $g'$から$c$を導出する過程は全く同じであるため，同じ$E$と$R$が与えられるときAlgorithm\ref{algorithm:CSDCS}とAlgorithm\ref{algorithm:SDCS}は同じ$c$を合成できる．
+    次に，Algorithm\ref{algorithm:SDCS}（SDCS）とAlgorithm\ref{algorithm:CSDCS}（CSDCS）は同じ$c$を合成することを証明する．
+    Algorithm\ref{algorithm:CSDCS}では，Consolidated Game Composition，Algorithm\ref{algorithm:SDCS}ではParallel Composition，Modified Parallel Composition，Error State Abstractionの3つを用いて$g^*$を合成する．
+    同じ$E^*$と$R^*$が与えられるとき，Consolidated Game Compositionによって合成される$g^*$と，Parallel Composition，Modified Parallel Composition，Error State Abstractionの3つを通して合成される$g^*$は同じである\cite{yamauchi:IPSJ2024}．
+    よって，Algorithm\ref{algorithm:CSDCS}とAlgorithm\ref{algorithm:SDCS}で合成される$g^*$は同じである．
+    すると，$g^*$から$c$を導出する過程は同じであるため，同じ$E$と$R$が与えられるときAlgorithm\ref{algorithm:CSDCS}とAlgorithm\ref{algorithm:SDCS}は同じ$c$を合成する．
     よって，式\ref{equation:CSDCS_SDCS}が成り立つ．
     \begin{equation}
     \label{equation:CSDCS_SDCS}
@@ -133,7 +133,7 @@ $eids_{\lambda}$に含まれる$cid$が2つ以上，もしくは$cid$が含ま�
         \end{split}
     \end{align}
 
-    よって，同じ$E$と$R$が与えられるとき，Algorithm\ref{algorithm:CSDCS}とAlgorithm\ref{algorithm:basic_controller_synthesis}で合成される$c$は同じとなるため，本命題は成り立つ．
+    式\ref{equation:CDDCS_SDCS_basicDCS}より，同じ$E$と$R$が与えられるとき，Algorithm\ref{algorithm:CSDCS}とAlgorithm\ref{algorithm:basic_controller_synthesis}で合成される$c$は同じであるため，本命題は成り立つ．
 \end{proof}
 
 
@@ -240,7 +240,7 @@ $eids_{\lambda}$に含まれる$cid$が2つ以上，もしくは$cid$が含ま�
 %     \end{equation}
 % \end{dfn}
 
-% 監視対象モデル数$\mu \langle r,E \rangle$は，$r$の部分合成で構築されるゲーム空間$g'$の構築要素となる環境モデルの数を表し，監視対象モデル数に対して$g'$の状態数は指数関数的に増加する性質を持つ．部分合成を用いたDCSでは後に分析される$r$の$g'$ほど空間削減効果が大きくなるため，監視対象モデル数が大きなモデルほど後に分析することで，部分合成の計算空間削減効果が大きくなると考えられる．
+% 監視対象モデル数$\mu \langle r,E \rangle$は，$r$の部分合成で構築されるゲーム空間$g^*$の構築要素となる環境モデルの数を表し，監視対象モデル数に対して$g^*$の状態数は指数関数的に増加する性質を持つ．部分合成を用いたDCSでは後に分析される$r$の$g^*$ほど空間削減効果が大きくなるため，監視対象モデル数が大きなモデルほど後に分析することで，部分合成の計算空間削減効果が大きくなると考えられる．
 % よって，監視対象モデル数が最小のものから順に部分合成する$\Lambda$を用いることで計算空間削減効果を大きくできるかと考えられるが，その$r$の監視対象モデル数がいくら小さくとも，$r$以外の監視対象モデル数を増加させる$r$も存在する．
 % そこで，その状況に対処するために$r$を部分合成することによる$r$以外の監視対象モデル数の増加量を$r$と部分合成影響量$\delta$とし，この$\delta$を考慮することで，$E$と$R$から全監視モデルの監視対象モデル数が最小だと思われる合成シーケンス$\Lambda$が導出できると考えた．
 % このとき，部分合成影響量$\delta$は以下にように定義する．

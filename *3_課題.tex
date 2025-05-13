@@ -66,7 +66,7 @@ CDCSを実現するConsolidated Game Compositionは定義\ref{def:consolidated_g
     \Delta_x \langle s_{x} \overset{a}{\rightarrow} s'_{x} \rangle, \Delta_y \langle s_{y} \overset{a}{\rightarrow} s'_{y} \rangle, a \in A_{x} \cap A_{y}, s_{err} \in s'_{x} \cup s'_{y}\\
     \Rightarrow (\{ s_{x},s_{y} \},a,s_{err}) \in \Delta
     \end{multline}
-    $\Delta_x \langle s_{x} \overset{a}{\rightarrow} s'_{x} \rangle$は$s_{x}$において$a$が生じた場合，状態が$s'_{x}$となるような遷移が$\Delta_x$に含まれることを表し，$\Delta_x \langle s_{x} \overset{a}{\nrightarrow} s'_{x} \rangle$は$s_{x}$において$a$が生じた場合，状態が$s'_{x}$となるような遷移が$\Delta_x$に含まれないことを表す．
+    % $\Delta_x \langle s_{x} \overset{a}{\rightarrow} s'_{x} \rangle$は$s_{x}$において$a$が生じた場合，状態が$s'_{x}$となる遷移が$\Delta_x$に含まれることを表し，$\Delta_x \langle s_{x} \overset{a}{\nrightarrow} s'_{x} \rangle$は$s_{x}$において$a$が生じた場合，状態が$s'_{x}$となる遷移が$\Delta_x$に含まれないことを表す．
     $S$は$\Delta$に含まれる全状態の集合，$A$は$\Delta$に含まれる全事象の集合で表され，$\Delta$が合成されたとき一意に定まる．
     以上の$E$と$R$から$g^*$を直接導出する作業を"{\bf Consolidated Game Composition ($E \cup R$)}"で表す．
 \end{dfn}
@@ -108,8 +108,8 @@ SDCSのアルゴリズムをAlgorithm\ref{algorithm:SDCS}に示す．
 \end{algorithmic}
 \end{algorithm}
 
-Algorithm\ref{algorithm:SDCS}では，$\Lambda$に則って，繰り返し部分合成（6-9行目）を適用することで制御器$c$を導出する．
-このとき，$\Lambda$は以下で定義される．
+Algorithm\ref{algorithm:SDCS}では，$\Lambda$に則って，繰り返し部分合成（6-9行目）を適用することで$c$を導出する．
+このとき，$\Lambda$は定義\ref{def:synthesis_sequence}で定義され，Algorithm\ref{algorithm:huristic}で導出される（1行目）\cite{yamauchi:KBSE2024}．
 
 \begin{dfn}{\textbf{合成シーケンス　}}
 \label{def:synthesis_sequence}
@@ -117,8 +117,6 @@ Algorithm\ref{algorithm:SDCS}では，$\Lambda$に則って，繰り返し部分
     $i_{\lambda}$は$\Lambda$において何番目に実行する$\lambda$であるかを表し，1から連続する整数が与えられる．
     $eids_{\lambda}$は$\lambda$で入力される環境モデル（LTS）の$id$の集合，$rids_{\lambda}$は$\lambda$で入力される監視モデル（LTS）の$id$の集合を表す．$cid_{\lambda}$は$\lambda$の出力となる部分制御器（LTS）$c$の$id$を表し，$\lambda$において$c$を合成した際には$id_{c}$にこの$cid_{\lambda}$を割り当てる．
 \end{dfn}
-
-SDCSにおける$\Lambda$は，Algorithm\ref{algorithm:huristic}によって導出できる（1行目）\cite{yamauchi:KBSE2024}．
 
 \begin{algorithm}[h]
 \caption{監視対象モデル数を考慮した$\Lambda$の合成}
