@@ -1,0 +1,143 @@
+\section{Discrete Controller Synthesis（DCS）}
+\label{section:DCS}
+本章では，与えられた環境下で安全性を保証する制御器を自動合成する技術であるDCSについて詳説する．
+
+\subsection{DCSにおける事前準備}
+\label{subsection:preparation}
+DCSを用いた動作仕様設計は次の手順で行われる．はじめに，開発者はシステムの動作環境を仮定し，その特性を環境モデル$e$としてモデル化する．
+次に，環境モデル$e$下で保証すべき安全性を定義し，その安全性の充足状況を監視する監視モデル$r$を作成する．
+そして，環境モデル$e$と監視モデル$r$を入力としてDCSを実施することで，環境下で安全性が保証された動作仕様を表す制御器$c$を自動合成する．
+そのようなDCSにおける$e$，$r$，$c$は次に定義されるLTSを用いて表現される．
+
+\begin{dfn}{\textbf{LTS}}
+\label{def:component_model}
+    LTSは$x = (S_{x}, A_{x}, \Delta_{x}, s^0_{x})$で表現される．
+    $S_{x}$は有限の状態集合であり，$s^0_{x}$は初期状態である．
+    $A_{x} = A^+ \cup A^-$は事象の集合であり，$A^+$はシステムが制御可能な事象，$A^-$はシステムが制御不可能な事象である．
+    $(s,a,s') \in \Delta_{x}$は遷移であり，事象$a \in A_{x}$によって状態$s \in S_{x}$は状態$s' \in S_{x}$へ遷移することを意味する．
+    LTSの集合は大文字で$X$と表され，LTSの要素に下付き$X$と表記した$S_{X}$,$A_{X}$,$\Delta_{X}$,$s^0_{X}$は，$M$に含まれる全LTS$x \in X$の要素（$S_{x}$,$A_{x}$,$\Delta_{x}$,$s^0_{x}$）の和集合を表す．
+\end{dfn}
+
+本論文では，LTSを区別するために，扱う全てのLTSにユニークな記号$id$を付与する．
+よって，本論文で扱う環境モデルは決定性LTS $e = (id_{e}, S_{e}, A_{e}, \Delta_{e}, s^0_{e})$，監視モデルは決定性LTS $r = (id_{r}, S_{r}, A_{r}, \Delta_{r}, s^0_{r})$で表され，それぞれ非決定性を持たない．また，環境モデルの集合は$e \in E$，監視モデルの集合は$r \in R$で表される．
+このとき，DCSで与えられる$E$と$R$は常に次の関係式全てを満たす．
+\begin{enumerate}[\bf 関係式A]
+\item $s_{err} \in S_{r}$
+\item $A_{R} \subset A_{E}$
+\item $\forall x, x' \in E \cup R:  x \neq x'  \Rightarrow S_x \cap S_{x'} = \emptyset$
+\end{enumerate}
+関係式Aは$r$の状態$S_{r}$には安全性を違反する状態を表す違反状態$s_{err}$が必ず含まれることを表す．
+関係式Bは，安全性は常に環境$E$を踏まえて設計されるため，$a \in A_{R} \backslash A_{E}$となる事象$a$は存在しないことを表す．
+関係式Cは，$E$と$R$に含まれるすべてのLTSの状態は共通要素を持たないことを表す．
+
+DCSは，以上の関係式を満たす開発者によって用意された$E$と$R$を入力として，安全性が保証されたシステムの制御器$c$を自動合成する．
+制御器$c$は，決定性LTS $c = (id_{c}, S_{c}, A_{c}, \Delta_{c}, s^0_{c})$で表され，
+システムを構成する全て環境モデル$e \in E$において，どのように制御不可能な事象が生じたとしても，いずれの$r \in R$の違反状態$s_{err}$に遷移することのない，システムの制御を表したLTSである．
+この性質から，$c$は$r$で表現された安全性を違反する状態に到達することのないシステムの動作仕様を表す．
+この$c$の導出する基本的なDCS（以降，basic DCSと呼ぶ）\cite{paper:SynthesisOfLiveBehaviourModels}\cite{paper:SynthesisOfRun-To-CompletionControllers}\cite{paper:Concurrency}はAlgorithm\ref{algorithm:basic_controller_synthesis}で表される．
+
+
+\subsection{basic DCS}
+\label{subsection:DCS algorithm}
+
+\begin{algorithm}[t]
+\caption{basic DCS}
+\label{algorithm:basic_controller_synthesis}
+\begin{algorithmic}[1]
+\renewcommand{\algorithmicrequire}{\textbf{Input:}}
+\renewcommand{\algorithmicensure}{\textbf{Output:}}
+\REQUIRE $E$ {\bf such that} $\forall e \in E, e = (id_{e}, S_{e}, A_{e}, \Delta_{e}, s^0_{e})$
+\REQUIRE $R$ {\bf such that} $\forall r \in R, r = (id_{r}, S_{r}, A_{r}, \Delta_{r}, s^0_{r})$
+\ENSURE  $c$
+
+\STATE $m   \Leftarrow$ {\bf Parallel Composition($E$)}
+\STATE $g   \Leftarrow$ {\bf Modified Parallel Composition($m$, $R$)}
+\STATE $g^* \Leftarrow$ {\bf Error State Abstraction($g$)}
+\STATE $c   \Leftarrow$ {\bf Safety Game Solving($g^*$)}
+\STATE return $c$
+\end{algorithmic}
+\end{algorithm}
+
+Algorithm\ref{algorithm:basic_controller_synthesis}では，はじめにParallel Compositionを用いて，$e \in E$からシステムの全環境がモデル化された決定性LTS $m = (S_{m}, A_{m}, \Delta_{m}, s^0_{m})$を構築する（1行目）．
+$m$を合成するParallel Compositionは定義\ref{def:parallel_composition}で定義される．
+\begin{dfn}{\textbf{Parallel Composition}}
+\label{def:parallel_composition}
+    記号$\parallel$で表され，複数のLTSを同期されたひとつのLTSに統合する．
+    入力のLTSを$S_{x} \cap S_{y} = \emptyset$を満たす$x = (S_{x}, A_{x}, \Delta_{x}, s^0_{x})$,
+    $y = (S_{y}, A_{y}, \Delta_{y}, s^0_{y})$とする．
+    $m = x \parallel y = (S, A, \Delta, s^0)$の時，初期状態$s^0$は状態の集合$\{ s^0_{x}, s^0_{y} \}$で表され，遷移$(s,a,s')\in\Delta$は式\ref{formula:pc1}，\ref{formula:pc2}，\ref{formula:pc3}を満たす初期状態$s^0$から到達可能な全状態間を結ぶ全遷移の集合である．
+    \begin{multline}
+    \label{formula:pc1}
+    \Delta_x \langle s_{x} \overset{a}{\rightarrow} s'_{x} \rangle, \Delta_y \langle s_{y} \overset{a}{\nrightarrow} s'_{y} \rangle, a \in A_{x} \backslash A_{y}\\
+    \Rightarrow (\{ s_{x},s_{y} \},a,\{ s'_{x},s_{y} \} ) \in \Delta
+    \end{multline}
+    \begin{multline}
+    \label{formula:pc2}
+    \Delta_x \langle s_{x} \overset{a}{\nrightarrow} s'_{x} \rangle, \Delta_y \langle s_{y} \overset{a}{\rightarrow} s'_{y} \rangle, a \in A_{y} \backslash A_{x}\\
+    \Rightarrow (\{ s_{x},s_{y} \},a,\{ s_{x},s'_{y} \}) \in \Delta
+    \end{multline}
+    \begin{multline}
+    \label{formula:pc3}
+    \Delta_x \langle s_{x} \overset{a}{\rightarrow} s'_{x} \rangle, \Delta_y \langle s_{y} \overset{a}{\rightarrow} s'_{y} \rangle, a \in A_{x} \cap A_{y}\\
+    \Rightarrow (\{ s_{x},s_{y} \},a,\{ s'_{x},s'_{y} \}) \in \Delta
+    \end{multline}
+    $\Delta_x \langle s_{x} \overset{a}{\rightarrow} s'_{x} \rangle$は$s_{x}$において$a$が生じた場合，状態が$s'_{x}$となるような遷移が$\Delta_x$に含まれることを表し，$\Delta_x \langle s_{x} \overset{a}{\nrightarrow} s'_{x} \rangle$は$s_{x}$において$a$が生じた場合，状態が$s'_{x}$となるような遷移が$\Delta_x$に含まれないことを表す．
+    $S$は$\Delta$に含まれる全状態の集合，$A$は$\Delta$に含まれる全事象の集合で表され，$\Delta$が合成されたとき一意に定まる．
+    $E = \{e_1, e_2, \ldots, e_n\}$の時，"{\bf Parallel Composition($E$)}"は$e_1 \parallel e_2 \parallel \cdots \parallel e_n$を表す．
+\end{dfn}
+
+次に，Modified Parallel Compositionを用いて，決定性LTSであるゲーム空間 $g = (S_{g}, A_{g}, \Delta_{g}, s^0_{g})$を構築する（2行目）．
+$g$は$m$において保証したい安全性$r$を違反する状態を重ね合わせたLTSであり，$g$において二人型対戦ゲーム理論に基づいた安全性ゲームを解くことで制御器 $c$を導出できる．この$g$を合成するModified Parallel Compositionは定義\ref{def:modified_parallel_composition}で定義される．
+\begin{dfn}{\textbf{Modified Parallel Composition}}
+\label{def:modified_parallel_composition}
+    プロセス記号$\parallel_*$で表され，監視モデル$R$とその監視対象である監視対象モデル$m$からゲーム空間$g$を合成する．
+    入力を$S_{r} \cap S_{m} = \emptyset$を満たす監視モデル$r = (S_{r}, A_{r}, \Delta_{r}, s^0_{r})$と，
+    監視対象モデル$m = (S_{m}, A_{m}, \Delta_{m}, s^0_{m})$とする．
+    $g = m \parallel_* r = (S, A, \Delta, s^0)$の時，$s^0$は$\{ s^0_{m}, s^0_{r} \}$で表され，遷移$(s,a,s')\in\Delta$は式\ref{formula:mpc1}，\ref{formula:mpc2}を満たす初期状態$s^0$から到達可能な全状態間を結ぶ全遷移の集合である．
+    \begin{multline}
+    \label{formula:mpc1}
+    \Delta_m \langle s_{m} \overset{a}{\rightarrow} s'_{m} \rangle, \Delta_r \langle s_{r} \overset{a}{\nrightarrow} s'_{r} \rangle, a \in A_{m} \backslash A_{r}\\
+    \Rightarrow (\{ s_{m},s_{r} \},a,\{ s'_{m},s_{r} \} ) \in \Delta
+    \end{multline}
+    \begin{multline}
+    \label{formula:mpc2}
+    \Delta_m \langle s_{m} \overset{a}{\rightarrow} s'_{m} \rangle, \Delta_r \langle s_{r} \overset{a}{\rightarrow} s'_{r} \rangle, a \in A_{m} \cap A_{r}\\
+    \Rightarrow (\{ s_{m},s_{r} \},a,\{ s'_{m},s'_{r} \}) \in \Delta
+    \end{multline}
+    $\Delta_r \langle s_{r} \overset{a}{\rightarrow} s'_{r} \rangle$は$s_{r}$において$a$が生じた場合，状態が$s'_{r}$となるような遷移が$\Delta_r$において含まれることを表し，$\Delta_r \langle s_{r} \overset{a}{\nrightarrow} s'_{r} \rangle$は$s_{r}$において$a$が生じた場合，状態が$s'_{r}$となるような遷移が$\Delta_x$において含まれないことを表す．
+    $S$は$\Delta$に含まれる全状態の集合，$A$は$\Delta$に含まれる全事象の集合で表され，$\Delta$が合成されたとき一意に定まる．
+    また，$m = \{S_{m}, A_{m}, \Delta_{m}, s^0_{m}\}$，$R = \{r_1, r_2, \ldots, r_n\}$の時，"{\bf Modified Parallel Composition($m$, $R$)}"は$m \parallel_* r_1 \parallel_* r_2 \parallel_* \cdots \parallel_* r_n$を表す．
+\end{dfn}
+
+その後，Error State Abstractionを用いて，$g$の違反状態空間が圧縮された決定性LTS，$g^* = (S_{g^*}, A_{g^*}, \Delta_{g^*}, s^0_{g^*})$を構築する（3行目）．Error State Abstractionは，Safety Game Solvingにおける計算量削減のために，$s_{err}$が重ね合わされた$g$の状態をひとつの違反状態$s_{err}$に圧縮する．
+そのError State Abstractionは定義\ref{def:error_state_abstraction}で定義される．
+\begin{dfn}{\textbf{Error State Abstraction}}
+\label{def:error_state_abstraction}
+    ゲーム空間$g$において$s_{err}$を含む全ての状態をひとつの違反状態$s_{err}$に置換し，違反状態を含む状態空間を圧縮する．
+    入力のゲーム空間を$g = \{S_{g}, A_{g}, \Delta_{g}, s^0_{g}\}$，出力のゲーム空間$g^*$は$g^* = \{S_{g^*}, A_{g^*}, \Delta_{g^*}, s^0_{g^*}\}$とする．
+    $s^0_{g^*}$は$s^0_{g^*} = s^0_{g}$となり，
+    $S_{g^*}$は$S_{g^*} = \{s_{err}\} \cup \{ s_{g} \in S_{g} \mid s \notin s_{err} \}$によって導出される．
+    遷移$\Delta_{g^*}$は$\Delta_{g^*} = \{ (s,a,s') \in \Delta_{g} \mid s \in S_{g^*} \}$で導出されるが，導出の過程で$\Delta_{g^*}$に含まれる$s_{err}$を含む全ての状態は$s_{err}$に置換される．
+    また，$A_{g}$は$A_{g} = { a \mid (s,a,s') \in \Delta_{g}}$と表される．
+    以上の$g$から$g^*$を導出する作業を"{\bf State Abstruction($g$)}"で表す．
+\end{dfn}
+
+最後に，$g^*$においてSafety Game Solvingすることで制御器$c$を合成する（4行目）．本論文における「分析」はこのSafety Game Solvingを指し，ゲーム空間を構築する環境モデルにおいて監視モデルの違反状態に到達しない全ての遷移を導出し$c$とする．$c$は決定性LTS $c = (S_{c}, A_{c}, \Delta_{c}, s^0_{c})$で表され，$g^*$において$s_{err}$に遷移することのないシステムの制御を表したLTSである．
+Safety Game Solvingは定義\ref{def:safety_game_solving}で定義される．
+
+\begin{dfn}{\textbf{Safety Game Solving}}
+\label{def:safety_game_solving}
+    ゲーム空間$g^* = (S_{g^*}, A_{g^*}, \Delta_{g^*}, s^0_{g^*})$を入力とし，制御器$c$を出力する．
+    二人型対戦ゲーム理論を用いて$s_{err} \in S_{g^*}$から逆伝搬的に$g^*$の状態の探索を行い，
+    制御可能な事象$A^+$をどのように発生させたとしても制御不可能な事象$A^-$次第で$s_{err}$に遷移しうる状態である準違反状態を見つけ，違反状態の集合$S_{err}$に分類する．
+    その後，$S_{g^*}$のうち，$S_{err}$に含まれない全状態を状態の集合$S_{safe}$に分類し，$\Delta_{g}$のうち$S_{safe}$に含まれる状態のみで構築された遷移$\Delta_{safe}$を特定する．
+    $\Delta_{safe}$を構成する全ての事象を$A_{safe}$とする．
+    特定した$S_{safe}$，$\Delta_{safe}$，$A_{safe}$から制御器$c=\{S_{safe}, A_{c}, \Delta_{safe}, s^0_{g^*}\}$を構築し出力する．
+    以上の$g^*$から$c$を導出する作業を"{\bf Safety Game Solving($g^*$)}"で表す．
+\end{dfn}
+
+以上のParallel Composition，Modified Parallel Composition，Error State Abstraction，Safety Game Solvingを通して$c$は合成される．
+このとき，$c$の導出過程で構築される$m$，$g$，$g^*$の状態数は入力される環境モデルの数に応じて指数増加する．
+その結果，DCSに必要となる主記憶量や計算時間も指数的に増大するため，DCSを実践規模のシステムへ適用していく上では，この計算空間の指数爆発を抑制することが重要な課題だとされてきた\cite{paper:DirectedControllerSyntehsis}\cite{aizawa:IEICEJ2020}\cite{aizawa:SmartWorld}．
+この課題に対し，SDCS\cite{yamauchi:IEICEJ2023}とCDCS\cite{yamauchi:IPSJ2024}は，$c$合成過程の冗長な計算空間を特定し，構築を回避するDCSアルゴリズムを提案することで，計算空間の指数爆発の抑制に取り組んだ．
+

@@ -1,0 +1,1644 @@
+Compiled: INITIAL(1)
+Compiled: INITIAL(2)
+Compiled: SHIP_AREA
+Compiled: BOX_GET_AREA
+Compiled: ITEM_GET_AREA
+Compiled: PACK_AREA
+Compiled: REQUEST_1
+Compiled: REQUEST_2
+Compiled: REQUEST_3
+Compiled: REQUEST_4
+Compiled: ROBOT_CHECK
+Composition:KIVA_System = KIVA_System.robot1:INITIAL(1) || KIVA_System.robot2:INITIAL(1) || KIVA_System.robot3:INITIAL(2) || KIVA_System.SHIP_AREA || KIVA_System.BOX_GET_AREA || KIVA_System.ITEM_GET_AREA || KIVA_System.PACK_AREA || KIVA_System.REQUEST_1 || KIVA_System.REQUEST_2 || KIVA_System.REQUEST_3 || KIVA_System.REQUEST_4 || KIVA_System.ROBOT_CHECK
+State Space: 6 * 6 * 6 * 1 * 1 * 1 * 1 * 4 * 4 * 2 * 2 * 4 = 2 ** 17
+Composing...
+-- States: 10000 Transitions: 325465 Memory used: 65316KB
+-- States: 20000 Transitions: 648689 Memory used: 109171KB
+-- States: 30000 Transitions: 974813 Memory used: 174468KB
+-- States: 40000 Transitions: 1297319 Memory used: 128511KB
+-- States: 50000 Transitions: 1623012 Memory used: 195190KB
+-- States: 55296 Transitions: 1797120 Memory used: 250842KB
+Composed in 1031ms
+Composition:Environment = Environment.KIVA_System
+State Space: 55296 = 2 ** 16
+Composing...
+-- States: 10000 Transitions: 325465 Memory used: 266828KB
+-- States: 20000 Transitions: 648689 Memory used: 320459KB
+-- States: 30000 Transitions: 974813 Memory used: 367491KB
+-- States: 40000 Transitions: 1297319 Memory used: 414381KB
+-- States: 50000 Transitions: 1623012 Memory used: 461416KB
+-- States: 55296 Transitions: 1797120 Memory used: 582153KB
+Composed in 568ms
+Formula !P_REPLENISH_ROBOT_RULE = (true U robot2.move.{boxGettingArea, packingArea, shippingArea})
+GBA 2 states 3 transitions
+Buchi automata:
+P_REPLENISH_ROBOT_RULE = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |robot2.move.{boxGettingArea, packingArea, shippingArea} -> S1).
+Composition:P_REPLENISH_ROBOT_RULE = robot2.move.{boxGettingArea, packingArea, shippingArea} || SYNC || P_REPLENISH_ROBOT_RULE
+State Space: 2 * 2 * 2 = 2 ** 3
+Composing...
+-- States: 5 Transitions: 14 Memory used: 231792KB
+Composed in 84ms
+After Tau elimination = 3 state
+Tau reduction ON
+P_REPLENISH_ROBOT_RULE minimising..
+Minimised States: 2 in 0ms
+make DFA(P_REPLENISH_ROBOT_RULE)
+DFA(P_REPLENISH_ROBOT_RULE) has 1 states.
+Tau reduction ON
+P_REPLENISH_ROBOT_RULE minimising..
+Minimised States: 1 in 0ms
+Formula !P_SHIP_ROBOT_RULE = (true U robot1.move.itemGettingArea)
+GBA 2 states 3 transitions
+Buchi automata:
+P_SHIP_ROBOT_RULE = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |robot1.move.itemGettingArea -> S1).
+Composition:P_SHIP_ROBOT_RULE = robot1.move.itemGettingArea || SYNC || P_SHIP_ROBOT_RULE
+State Space: 2 * 2 * 2 = 2 ** 3
+Composing...
+-- States: 5 Transitions: 8 Memory used: 229280KB
+Composed in 116ms
+After Tau elimination = 3 state
+Tau reduction ON
+P_SHIP_ROBOT_RULE minimising..
+Minimised States: 2 in 0ms
+make DFA(P_SHIP_ROBOT_RULE)
+DFA(P_SHIP_ROBOT_RULE) has 1 states.
+Tau reduction ON
+P_SHIP_ROBOT_RULE minimising..
+Minimised States: 1 in 0ms
+Formula !P_BRINGITEM_ROBOT_RULE = (true U robot3.move.{boxGettingArea, itemGettingArea, shippingArea})
+GBA 2 states 3 transitions
+Buchi automata:
+P_BRINGITEM_ROBOT_RULE = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |robot3.move.{boxGettingArea, itemGettingArea, shippingArea} -> S1).
+Composition:P_BRINGITEM_ROBOT_RULE = robot3.move.{boxGettingArea, itemGettingArea, shippingArea} || SYNC || P_BRINGITEM_ROBOT_RULE
+State Space: 2 * 2 * 2 = 2 ** 3
+Composing...
+-- States: 5 Transitions: 14 Memory used: 229489KB
+Composed in 150ms
+After Tau elimination = 3 state
+Tau reduction ON
+P_BRINGITEM_ROBOT_RULE minimising..
+Minimised States: 2 in 0ms
+make DFA(P_BRINGITEM_ROBOT_RULE)
+DFA(P_BRINGITEM_ROBOT_RULE) has 1 states.
+Tau reduction ON
+P_BRINGITEM_ROBOT_RULE minimising..
+Minimised States: 1 in 0ms
+Formula !P_REQUEST_TIMING_1 = (true U (reqBringBox & X (!doneBringBox U (reqShip & !doneBringBox))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_REQUEST_TIMING_1 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |reqBringBox -> S2),
+S2 =(!doneBringBox -> S2 |reqShip&!doneBringBox -> S1).
+Composition:P_REQUEST_TIMING_1 = reqBringBox || reqShip || doneBringBox || SYNC || P_REQUEST_TIMING_1
+State Space: 2 * 2 * 2 * 2 * 4 = 2 ** 6
+Composing...
+-- States: 24 Transitions: 56 Memory used: 227404KB
+Composed in 117ms
+After Tau elimination = 12 state
+Tau reduction ON
+P_REQUEST_TIMING_1 minimising....
+Minimised States: 4 in 0ms
+make DFA(P_REQUEST_TIMING_1)
+DFA(P_REQUEST_TIMING_1) has 4 states.
+Tau reduction ON
+P_REQUEST_TIMING_1 minimising...
+Minimised States: 2 in 0ms
+Formula !P_REQUEST_TIMING_2 = (true U (reqShip & X (!doneShip U (reqBringBox & !doneShip))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_REQUEST_TIMING_2 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |reqShip -> S2),
+S2 =(!doneShip -> S2 |reqBringBox&!doneShip -> S1).
+Composition:P_REQUEST_TIMING_2 = reqShip || reqBringBox || doneShip || SYNC || P_REQUEST_TIMING_2
+State Space: 2 * 2 * 2 * 2 * 4 = 2 ** 6
+Composing...
+-- States: 24 Transitions: 56 Memory used: 227495KB
+Composed in 132ms
+After Tau elimination = 12 state
+Tau reduction ON
+P_REQUEST_TIMING_2 minimising....
+Minimised States: 4 in 0ms
+make DFA(P_REQUEST_TIMING_2)
+DFA(P_REQUEST_TIMING_2) has 4 states.
+Tau reduction ON
+P_REQUEST_TIMING_2 minimising...
+Minimised States: 2 in 1ms
+Formula !P_REQUEST_TIMING_CHECK = (true U (PROCESS_REQUEST & check))
+GBA 2 states 3 transitions
+Buchi automata:
+P_REQUEST_TIMING_CHECK = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |PROCESS_REQUEST&check -> S1).
+Composition:P_REQUEST_TIMING_CHECK = PROCESS_REQUEST || check || SYNC || P_REQUEST_TIMING_CHECK
+State Space: 2 * 2 * 2 * 2 = 2 ** 4
+Composing...
+-- States: 16 Transitions: 121 Memory used: 228157KB
+Composed in 117ms
+After Tau elimination = 8 state
+Tau reduction ON
+P_REQUEST_TIMING_CHECK minimising...
+Minimised States: 3 in 0ms
+make DFA(P_REQUEST_TIMING_CHECK)
+DFA(P_REQUEST_TIMING_CHECK) has 2 states.
+Tau reduction ON
+P_REQUEST_TIMING_CHECK minimising...
+Minimised States: 2 in 0ms
+Formula !P_REQUEST_ONLY_1 = (true U ((!PROCESS_BRING_BOX & !PROCESS_SHIP) & robot1.{move, pick, put}.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}}))
+GBA 2 states 3 transitions
+Buchi automata:
+P_REQUEST_ONLY_1 = S0,
+S1@ =(true -> S1),
+S0 =(!PROCESS_SHIP&!PROCESS_BRING_BOX&robot1.{move, pick, put}.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} -> S1 |true -> S0).
+Composition:P_REQUEST_ONLY_1 = PROCESS_SHIP || PROCESS_BRING_BOX || robot1.{move, pick, put}.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} || SYNC || P_REQUEST_ONLY_1
+State Space: 2 * 2 * 2 * 2 * 2 = 2 ** 5
+Composing...
+-- States: 32 Transitions: 385 Memory used: 228216KB
+Composed in 117ms
+After Tau elimination = 16 state
+Tau reduction ON
+P_REQUEST_ONLY_1 minimising....
+Minimised States: 5 in 0ms
+make DFA(P_REQUEST_ONLY_1)
+DFA(P_REQUEST_ONLY_1) has 4 states.
+Tau reduction ON
+P_REQUEST_ONLY_1 minimising...
+Minimised States: 4 in 0ms
+Formula !P_REQUEST_ONLY_2 = (true U (!PROCESS_REPLENISH_ITEM & robot2.{move, pick, put}.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}}))
+GBA 2 states 3 transitions
+Buchi automata:
+P_REQUEST_ONLY_2 = S0,
+S1@ =(true -> S1),
+S0 =(!PROCESS_REPLENISH_ITEM&robot2.{move, pick, put}.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} -> S1 |true -> S0).
+Composition:P_REQUEST_ONLY_2 = PROCESS_REPLENISH_ITEM || robot2.{move, pick, put}.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} || SYNC || P_REQUEST_ONLY_2
+State Space: 2 * 2 * 2 * 2 = 2 ** 4
+Composing...
+-- States: 16 Transitions: 177 Memory used: 218040KB
+Composed in 133ms
+After Tau elimination = 8 state
+Tau reduction ON
+P_REQUEST_ONLY_2 minimising...
+Minimised States: 3 in 0ms
+make DFA(P_REQUEST_ONLY_2)
+DFA(P_REQUEST_ONLY_2) has 2 states.
+Tau reduction ON
+P_REQUEST_ONLY_2 minimising...
+Minimised States: 2 in 0ms
+Formula !P_REQUEST_ONLY_3 = (true U (!PROCESS_BRING_ITEM & robot3.{move, pick, put}.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}}))
+GBA 2 states 3 transitions
+Buchi automata:
+P_REQUEST_ONLY_3 = S0,
+S1@ =(true -> S1),
+S0 =(!PROCESS_BRING_ITEM&robot3.{move, pick, put}.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} -> S1 |true -> S0).
+Composition:P_REQUEST_ONLY_3 = PROCESS_BRING_ITEM || robot3.{move, pick, put}.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} || SYNC || P_REQUEST_ONLY_3
+State Space: 2 * 2 * 2 * 2 = 2 ** 4
+Composing...
+-- States: 16 Transitions: 177 Memory used: 218023KB
+Composed in 116ms
+After Tau elimination = 8 state
+Tau reduction ON
+P_REQUEST_ONLY_3 minimising...
+Minimised States: 3 in 0ms
+make DFA(P_REQUEST_ONLY_3)
+DFA(P_REQUEST_ONLY_3) has 2 states.
+Tau reduction ON
+P_REQUEST_ONLY_3 minimising...
+Minimised States: 2 in 0ms
+Formula !P_ROBOT1_ARM_RULE_1 = (true U ((!PROCESS_BRING_BOX & !PROCESS_SHIP) & robot1.{pick, put}.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}}))
+GBA 2 states 3 transitions
+Buchi automata:
+P_ROBOT1_ARM_RULE_1 = S0,
+S1@ =(true -> S1),
+S0 =(!PROCESS_SHIP&!PROCESS_BRING_BOX&robot1.{pick, put}.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} -> S1 |true -> S0).
+Composition:P_ROBOT1_ARM_RULE_1 = PROCESS_SHIP || PROCESS_BRING_BOX || robot1.{pick, put}.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} || SYNC || P_ROBOT1_ARM_RULE_1
+State Space: 2 * 2 * 2 * 2 * 2 = 2 ** 5
+Composing...
+-- States: 32 Transitions: 289 Memory used: 218061KB
+Composed in 117ms
+After Tau elimination = 16 state
+Tau reduction ON
+P_ROBOT1_ARM_RULE_1 minimising....
+Minimised States: 5 in 0ms
+make DFA(P_ROBOT1_ARM_RULE_1)
+DFA(P_ROBOT1_ARM_RULE_1) has 4 states.
+Tau reduction ON
+P_ROBOT1_ARM_RULE_1 minimising...
+Minimised States: 4 in 0ms
+Formula !P_ROBOT1_ARM_RULE_2 = (true U (robot1.pick.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} & X (!robot1.put.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} U (robot1.pick.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} & !robot1.put.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}}))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_ROBOT1_ARM_RULE_2 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |robot1.pick.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} -> S2),
+S2 =(!robot1.put.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} -> S2 |robot1.pick.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}}&!robot1.put.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} -> S1).
+Composition:P_ROBOT1_ARM_RULE_2 = robot1.pick.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} || robot1.put.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} || SYNC || P_ROBOT1_ARM_RULE_2
+State Space: 2 * 2 * 2 * 4 = 2 ** 5
+Composing...
+-- States: 16 Transitions: 110 Memory used: 218126KB
+Composed in 117ms
+After Tau elimination = 8 state
+Tau reduction ON
+P_ROBOT1_ARM_RULE_2 minimising....
+Minimised States: 4 in 0ms
+make DFA(P_ROBOT1_ARM_RULE_2)
+DFA(P_ROBOT1_ARM_RULE_2) has 4 states.
+Tau reduction ON
+P_ROBOT1_ARM_RULE_2 minimising...
+Minimised States: 2 in 0ms
+Formula !P_ROBOT1_ARM_RULE_3 = (true U (robot1.put.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} & X (!robot1.pick.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} U (robot1.put.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} & !robot1.pick.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}}))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_ROBOT1_ARM_RULE_3 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |robot1.put.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} -> S2),
+S2 =(!robot1.pick.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} -> S2 |robot1.put.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}}&!robot1.pick.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} -> S1).
+Composition:P_ROBOT1_ARM_RULE_3 = robot1.put.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} || robot1.pick.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} || SYNC || P_ROBOT1_ARM_RULE_3
+State Space: 2 * 2 * 2 * 4 = 2 ** 5
+Composing...
+-- States: 16 Transitions: 110 Memory used: 218116KB
+Composed in 117ms
+After Tau elimination = 8 state
+Tau reduction ON
+P_ROBOT1_ARM_RULE_3 minimising....
+Minimised States: 4 in 0ms
+make DFA(P_ROBOT1_ARM_RULE_3)
+DFA(P_ROBOT1_ARM_RULE_3) has 4 states.
+Tau reduction ON
+P_ROBOT1_ARM_RULE_3 minimising...
+Minimised States: 2 in 0ms
+Formula !P_ROBOT2_ARM_RULE_1 = (true U (!PROCESS_REPLENISH_ITEM & robot2.{pick, put}.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}}))
+GBA 2 states 3 transitions
+Buchi automata:
+P_ROBOT2_ARM_RULE_1 = S0,
+S1@ =(true -> S1),
+S0 =(!PROCESS_REPLENISH_ITEM&robot2.{pick, put}.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} -> S1 |true -> S0).
+Composition:P_ROBOT2_ARM_RULE_1 = PROCESS_REPLENISH_ITEM || robot2.{pick, put}.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} || SYNC || P_ROBOT2_ARM_RULE_1
+State Space: 2 * 2 * 2 * 2 = 2 ** 4
+Composing...
+-- States: 16 Transitions: 129 Memory used: 218138KB
+Composed in 216ms
+After Tau elimination = 8 state
+Tau reduction ON
+P_ROBOT2_ARM_RULE_1 minimising...
+Minimised States: 3 in 0ms
+make DFA(P_ROBOT2_ARM_RULE_1)
+DFA(P_ROBOT2_ARM_RULE_1) has 2 states.
+Tau reduction ON
+P_ROBOT2_ARM_RULE_1 minimising...
+Minimised States: 2 in 0ms
+Formula !P_ROBOT2_ARM_RULE_2 = (true U (robot2.pick.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} & X (!robot2.put.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} U (robot2.pick.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} & !robot2.put.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}}))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_ROBOT2_ARM_RULE_2 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |robot2.pick.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} -> S2),
+S2 =(!robot2.put.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} -> S2 |robot2.pick.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}}&!robot2.put.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} -> S1).
+Composition:P_ROBOT2_ARM_RULE_2 = robot2.pick.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} || robot2.put.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} || SYNC || P_ROBOT2_ARM_RULE_2
+State Space: 2 * 2 * 2 * 4 = 2 ** 5
+Composing...
+-- States: 16 Transitions: 110 Memory used: 218821KB
+Composed in 117ms
+After Tau elimination = 8 state
+Tau reduction ON
+P_ROBOT2_ARM_RULE_2 minimising....
+Minimised States: 4 in 0ms
+make DFA(P_ROBOT2_ARM_RULE_2)
+DFA(P_ROBOT2_ARM_RULE_2) has 4 states.
+Tau reduction ON
+P_ROBOT2_ARM_RULE_2 minimising...
+Minimised States: 2 in 0ms
+Formula !P_ROBOT2_ARM_RULE_3 = (true U (robot2.put.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} & X (!robot2.pick.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} U (robot2.put.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} & !robot2.pick.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}}))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_ROBOT2_ARM_RULE_3 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |robot2.put.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} -> S2),
+S2 =(!robot2.pick.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} -> S2 |robot2.put.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}}&!robot2.pick.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} -> S1).
+Composition:P_ROBOT2_ARM_RULE_3 = robot2.put.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} || robot2.pick.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} || SYNC || P_ROBOT2_ARM_RULE_3
+State Space: 2 * 2 * 2 * 4 = 2 ** 5
+Composing...
+-- States: 16 Transitions: 110 Memory used: 218846KB
+Composed in 116ms
+After Tau elimination = 8 state
+Tau reduction ON
+P_ROBOT2_ARM_RULE_3 minimising....
+Minimised States: 4 in 0ms
+make DFA(P_ROBOT2_ARM_RULE_3)
+DFA(P_ROBOT2_ARM_RULE_3) has 4 states.
+Tau reduction ON
+P_ROBOT2_ARM_RULE_3 minimising...
+Minimised States: 2 in 0ms
+Formula !P_ROBOT3_ARM_RULE_1 = (true U (!PROCESS_BRING_ITEM & robot3.{pick, put}.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}}))
+GBA 2 states 3 transitions
+Buchi automata:
+P_ROBOT3_ARM_RULE_1 = S0,
+S1@ =(true -> S1),
+S0 =(!PROCESS_BRING_ITEM&robot3.{pick, put}.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} -> S1 |true -> S0).
+Composition:P_ROBOT3_ARM_RULE_1 = PROCESS_BRING_ITEM || robot3.{pick, put}.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} || SYNC || P_ROBOT3_ARM_RULE_1
+State Space: 2 * 2 * 2 * 2 = 2 ** 4
+Composing...
+-- States: 16 Transitions: 129 Memory used: 218868KB
+Composed in 150ms
+After Tau elimination = 8 state
+Tau reduction ON
+P_ROBOT3_ARM_RULE_1 minimising...
+Minimised States: 3 in 0ms
+make DFA(P_ROBOT3_ARM_RULE_1)
+DFA(P_ROBOT3_ARM_RULE_1) has 2 states.
+Tau reduction ON
+P_ROBOT3_ARM_RULE_1 minimising...
+Minimised States: 2 in 0ms
+Formula !P_ROBOT3_ARM_RULE_2 = (true U (robot3.pick.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} & X (!robot3.put.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} U (robot3.pick.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} & !robot3.put.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}}))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_ROBOT3_ARM_RULE_2 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |robot3.pick.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} -> S2),
+S2 =(!robot3.put.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} -> S2 |robot3.pick.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}}&!robot3.put.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} -> S1).
+Composition:P_ROBOT3_ARM_RULE_2 = robot3.pick.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} || robot3.put.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} || SYNC || P_ROBOT3_ARM_RULE_2
+State Space: 2 * 2 * 2 * 4 = 2 ** 5
+Composing...
+-- States: 16 Transitions: 110 Memory used: 218914KB
+Composed in 214ms
+After Tau elimination = 8 state
+Tau reduction ON
+P_ROBOT3_ARM_RULE_2 minimising....
+Minimised States: 4 in 0ms
+make DFA(P_ROBOT3_ARM_RULE_2)
+DFA(P_ROBOT3_ARM_RULE_2) has 4 states.
+Tau reduction ON
+P_ROBOT3_ARM_RULE_2 minimising...
+Minimised States: 2 in 0ms
+Formula !P_ROBOT3_ARM_RULE_3 = (true U (robot3.put.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} & X (!robot3.pick.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} U (robot3.put.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} & !robot3.pick.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}}))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_ROBOT3_ARM_RULE_3 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |robot3.put.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} -> S2),
+S2 =(!robot3.pick.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} -> S2 |robot3.put.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}}&!robot3.pick.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} -> S1).
+Composition:P_ROBOT3_ARM_RULE_3 = robot3.put.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} || robot3.pick.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} || SYNC || P_ROBOT3_ARM_RULE_3
+State Space: 2 * 2 * 2 * 4 = 2 ** 5
+Composing...
+-- States: 16 Transitions: 110 Memory used: 218964KB
+Composed in 99ms
+After Tau elimination = 8 state
+Tau reduction ON
+P_ROBOT3_ARM_RULE_3 minimising....
+Minimised States: 4 in 0ms
+make DFA(P_ROBOT3_ARM_RULE_3)
+DFA(P_ROBOT3_ARM_RULE_3) has 4 states.
+Tau reduction ON
+P_ROBOT3_ARM_RULE_3 minimising...
+Minimised States: 2 in 0ms
+Formula !P_REPLENISH_RULE_2 = (true U (replenish[1..2] & X (!robot2.move[1..2] U ({doneReplenishItem, replenish[1..2], reqReplenishItem, robot2.{move.{boxGettingArea, itemGettingArea, packingArea, shippingArea}, {pick, put}.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}}}, supplyItem} & !robot2.move[1..2]))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_REPLENISH_RULE_2 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |replenish[1..2] -> S2),
+S2 =(!robot2.move[1..2] -> S2 |{doneReplenishItem, replenish[1..2], reqReplenishItem, robot2.{move.{boxGettingArea, itemGettingArea, packingArea, shippingArea}, {pick, put}.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}}}, supplyItem}&!robot2.move[1..2] -> S1).
+Composition:P_REPLENISH_RULE_2 = replenish[1..2] || {doneReplenishItem, replenish[1..2], reqReplenishItem, robot2.{move.{boxGettingArea, itemGettingArea, packingArea, shippingArea}, {pick, put}.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}}}, supplyItem} || robot2.move[1..2] || SYNC || P_REPLENISH_RULE_2
+State Space: 2 * 2 * 2 * 2 * 4 = 2 ** 6
+Composing...
+-- States: 24 Transitions: 297 Memory used: 218376KB
+Composed in 202ms
+After Tau elimination = 12 state
+Tau reduction ON
+P_REPLENISH_RULE_2 minimising....
+Minimised States: 4 in 0ms
+make DFA(P_REPLENISH_RULE_2)
+DFA(P_REPLENISH_RULE_2) has 4 states.
+Tau reduction ON
+P_REPLENISH_RULE_2 minimising...
+Minimised States: 2 in 0ms
+Formula !P_BRING_RULE_2 = (true U (bring[1..2] & X (!robot3.move[1..2] U ({bring[1..2], {doneBringItem, getItem, reqBringItem}, robot3.{move.{boxGettingArea, itemGettingArea, packingArea, shippingArea}, {pick, put}.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}}}} & !robot3.move[1..2]))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_BRING_RULE_2 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |bring[1..2] -> S2),
+S2 =(!robot3.move[1..2] -> S2 |{bring[1..2], {doneBringItem, getItem, reqBringItem}, robot3.{move.{boxGettingArea, itemGettingArea, packingArea, shippingArea}, {pick, put}.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}}}}&!robot3.move[1..2] -> S1).
+Composition:P_BRING_RULE_2 = bring[1..2] || {bring[1..2], {doneBringItem, getItem, reqBringItem}, robot3.{move.{boxGettingArea, itemGettingArea, packingArea, shippingArea}, {pick, put}.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}}}} || robot3.move[1..2] || SYNC || P_BRING_RULE_2
+State Space: 2 * 2 * 2 * 2 * 4 = 2 ** 6
+Composing...
+-- States: 24 Transitions: 297 Memory used: 219096KB
+Composed in 117ms
+After Tau elimination = 12 state
+Tau reduction ON
+P_BRING_RULE_2 minimising....
+Minimised States: 4 in 0ms
+make DFA(P_BRING_RULE_2)
+DFA(P_BRING_RULE_2) has 4 states.
+Tau reduction ON
+P_BRING_RULE_2 minimising...
+Minimised States: 2 in 0ms
+Formula !P_AREA_RULE_1 = (true U (!SHIP_TIMING & ship))
+GBA 2 states 3 transitions
+Buchi automata:
+P_AREA_RULE_1 = S0,
+S1@ =(true -> S1),
+S0 =(!SHIP_TIMING&ship -> S1 |true -> S0).
+Composition:P_AREA_RULE_1 = SHIP_TIMING || ship || SYNC || P_AREA_RULE_1
+State Space: 2 * 2 * 2 * 2 = 2 ** 4
+Composing...
+-- States: 16 Transitions: 41 Memory used: 219102KB
+Composed in 117ms
+After Tau elimination = 8 state
+Tau reduction ON
+P_AREA_RULE_1 minimising...
+Minimised States: 3 in 0ms
+make DFA(P_AREA_RULE_1)
+DFA(P_AREA_RULE_1) has 2 states.
+Tau reduction ON
+P_AREA_RULE_1 minimising...
+Minimised States: 2 in 0ms
+Formula !P_AREA_RULE_2 = (true U (!BOX_TIMING & supplyBox))
+GBA 2 states 3 transitions
+Buchi automata:
+P_AREA_RULE_2 = S0,
+S1@ =(true -> S1),
+S0 =(!BOX_TIMING&supplyBox -> S1 |true -> S0).
+Composition:P_AREA_RULE_2 = BOX_TIMING || supplyBox || SYNC || P_AREA_RULE_2
+State Space: 2 * 2 * 2 * 2 = 2 ** 4
+Composing...
+-- States: 16 Transitions: 41 Memory used: 219083KB
+Composed in 149ms
+After Tau elimination = 8 state
+Tau reduction ON
+P_AREA_RULE_2 minimising...
+Minimised States: 3 in 0ms
+make DFA(P_AREA_RULE_2)
+DFA(P_AREA_RULE_2) has 2 states.
+Tau reduction ON
+P_AREA_RULE_2 minimising...
+Minimised States: 2 in 0ms
+Formula !P_AREA_RULE_3 = (true U (!ITEM_TIMING & supplyItem))
+GBA 2 states 3 transitions
+Buchi automata:
+P_AREA_RULE_3 = S0,
+S1@ =(true -> S1),
+S0 =(!ITEM_TIMING&supplyItem -> S1 |true -> S0).
+Composition:P_AREA_RULE_3 = ITEM_TIMING || supplyItem || SYNC || P_AREA_RULE_3
+State Space: 2 * 2 * 2 * 2 = 2 ** 4
+Composing...
+-- States: 16 Transitions: 41 Memory used: 218455KB
+Composed in 117ms
+After Tau elimination = 8 state
+Tau reduction ON
+P_AREA_RULE_3 minimising...
+Minimised States: 3 in 0ms
+make DFA(P_AREA_RULE_3)
+DFA(P_AREA_RULE_3) has 2 states.
+Tau reduction ON
+P_AREA_RULE_3 minimising...
+Minimised States: 2 in 0ms
+Formula !P_AREA_RULE_4 = (true U ((!PROCESS_BRING_ITEM | (GET_TIMING_2 | !GET_TIMING_1)) & getItem))
+GBA 2 states 5 transitions
+Buchi automata:
+P_AREA_RULE_4 = S0,
+S1@ =(true -> S1),
+S0 =(!GET_TIMING_1&getItem -> S1 |!PROCESS_BRING_ITEM&getItem -> S1 |true -> S0 |GET_TIMING_2&getItem -> S1).
+Composition:P_AREA_RULE_4 = GET_TIMING_1 || GET_TIMING_2 || PROCESS_BRING_ITEM || getItem || SYNC || P_AREA_RULE_4
+State Space: 2 * 2 * 2 * 2 * 2 * 2 = 2 ** 6
+Composing...
+-- States: 64 Transitions: 263 Memory used: 219173KB
+Composed in 117ms
+After Tau elimination = 32 state
+Tau reduction ON
+P_AREA_RULE_4 minimising....
+Minimised States: 5 in 0ms
+make DFA(P_AREA_RULE_4)
+DFA(P_AREA_RULE_4) has 4 states.
+Tau reduction ON
+P_AREA_RULE_4 minimising....
+Minimised States: 4 in 0ms
+Formula !P_AREA_RULE_5 = (true U (!PACK_TIMING_1 & pack))
+GBA 2 states 3 transitions
+Buchi automata:
+P_AREA_RULE_5 = S0,
+S1@ =(true -> S1),
+S0 =(!PACK_TIMING_1&pack -> S1 |true -> S0).
+Composition:P_AREA_RULE_5 = PACK_TIMING_1 || pack || SYNC || P_AREA_RULE_5
+State Space: 2 * 2 * 2 * 2 = 2 ** 4
+Composing...
+-- States: 16 Transitions: 41 Memory used: 219200KB
+Composed in 216ms
+After Tau elimination = 8 state
+Tau reduction ON
+P_AREA_RULE_5 minimising...
+Minimised States: 3 in 0ms
+make DFA(P_AREA_RULE_5)
+DFA(P_AREA_RULE_5) has 2 states.
+Tau reduction ON
+P_AREA_RULE_5 minimising...
+Minimised States: 2 in 0ms
+Formula !P_AREA_RULE_6 = (true U (!PACK_TIMING_2 & pack))
+GBA 2 states 3 transitions
+Buchi automata:
+P_AREA_RULE_6 = S0,
+S1@ =(true -> S1),
+S0 =(!PACK_TIMING_2&pack -> S1 |true -> S0).
+Composition:P_AREA_RULE_6 = PACK_TIMING_2 || pack || SYNC || P_AREA_RULE_6
+State Space: 2 * 2 * 2 * 2 = 2 ** 4
+Composing...
+-- States: 16 Transitions: 41 Memory used: 219201KB
+Composed in 117ms
+After Tau elimination = 8 state
+Tau reduction ON
+P_AREA_RULE_6 minimising...
+Minimised States: 3 in 0ms
+make DFA(P_AREA_RULE_6)
+DFA(P_AREA_RULE_6) has 2 states.
+Tau reduction ON
+P_AREA_RULE_6 minimising...
+Minimised States: 2 in 0ms
+Formula !P_AREA_RULE_7 = (true U (pack & X (!doneBringBox U (pack & !doneBringBox))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_AREA_RULE_7 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |pack -> S2),
+S2 =(!doneBringBox -> S2 |pack&!doneBringBox -> S1).
+Composition:P_AREA_RULE_7 = pack || doneBringBox || SYNC || P_AREA_RULE_7
+State Space: 2 * 2 * 2 * 4 = 2 ** 5
+Composing...
+-- States: 16 Transitions: 30 Memory used: 218585KB
+Composed in 116ms
+After Tau elimination = 8 state
+Tau reduction ON
+P_AREA_RULE_7 minimising....
+Minimised States: 4 in 0ms
+make DFA(P_AREA_RULE_7)
+DFA(P_AREA_RULE_7) has 4 states.
+Tau reduction ON
+P_AREA_RULE_7 minimising...
+Minimised States: 2 in 0ms
+Formula !P_AREA_RULE_8 = (true U (pack & X (!doneBringItem U (pack & !doneBringItem))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_AREA_RULE_8 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |pack -> S2),
+S2 =(!doneBringItem -> S2 |pack&!doneBringItem -> S1).
+Composition:P_AREA_RULE_8 = pack || doneBringItem || SYNC || P_AREA_RULE_8
+State Space: 2 * 2 * 2 * 4 = 2 ** 5
+Composing...
+-- States: 16 Transitions: 30 Memory used: 219248KB
+Composed in 216ms
+After Tau elimination = 8 state
+Tau reduction ON
+P_AREA_RULE_8 minimising....
+Minimised States: 4 in 0ms
+make DFA(P_AREA_RULE_8)
+DFA(P_AREA_RULE_8) has 4 states.
+Tau reduction ON
+P_AREA_RULE_8 minimising...
+Minimised States: 2 in 0ms
+Formula !P_REPLENISH_ITEM_RULE_1 = (true U (PROCESS_REPLENISH_ITEM & robot2.{move, pick, put}.{boxGettingArea, packingArea, shippingArea}))
+GBA 2 states 3 transitions
+Buchi automata:
+P_REPLENISH_ITEM_RULE_1 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |PROCESS_REPLENISH_ITEM&robot2.{move, pick, put}.{boxGettingArea, packingArea, shippingArea} -> S1).
+Composition:P_REPLENISH_ITEM_RULE_1 = PROCESS_REPLENISH_ITEM || robot2.{move, pick, put}.{boxGettingArea, packingArea, shippingArea} || SYNC || P_REPLENISH_ITEM_RULE_1
+State Space: 2 * 2 * 2 * 2 = 2 ** 4
+Composing...
+-- States: 16 Transitions: 105 Memory used: 219269KB
+Composed in 117ms
+After Tau elimination = 8 state
+Tau reduction ON
+P_REPLENISH_ITEM_RULE_1 minimising...
+Minimised States: 3 in 0ms
+make DFA(P_REPLENISH_ITEM_RULE_1)
+DFA(P_REPLENISH_ITEM_RULE_1) has 2 states.
+Tau reduction ON
+P_REPLENISH_ITEM_RULE_1 minimising...
+Minimised States: 2 in 0ms
+Formula !P_REPLENISH_ITEM_RULE_2 = (true U (reqReplenishItem & X (!replenish[1..2] U ({{doneReplenishItem, reqReplenishItem}, robot2.{move, pick, put}.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}}, supplyItem} & !replenish[1..2]))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_REPLENISH_ITEM_RULE_2 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |reqReplenishItem -> S2),
+S2 =(!replenish[1..2] -> S2 |{{doneReplenishItem, reqReplenishItem}, robot2.{move, pick, put}.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}}, supplyItem}&!replenish[1..2] -> S1).
+Composition:P_REPLENISH_ITEM_RULE_2 = reqReplenishItem || {{doneReplenishItem, reqReplenishItem}, robot2.{move, pick, put}.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}}, supplyItem} || replenish[1..2] || SYNC || P_REPLENISH_ITEM_RULE_2
+State Space: 2 * 2 * 2 * 2 * 4 = 2 ** 6
+Composing...
+-- States: 24 Transitions: 297 Memory used: 218703KB
+Composed in 117ms
+After Tau elimination = 12 state
+Tau reduction ON
+P_REPLENISH_ITEM_RULE_2 minimising....
+Minimised States: 4 in 0ms
+make DFA(P_REPLENISH_ITEM_RULE_2)
+DFA(P_REPLENISH_ITEM_RULE_2) has 4 states.
+Tau reduction ON
+P_REPLENISH_ITEM_RULE_2 minimising...
+Minimised States: 2 in 0ms
+Formula !P_REPLENISH_ITEM_RULE_3 = (true U (reqReplenishItem & X (!robot2.move[1..2] U (robot2.pick.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} & !robot2.move[1..2]))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_REPLENISH_ITEM_RULE_3 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |reqReplenishItem -> S2),
+S2 =(!robot2.move[1..2] -> S2 |robot2.pick.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}}&!robot2.move[1..2] -> S1).
+Composition:P_REPLENISH_ITEM_RULE_3 = reqReplenishItem || robot2.pick.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} || robot2.move[1..2] || SYNC || P_REPLENISH_ITEM_RULE_3
+State Space: 2 * 2 * 2 * 2 * 4 = 2 ** 6
+Composing...
+-- States: 24 Transitions: 128 Memory used: 218760KB
+Composed in 115ms
+After Tau elimination = 12 state
+Tau reduction ON
+P_REPLENISH_ITEM_RULE_3 minimising....
+Minimised States: 4 in 0ms
+make DFA(P_REPLENISH_ITEM_RULE_3)
+DFA(P_REPLENISH_ITEM_RULE_3) has 4 states.
+Tau reduction ON
+P_REPLENISH_ITEM_RULE_3 minimising...
+Minimised States: 2 in 0ms
+Formula !P_REPLENISH_ITEM_RULE_4 = (true U ((PROCESS_REPLENISH_ITEM & robot2.move[1..2]) & X (!robot2.{pick, put}[1..2] U (robot2.move.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} & !robot2.{pick, put}[1..2]))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_REPLENISH_ITEM_RULE_4 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |PROCESS_REPLENISH_ITEM&robot2.move[1..2] -> S2),
+S2 =(!robot2.{pick, put}[1..2] -> S2 |robot2.move.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}}&!robot2.{pick, put}[1..2] -> S1).
+Composition:P_REPLENISH_ITEM_RULE_4 = PROCESS_REPLENISH_ITEM || robot2.move[1..2] || robot2.move.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} || robot2.{pick, put}[1..2] || SYNC || P_REPLENISH_ITEM_RULE_4
+State Space: 2 * 2 * 2 * 2 * 2 * 4 = 2 ** 7
+Composing...
+-- States: 62 Transitions: 413 Memory used: 219443KB
+Composed in 150ms
+After Tau elimination = 30 state
+Tau reduction ON
+P_REPLENISH_ITEM_RULE_4 minimising....
+Minimised States: 5 in 0ms
+make DFA(P_REPLENISH_ITEM_RULE_4)
+DFA(P_REPLENISH_ITEM_RULE_4) has 8 states.
+Tau reduction ON
+P_REPLENISH_ITEM_RULE_4 minimising.....
+Minimised States: 4 in 0ms
+Formula !P_REPLENISH_ITEM_RULE_5 = (true U (reqReplenishItem & X (!robot2.pick[1..2] U (robot2.put[1..2] & !robot2.pick[1..2]))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_REPLENISH_ITEM_RULE_5 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |reqReplenishItem -> S2),
+S2 =(!robot2.pick[1..2] -> S2 |robot2.put[1..2]&!robot2.pick[1..2] -> S1).
+Composition:P_REPLENISH_ITEM_RULE_5 = reqReplenishItem || robot2.put[1..2] || robot2.pick[1..2] || SYNC || P_REPLENISH_ITEM_RULE_5
+State Space: 2 * 2 * 2 * 2 * 4 = 2 ** 6
+Composing...
+-- States: 24 Transitions: 80 Memory used: 218864KB
+Composed in 117ms
+After Tau elimination = 12 state
+Tau reduction ON
+P_REPLENISH_ITEM_RULE_5 minimising....
+Minimised States: 4 in 0ms
+make DFA(P_REPLENISH_ITEM_RULE_5)
+DFA(P_REPLENISH_ITEM_RULE_5) has 4 states.
+Tau reduction ON
+P_REPLENISH_ITEM_RULE_5 minimising...
+Minimised States: 2 in 0ms
+Formula !P_REPLENISH_ITEM_RULE_6 = (true U ((PROCESS_REPLENISH_ITEM & robot2.pick[1..2]) & X (!robot2.move.itemGettingArea U ({doneReplenishItem, replenish[1..2], reqReplenishItem, robot2.{move.{[1..2], {boxGettingArea, packingArea, shippingArea}}, {pick, put}.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}}}, supplyItem} & !robot2.move.itemGettingArea))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_REPLENISH_ITEM_RULE_6 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |PROCESS_REPLENISH_ITEM&robot2.pick[1..2] -> S2),
+S2 =(!robot2.move.itemGettingArea -> S2 |{doneReplenishItem, replenish[1..2], reqReplenishItem, robot2.{move.{[1..2], {boxGettingArea, packingArea, shippingArea}}, {pick, put}.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}}}, supplyItem}&!robot2.move.itemGettingArea -> S1).
+Composition:P_REPLENISH_ITEM_RULE_6 = PROCESS_REPLENISH_ITEM || robot2.pick[1..2] || {doneReplenishItem, replenish[1..2], reqReplenishItem, robot2.{move.{[1..2], {boxGettingArea, packingArea, shippingArea}}, {pick, put}.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}}}, supplyItem} || robot2.move.itemGettingArea || SYNC || P_REPLENISH_ITEM_RULE_6
+State Space: 2 * 2 * 2 * 2 * 2 * 4 = 2 ** 7
+Composing...
+-- States: 47 Transitions: 570 Memory used: 219565KB
+Composed in 217ms
+After Tau elimination = 23 state
+Tau reduction ON
+P_REPLENISH_ITEM_RULE_6 minimising....
+Minimised States: 5 in 0ms
+make DFA(P_REPLENISH_ITEM_RULE_6)
+DFA(P_REPLENISH_ITEM_RULE_6) has 6 states.
+Tau reduction ON
+P_REPLENISH_ITEM_RULE_6 minimising....
+Minimised States: 3 in 0ms
+Formula !P_REPLENISH_ITEM_RULE_7 = (true U (robot2.move.itemGettingArea & X (!robot2.pick.itemGettingArea U (robot2.move[1..2] & !robot2.pick.itemGettingArea))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_REPLENISH_ITEM_RULE_7 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |robot2.move.itemGettingArea -> S2),
+S2 =(!robot2.pick.itemGettingArea -> S2 |robot2.move[1..2]&!robot2.pick.itemGettingArea -> S1).
+Composition:P_REPLENISH_ITEM_RULE_7 = robot2.move.itemGettingArea || robot2.move[1..2] || robot2.pick.itemGettingArea || SYNC || P_REPLENISH_ITEM_RULE_7
+State Space: 2 * 2 * 2 * 2 * 4 = 2 ** 6
+Composing...
+-- States: 24 Transitions: 68 Memory used: 218998KB
+Composed in 117ms
+After Tau elimination = 12 state
+Tau reduction ON
+P_REPLENISH_ITEM_RULE_7 minimising....
+Minimised States: 4 in 0ms
+make DFA(P_REPLENISH_ITEM_RULE_7)
+DFA(P_REPLENISH_ITEM_RULE_7) has 4 states.
+Tau reduction ON
+P_REPLENISH_ITEM_RULE_7 minimising...
+Minimised States: 2 in 0ms
+Formula !P_REPLENISH_ITEM_RULE_8 = (true U (robot2.move.itemGettingArea & X (!supplyItem U (robot2.pick.itemGettingArea & !supplyItem))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_REPLENISH_ITEM_RULE_8 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |robot2.move.itemGettingArea -> S2),
+S2 =(!supplyItem -> S2 |robot2.pick.itemGettingArea&!supplyItem -> S1).
+Composition:P_REPLENISH_ITEM_RULE_8 = robot2.move.itemGettingArea || robot2.pick.itemGettingArea || supplyItem || SYNC || P_REPLENISH_ITEM_RULE_8
+State Space: 2 * 2 * 2 * 2 * 4 = 2 ** 6
+Composing...
+-- States: 24 Transitions: 56 Memory used: 218965KB
+Composed in 116ms
+After Tau elimination = 12 state
+Tau reduction ON
+P_REPLENISH_ITEM_RULE_8 minimising....
+Minimised States: 4 in 0ms
+make DFA(P_REPLENISH_ITEM_RULE_8)
+DFA(P_REPLENISH_ITEM_RULE_8) has 4 states.
+Tau reduction ON
+P_REPLENISH_ITEM_RULE_8 minimising...
+Minimised States: 2 in 0ms
+Formula !P_REPLENISH_ITEM_RULE_9 = (true U (supplyItem & X (!doneReplenishItem U (supplyItem & !doneReplenishItem))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_REPLENISH_ITEM_RULE_9 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |supplyItem -> S2),
+S2 =(!doneReplenishItem -> S2 |supplyItem&!doneReplenishItem -> S1).
+Composition:P_REPLENISH_ITEM_RULE_9 = supplyItem || doneReplenishItem || SYNC || P_REPLENISH_ITEM_RULE_9
+State Space: 2 * 2 * 2 * 4 = 2 ** 5
+Composing...
+-- States: 16 Transitions: 30 Memory used: 218980KB
+Composed in 117ms
+After Tau elimination = 8 state
+Tau reduction ON
+P_REPLENISH_ITEM_RULE_9 minimising....
+Minimised States: 4 in 0ms
+make DFA(P_REPLENISH_ITEM_RULE_9)
+DFA(P_REPLENISH_ITEM_RULE_9) has 4 states.
+Tau reduction ON
+P_REPLENISH_ITEM_RULE_9 minimising...
+Minimised States: 2 in 0ms
+Formula !P_REPLENISH_ITEM_RULE_10 = (true U (robot2.pick.itemGettingArea & X (!doneReplenishItem U (robot2.put.itemGettingArea & !doneReplenishItem))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_REPLENISH_ITEM_RULE_10 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |robot2.pick.itemGettingArea -> S2),
+S2 =(!doneReplenishItem -> S2 |robot2.put.itemGettingArea&!doneReplenishItem -> S1).
+Composition:P_REPLENISH_ITEM_RULE_10 = robot2.pick.itemGettingArea || robot2.put.itemGettingArea || doneReplenishItem || SYNC || P_REPLENISH_ITEM_RULE_10
+State Space: 2 * 2 * 2 * 2 * 4 = 2 ** 6
+Composing...
+-- States: 24 Transitions: 56 Memory used: 219011KB
+Composed in 117ms
+After Tau elimination = 12 state
+Tau reduction ON
+P_REPLENISH_ITEM_RULE_10 minimising....
+Minimised States: 4 in 0ms
+make DFA(P_REPLENISH_ITEM_RULE_10)
+DFA(P_REPLENISH_ITEM_RULE_10) has 4 states.
+Tau reduction ON
+P_REPLENISH_ITEM_RULE_10 minimising...
+Minimised States: 2 in 0ms
+Formula !P_REPLENISH_ITEM_RULE_12 = (true U ((PROCESS_REPLENISH_ITEM & robot2.put[1..2]) & X (!doneReplenishItem U ({replenish[1..2], reqReplenishItem, robot2.{move, pick, put}.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}}, supplyItem} & !doneReplenishItem))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_REPLENISH_ITEM_RULE_12 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |PROCESS_REPLENISH_ITEM&robot2.put[1..2] -> S2),
+S2 =(!doneReplenishItem -> S2 |{replenish[1..2], reqReplenishItem, robot2.{move, pick, put}.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}}, supplyItem}&!doneReplenishItem -> S1).
+Composition:P_REPLENISH_ITEM_RULE_12 = PROCESS_REPLENISH_ITEM || robot2.put[1..2] || {replenish[1..2], reqReplenishItem, robot2.{move, pick, put}.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}}, supplyItem} || doneReplenishItem || SYNC || P_REPLENISH_ITEM_RULE_12
+State Space: 2 * 2 * 2 * 2 * 2 * 4 = 2 ** 7
+Composing...
+-- States: 36 Transitions: 445 Memory used: 219096KB
+Composed in 116ms
+After Tau elimination = 18 state
+Tau reduction ON
+P_REPLENISH_ITEM_RULE_12 minimising.....
+Minimised States: 5 in 0ms
+make DFA(P_REPLENISH_ITEM_RULE_12)
+DFA(P_REPLENISH_ITEM_RULE_12) has 6 states.
+Tau reduction ON
+P_REPLENISH_ITEM_RULE_12 minimising....
+Minimised States: 3 in 0ms
+Formula !P_REPLENISH_ITEM_RULE_13 = (true U ((PROCESS_REPLENISH_ITEM & reqReplenishItem) & X (!robot2.put[1..2] U (doneReplenishItem & !robot2.put[1..2]))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_REPLENISH_ITEM_RULE_13 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |PROCESS_REPLENISH_ITEM&reqReplenishItem -> S2),
+S2 =(!robot2.put[1..2] -> S2 |doneReplenishItem&!robot2.put[1..2] -> S1).
+Composition:P_REPLENISH_ITEM_RULE_13 = PROCESS_REPLENISH_ITEM || reqReplenishItem || doneReplenishItem || robot2.put[1..2] || SYNC || P_REPLENISH_ITEM_RULE_13
+State Space: 2 * 2 * 2 * 2 * 2 * 4 = 2 ** 7
+Composing...
+-- States: 31 Transitions: 86 Memory used: 219847KB
+Composed in 217ms
+After Tau elimination = 15 state
+Tau reduction ON
+P_REPLENISH_ITEM_RULE_13 minimising....
+Minimised States: 4 in 0ms
+make DFA(P_REPLENISH_ITEM_RULE_13)
+DFA(P_REPLENISH_ITEM_RULE_13) has 4 states.
+Tau reduction ON
+P_REPLENISH_ITEM_RULE_13 minimising...
+Minimised States: 2 in 0ms
+Formula !P_BRING_ITEM_RULE_1 = (true U (PROCESS_BRING_ITEM & robot3.{move, pick, put}.{boxGettingArea, itemGettingArea, shippingArea}))
+GBA 2 states 3 transitions
+Buchi automata:
+P_BRING_ITEM_RULE_1 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |PROCESS_BRING_ITEM&robot3.{move, pick, put}.{boxGettingArea, itemGettingArea, shippingArea} -> S1).
+Composition:P_BRING_ITEM_RULE_1 = PROCESS_BRING_ITEM || robot3.{move, pick, put}.{boxGettingArea, itemGettingArea, shippingArea} || SYNC || P_BRING_ITEM_RULE_1
+State Space: 2 * 2 * 2 * 2 = 2 ** 4
+Composing...
+-- States: 16 Transitions: 105 Memory used: 219150KB
+Composed in 117ms
+After Tau elimination = 8 state
+Tau reduction ON
+P_BRING_ITEM_RULE_1 minimising...
+Minimised States: 3 in 0ms
+make DFA(P_BRING_ITEM_RULE_1)
+DFA(P_BRING_ITEM_RULE_1) has 2 states.
+Tau reduction ON
+P_BRING_ITEM_RULE_1 minimising...
+Minimised States: 2 in 0ms
+Formula !P_BRING_ITEM_RULE_2 = (true U (reqBringItem & X (!bring[1..2] U ({{doneBringItem, getItem, reqBringItem}, robot3.{move, pick, put}.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}}} & !bring[1..2]))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_BRING_ITEM_RULE_2 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |reqBringItem -> S2),
+S2 =(!bring[1..2] -> S2 |{{doneBringItem, getItem, reqBringItem}, robot3.{move, pick, put}.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}}}&!bring[1..2] -> S1).
+Composition:P_BRING_ITEM_RULE_2 = reqBringItem || {{doneBringItem, getItem, reqBringItem}, robot3.{move, pick, put}.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}}} || bring[1..2] || SYNC || P_BRING_ITEM_RULE_2
+State Space: 2 * 2 * 2 * 2 * 4 = 2 ** 6
+Composing...
+-- States: 24 Transitions: 297 Memory used: 219225KB
+Composed in 216ms
+After Tau elimination = 12 state
+Tau reduction ON
+P_BRING_ITEM_RULE_2 minimising....
+Minimised States: 4 in 0ms
+make DFA(P_BRING_ITEM_RULE_2)
+DFA(P_BRING_ITEM_RULE_2) has 4 states.
+Tau reduction ON
+P_BRING_ITEM_RULE_2 minimising...
+Minimised States: 2 in 0ms
+Formula !P_BRING_ITEM_RULE_3 = (true U (reqBringItem & X (!robot3.move[1..2] U (robot3.pick.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} & !robot3.move[1..2]))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_BRING_ITEM_RULE_3 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |reqBringItem -> S2),
+S2 =(!robot3.move[1..2] -> S2 |robot3.pick.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}}&!robot3.move[1..2] -> S1).
+Composition:P_BRING_ITEM_RULE_3 = reqBringItem || robot3.pick.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} || robot3.move[1..2] || SYNC || P_BRING_ITEM_RULE_3
+State Space: 2 * 2 * 2 * 2 * 4 = 2 ** 6
+Composing...
+-- States: 24 Transitions: 128 Memory used: 219282KB
+Composed in 117ms
+After Tau elimination = 12 state
+Tau reduction ON
+P_BRING_ITEM_RULE_3 minimising....
+Minimised States: 4 in 0ms
+make DFA(P_BRING_ITEM_RULE_3)
+DFA(P_BRING_ITEM_RULE_3) has 4 states.
+Tau reduction ON
+P_BRING_ITEM_RULE_3 minimising...
+Minimised States: 2 in 0ms
+Formula !P_BRING_ITEM_RULE_4 = (true U ((PROCESS_BRING_ITEM & robot3.move[1..2]) & X (!robot3.{pick, put}[1..2] U (robot3.move.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} & !robot3.{pick, put}[1..2]))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_BRING_ITEM_RULE_4 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |PROCESS_BRING_ITEM&robot3.move[1..2] -> S2),
+S2 =(!robot3.{pick, put}[1..2] -> S2 |robot3.move.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}}&!robot3.{pick, put}[1..2] -> S1).
+Composition:P_BRING_ITEM_RULE_4 = PROCESS_BRING_ITEM || robot3.move[1..2] || robot3.move.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} || robot3.{pick, put}[1..2] || SYNC || P_BRING_ITEM_RULE_4
+State Space: 2 * 2 * 2 * 2 * 2 * 4 = 2 ** 7
+Composing...
+-- States: 62 Transitions: 413 Memory used: 219969KB
+Composed in 225ms
+After Tau elimination = 30 state
+Tau reduction ON
+P_BRING_ITEM_RULE_4 minimising....
+Minimised States: 5 in 1ms
+make DFA(P_BRING_ITEM_RULE_4)
+DFA(P_BRING_ITEM_RULE_4) has 8 states.
+Tau reduction ON
+P_BRING_ITEM_RULE_4 minimising.....
+Minimised States: 4 in 0ms
+Formula !P_BRING_ITEM_RULE_5 = (true U (reqBringItem & X (!robot3.pick[1..2] U (robot3.put[1..2] & !robot3.pick[1..2]))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_BRING_ITEM_RULE_5 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |reqBringItem -> S2),
+S2 =(!robot3.pick[1..2] -> S2 |robot3.put[1..2]&!robot3.pick[1..2] -> S1).
+Composition:P_BRING_ITEM_RULE_5 = reqBringItem || robot3.put[1..2] || robot3.pick[1..2] || SYNC || P_BRING_ITEM_RULE_5
+State Space: 2 * 2 * 2 * 2 * 4 = 2 ** 6
+Composing...
+-- States: 24 Transitions: 80 Memory used: 220025KB
+Composed in 206ms
+After Tau elimination = 12 state
+Tau reduction ON
+P_BRING_ITEM_RULE_5 minimising....
+Minimised States: 4 in 0ms
+make DFA(P_BRING_ITEM_RULE_5)
+DFA(P_BRING_ITEM_RULE_5) has 4 states.
+Tau reduction ON
+P_BRING_ITEM_RULE_5 minimising...
+Minimised States: 2 in 0ms
+Formula !P_BRING_ITEM_RULE_6 = (true U ((PROCESS_BRING_ITEM & robot3.pick[1..2]) & X (!robot3.move.packingArea U ({bring[1..2], {doneBringItem, getItem, reqBringItem}, robot3.{move.{[1..2], {boxGettingArea, itemGettingArea, shippingArea}}, {pick, put}.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}}}} & !robot3.move.packingArea))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_BRING_ITEM_RULE_6 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |PROCESS_BRING_ITEM&robot3.pick[1..2] -> S2),
+S2 =(!robot3.move.packingArea -> S2 |{bring[1..2], {doneBringItem, getItem, reqBringItem}, robot3.{move.{[1..2], {boxGettingArea, itemGettingArea, shippingArea}}, {pick, put}.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}}}}&!robot3.move.packingArea -> S1).
+Composition:P_BRING_ITEM_RULE_6 = PROCESS_BRING_ITEM || robot3.pick[1..2] || {bring[1..2], {doneBringItem, getItem, reqBringItem}, robot3.{move.{[1..2], {boxGettingArea, itemGettingArea, shippingArea}}, {pick, put}.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}}}} || robot3.move.packingArea || SYNC || P_BRING_ITEM_RULE_6
+State Space: 2 * 2 * 2 * 2 * 2 * 4 = 2 ** 7
+Composing...
+-- States: 47 Transitions: 570 Memory used: 220076KB
+Composed in 119ms
+After Tau elimination = 23 state
+Tau reduction ON
+P_BRING_ITEM_RULE_6 minimising....
+Minimised States: 5 in 0ms
+make DFA(P_BRING_ITEM_RULE_6)
+DFA(P_BRING_ITEM_RULE_6) has 6 states.
+Tau reduction ON
+P_BRING_ITEM_RULE_6 minimising....
+Minimised States: 3 in 0ms
+Formula !P_BRING_ITEM_RULE_7 = (true U ((PROCESS_BRING_ITEM & robot3.move.packingArea) & X (!robot3.pick.packingArea U (robot3.move[1..2] & !robot3.pick.packingArea))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_BRING_ITEM_RULE_7 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |PROCESS_BRING_ITEM&robot3.move.packingArea -> S2),
+S2 =(!robot3.pick.packingArea -> S2 |robot3.move[1..2]&!robot3.pick.packingArea -> S1).
+Composition:P_BRING_ITEM_RULE_7 = PROCESS_BRING_ITEM || robot3.move.packingArea || robot3.move[1..2] || robot3.pick.packingArea || SYNC || P_BRING_ITEM_RULE_7
+State Space: 2 * 2 * 2 * 2 * 2 * 4 = 2 ** 7
+Composing...
+-- States: 62 Transitions: 231 Memory used: 220179KB
+Composed in 217ms
+After Tau elimination = 30 state
+Tau reduction ON
+P_BRING_ITEM_RULE_7 minimising....
+Minimised States: 5 in 0ms
+make DFA(P_BRING_ITEM_RULE_7)
+DFA(P_BRING_ITEM_RULE_7) has 8 states.
+Tau reduction ON
+P_BRING_ITEM_RULE_7 minimising.....
+Minimised States: 4 in 0ms
+Formula !P_BRING_ITEM_RULE_8 = (true U ((PROCESS_BRING_ITEM & robot3.move.packingArea) & X (!getItem U (robot3.pick.packingArea & !getItem))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_BRING_ITEM_RULE_8 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |PROCESS_BRING_ITEM&robot3.move.packingArea -> S2),
+S2 =(!getItem -> S2 |robot3.pick.packingArea&!getItem -> S1).
+Composition:P_BRING_ITEM_RULE_8 = PROCESS_BRING_ITEM || robot3.move.packingArea || robot3.pick.packingArea || getItem || SYNC || P_BRING_ITEM_RULE_8
+State Space: 2 * 2 * 2 * 2 * 2 * 4 = 2 ** 7
+Composing...
+-- States: 62 Transitions: 201 Memory used: 219537KB
+Composed in 114ms
+After Tau elimination = 30 state
+Tau reduction ON
+P_BRING_ITEM_RULE_8 minimising....
+Minimised States: 5 in 0ms
+make DFA(P_BRING_ITEM_RULE_8)
+DFA(P_BRING_ITEM_RULE_8) has 8 states.
+Tau reduction ON
+P_BRING_ITEM_RULE_8 minimising.....
+Minimised States: 4 in 0ms
+Formula !P_BRING_ITEM_RULE_9 = (true U (getItem & X (!doneBringItem U (getItem & !doneBringItem))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_BRING_ITEM_RULE_9 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |getItem -> S2),
+S2 =(!doneBringItem -> S2 |getItem&!doneBringItem -> S1).
+Composition:P_BRING_ITEM_RULE_9 = getItem || doneBringItem || SYNC || P_BRING_ITEM_RULE_9
+State Space: 2 * 2 * 2 * 4 = 2 ** 5
+Composing...
+-- States: 16 Transitions: 30 Memory used: 219585KB
+Composed in 117ms
+After Tau elimination = 8 state
+Tau reduction ON
+P_BRING_ITEM_RULE_9 minimising....
+Minimised States: 4 in 0ms
+make DFA(P_BRING_ITEM_RULE_9)
+DFA(P_BRING_ITEM_RULE_9) has 4 states.
+Tau reduction ON
+P_BRING_ITEM_RULE_9 minimising...
+Minimised States: 2 in 0ms
+Formula !P_BRING_ITEM_RULE_10 = (true U ((PROCESS_BRING_ITEM & robot3.pick.packingArea) & X (!doneBringItem U (robot3.put.packingArea & !doneBringItem))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_BRING_ITEM_RULE_10 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |PROCESS_BRING_ITEM&robot3.pick.packingArea -> S2),
+S2 =(!doneBringItem -> S2 |robot3.put.packingArea&!doneBringItem -> S1).
+Composition:P_BRING_ITEM_RULE_10 = PROCESS_BRING_ITEM || robot3.pick.packingArea || robot3.put.packingArea || doneBringItem || SYNC || P_BRING_ITEM_RULE_10
+State Space: 2 * 2 * 2 * 2 * 2 * 4 = 2 ** 7
+Composing...
+-- States: 44 Transitions: 124 Memory used: 220273KB
+Composed in 116ms
+After Tau elimination = 22 state
+Tau reduction ON
+P_BRING_ITEM_RULE_10 minimising.....
+Minimised States: 5 in 0ms
+make DFA(P_BRING_ITEM_RULE_10)
+DFA(P_BRING_ITEM_RULE_10) has 6 states.
+Tau reduction ON
+P_BRING_ITEM_RULE_10 minimising....
+Minimised States: 3 in 0ms
+Formula !P_BRING_ITEM_RULE_12 = (true U ((PROCESS_BRING_ITEM & robot3.put[1..2]) & X (!doneBringItem U ({bring[1..2], {getItem, reqBringItem}, robot3.{move, pick, put}.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}}} & !doneBringItem))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_BRING_ITEM_RULE_12 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |PROCESS_BRING_ITEM&robot3.put[1..2] -> S2),
+S2 =(!doneBringItem -> S2 |{bring[1..2], {getItem, reqBringItem}, robot3.{move, pick, put}.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}}}&!doneBringItem -> S1).
+Composition:P_BRING_ITEM_RULE_12 = PROCESS_BRING_ITEM || robot3.put[1..2] || {bring[1..2], {getItem, reqBringItem}, robot3.{move, pick, put}.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}}} || doneBringItem || SYNC || P_BRING_ITEM_RULE_12
+State Space: 2 * 2 * 2 * 2 * 2 * 4 = 2 ** 7
+Composing...
+-- States: 36 Transitions: 445 Memory used: 221812KB
+Composed in 117ms
+After Tau elimination = 18 state
+Tau reduction ON
+P_BRING_ITEM_RULE_12 minimising.....
+Minimised States: 5 in 0ms
+make DFA(P_BRING_ITEM_RULE_12)
+DFA(P_BRING_ITEM_RULE_12) has 6 states.
+Tau reduction ON
+P_BRING_ITEM_RULE_12 minimising....
+Minimised States: 3 in 0ms
+Formula !P_BRING_ITEM_RULE_13 = (true U ((PROCESS_BRING_ITEM & reqBringItem) & X (!robot3.put[1..2] U (doneBringItem & !robot3.put[1..2]))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_BRING_ITEM_RULE_13 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |PROCESS_BRING_ITEM&reqBringItem -> S2),
+S2 =(!robot3.put[1..2] -> S2 |doneBringItem&!robot3.put[1..2] -> S1).
+Composition:P_BRING_ITEM_RULE_13 = PROCESS_BRING_ITEM || reqBringItem || doneBringItem || robot3.put[1..2] || SYNC || P_BRING_ITEM_RULE_13
+State Space: 2 * 2 * 2 * 2 * 2 * 4 = 2 ** 7
+Composing...
+-- States: 31 Transitions: 86 Memory used: 219817KB
+Composed in 117ms
+After Tau elimination = 15 state
+Tau reduction ON
+P_BRING_ITEM_RULE_13 minimising....
+Minimised States: 4 in 0ms
+make DFA(P_BRING_ITEM_RULE_13)
+DFA(P_BRING_ITEM_RULE_13) has 4 states.
+Tau reduction ON
+P_BRING_ITEM_RULE_13 minimising...
+Minimised States: 2 in 0ms
+Formula !P_BRING_BOX_RULE_1 = (true U (PROCESS_BRING_BOX & {{doneShip, reqShip}, robot1.{move.{[1..2], {itemGettingArea, shippingArea}}, pick.{[1..2], {itemGettingArea, packingArea, shippingArea}}, put.{[1..2], {boxGettingArea, itemGettingArea, shippingArea}}}, ship}))
+GBA 2 states 3 transitions
+Buchi automata:
+P_BRING_BOX_RULE_1 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |PROCESS_BRING_BOX&{{doneShip, reqShip}, robot1.{move.{[1..2], {itemGettingArea, shippingArea}}, pick.{[1..2], {itemGettingArea, packingArea, shippingArea}}, put.{[1..2], {boxGettingArea, itemGettingArea, shippingArea}}}, ship} -> S1).
+Composition:P_BRING_BOX_RULE_1 = PROCESS_BRING_BOX || {{doneShip, reqShip}, robot1.{move.{[1..2], {itemGettingArea, shippingArea}}, pick.{[1..2], {itemGettingArea, packingArea, shippingArea}}, put.{[1..2], {boxGettingArea, itemGettingArea, shippingArea}}}, ship} || SYNC || P_BRING_BOX_RULE_1
+State Space: 2 * 2 * 2 * 2 = 2 ** 4
+Composing...
+-- States: 16 Transitions: 169 Memory used: 220421KB
+Composed in 216ms
+After Tau elimination = 8 state
+Tau reduction ON
+P_BRING_BOX_RULE_1 minimising...
+Minimised States: 3 in 0ms
+make DFA(P_BRING_BOX_RULE_1)
+DFA(P_BRING_BOX_RULE_1) has 2 states.
+Tau reduction ON
+P_BRING_BOX_RULE_1 minimising...
+Minimised States: 2 in 0ms
+Formula !P_BRING_BOX_RULE_2 = (true U (reqBringBox & X (!robot1.pick.boxGettingArea U (robot1.move.packingArea & !robot1.pick.boxGettingArea))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_BRING_BOX_RULE_2 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |reqBringBox -> S2),
+S2 =(!robot1.pick.boxGettingArea -> S2 |robot1.move.packingArea&!robot1.pick.boxGettingArea -> S1).
+Composition:P_BRING_BOX_RULE_2 = reqBringBox || robot1.move.packingArea || robot1.pick.boxGettingArea || SYNC || P_BRING_BOX_RULE_2
+State Space: 2 * 2 * 2 * 2 * 4 = 2 ** 6
+Composing...
+-- States: 24 Transitions: 56 Memory used: 220485KB
+Composed in 117ms
+After Tau elimination = 12 state
+Tau reduction ON
+P_BRING_BOX_RULE_2 minimising....
+Minimised States: 4 in 0ms
+make DFA(P_BRING_BOX_RULE_2)
+DFA(P_BRING_BOX_RULE_2) has 4 states.
+Tau reduction ON
+P_BRING_BOX_RULE_2 minimising...
+Minimised States: 2 in 0ms
+Formula !P_BRING_BOX_RULE_3 = (true U (reqBringBox & X (!supplyBox U (robot1.pick.boxGettingArea & !supplyBox))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_BRING_BOX_RULE_3 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |reqBringBox -> S2),
+S2 =(!supplyBox -> S2 |robot1.pick.boxGettingArea&!supplyBox -> S1).
+Composition:P_BRING_BOX_RULE_3 = reqBringBox || robot1.pick.boxGettingArea || supplyBox || SYNC || P_BRING_BOX_RULE_3
+State Space: 2 * 2 * 2 * 2 * 4 = 2 ** 6
+Composing...
+-- States: 24 Transitions: 56 Memory used: 219836KB
+Composed in 233ms
+After Tau elimination = 12 state
+Tau reduction ON
+P_BRING_BOX_RULE_3 minimising....
+Minimised States: 4 in 0ms
+make DFA(P_BRING_BOX_RULE_3)
+DFA(P_BRING_BOX_RULE_3) has 4 states.
+Tau reduction ON
+P_BRING_BOX_RULE_3 minimising...
+Minimised States: 2 in 0ms
+Formula !P_BRING_BOX_RULE_4 = (true U (supplyBox & X (!robot1.pick.boxGettingArea U (supplyBox & !robot1.pick.boxGettingArea))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_BRING_BOX_RULE_4 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |supplyBox -> S2),
+S2 =(!robot1.pick.boxGettingArea -> S2 |supplyBox&!robot1.pick.boxGettingArea -> S1).
+Composition:P_BRING_BOX_RULE_4 = supplyBox || robot1.pick.boxGettingArea || SYNC || P_BRING_BOX_RULE_4
+State Space: 2 * 2 * 2 * 4 = 2 ** 5
+Composing...
+-- States: 16 Transitions: 30 Memory used: 220498KB
+Composed in 114ms
+After Tau elimination = 8 state
+Tau reduction ON
+P_BRING_BOX_RULE_4 minimising....
+Minimised States: 4 in 0ms
+make DFA(P_BRING_BOX_RULE_4)
+DFA(P_BRING_BOX_RULE_4) has 4 states.
+Tau reduction ON
+P_BRING_BOX_RULE_4 minimising...
+Minimised States: 2 in 0ms
+Formula !P_BRING_BOX_RULE_5 = (true U (robot1.pick.boxGettingArea & X (!doneBringBox U (robot1.move.boxGettingArea & !doneBringBox))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_BRING_BOX_RULE_5 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |robot1.pick.boxGettingArea -> S2),
+S2 =(!doneBringBox -> S2 |robot1.move.boxGettingArea&!doneBringBox -> S1).
+Composition:P_BRING_BOX_RULE_5 = robot1.pick.boxGettingArea || robot1.move.boxGettingArea || doneBringBox || SYNC || P_BRING_BOX_RULE_5
+State Space: 2 * 2 * 2 * 2 * 4 = 2 ** 6
+Composing...
+-- States: 24 Transitions: 56 Memory used: 219883KB
+Composed in 117ms
+After Tau elimination = 12 state
+Tau reduction ON
+P_BRING_BOX_RULE_5 minimising....
+Minimised States: 4 in 0ms
+make DFA(P_BRING_BOX_RULE_5)
+DFA(P_BRING_BOX_RULE_5) has 4 states.
+Tau reduction ON
+P_BRING_BOX_RULE_5 minimising...
+Minimised States: 2 in 0ms
+Formula !P_BRING_BOX_RULE_6 = (true U (reqBringBox & X (!robot1.put.packingArea U (doneBringBox & !robot1.put.packingArea))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_BRING_BOX_RULE_6 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |reqBringBox -> S2),
+S2 =(!robot1.put.packingArea -> S2 |doneBringBox&!robot1.put.packingArea -> S1).
+Composition:P_BRING_BOX_RULE_6 = reqBringBox || doneBringBox || robot1.put.packingArea || SYNC || P_BRING_BOX_RULE_6
+State Space: 2 * 2 * 2 * 2 * 4 = 2 ** 6
+Composing...
+-- States: 24 Transitions: 56 Memory used: 219915KB
+Composed in 119ms
+After Tau elimination = 12 state
+Tau reduction ON
+P_BRING_BOX_RULE_6 minimising....
+Minimised States: 4 in 0ms
+make DFA(P_BRING_BOX_RULE_6)
+DFA(P_BRING_BOX_RULE_6) has 4 states.
+Tau reduction ON
+P_BRING_BOX_RULE_6 minimising...
+Minimised States: 2 in 0ms
+Formula !P_SHIP_RULE_0 = (true U (!REQ_SHIP_TIMEING & reqShip))
+GBA 2 states 3 transitions
+Buchi automata:
+P_SHIP_RULE_0 = S0,
+S1@ =(true -> S1),
+S0 =(!REQ_SHIP_TIMEING&reqShip -> S1 |true -> S0).
+Composition:P_SHIP_RULE_0 = REQ_SHIP_TIMEING || reqShip || SYNC || P_SHIP_RULE_0
+State Space: 2 * 2 * 2 * 2 = 2 ** 4
+Composing...
+-- States: 16 Transitions: 41 Memory used: 220572KB
+Composed in 114ms
+After Tau elimination = 8 state
+Tau reduction ON
+P_SHIP_RULE_0 minimising...
+Minimised States: 3 in 0ms
+make DFA(P_SHIP_RULE_0)
+DFA(P_SHIP_RULE_0) has 2 states.
+Tau reduction ON
+P_SHIP_RULE_0 minimising...
+Minimised States: 2 in 0ms
+Formula !P_SHIP_RULE_1 = (true U (PROCESS_SHIP & {{doneBringBox, reqBringBox}, robot1.{move.{[1..2], {boxGettingArea, itemGettingArea}}, pick.{[1..2], {boxGettingArea, itemGettingArea, shippingArea}}, put.{[1..2], {boxGettingArea, itemGettingArea, packingArea}}}, supplyBox}))
+GBA 2 states 3 transitions
+Buchi automata:
+P_SHIP_RULE_1 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |PROCESS_SHIP&{{doneBringBox, reqBringBox}, robot1.{move.{[1..2], {boxGettingArea, itemGettingArea}}, pick.{[1..2], {boxGettingArea, itemGettingArea, shippingArea}}, put.{[1..2], {boxGettingArea, itemGettingArea, packingArea}}}, supplyBox} -> S1).
+Composition:P_SHIP_RULE_1 = PROCESS_SHIP || {{doneBringBox, reqBringBox}, robot1.{move.{[1..2], {boxGettingArea, itemGettingArea}}, pick.{[1..2], {boxGettingArea, itemGettingArea, shippingArea}}, put.{[1..2], {boxGettingArea, itemGettingArea, packingArea}}}, supplyBox} || SYNC || P_SHIP_RULE_1
+State Space: 2 * 2 * 2 * 2 = 2 ** 4
+Composing...
+-- States: 16 Transitions: 169 Memory used: 219958KB
+Composed in 116ms
+After Tau elimination = 8 state
+Tau reduction ON
+P_SHIP_RULE_1 minimising...
+Minimised States: 3 in 0ms
+make DFA(P_SHIP_RULE_1)
+DFA(P_SHIP_RULE_1) has 2 states.
+Tau reduction ON
+P_SHIP_RULE_1 minimising...
+Minimised States: 2 in 0ms
+Formula !P_SHIP_RULE_2 = (true U (reqShip & X (!robot1.pick.packingArea U (robot1.move.shippingArea & !robot1.pick.packingArea))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_SHIP_RULE_2 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |reqShip -> S2),
+S2 =(!robot1.pick.packingArea -> S2 |robot1.move.shippingArea&!robot1.pick.packingArea -> S1).
+Composition:P_SHIP_RULE_2 = reqShip || robot1.move.shippingArea || robot1.pick.packingArea || SYNC || P_SHIP_RULE_2
+State Space: 2 * 2 * 2 * 2 * 4 = 2 ** 6
+Composing...
+-- States: 24 Transitions: 56 Memory used: 220026KB
+Composed in 101ms
+After Tau elimination = 12 state
+Tau reduction ON
+P_SHIP_RULE_2 minimising....
+Minimised States: 4 in 0ms
+make DFA(P_SHIP_RULE_2)
+DFA(P_SHIP_RULE_2) has 4 states.
+Tau reduction ON
+P_SHIP_RULE_2 minimising...
+Minimised States: 2 in 0ms
+Formula !P_SHIP_RULE_3 = (true U (robot1.move.shippingArea & X (!doneShip U (robot1.move.packingArea & !doneShip))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_SHIP_RULE_3 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |robot1.move.shippingArea -> S2),
+S2 =(!doneShip -> S2 |robot1.move.packingArea&!doneShip -> S1).
+Composition:P_SHIP_RULE_3 = robot1.move.shippingArea || robot1.move.packingArea || doneShip || SYNC || P_SHIP_RULE_3
+State Space: 2 * 2 * 2 * 2 * 4 = 2 ** 6
+Composing...
+-- States: 24 Transitions: 56 Memory used: 220024KB
+Composed in 117ms
+After Tau elimination = 12 state
+Tau reduction ON
+P_SHIP_RULE_3 minimising....
+Minimised States: 4 in 0ms
+make DFA(P_SHIP_RULE_3)
+DFA(P_SHIP_RULE_3) has 4 states.
+Tau reduction ON
+P_SHIP_RULE_3 minimising...
+Minimised States: 2 in 0ms
+Formula !P_SHIP_RULE_4 = (true U (reqShip & X (!robot1.put.shippingArea U (ship & !robot1.put.shippingArea))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_SHIP_RULE_4 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |reqShip -> S2),
+S2 =(!robot1.put.shippingArea -> S2 |ship&!robot1.put.shippingArea -> S1).
+Composition:P_SHIP_RULE_4 = reqShip || ship || robot1.put.shippingArea || SYNC || P_SHIP_RULE_4
+State Space: 2 * 2 * 2 * 2 * 4 = 2 ** 6
+Composing...
+-- States: 24 Transitions: 56 Memory used: 220053KB
+Composed in 233ms
+After Tau elimination = 12 state
+Tau reduction ON
+P_SHIP_RULE_4 minimising....
+Minimised States: 4 in 0ms
+make DFA(P_SHIP_RULE_4)
+DFA(P_SHIP_RULE_4) has 4 states.
+Tau reduction ON
+P_SHIP_RULE_4 minimising...
+Minimised States: 2 in 0ms
+Formula !P_SHIP_RULE_5 = (true U (ship & X (!doneShip U (ship & !doneShip))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_SHIP_RULE_5 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |ship -> S2),
+S2 =(!doneShip -> S2 |ship&!doneShip -> S1).
+Composition:P_SHIP_RULE_5 = ship || doneShip || SYNC || P_SHIP_RULE_5
+State Space: 2 * 2 * 2 * 4 = 2 ** 5
+Composing...
+-- States: 16 Transitions: 30 Memory used: 220065KB
+Composed in 121ms
+After Tau elimination = 8 state
+Tau reduction ON
+P_SHIP_RULE_5 minimising....
+Minimised States: 4 in 0ms
+make DFA(P_SHIP_RULE_5)
+DFA(P_SHIP_RULE_5) has 4 states.
+Tau reduction ON
+P_SHIP_RULE_5 minimising...
+Minimised States: 2 in 0ms
+Formula !P_SHIP_RULE_6 = (true U (reqShip & X (!ship U (doneShip & !ship))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_SHIP_RULE_6 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |reqShip -> S2),
+S2 =(!ship -> S2 |doneShip&!ship -> S1).
+Composition:P_SHIP_RULE_6 = reqShip || doneShip || ship || SYNC || P_SHIP_RULE_6
+State Space: 2 * 2 * 2 * 2 * 4 = 2 ** 6
+Composing...
+-- States: 24 Transitions: 56 Memory used: 220510KB
+Composed in 113ms
+After Tau elimination = 12 state
+Tau reduction ON
+P_SHIP_RULE_6 minimising....
+Minimised States: 4 in 0ms
+make DFA(P_SHIP_RULE_6)
+DFA(P_SHIP_RULE_6) has 4 states.
+Tau reduction ON
+P_SHIP_RULE_6 minimising...
+Minimised States: 2 in 0ms
+Formula !P_REPLENISH_RULE01 = (true U (REPLENISH.1 & robot2.move[1..2]))
+GBA 2 states 3 transitions
+Buchi automata:
+P_REPLENISH_RULE01 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |REPLENISH.1&robot2.move[1..2] -> S1).
+Composition:P_REPLENISH_RULE01 = REPLENISH.1 || robot2.move[1..2] || SYNC || P_REPLENISH_RULE01
+State Space: 2 * 2 * 2 * 2 = 2 ** 4
+Composing...
+-- States: 13 Transitions: 34 Memory used: 220105KB
+Composed in 116ms
+After Tau elimination = 7 state
+Tau reduction ON
+P_REPLENISH_RULE01 minimising...
+Minimised States: 3 in 0ms
+make DFA(P_REPLENISH_RULE01)
+DFA(P_REPLENISH_RULE01) has 2 states.
+Tau reduction ON
+P_REPLENISH_RULE01 minimising...
+Minimised States: 2 in 0ms
+Formula !P_BRING_RULE01 = (true U (BRING.1 & robot3.move[1..2]))
+GBA 2 states 3 transitions
+Buchi automata:
+P_BRING_RULE01 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |BRING.1&robot3.move[1..2] -> S1).
+Composition:P_BRING_RULE01 = BRING.1 || robot3.move[1..2] || SYNC || P_BRING_RULE01
+State Space: 2 * 2 * 2 * 2 = 2 ** 4
+Composing...
+-- States: 13 Transitions: 34 Memory used: 220124KB
+Composed in 117ms
+After Tau elimination = 7 state
+Tau reduction ON
+P_BRING_RULE01 minimising...
+Minimised States: 3 in 0ms
+make DFA(P_BRING_RULE01)
+DFA(P_BRING_RULE01) has 2 states.
+Tau reduction ON
+P_BRING_RULE01 minimising...
+Minimised States: 2 in 0ms
+Formula !P_REPLENISH_ITEM_RULE01_11 = (true U (replenish[1] & X (!doneReplenishItem U (robot2.move[2] & !doneReplenishItem))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_REPLENISH_ITEM_RULE01_11 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |replenish[1] -> S2),
+S2 =(!doneReplenishItem -> S2 |robot2.move[2]&!doneReplenishItem -> S1).
+Composition:P_REPLENISH_ITEM_RULE01_11 = replenish[1] || robot2.move[2] || doneReplenishItem || SYNC || P_REPLENISH_ITEM_RULE01_11
+State Space: 2 * 2 * 2 * 2 * 4 = 2 ** 6
+Composing...
+-- States: 24 Transitions: 56 Memory used: 220807KB
+Composed in 234ms
+After Tau elimination = 12 state
+Tau reduction ON
+P_REPLENISH_ITEM_RULE01_11 minimising....
+Minimised States: 4 in 0ms
+make DFA(P_REPLENISH_ITEM_RULE01_11)
+DFA(P_REPLENISH_ITEM_RULE01_11) has 4 states.
+Tau reduction ON
+P_REPLENISH_ITEM_RULE01_11 minimising...
+Minimised States: 2 in 0ms
+Formula !P_BRING_ITEM_RULE01_11 = (true U (bring[1] & X (!doneBringItem U (robot3.move[2] & !doneBringItem))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_BRING_ITEM_RULE01_11 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |bring[1] -> S2),
+S2 =(!doneBringItem -> S2 |robot3.move[2]&!doneBringItem -> S1).
+Composition:P_BRING_ITEM_RULE01_11 = bring[1] || robot3.move[2] || doneBringItem || SYNC || P_BRING_ITEM_RULE01_11
+State Space: 2 * 2 * 2 * 2 * 4 = 2 ** 6
+Composing...
+-- States: 24 Transitions: 56 Memory used: 220191KB
+Composed in 215ms
+After Tau elimination = 12 state
+Tau reduction ON
+P_BRING_ITEM_RULE01_11 minimising....
+Minimised States: 4 in 0ms
+make DFA(P_BRING_ITEM_RULE01_11)
+DFA(P_BRING_ITEM_RULE01_11) has 4 states.
+Tau reduction ON
+P_BRING_ITEM_RULE01_11 minimising...
+Minimised States: 2 in 0ms
+Formula !P_REPLENISH_RULE02 = (true U (REPLENISH.2 & robot2.move[1..2]))
+GBA 2 states 3 transitions
+Buchi automata:
+P_REPLENISH_RULE02 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |REPLENISH.2&robot2.move[1..2] -> S1).
+Composition:P_REPLENISH_RULE02 = REPLENISH.2 || robot2.move[1..2] || SYNC || P_REPLENISH_RULE02
+State Space: 2 * 2 * 2 * 2 = 2 ** 4
+Composing...
+-- States: 13 Transitions: 34 Memory used: 220201KB
+Composed in 115ms
+After Tau elimination = 7 state
+Tau reduction ON
+P_REPLENISH_RULE02 minimising...
+Minimised States: 3 in 0ms
+make DFA(P_REPLENISH_RULE02)
+DFA(P_REPLENISH_RULE02) has 2 states.
+Tau reduction ON
+P_REPLENISH_RULE02 minimising...
+Minimised States: 2 in 0ms
+Formula !P_BRING_RULE02 = (true U (BRING.2 & robot3.move[1..2]))
+GBA 2 states 3 transitions
+Buchi automata:
+P_BRING_RULE02 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |BRING.2&robot3.move[1..2] -> S1).
+Composition:P_BRING_RULE02 = BRING.2 || robot3.move[1..2] || SYNC || P_BRING_RULE02
+State Space: 2 * 2 * 2 * 2 = 2 ** 4
+Composing...
+-- States: 13 Transitions: 34 Memory used: 220223KB
+Composed in 150ms
+After Tau elimination = 7 state
+Tau reduction ON
+P_BRING_RULE02 minimising...
+Minimised States: 3 in 0ms
+make DFA(P_BRING_RULE02)
+DFA(P_BRING_RULE02) has 2 states.
+Tau reduction ON
+P_BRING_RULE02 minimising...
+Minimised States: 2 in 0ms
+Formula !P_REPLENISH_ITEM_RULE02_11 = (true U (replenish[2] & X (!doneReplenishItem U (robot2.move[1] & !doneReplenishItem))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_REPLENISH_ITEM_RULE02_11 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |replenish[2] -> S2),
+S2 =(!doneReplenishItem -> S2 |robot2.move[1]&!doneReplenishItem -> S1).
+Composition:P_REPLENISH_ITEM_RULE02_11 = replenish[2] || robot2.move[1] || doneReplenishItem || SYNC || P_REPLENISH_ITEM_RULE02_11
+State Space: 2 * 2 * 2 * 2 * 4 = 2 ** 6
+Composing...
+-- States: 24 Transitions: 56 Memory used: 220272KB
+Composed in 117ms
+After Tau elimination = 12 state
+Tau reduction ON
+P_REPLENISH_ITEM_RULE02_11 minimising....
+Minimised States: 4 in 0ms
+make DFA(P_REPLENISH_ITEM_RULE02_11)
+DFA(P_REPLENISH_ITEM_RULE02_11) has 4 states.
+Tau reduction ON
+P_REPLENISH_ITEM_RULE02_11 minimising...
+Minimised States: 2 in 0ms
+Formula !P_BRING_ITEM_RULE02_11 = (true U (bring[2] & X (!doneBringItem U (robot3.move[1] & !doneBringItem))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_BRING_ITEM_RULE02_11 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |bring[2] -> S2),
+S2 =(!doneBringItem -> S2 |robot3.move[1]&!doneBringItem -> S1).
+Composition:P_BRING_ITEM_RULE02_11 = bring[2] || robot3.move[1] || doneBringItem || SYNC || P_BRING_ITEM_RULE02_11
+State Space: 2 * 2 * 2 * 2 * 4 = 2 ** 6
+Composing...
+-- States: 24 Transitions: 56 Memory used: 220303KB
+Composed in 117ms
+After Tau elimination = 12 state
+Tau reduction ON
+P_BRING_ITEM_RULE02_11 minimising....
+Minimised States: 4 in 0ms
+make DFA(P_BRING_ITEM_RULE02_11)
+DFA(P_BRING_ITEM_RULE02_11) has 4 states.
+Tau reduction ON
+P_BRING_ITEM_RULE02_11 minimising...
+Minimised States: 2 in 0ms
+Compile is Complete!
+
+
+===================================================
+                    Composition                    
+===================================================
+Composition:TraditionalController = Environment || P_REPLENISH_ITEM_RULE_9 || P_REPLENISH_ITEM_RULE_7 || P_AREA_RULE_3 || P_BRING_ITEM_RULE_6 || P_BRING_ITEM_RULE02_11 || P_SHIP_RULE_1 || P_REQUEST_ONLY_1 || P_REPLENISH_ITEM_RULE_6 || P_REPLENISH_ITEM_RULE02_11 || P_REPLENISH_RULE_2 || P_REQUEST_ONLY_3 || P_AREA_RULE_2 || P_SHIP_RULE_2 || P_REQUEST_TIMING_1 || P_REPLENISH_ITEM_RULE_8 || P_ROBOT3_ARM_RULE_3 || P_REPLENISH_ITEM_RULE_13 || P_REPLENISH_ITEM_RULE01_11 || P_BRING_ITEM_RULE_8 || P_REPLENISH_RULE02 || P_ROBOT2_ARM_RULE_2 || P_REPLENISH_ITEM_RULE_10 || P_BRING_ITEM_RULE_1 || P_REQUEST_ONLY_2 || P_ROBOT2_ARM_RULE_1 || P_REPLENISH_ITEM_RULE_4 || P_SHIP_RULE_5 || P_REPLENISH_ITEM_RULE_1 || P_REPLENISH_ITEM_RULE_5 || P_REQUEST_TIMING_2 || P_BRING_ITEM_RULE_9 || P_BRING_ITEM_RULE_10 || P_ROBOT1_ARM_RULE_2 || P_SHIP_RULE_3 || P_BRING_ITEM_RULE_3 || P_BRING_BOX_RULE_2 || P_SHIP_RULE_4 || P_AREA_RULE_6 || P_BRING_ITEM_RULE_7 || P_BRING_ITEM_RULE01_11 || P_BRINGITEM_ROBOT_RULE || P_REQUEST_TIMING_CHECK || P_ROBOT3_ARM_RULE_2 || P_BRING_ITEM_RULE_12 || P_SHIP_RULE_6 || P_BRING_BOX_RULE_5 || P_ROBOT1_ARM_RULE_1 || P_BRING_RULE02 || P_SHIP_RULE_0 || P_ROBOT1_ARM_RULE_3 || P_BRING_BOX_RULE_6 || P_REPLENISH_ITEM_RULE_2 || P_REPLENISH_ITEM_RULE_12 || P_AREA_RULE_7 || P_AREA_RULE_4 || P_BRING_ITEM_RULE_13 || P_REPLENISH_ROBOT_RULE || P_ROBOT3_ARM_RULE_1 || P_SHIP_ROBOT_RULE || P_BRING_RULE01 || P_BRING_ITEM_RULE_2 || P_AREA_RULE_5 || P_BRING_ITEM_RULE_4 || P_BRING_ITEM_RULE_5 || P_REPLENISH_RULE01 || P_BRING_RULE_2 || P_AREA_RULE_8 || P_BRING_BOX_RULE_3 || P_BRING_BOX_RULE_4 || P_ROBOT2_ARM_RULE_3 || P_BRING_BOX_RULE_1 || P_REPLENISH_ITEM_RULE_3 || P_AREA_RULE_1
+State Space: 55296 * 2 * 2 * 2 * 3 * 2 * 2 * 4 * 3 * 2 * 2 * 2 * 2 * 2 * 2 * 2 * 2 * 2 * 2 * 4 * 2 * 2 * 2 * 2 * 2 * 2 * 4 * 2 * 2 * 2 * 2 * 2 * 3 * 2 * 2 * 2 * 2 * 2 * 2 * 4 * 2 * 1 * 2 * 2 * 3 * 2 * 2 * 4 * 2 * 2 * 2 * 2 * 2 * 3 * 2 * 4 * 2 * 1 * 2 * 1 * 2 * 2 * 2 * 4 * 2 * 2 * 2 * 2 * 2 * 2 * 2 * 2 * 2 * 2 = 2 ** 98
+Composing...
+-- States: 10000 Transitions: 319214 Memory used: 379143KB
+-- States: 20000 Transitions: 643285 Memory used: 324762KB
+-- States: 30000 Transitions: 966688 Memory used: 267500KB
+-- States: 40000 Transitions: 1289688 Memory used: 414404KB
+-- States: 50000 Transitions: 1612156 Memory used: 356252KB
+-- States: 60000 Transitions: 1933935 Memory used: 508557KB
+-- States: 70000 Transitions: 2255375 Memory used: 658242KB
+-- States: 80000 Transitions: 2579305 Memory used: 806025KB
+-- States: 90000 Transitions: 2902204 Memory used: 955708KB
+-- States: 100000 Transitions: 3224643 Memory used: 1108015KB
+-- States: 110000 Transitions: 3546524 Memory used: 1257698KB
+-- States: 120000 Transitions: 3871616 Memory used: 1410005KB
+-- States: 130000 Transitions: 4194698 Memory used: 1559688KB
+-- States: 140000 Transitions: 4518120 Memory used: 536465KB
+-- States: 150000 Transitions: 4839996 Memory used: 687458KB
+-- States: 160000 Transitions: 5160956 Memory used: 838455KB
+-- States: 170000 Transitions: 5481440 Memory used: 989448KB
+-- States: 180000 Transitions: 5802660 Memory used: 1140853KB
+-- States: 190000 Transitions: 6129747 Memory used: 1291437KB
+-- States: 200000 Transitions: 6457980 Memory used: 1442434KB
+-- States: 210000 Transitions: 6785113 Memory used: 581737KB
+-- States: 220000 Transitions: 7109319 Memory used: 732734KB
+-- States: 230000 Transitions: 7430527 Memory used: 883727KB
+-- States: 240000 Transitions: 7758325 Memory used: 1034724KB
+-- States: 250000 Transitions: 8086210 Memory used: 1185983KB
+-- States: 260000 Transitions: 8417221 Memory used: 1336714KB
+-- States: 270000 Transitions: 8746852 Memory used: 1504486KB
+-- States: 280000 Transitions: 9071731 Memory used: 700502KB
+-- States: 290000 Transitions: 9396853 Memory used: 851499KB
+-- States: 300000 Transitions: 9722759 Memory used: 1002492KB
+-- States: 310000 Transitions: 10049799 Memory used: 1153654KB
+-- States: 320000 Transitions: 10376121 Memory used: 1304482KB
+-- States: 330000 Transitions: 10701479 Memory used: 1455479KB
+-- States: 340000 Transitions: 11027656 Memory used: 1606472KB
+-- States: 350000 Transitions: 11353683 Memory used: 832587KB
+-- States: 360000 Transitions: 11679594 Memory used: 983580KB
+-- States: 370000 Transitions: 12006011 Memory used: 1117797KB
+-- States: 380000 Transitions: 12333934 Memory used: 1285569KB
+-- States: 390000 Transitions: 12660370 Memory used: 1436566KB
+-- States: 400000 Transitions: 12986784 Memory used: 1587559KB
+-- States: 410000 Transitions: 13314612 Memory used: 1738556KB
+-- States: 420000 Transitions: 13640772 Memory used: 1889549KB
+-- States: 430000 Transitions: 13968226 Memory used: 2040546KB
+-- States: 440000 Transitions: 14295465 Memory used: 2191539KB
+-- States: 450000 Transitions: 14629374 Memory used: 2342536KB
+-- States: 460000 Transitions: 14963956 Memory used: 2510308KB
+-- States: 470000 Transitions: 15290880 Memory used: 2661301KB
+-- States: 480000 Transitions: 15620578 Memory used: 2812298KB
+-- States: 489212 Transitions: 15928204 Memory used: 3718268KB
+Composed in 8434ms
+Solving the LTS control problem.
+Environment states: 489213
+Game states: 489213
+Analysis time: 113958ms.
+Controller [282608] generated successfully.
+Composition:TraditionalController = TraditionalController || P_REPLENISH_ITEM_RULE_9 || P_REPLENISH_ITEM_RULE_7 || P_AREA_RULE_3 || P_BRING_ITEM_RULE_6 || P_BRING_ITEM_RULE02_11 || P_SHIP_RULE_1 || P_REQUEST_ONLY_1 || P_REPLENISH_ITEM_RULE_6 || P_REPLENISH_ITEM_RULE02_11 || P_REPLENISH_RULE_2 || P_REQUEST_ONLY_3 || P_AREA_RULE_2 || P_SHIP_RULE_2 || P_REQUEST_TIMING_1 || P_REPLENISH_ITEM_RULE_8 || P_ROBOT3_ARM_RULE_3 || P_REPLENISH_ITEM_RULE_13 || P_REPLENISH_ITEM_RULE01_11 || P_BRING_ITEM_RULE_8 || P_REPLENISH_RULE02 || P_ROBOT2_ARM_RULE_2 || P_REPLENISH_ITEM_RULE_10 || P_BRING_ITEM_RULE_1 || P_REQUEST_ONLY_2 || P_ROBOT2_ARM_RULE_1 || P_REPLENISH_ITEM_RULE_4 || P_SHIP_RULE_5 || P_REPLENISH_ITEM_RULE_1 || P_REPLENISH_ITEM_RULE_5 || P_REQUEST_TIMING_2 || P_BRING_ITEM_RULE_9 || P_BRING_ITEM_RULE_10 || P_ROBOT1_ARM_RULE_2 || P_SHIP_RULE_3 || P_BRING_ITEM_RULE_3 || P_BRING_BOX_RULE_2 || P_SHIP_RULE_4 || P_AREA_RULE_6 || P_BRING_ITEM_RULE_7 || P_BRING_ITEM_RULE01_11 || P_BRINGITEM_ROBOT_RULE || P_REQUEST_TIMING_CHECK || P_ROBOT3_ARM_RULE_2 || P_BRING_ITEM_RULE_12 || P_SHIP_RULE_6 || P_BRING_BOX_RULE_5 || P_ROBOT1_ARM_RULE_1 || P_BRING_RULE02 || P_SHIP_RULE_0 || P_ROBOT1_ARM_RULE_3 || P_BRING_BOX_RULE_6 || P_REPLENISH_ITEM_RULE_2 || P_REPLENISH_ITEM_RULE_12 || P_AREA_RULE_7 || P_AREA_RULE_4 || P_BRING_ITEM_RULE_13 || P_REPLENISH_ROBOT_RULE || P_ROBOT3_ARM_RULE_1 || P_SHIP_ROBOT_RULE || P_BRING_RULE01 || P_BRING_ITEM_RULE_2 || P_AREA_RULE_5 || P_BRING_ITEM_RULE_4 || P_BRING_ITEM_RULE_5 || P_REPLENISH_RULE01 || P_BRING_RULE_2 || P_AREA_RULE_8 || P_BRING_BOX_RULE_3 || P_BRING_BOX_RULE_4 || P_ROBOT2_ARM_RULE_3 || P_BRING_BOX_RULE_1 || P_REPLENISH_ITEM_RULE_3 || P_AREA_RULE_1
+State Space: 282608 * 2 * 2 * 2 * 3 * 2 * 2 * 4 * 3 * 2 * 2 * 2 * 2 * 2 * 2 * 2 * 2 * 2 * 2 * 4 * 2 * 2 * 2 * 2 * 2 * 2 * 4 * 2 * 2 * 2 * 2 * 2 * 3 * 2 * 2 * 2 * 2 * 2 * 2 * 4 * 2 * 1 * 2 * 2 * 3 * 2 * 2 * 4 * 2 * 2 * 2 * 2 * 2 * 3 * 2 * 4 * 2 * 1 * 2 * 1 * 2 * 2 * 2 * 4 * 2 * 2 * 2 * 2 * 2 * 2 * 2 * 2 * 2 * 2 = 2 ** 101
+Composing...
+-- States: 10000 Transitions: 32277 Memory used: 19361329KB
+-- States: 20000 Transitions: 65624 Memory used: 19394883KB
+-- States: 30000 Transitions: 100762 Memory used: 19428438KB
+-- States: 40000 Transitions: 137027 Memory used: 19461992KB
+-- States: 50000 Transitions: 173370 Memory used: 19479100KB
+-- States: 60000 Transitions: 209955 Memory used: 19512339KB
+-- States: 70000 Transitions: 246542 Memory used: 19545880KB
+-- States: 80000 Transitions: 282844 Memory used: 19579582KB
+-- States: 90000 Transitions: 319913 Memory used: 19596210KB
+-- States: 100000 Transitions: 356744 Memory used: 19629764KB
+-- States: 110000 Transitions: 393200 Memory used: 19663319KB
+-- States: 120000 Transitions: 430516 Memory used: 19696873KB
+-- States: 130000 Transitions: 468551 Memory used: 19713776KB
+-- States: 140000 Transitions: 509300 Memory used: 19747207KB
+-- States: 150000 Transitions: 550583 Memory used: 19780813KB
+-- States: 160000 Transitions: 588463 Memory used: 19814464KB
+-- States: 170000 Transitions: 628721 Memory used: 19847925KB
+-- States: 180000 Transitions: 667668 Memory used: 19881464KB
+-- States: 190000 Transitions: 706100 Memory used: 19898200KB
+-- States: 200000 Transitions: 744777 Memory used: 19931808KB
+-- States: 210000 Transitions: 782706 Memory used: 19965402KB
+-- States: 220000 Transitions: 819203 Memory used: 19998863KB
+-- States: 230000 Transitions: 856266 Memory used: 20032417KB
+-- States: 240000 Transitions: 892728 Memory used: 20049249KB
+-- States: 250000 Transitions: 929163 Memory used: 20082880KB
+-- States: 260000 Transitions: 966628 Memory used: 20116356KB
+-- States: 270000 Transitions: 1008702 Memory used: 20149860KB
+-- States: 280000 Transitions: 1044991 Memory used: 20166635KB
+-- States: 282608 Transitions: 1055176 Memory used: 20233744KB
+Composed in 5097ms
+
+
+[info] Composition is Complete!
+[info] Max Space      : 489212
+[info] Max Transition : 15928204
+[info] Max Memory     : 22480367 MB
+[info] Execution Time : 141289 ms
+

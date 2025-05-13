@@ -1,0 +1,174 @@
+\section{並列ゲーム空間合成の妥当性確認}
+\label{section:proof}
+本論文では，並列ゲーム空間合成の妥当性を確認するために，命題\ref{prf:同じゲーム空間を構築することの証明}にてAlgorithm\ref{alg:並列ゲーム空間合成}が従来手法と同じゲーム空間を構築できることを証明する．
+この命題\ref{prf:同じゲーム空間を構築することの証明}を証明するために，ゲーム空間の構築において改変並列合成が並列合成で代用できること（補題\ref{lem:改変並列合成の不必要性の証明}），Algolithm\ref{alg:並列ゲーム空間合成}が並列合成を実装していること（補題\ref{lem:アルゴリズムが並列合成を行っていることの証明}）を先に証明する．
+
+\begin{lem}
+    \label{lem:改変並列合成の不必要性の証明}
+    $m$が監視対象モデル，$r$が監視モデルのとき，関係式\ref{formula:改変並列合成の不要性}が成り立つ．
+    \renewcommand{\baselinestretch}{0.0}
+    \allowdisplaybreaks[4]
+    \begin{equation}
+    \label{formula:改変並列合成の不要性}
+    m \parallel_* r = m \parallel r
+    \end{equation}
+    \allowdisplaybreaks[0]
+    \renewcommand{\baselinestretch}{1}
+\end{lem}
+\begin{proof}
+    監視対象モデル$m = \{S_{m}, A_{m}, \Delta_{m}, s^0_{m}\}$と監視モデル$r = \{S_{r}, A_{r}, \Delta_{r}, s^0_{r}\}$の改変並列合成を考える．
+    改変並列合成によって合成されるLTSを$m \parallel_* r = \{S_{*}, A_{*}, \Delta_{*}, s^0_{*}\}$とすると，改変並列合成の定義\ref{改変並列合成}より，$s^0_{*} = \{ s^0_{m}, s^0_{r} \}$となり，$\Delta_{*}$は以下の遷移の集合となる．
+    
+    \renewcommand{\baselinestretch}{0.0}
+    \allowdisplaybreaks[4]
+    {\scriptsize
+    \begin{align*}
+    &(\langle s_{m},s_{r}\rangle,a,\langle s'_{m},s_{r}\rangle)=\frac{s_{m} \xrightarrow{a} s'_{m}, a \in (A_{m}\backslash A_{r})}{\langle s_{m}, s_{r} \rangle \xrightarrow{a} \langle s'_{m}, s_{r} \rangle}\\
+    &(\langle s_{m},s_{r}\rangle,a,\langle s'_{m},s'_{r}\rangle)=\frac{s_{m} \xrightarrow{a} s'_{m}, s_{r} \xrightarrow{a} s'_{r}, a \in (A_{m} \cap A_{r})}{\langle s_{m}, s_{r} \rangle \xrightarrow{a} \langle s'_{m}, s'_{r} \rangle}
+    \end{align*}
+    }
+    \allowdisplaybreaks[0]
+    \renewcommand{\baselinestretch}{1}
+    % そして合成された$\Delta_{*}$から，$S_{*} = \{s^0_*\} \cup \bigcup_{[(s,a,s') \in \Delta_*]} \{s'\}$，$A_{*} = \bigcup_{[(s,a,s') \in \Delta]} \{a\}$となる．
+
+    この時，同じ入力$m$，$r$における並列合成を考えてみる．並列合成によって合成されるLTSを$m \parallel r = \{S, A, \Delta, s^0\}$とすると，並列合成の定義\ref{並列合成}より，$s^0 = \{ s^0_{m}, s^0_{r} \}$となる．
+    次に$\Delta$について考える．$m$は監視モデルであるため，$m$と$r$において以下の条件式\ref{監視モデル条件式}を常に満たすことが保障される．
+    
+    \renewcommand{\baselinestretch}{0.0}
+    \allowdisplaybreaks[4]
+    \begin{equation}
+    \label{formula:rとmの関係式}
+    A_{r} \subset A_{m}
+    \end{equation}
+    \allowdisplaybreaks[0]
+    \renewcommand{\baselinestretch}{1}
+    すると式\ref{formula:rとmの関係式}より，$m \parallel r$において$a \in A_{r} \backslash A_{m}$となる$a$が存在しないことが保障されるため，$\Delta$は並列合成の定義\ref{並列合成}を修正した以下の遷移の集合となる．
+    
+    \renewcommand{\baselinestretch}{0.0}
+    \allowdisplaybreaks[4]
+    {\scriptsize
+    \begin{align*}
+    &(\langle s_{m},s_{r}\rangle,a,\langle s'_{m},s_{r}\rangle)=\frac{s_{m} \xrightarrow{a} s'_{m}, a \in (A_{m}\backslash A_{r})}{\langle s_{m}, s_{r} \rangle \xrightarrow{a} \langle s'_{m}, s_{r} \rangle}\\
+    &(\langle s_{m},s_{r}\rangle,a,\langle s'_{m},s'_{r}\rangle)=\frac{s_{m} \xrightarrow{a} s'_{m}, s_{r} \xrightarrow{a} s'_{r}, a \in (A_{m} \cap A_{r})}{\langle s_{m}, s_{r} \rangle \xrightarrow{a} \langle s'_{m}, s'_{r} \rangle}
+    \end{align*}
+    }
+    \allowdisplaybreaks[0]
+    \renewcommand{\baselinestretch}{1}
+
+    以上より，$\Delta_* = \Delta$，$s^0_* = s^0$が成り立つ．また，$S$と$A$は$\Delta$から一意に定まるため，$\Delta_* = \Delta$が成り立つ時，$S_* = S$，$A_* = A$も同時に成り立つ．よって，$m$と$r$において$m \parallel_* r = m \parallel r$が成り立つため，本補題は成り立つ．
+\end{proof}
+
+
+\begin{lem}
+    \label{lem:アルゴリズムが並列合成を行っていることの証明}
+    1以上の自然数$i$と$j$において，コンポーネントモデル$E = \{e_1, e_2, ... e_i\}$，監視モデル$R = \{r_1, r_2, ... r_j\}$であるとき，式\ref{formula:並列ゲーム空間合成}が成り立つ．
+    \renewcommand{\baselinestretch}{0.0}
+    \allowdisplaybreaks[4]
+    \begin{equation}
+    \label{formula:並列ゲーム空間合成}
+    {\bf Algorithm \ref{alg:並列ゲーム空間合成}(E, R)} = {\bf Parallel Composition(E \cup R)}
+    \end{equation}
+    \allowdisplaybreaks[0]
+    \renewcommand{\baselinestretch}{1}
+\end{lem}
+\begin{proof}
+    式\ref{formula:並列ゲーム空間合成}の右辺で合成されるLTSを$g_{r} = \{S_{r},A_{r},\Delta_{r},s^0_{r}\}$，左辺で合成されるLTSを$g_{l} = \{S_{l},A_{l},\Delta_{l},s^0_{l}\}$とする．
+
+    初期状態$s^0$について考える．
+    $s^0_{r}$は並列合成の定義\ref{並列合成}より$\{s^0_{e_1}, ... \:, s^0_{e_i}, s^0_{r_1}, ...\:, s^0_{r_j}\}$となる．
+    $s^0_{l}$はAlgorithm\ref{alg:並列ゲーム空間合成}の2行目より，$\bigcup_{m \in M} \{s^0_m\}$となる．
+    この時，$M$はAlgorithm\ref{alg:並列ゲーム空間合成}の1行目より$M = E \cup R$であるため$s^0_{l} = s^0_{r}$が成り立つ．
+
+    遷移$\Delta$について考える．
+    $\Delta_{l}$はAlgorithm\ref{alg:並列ゲーム空間合成}において4行目のAlgorithm\ref{alg:ゲーム空間構築手法}で合成される．
+    Algorithm\ref{alg:ゲーム空間構築手法}では，提案の\ref{提案}より入力された状態$s_now$で起こりうるすべての遷移（$s_now$を遷移前状態として持つすべての遷移）を合成する．その後，合成された
+
+    % 遷移の合成証明の方針
+    % ①「提案の章で」アルゴリズム４が並列合成で合成される遷移を合成できることを証明しておく
+    % ②
+
+
+    状態の集合$S$について考える．
+    $S_{l}$は，Algorithm\ref{alg:並列ゲーム空間合成}の3行目と4行目で合成される．
+    3行目では$S_{l}$に初期状態$s^0_{l}$と違反状態$s_{err}$が格納され，その後4行目のAlgorithm\ref{alg:ゲーム空間構築手法}にて$\Delta_{l}$を構築するたびに$s_{err}$以外の$\Delta_{l}$の遷移先の状態$s^*$を$S_{l}$に格納している．これを集合で表すと，$S_{l} = \{s^0\} \cup \{s_{err}\} \cup (\bigcup_{[(s,a,s^*) \in \Delta_{l}]} \{s^*\}) \backslash \{s_{err}\}$となり，式変形すると$S_{l} = \{s^0\} \cup (\bigcup_{[(s,a,s^*) \in \Delta_{l}]} \{s^*\})$となる．
+    $S_{r}$は並列合成の定義\ref{並列合成}より$S_{r} = \{s^0\} \cup (\bigcup_{[(s,a,s') \in \Delta_{r}]} \{s'\})$となる．
+    すると，$\Delta_{l} = \Delta_{r}$ならば$s^* = s'$となるため，$S_{l} = S_{r}$が成り立つ．
+
+    動作の集合$A$について考える．
+    $A_{l}$はAlgorithm\ref{alg:並列ゲーム空間合成}の5行目より，$A_{l} = \{a | (s,a,s') \in \Delta_{l}\}$で合成される．これを集合で表すと，$A_{l} = \bigcup_{[(s,a,s') \in \Delta_{l}]} \{a\}$となる．
+    $A_{r}$は並列合成の定義\ref{並列合成}より，$A_{r} = \bigcup_{[(s,a,s') \in \Delta_{r}]} \{a\}$となる．
+    すると，$\Delta_{l} = \Delta_{r}$ならば，$A_{l} = A_{r}$が成り立つ．
+
+    以上より，$S_{l}=S_{r}$，$A_{l}=A_{r}$，$\Delta_{l}=\Delta_{r}$，$s^0_{l}=s^0_{r}$となるため，$g_{l} = g_{r}$が成り立つ．
+    よって，${\bf Algorithm \ref{alg:並列ゲーム空間合成}(E, R)} = {\bf Parallel Composition(E \cup R)}$も成り立つため，本補題は成り立つ．
+\end{proof}
+
+証明された補題\ref{lem:改変並列合成の不必要性の証明}と補題\ref{lem:アルゴリズムが並列合成を行っていることの証明}を用いて，Algorithm\ref{alg:並列ゲーム空間合成}が従来手法と同じゲーム空間を構築できることを命題\ref{prf:同じゲーム空間を構築することの証明}にて証明する．
+\begin{pro}
+    \label{prf:同じゲーム空間を構築することの証明}
+    並列ゲーム空間合成（Algorithm\ref{alg:ParallelControllerSynthesis}）は従来手法（Algorithm\ref{alg:ControllerSynthesis}）と同じゲーム空間$g$を出力する．
+\end{pro}
+\begin{proof}
+    % はじめに，従来手法（Algorithm\ref{alg:ControllerSynthesis}）で合成されるゲーム空間$g$について考える．
+    本命題の証明にあたって，1以上の自然数$i$，$j$において，コンポーネントモデル$E = \{e_1, e_2, ... e_i\}$，監視モデル$R = \{r_1, r_2, ... r_j\}$を入力としたゲーム空間$g$の構築について考える．
+    
+    先に，従来手法（Algorithm\ref{alg:ControllerSynthesis}）で合成されるゲーム空間$g$について考える．Algorithm\ref{alg:ControllerSynthesis}では，はじめに並列合成を用いて$E$からモノリシックモデル$m$を合成する（Algorithm\ref{alg:ControllerSynthesis}，1行目）．その時合成される$m$を合成プロセスを用いて表したものが式\ref{formula:従来手法1}である．
+    \renewcommand{\baselinestretch}{0.0}
+    \allowdisplaybreaks[4]
+    \begin{align}
+    \label{formula:従来手法1}
+    m &= {\bf Parallel Composition(E)} \notag\\
+      &= e_1 \parallel ... \parallel e_i
+    \end{align}
+    \allowdisplaybreaks[0]
+    \renewcommand{\baselinestretch}{1}
+    その後，並列合成の出力$m$と$R$を用いて改変並列合成をすることでAlgorithm\ref{alg:ControllerSynthesis}ではゲーム空間$g$を出力する（Algorithm\ref{alg:ControllerSynthesis}，2行目）．その時合成される$g$を合成プロセスを用いて表したものが式\ref{formula:従来手法2}である．
+    \renewcommand{\baselinestretch}{0.0}
+    \allowdisplaybreaks[4]
+    \begin{align}
+    \label{formula:従来手法2}
+    g &= {\bf Modified Parallel Composition(m,R)} \notag\\
+      &= m \parallel_* r_1 \parallel_* ... \parallel_* r_j \notag\\
+      &= (e_1 \parallel ... \parallel e_i) \parallel_* r_1 \parallel_* ... \parallel_* r_j
+    \end{align}
+    \allowdisplaybreaks[0]
+    \renewcommand{\baselinestretch}{1}
+    $g$の合成プロセスにおいて，$m$を式\ref{formula:従来手法1}の合成プロセスに置換することで$g$は最終的に式\ref{formula:従来手法2}の合成プロセスで表すことができる．
+
+    次に，並列ゲーム空間合成（Algorithm\ref{alg:ParallelControllerSynthesis}）で合成されるゲーム空間$g'$について考える．Algorithm\ref{alg:ParallelControllerSynthesis}では，$E$と$R$を入力としてAlgorithm\ref{alg:並列ゲーム空間合成}を行い，ゲーム空間$g'$を構築した（Algorithm\ref{alg:ParallelControllerSynthesis}，1行目）．よって，補題\ref{lem:アルゴリズムが並列合成を行っていることの証明}の式\ref{formula:並列ゲーム空間合成}と定義\ref{並列合成}より$g'$は式\ref{formula:提案手法1}で表現できる．
+    \renewcommand{\baselinestretch}{0.0}
+    \allowdisplaybreaks[4]
+    \begin{align}
+    \label{formula:提案手法1}
+    g'  &= {\bf Algorithm \ref{alg:並列ゲーム空間合成}(E, R)} \notag\\
+        &= {\bf Parallel Composition(E \cup R)} \notag\\
+        &= e_1 \parallel ... \parallel e_i \parallel r_1 \parallel ... \parallel r_j
+    \end{align}
+    \allowdisplaybreaks[0]
+    \renewcommand{\baselinestretch}{1}
+    式\ref{formula:提案手法1}において$(e_1 \parallel ... \parallel e_i)$は監視対象モデル，$r_1 ... r_j$は監視モデルであるため，補題2で証明した式\ref{formula:改変並列合成の不要性}が適用できる．そこで，式\ref{formula:改変並列合成の不要性}を$r_1 ... r_j$それぞれに適用すると，式\ref{formula:提案手法1}は式\ref{formula:提案手法2}に変形できる．
+    \renewcommand{\baselinestretch}{0.0}
+    \allowdisplaybreaks[4]
+    \begin{align}
+    \label{formula:提案手法2}
+     g' &= (e_1 \parallel ... \parallel e_i) \parallel r_1 \parallel ... \parallel r_j \notag\\
+        &= (e_1 \parallel ... \parallel e_i) \parallel_* r_1 \parallel_* ... \parallel_* r_j
+    \end{align}
+    \allowdisplaybreaks[0]
+    \renewcommand{\baselinestretch}{1}
+    すると，式\ref{formula:従来手法2}と式\ref{formula:提案手法2}の右辺が同じであることから$g = g'$となる．よって，従来手法で構築されたゲーム空間$g$と並列ゲーム空間合成によって構築されたゲーム空間$g'$は同じ合成プロセスに置換できることが示されたため，本命題は成り立つ．
+\end{proof}
+
+
+% \subsection{証明２：モノリシック手法と比較して必要となる計算空間を削減することの証明}
+% \begin{lem}
+% \label{prf:合成コスト最小化の証明}
+% ・ゲーム空間における違反状態は制御器合成を通して一度も構築されない．
+% ・準違反状態は構築される．
+%  →違反状態が多いゲーム空間ほど効果的
+% \end{lem}
+% \begin{proof}
+% ・
+% ・
+% ・
+% \end{proof}

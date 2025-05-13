@@ -1,0 +1,1813 @@
+Compiled: VISITOR
+Compiled: HALL
+Compiled: ROOM_A
+Compiled: ROOM_B
+Compiled: ROOM_C
+Compiled: ROOM_D
+Compiled: DOOR_LOCK_HALL
+Compiled: DOOR_LOCK_A
+Compiled: DOOR_LOCK_B
+Compiled: DOOR_LOCK_C
+Compiled: DOOR_LOCK_D
+Composition:Environment = Environment.VISITOR || Environment.HALL || Environment.ROOM_A || Environment.ROOM_B || Environment.ROOM_C || Environment.ROOM_D || Environment.DOOR_LOCK_HALL || Environment.DOOR_LOCK_A || Environment.DOOR_LOCK_B || Environment.DOOR_LOCK_C || Environment.DOOR_LOCK_D
+State Space: 25 * 19 * 19 * 19 * 19 * 19 * 2 * 2 * 2 * 2 * 2 = 2 ** 35
+Composing...
+-- States: 10000 Transitions: 64623 Memory used: 48554KB
+-- States: 20000 Transitions: 128233 Memory used: 47834KB
+-- States: 30000 Transitions: 191987 Memory used: 46471KB
+-- States: 40000 Transitions: 255483 Memory used: 65929KB
+-- States: 50000 Transitions: 319332 Memory used: 63453KB
+-- States: 60000 Transitions: 383326 Memory used: 82857KB
+-- States: 70000 Transitions: 447078 Memory used: 79072KB
+-- States: 80000 Transitions: 510828 Memory used: 74946KB
+-- States: 90000 Transitions: 574672 Memory used: 94350KB
+-- States: 100000 Transitions: 638511 Memory used: 116002KB
+-- States: 110000 Transitions: 702866 Memory used: 135406KB
+-- States: 120000 Transitions: 767004 Memory used: 154736KB
+-- States: 130000 Transitions: 830922 Memory used: 174141KB
+-- States: 140000 Transitions: 894788 Memory used: 193681KB
+-- States: 150000 Transitions: 958541 Memory used: 213221KB
+-- States: 160000 Transitions: 1022974 Memory used: 232622KB
+-- States: 170000 Transitions: 1087103 Memory used: 134346KB
+-- States: 180000 Transitions: 1151069 Memory used: 152745KB
+-- States: 190000 Transitions: 1215321 Memory used: 172121KB
+-- States: 200000 Transitions: 1279474 Memory used: 195557KB
+-- States: 210000 Transitions: 1343676 Memory used: 216001KB
+-- States: 220000 Transitions: 1407658 Memory used: 167032KB
+-- States: 230000 Transitions: 1472031 Memory used: 186382KB
+-- States: 240000 Transitions: 1536197 Memory used: 206218KB
+-- States: 250000 Transitions: 1600244 Memory used: 224888KB
+-- States: 260000 Transitions: 1664197 Memory used: 244238KB
+-- States: 270000 Transitions: 1728058 Memory used: 264396KB
+-- States: 280000 Transitions: 1792603 Memory used: 284402KB
+-- States: 290000 Transitions: 1856881 Memory used: 207093KB
+-- States: 300000 Transitions: 1921292 Memory used: 226464KB
+-- States: 310000 Transitions: 1985671 Memory used: 246465KB
+-- States: 320000 Transitions: 2049914 Memory used: 266685KB
+-- States: 330000 Transitions: 2114070 Memory used: 286685KB
+-- States: 340000 Transitions: 2178479 Memory used: 304685KB
+-- States: 350000 Transitions: 2242817 Memory used: 324904KB
+-- States: 360000 Transitions: 2307133 Memory used: 344906KB
+-- States: 370000 Transitions: 2371151 Memory used: 362905KB
+-- States: 380000 Transitions: 2435482 Memory used: 383148KB
+-- States: 390000 Transitions: 2499873 Memory used: 260079KB
+-- States: 400000 Transitions: 2564488 Memory used: 289788KB
+-- States: 410000 Transitions: 2628609 Memory used: 307617KB
+-- States: 420000 Transitions: 2693081 Memory used: 326908KB
+-- States: 430000 Transitions: 2757259 Memory used: 348362KB
+-- States: 440000 Transitions: 2821132 Memory used: 367594KB
+-- States: 450000 Transitions: 2885323 Memory used: 386886KB
+-- States: 460000 Transitions: 2949424 Memory used: 408280KB
+-- States: 470000 Transitions: 3013423 Memory used: 427571KB
+-- States: 480000 Transitions: 3077527 Memory used: 445400KB
+-- States: 490000 Transitions: 3141925 Memory used: 464691KB
+-- States: 500000 Transitions: 3206208 Memory used: 483981KB
+-- States: 510000 Transitions: 3270393 Memory used: 346441KB
+-- States: 520000 Transitions: 3334916 Memory used: 362438KB
+-- States: 530000 Transitions: 3399568 Memory used: 384116KB
+-- States: 540000 Transitions: 3463871 Memory used: 404664KB
+-- States: 550000 Transitions: 3528176 Memory used: 422241KB
+-- States: 560000 Transitions: 3592378 Memory used: 442553KB
+-- States: 570000 Transitions: 3656828 Memory used: 463102KB
+-- States: 580000 Transitions: 3721320 Memory used: 480444KB
+-- States: 590000 Transitions: 3785589 Memory used: 500992KB
+-- States: 600000 Transitions: 3850256 Memory used: 518520KB
+-- States: 610000 Transitions: 3914582 Memory used: 538881KB
+-- States: 620000 Transitions: 3979110 Memory used: 559428KB
+-- States: 630000 Transitions: 4043351 Memory used: 413523KB
+-- States: 640000 Transitions: 4107824 Memory used: 433686KB
+-- States: 650000 Transitions: 4172183 Memory used: 455973KB
+-- States: 660000 Transitions: 4236622 Memory used: 471573KB
+-- States: 670000 Transitions: 4300848 Memory used: 493987KB
+-- States: 680000 Transitions: 4365265 Memory used: 514042KB
+-- States: 690000 Transitions: 4429705 Memory used: 529764KB
+-- States: 700000 Transitions: 4493928 Memory used: 552054KB
+-- States: 710000 Transitions: 4557893 Memory used: 572236KB
+-- States: 720000 Transitions: 4622172 Memory used: 590065KB
+-- States: 730000 Transitions: 4686090 Memory used: 610247KB
+-- States: 740000 Transitions: 4750538 Memory used: 628078KB
+-- States: 750000 Transitions: 4814687 Memory used: 648386KB
+-- States: 760000 Transitions: 4878745 Memory used: 668442KB
+-- States: 770000 Transitions: 4942906 Memory used: 686271KB
+-- States: 780000 Transitions: 5006898 Memory used: 498264KB
+-- States: 790000 Transitions: 5071158 Memory used: 552561KB
+-- States: 800000 Transitions: 5135236 Memory used: 569614KB
+-- States: 810000 Transitions: 5199819 Memory used: 587609KB
+-- States: 820000 Transitions: 5263919 Memory used: 608354KB
+-- States: 830000 Transitions: 5328419 Memory used: 626351KB
+-- States: 840000 Transitions: 5392580 Memory used: 647094KB
+-- States: 850000 Transitions: 5457464 Memory used: 665091KB
+-- States: 860000 Transitions: 5521761 Memory used: 685835KB
+-- States: 870000 Transitions: 5586217 Memory used: 703831KB
+-- States: 880000 Transitions: 5650642 Memory used: 727049KB
+-- States: 890000 Transitions: 5714951 Memory used: 742702KB
+-- States: 900000 Transitions: 5779257 Memory used: 765754KB
+-- States: 910000 Transitions: 5843927 Memory used: 781311KB
+-- States: 920000 Transitions: 5908416 Memory used: 616722KB
+-- States: 930000 Transitions: 5973207 Memory used: 632538KB
+-- States: 940000 Transitions: 6037941 Memory used: 655383KB
+-- States: 950000 Transitions: 6102361 Memory used: 673188KB
+-- States: 960000 Transitions: 6166898 Memory used: 694188KB
+-- States: 970000 Transitions: 6231368 Memory used: 712059KB
+-- States: 980000 Transitions: 6295900 Memory used: 733058KB
+-- States: 990000 Transitions: 6360107 Memory used: 750863KB
+-- States: 1000000 Transitions: 6424569 Memory used: 773851KB
+-- States: 1010000 Transitions: 6489339 Memory used: 789601KB
+-- States: 1020000 Transitions: 6553660 Memory used: 812655KB
+-- States: 1030000 Transitions: 6618295 Memory used: 828538KB
+-- States: 1040000 Transitions: 6682444 Memory used: 851460KB
+-- States: 1050000 Transitions: 6746674 Memory used: 867209KB
+-- States: 1060000 Transitions: 6811294 Memory used: 890398KB
+-- States: 1070000 Transitions: 6875729 Memory used: 908069KB
+-- States: 1080000 Transitions: 6940233 Memory used: 929135KB
+-- States: 1090000 Transitions: 7004684 Memory used: 946874KB
+-- States: 1100000 Transitions: 7069358 Memory used: 967940KB
+-- States: 1110000 Transitions: 7133857 Memory used: 985744KB
+-- States: 1120000 Transitions: 7198356 Memory used: 1003480KB
+-- States: 1130000 Transitions: 7262879 Memory used: 1024576KB
+-- States: 1140000 Transitions: 7327419 Memory used: 737722KB
+-- States: 1150000 Transitions: 7391727 Memory used: 755007KB
+-- States: 1160000 Transitions: 7455869 Memory used: 779777KB
+-- States: 1170000 Transitions: 7520681 Memory used: 796150KB
+-- States: 1180000 Transitions: 7585360 Memory used: 814189KB
+-- States: 1190000 Transitions: 7650059 Memory used: 838296KB
+-- States: 1200000 Transitions: 7714730 Memory used: 855554KB
+-- States: 1210000 Transitions: 7779327 Memory used: 871954KB
+-- States: 1220000 Transitions: 7843605 Memory used: 896814KB
+-- States: 1230000 Transitions: 7907911 Memory used: 913995KB
+-- States: 1240000 Transitions: 7972486 Memory used: 930368KB
+-- States: 1250000 Transitions: 8037269 Memory used: 956218KB
+-- States: 1260000 Transitions: 8101738 Memory used: 972514KB
+-- States: 1270000 Transitions: 8166186 Memory used: 989797KB
+-- States: 1280000 Transitions: 8230496 Memory used: 1014658KB
+-- States: 1290000 Transitions: 8294994 Memory used: 1031031KB
+-- States: 1300000 Transitions: 8359544 Memory used: 1048213KB
+-- States: 1310000 Transitions: 8423982 Memory used: 1073177KB
+-- States: 1320000 Transitions: 8488555 Memory used: 1090460KB
+-- States: 1330000 Transitions: 8553202 Memory used: 1106732KB
+-- States: 1340000 Transitions: 8617832 Memory used: 1131695KB
+-- States: 1350000 Transitions: 8682250 Memory used: 1148876KB
+-- States: 1360000 Transitions: 8746540 Memory used: 1165249KB
+-- States: 1370000 Transitions: 8810911 Memory used: 884747KB
+-- States: 1380000 Transitions: 8874825 Memory used: 900932KB
+-- States: 1390000 Transitions: 8938923 Memory used: 918260KB
+-- States: 1400000 Transitions: 9003565 Memory used: 943109KB
+-- States: 1410000 Transitions: 9068500 Memory used: 959477KB
+-- States: 1420000 Transitions: 9133277 Memory used: 976722KB
+-- States: 1430000 Transitions: 9197807 Memory used: 1001595KB
+-- States: 1440000 Transitions: 9262157 Memory used: 1018958KB
+-- States: 1450000 Transitions: 9326693 Memory used: 1035208KB
+-- States: 1460000 Transitions: 9391383 Memory used: 1052513KB
+-- States: 1470000 Transitions: 9455865 Memory used: 1077386KB
+-- States: 1480000 Transitions: 9520654 Memory used: 1093633KB
+-- States: 1490000 Transitions: 9585237 Memory used: 1110962KB
+-- States: 1500000 Transitions: 9649993 Memory used: 1135812KB
+-- States: 1510000 Transitions: 9714673 Memory used: 1153117KB
+-- States: 1520000 Transitions: 9778968 Memory used: 1169426KB
+-- States: 1530000 Transitions: 9842739 Memory used: 1194296KB
+-- States: 1540000 Transitions: 9907326 Memory used: 1211603KB
+-- States: 1550000 Transitions: 9971818 Memory used: 1227851KB
+-- States: 1560000 Transitions: 10036376 Memory used: 1253801KB
+-- States: 1570000 Transitions: 10100612 Memory used: 1270030KB
+-- States: 1580000 Transitions: 10165140 Memory used: 1354562KB
+-- States: 1590000 Transitions: 10229368 Memory used: 1379376KB
+-- States: 1600000 Transitions: 10294142 Memory used: 1395625KB
+-- States: 1610000 Transitions: 10358742 Memory used: 1412871KB
+-- States: 1620000 Transitions: 10423596 Memory used: 1087107KB
+-- States: 1630000 Transitions: 10487975 Memory used: 1105857KB
+-- States: 1640000 Transitions: 10552172 Memory used: 1120605KB
+-- States: 1650000 Transitions: 10616787 Memory used: 1139305KB
+-- States: 1660000 Transitions: 10681400 Memory used: 1163535KB
+-- States: 1670000 Transitions: 10746206 Memory used: 1178388KB
+-- States: 1680000 Transitions: 10810621 Memory used: 1197109KB
+-- States: 1690000 Transitions: 10875340 Memory used: 1221269KB
+-- States: 1700000 Transitions: 10939980 Memory used: 1239987KB
+-- States: 1710000 Transitions: 11004336 Memory used: 1264198KB
+-- States: 1720000 Transitions: 11069166 Memory used: 1279051KB
+-- States: 1730000 Transitions: 11133451 Memory used: 1297754KB
+-- States: 1740000 Transitions: 11197898 Memory used: 1322000KB
+-- States: 1750000 Transitions: 11261838 Memory used: 1340699KB
+-- States: 1760000 Transitions: 11326007 Memory used: 1355556KB
+-- States: 1770000 Transitions: 11389971 Memory used: 1374205KB
+-- States: 1780000 Transitions: 11454346 Memory used: 1398366KB
+-- States: 1790000 Transitions: 11518421 Memory used: 1413269KB
+-- States: 1800000 Transitions: 11583005 Memory used: 1431971KB
+-- States: 1810000 Transitions: 11647616 Memory used: 1456150KB
+-- States: 1820000 Transitions: 11712437 Memory used: 1474856KB
+-- States: 1830000 Transitions: 11776993 Memory used: 1489704KB
+-- States: 1840000 Transitions: 11841518 Memory used: 1508357KB
+-- States: 1850000 Transitions: 11906061 Memory used: 1532685KB
+-- States: 1860000 Transitions: 11970553 Memory used: 1547487KB
+-- States: 1870000 Transitions: 12035118 Memory used: 1575531KB
+-- States: 1880000 Transitions: 12099008 Memory used: 1590368KB
+-- States: 1890000 Transitions: 12163052 Memory used: 1609085KB
+-- States: 1900000 Transitions: 12227436 Memory used: 1633298KB
+-- States: 1910000 Transitions: 12292170 Memory used: 1648150KB
+-- States: 1920000 Transitions: 12356557 Memory used: 1666852KB
+-- States: 1930000 Transitions: 12421042 Memory used: 1691031KB
+-- States: 1940000 Transitions: 12485682 Memory used: 1709731KB
+-- States: 1950000 Transitions: 12550188 Memory used: 1278057KB
+-- States: 1960000 Transitions: 12614779 Memory used: 1298873KB
+-- States: 1970000 Transitions: 12679305 Memory used: 1311608KB
+-- States: 1980000 Transitions: 12744121 Memory used: 1332428KB
+-- States: 1990000 Transitions: 12808820 Memory used: 1357894KB
+-- States: 2000000 Transitions: 12873271 Memory used: 1378658KB
+-- States: 2010000 Transitions: 12937510 Memory used: 1391448KB
+-- States: 2020000 Transitions: 13002038 Memory used: 1412271KB
+-- States: 2030000 Transitions: 13066525 Memory used: 1433091KB
+-- States: 2040000 Transitions: 13130844 Memory used: 1458499KB
+-- States: 2050000 Transitions: 13195171 Memory used: 1479322KB
+-- States: 2060000 Transitions: 13259640 Memory used: 1492054KB
+-- States: 2070000 Transitions: 13323898 Memory used: 1512934KB
+-- States: 2080000 Transitions: 13388393 Memory used: 1533754KB
+-- States: 2090000 Transitions: 13452828 Memory used: 1546489KB
+-- States: 2100000 Transitions: 13517295 Memory used: 1567369KB
+-- States: 2110000 Transitions: 13582057 Memory used: 1592779KB
+-- States: 2120000 Transitions: 13646653 Memory used: 1613539KB
+-- States: 2130000 Transitions: 13711330 Memory used: 1626271KB
+-- States: 2140000 Transitions: 13775892 Memory used: 1647152KB
+-- States: 2150000 Transitions: 13840358 Memory used: 1667972KB
+-- States: 2160000 Transitions: 13904986 Memory used: 1693380KB
+-- States: 2170000 Transitions: 13969230 Memory used: 1701527KB
+-- States: 2180000 Transitions: 14033675 Memory used: 1726935KB
+-- States: 2190000 Transitions: 14098037 Memory used: 1747815KB
+-- States: 2200000 Transitions: 14161949 Memory used: 1760489KB
+-- States: 2210000 Transitions: 14225776 Memory used: 1781370KB
+-- States: 2220000 Transitions: 14289820 Memory used: 1802190KB
+-- States: 2230000 Transitions: 14354408 Memory used: 1827598KB
+-- States: 2240000 Transitions: 14419021 Memory used: 1848479KB
+-- States: 2250000 Transitions: 14483317 Memory used: 1861211KB
+-- States: 2260000 Transitions: 14547795 Memory used: 1882033KB
+-- States: 2270000 Transitions: 14611971 Memory used: 1902853KB
+-- States: 2280000 Transitions: 14676637 Memory used: 1915587KB
+-- States: 2290000 Transitions: 14741451 Memory used: 1936468KB
+-- States: 2300000 Transitions: 14805786 Memory used: 1961874KB
+-- States: 2310000 Transitions: 14870267 Memory used: 1982638KB
+-- States: 2320000 Transitions: 14934999 Memory used: 1995434KB
+-- States: 2330000 Transitions: 14999664 Memory used: 2016251KB
+-- States: 2340000 Transitions: 15064372 Memory used: 2037071KB
+-- States: 2350000 Transitions: 15129078 Memory used: 2062550KB
+-- States: 2360000 Transitions: 15193871 Memory used: 2083301KB
+-- States: 2370000 Transitions: 15258589 Memory used: 2096092KB
+-- States: 2380000 Transitions: 15323256 Memory used: 2116915KB
+-- States: 2390000 Transitions: 15388273 Memory used: 2137734KB
+-- States: 2400000 Transitions: 15452901 Memory used: 2150527KB
+-- States: 2410000 Transitions: 15517675 Memory used: 2171289KB
+-- States: 2420000 Transitions: 15582301 Memory used: 2196770KB
+-- States: 2430000 Transitions: 15646897 Memory used: 2217519KB
+-- States: 2440000 Transitions: 15712016 Memory used: 2230251KB
+-- States: 2450000 Transitions: 15776850 Memory used: 2251136KB
+-- States: 2460000 Transitions: 15841698 Memory used: 2271952KB
+-- States: 2470000 Transitions: 15906338 Memory used: 2297418KB
+-- States: 2480000 Transitions: 15970698 Memory used: 2318182KB
+-- States: 2490000 Transitions: 16035263 Memory used: 2330974KB
+-- States: 2500000 Transitions: 16099934 Memory used: 2351795KB
+-- States: 2510000 Transitions: 16164225 Memory used: 2372615KB
+-- States: 2520000 Transitions: 16227880 Memory used: 2385419KB
+-- States: 2530000 Transitions: 16292219 Memory used: 2406170KB
+-- States: 2540000 Transitions: 16356412 Memory used: 2431519KB
+-- States: 2550000 Transitions: 16420369 Memory used: 2452458KB
+-- States: 2560000 Transitions: 16485309 Memory used: 2465191KB
+-- States: 2570000 Transitions: 16549836 Memory used: 2486071KB
+-- States: 2580000 Transitions: 16614581 Memory used: 2506833KB
+-- States: 2590000 Transitions: 16678632 Memory used: 2532241KB
+-- States: 2600000 Transitions: 16743139 Memory used: 1661653KB
+-- States: 2610000 Transitions: 16807937 Memory used: 1683457KB
+-- States: 2620000 Transitions: 16872596 Memory used: 1700133KB
+-- States: 2630000 Transitions: 16937295 Memory used: 1717011KB
+-- States: 2640000 Transitions: 17001854 Memory used: 1733790KB
+-- States: 2650000 Transitions: 17066507 Memory used: 1750665KB
+-- States: 2660000 Transitions: 17131158 Memory used: 1784022KB
+-- States: 2670000 Transitions: 17195553 Memory used: 1800797KB
+-- States: 2680000 Transitions: 17259796 Memory used: 1817675KB
+-- States: 2690000 Transitions: 17323899 Memory used: 1834351KB
+-- States: 2700000 Transitions: 17388280 Memory used: 1851229KB
+-- States: 2710000 Transitions: 17452855 Memory used: 1868006KB
+-- States: 2720000 Transitions: 17517483 Memory used: 1901460KB
+-- States: 2730000 Transitions: 17581899 Memory used: 1918338KB
+-- States: 2740000 Transitions: 17646410 Memory used: 1935014KB
+-- States: 2750000 Transitions: 17710318 Memory used: 1951892KB
+-- States: 2760000 Transitions: 17774713 Memory used: 1968670KB
+-- States: 2770000 Transitions: 17839202 Memory used: 1985452KB
+-- States: 2780000 Transitions: 17903648 Memory used: 2018903KB
+-- States: 2790000 Transitions: 17968197 Memory used: 2035678KB
+-- States: 2800000 Transitions: 18033188 Memory used: 2052556KB
+-- States: 2810000 Transitions: 18097929 Memory used: 2069232KB
+-- States: 2820000 Transitions: 18162749 Memory used: 2086110KB
+-- States: 2830000 Transitions: 18227524 Memory used: 2102887KB
+-- States: 2840000 Transitions: 18291732 Memory used: 2136341KB
+-- States: 2850000 Transitions: 18356161 Memory used: 2153219KB
+-- States: 2860000 Transitions: 18420682 Memory used: 2169896KB
+-- States: 2870000 Transitions: 18485305 Memory used: 2187659KB
+-- States: 2880000 Transitions: 18549551 Memory used: 2203450KB
+-- States: 2890000 Transitions: 18614091 Memory used: 2220328KB
+-- States: 2900000 Transitions: 18678463 Memory used: 2253882KB
+-- States: 2910000 Transitions: 18743222 Memory used: 2270559KB
+-- States: 2920000 Transitions: 18807553 Memory used: 2287338KB
+-- States: 2930000 Transitions: 18871716 Memory used: 2304115KB
+-- States: 2940000 Transitions: 18936232 Memory used: 2320991KB
+-- States: 2950000 Transitions: 19000410 Memory used: 2337768KB
+-- States: 2960000 Transitions: 19064425 Memory used: 2354545KB
+-- States: 2970000 Transitions: 19128392 Memory used: 2388100KB
+-- States: 2980000 Transitions: 19193003 Memory used: 2404777KB
+-- States: 2990000 Transitions: 19257365 Memory used: 2421556KB
+-- States: 3000000 Transitions: 19321818 Memory used: 2438331KB
+-- States: 3010000 Transitions: 19386388 Memory used: 2455209KB
+-- States: 3020000 Transitions: 19451108 Memory used: 2471986KB
+-- States: 3030000 Transitions: 19515694 Memory used: 2505540KB
+-- States: 3040000 Transitions: 19580321 Memory used: 2522323KB
+-- States: 3050000 Transitions: 19644755 Memory used: 2538994KB
+-- States: 3060000 Transitions: 19709050 Memory used: 2555872KB
+-- States: 3070000 Transitions: 19773652 Memory used: 2572649KB
+-- States: 3080000 Transitions: 19838560 Memory used: 2589427KB
+-- States: 3090000 Transitions: 19903460 Memory used: 2622981KB
+-- States: 3100000 Transitions: 19967982 Memory used: 2639658KB
+-- States: 3110000 Transitions: 20032725 Memory used: 2656535KB
+-- States: 3120000 Transitions: 20097226 Memory used: 2673313KB
+-- States: 3130000 Transitions: 20161681 Memory used: 2690090KB
+-- States: 3140000 Transitions: 20225775 Memory used: 2706766KB
+-- States: 3150000 Transitions: 20290002 Memory used: 2840984KB
+-- States: 3160000 Transitions: 20354138 Memory used: 2857862KB
+-- States: 3170000 Transitions: 20418416 Memory used: 2874539KB
+-- States: 3180000 Transitions: 20482002 Memory used: 2891318KB
+-- States: 3190000 Transitions: 20545896 Memory used: 2908093KB
+-- States: 3200000 Transitions: 20610169 Memory used: 2091950KB
+-- States: 3210000 Transitions: 20674612 Memory used: 2108628KB
+-- States: 3220000 Transitions: 20738697 Memory used: 2142182KB
+-- States: 3230000 Transitions: 20802736 Memory used: 2159056KB
+-- States: 3240000 Transitions: 20867497 Memory used: 2175833KB
+-- States: 3250000 Transitions: 20932171 Memory used: 2192610KB
+-- States: 3260000 Transitions: 20996567 Memory used: 2209291KB
+-- States: 3270000 Transitions: 21061151 Memory used: 2226165KB
+-- States: 3280000 Transitions: 21126147 Memory used: 2259719KB
+-- States: 3290000 Transitions: 21191021 Memory used: 2276496KB
+-- States: 3300000 Transitions: 21255569 Memory used: 2293273KB
+-- States: 3310000 Transitions: 21320122 Memory used: 2309954KB
+-- States: 3320000 Transitions: 21384277 Memory used: 2326828KB
+-- States: 3330000 Transitions: 21448955 Memory used: 2343605KB
+-- States: 3340000 Transitions: 21513200 Memory used: 2377063KB
+-- States: 3350000 Transitions: 21577745 Memory used: 2393937KB
+-- States: 3360000 Transitions: 21642024 Memory used: 2410617KB
+-- States: 3370000 Transitions: 21706686 Memory used: 2427491KB
+-- States: 3380000 Transitions: 21771229 Memory used: 2444172KB
+-- States: 3390000 Transitions: 21835733 Memory used: 2461046KB
+-- States: 3400000 Transitions: 21900370 Memory used: 2494600KB
+-- States: 3410000 Transitions: 21965116 Memory used: 2511281KB
+-- States: 3420000 Transitions: 22029656 Memory used: 2528162KB
+-- States: 3430000 Transitions: 22094240 Memory used: 2544932KB
+-- States: 3440000 Transitions: 22158872 Memory used: 2561804KB
+-- States: 3450000 Transitions: 22223677 Memory used: 2578486KB
+-- States: 3460000 Transitions: 22288374 Memory used: 2611944KB
+-- States: 3470000 Transitions: 22353139 Memory used: 2628723KB
+-- States: 3480000 Transitions: 22417478 Memory used: 2645498KB
+-- States: 3490000 Transitions: 22481963 Memory used: 2662372KB
+-- States: 3500000 Transitions: 22546739 Memory used: 2679053KB
+-- States: 3510000 Transitions: 22611357 Memory used: 2695930KB
+-- States: 3520000 Transitions: 22675701 Memory used: 2712704KB
+-- States: 3530000 Transitions: 22739934 Memory used: 2746162KB
+-- States: 3540000 Transitions: 22804520 Memory used: 2763036KB
+-- States: 3550000 Transitions: 22869015 Memory used: 2779716KB
+-- States: 3560000 Transitions: 22933453 Memory used: 2796590KB
+-- States: 3570000 Transitions: 22997621 Memory used: 2813367KB
+-- States: 3580000 Transitions: 23062130 Memory used: 2830239KB
+-- States: 3590000 Transitions: 23126305 Memory used: 2863710KB
+-- States: 3600000 Transitions: 23191061 Memory used: 2880379KB
+-- States: 3610000 Transitions: 23255686 Memory used: 2897253KB
+-- States: 3620000 Transitions: 23320429 Memory used: 2914031KB
+-- States: 3630000 Transitions: 23384915 Memory used: 2931478KB
+-- States: 3640000 Transitions: 23449674 Memory used: 2947585KB
+-- States: 3650000 Transitions: 23514099 Memory used: 2981140KB
+-- States: 3660000 Transitions: 23578432 Memory used: 2997917KB
+-- States: 3670000 Transitions: 23642686 Memory used: 3014599KB
+-- States: 3680000 Transitions: 23707426 Memory used: 3031471KB
+-- States: 3690000 Transitions: 23772111 Memory used: 3048248KB
+-- States: 3700000 Transitions: 23836746 Memory used: 3065119KB
+-- States: 3710000 Transitions: 23901071 Memory used: 3098583KB
+-- States: 3720000 Transitions: 23965438 Memory used: 3115261KB
+-- States: 3730000 Transitions: 24029602 Memory used: 3132136KB
+-- States: 3740000 Transitions: 24093998 Memory used: 3148913KB
+-- States: 3750000 Transitions: 24158226 Memory used: 3165785KB
+-- States: 3760000 Transitions: 24222871 Memory used: 3182369KB
+-- States: 3770000 Transitions: 24287351 Memory used: 3215924KB
+-- States: 3780000 Transitions: 24352136 Memory used: 3232891KB
+-- States: 3790000 Transitions: 24416691 Memory used: 2448018KB
+-- States: 3800000 Transitions: 24481376 Memory used: 2464791KB
+-- States: 3810000 Transitions: 24545870 Memory used: 2481668KB
+-- States: 3820000 Transitions: 24610493 Memory used: 2498345KB
+-- States: 3830000 Transitions: 24674257 Memory used: 2531899KB
+-- States: 3840000 Transitions: 24738211 Memory used: 2548776KB
+-- States: 3850000 Transitions: 24802421 Memory used: 2565454KB
+-- States: 3860000 Transitions: 24866853 Memory used: 2582332KB
+-- States: 3870000 Transitions: 24931210 Memory used: 2599008KB
+-- States: 3880000 Transitions: 24995340 Memory used: 2615886KB
+-- States: 3890000 Transitions: 25060048 Memory used: 2632661KB
+-- States: 3900000 Transitions: 25124871 Memory used: 2666117KB
+-- States: 3910000 Transitions: 25189302 Memory used: 2682996KB
+-- States: 3920000 Transitions: 25253667 Memory used: 2699672KB
+-- States: 3930000 Transitions: 25318324 Memory used: 2716548KB
+-- States: 3940000 Transitions: 25382651 Memory used: 2733325KB
+-- States: 3950000 Transitions: 25446947 Memory used: 2750199KB
+-- States: 3960000 Transitions: 25511604 Memory used: 2783657KB
+-- States: 3970000 Transitions: 25576138 Memory used: 2800335KB
+-- States: 3980000 Transitions: 25640673 Memory used: 2817211KB
+-- States: 3990000 Transitions: 25704898 Memory used: 2833988KB
+-- States: 4000000 Transitions: 25769581 Memory used: 2850862KB
+-- States: 4010000 Transitions: 25834222 Memory used: 2867543KB
+-- States: 4020000 Transitions: 25899001 Memory used: 2900998KB
+-- States: 4030000 Transitions: 25963006 Memory used: 2917874KB
+-- States: 4040000 Transitions: 26026946 Memory used: 2934553KB
+-- States: 4050000 Transitions: 26091196 Memory used: 2951429KB
+-- States: 4060000 Transitions: 26155362 Memory used: 2968206KB
+-- States: 4070000 Transitions: 26220026 Memory used: 2985080KB
+-- States: 4080000 Transitions: 26284586 Memory used: 3001760KB
+-- States: 4090000 Transitions: 26348849 Memory used: 3035216KB
+-- States: 4100000 Transitions: 26413792 Memory used: 3052092KB
+-- States: 4110000 Transitions: 26478534 Memory used: 3068770KB
+-- States: 4120000 Transitions: 26542551 Memory used: 3085646KB
+-- States: 4130000 Transitions: 26607205 Memory used: 3102424KB
+-- States: 4140000 Transitions: 26671777 Memory used: 3119301KB
+-- States: 4150000 Transitions: 26735976 Memory used: 3152755KB
+-- States: 4160000 Transitions: 26800379 Memory used: 3169434KB
+-- States: 4170000 Transitions: 26864792 Memory used: 3186310KB
+-- States: 4180000 Transitions: 26928850 Memory used: 3202988KB
+-- States: 4190000 Transitions: 26993479 Memory used: 3219864KB
+-- States: 4200000 Transitions: 27057740 Memory used: 3236641KB
+-- States: 4210000 Transitions: 27122094 Memory used: 3270097KB
+-- States: 4220000 Transitions: 27186116 Memory used: 3286973KB
+-- States: 4230000 Transitions: 27250170 Memory used: 3303750KB
+-- States: 4240000 Transitions: 27314556 Memory used: 3320624KB
+-- States: 4250000 Transitions: 27378629 Memory used: 3337305KB
+-- States: 4260000 Transitions: 27442800 Memory used: 3354179KB
+-- States: 4270000 Transitions: 27507304 Memory used: 3387636KB
+-- States: 4280000 Transitions: 27572198 Memory used: 3404315KB
+-- States: 4290000 Transitions: 27636594 Memory used: 3421191KB
+-- States: 4300000 Transitions: 27701074 Memory used: 3437968KB
+-- States: 4310000 Transitions: 27765751 Memory used: 3454842KB
+-- States: 4320000 Transitions: 27830323 Memory used: 3471522KB
+-- States: 4330000 Transitions: 27894778 Memory used: 3488399KB
+-- States: 4340000 Transitions: 27959439 Memory used: 3521854KB
+-- States: 4350000 Transitions: 28023704 Memory used: 3538532KB
+-- States: 4360000 Transitions: 28087833 Memory used: 3555409KB
+-- States: 4370000 Transitions: 28151672 Memory used: 3572089KB
+-- States: 4380000 Transitions: 28215904 Memory used: 3588966KB
+-- States: 4390000 Transitions: 28280683 Memory used: 2794064KB
+-- States: 4400000 Transitions: 28345094 Memory used: 2810735KB
+-- States: 4410000 Transitions: 28409662 Memory used: 2844289KB
+-- States: 4420000 Transitions: 28474199 Memory used: 2861169KB
+-- States: 4430000 Transitions: 28538849 Memory used: 2877844KB
+-- States: 4440000 Transitions: 28603252 Memory used: 2894726KB
+-- States: 4450000 Transitions: 28667807 Memory used: 2911398KB
+-- States: 4460000 Transitions: 28732367 Memory used: 2928278KB
+-- States: 4470000 Transitions: 28796902 Memory used: 2961732KB
+-- States: 4480000 Transitions: 28861113 Memory used: 2978507KB
+-- States: 4490000 Transitions: 28925313 Memory used: 2995389KB
+-- States: 4500000 Transitions: 28990043 Memory used: 3012061KB
+-- States: 4510000 Transitions: 29054611 Memory used: 3028941KB
+-- States: 4520000 Transitions: 29118811 Memory used: 3045718KB
+-- States: 4530000 Transitions: 29182884 Memory used: 3062596KB
+-- States: 4540000 Transitions: 29247121 Memory used: 3096052KB
+-- States: 4550000 Transitions: 29311580 Memory used: 3112725KB
+-- States: 4560000 Transitions: 29375781 Memory used: 3129504KB
+-- States: 4570000 Transitions: 29439868 Memory used: 3146279KB
+-- States: 4580000 Transitions: 29504379 Memory used: 3163162KB
+-- States: 4590000 Transitions: 29568898 Memory used: 3179833KB
+-- States: 4600000 Transitions: 29633318 Memory used: 3213388KB
+-- States: 4610000 Transitions: 29697271 Memory used: 3230267KB
+-- States: 4620000 Transitions: 29761178 Memory used: 3246942KB
+-- States: 4630000 Transitions: 29825202 Memory used: 3263822KB
+-- States: 4640000 Transitions: 29889438 Memory used: 3280497KB
+-- States: 4650000 Transitions: 29953781 Memory used: 3297379KB
+-- States: 4660000 Transitions: 30017987 Memory used: 3314154KB
+-- States: 4670000 Transitions: 30082079 Memory used: 3347708KB
+-- States: 4680000 Transitions: 30145915 Memory used: 3364485KB
+-- States: 4690000 Transitions: 30209750 Memory used: 3381160KB
+-- States: 4700000 Transitions: 30274375 Memory used: 3398040KB
+-- States: 4710000 Transitions: 30339343 Memory used: 3414817KB
+-- States: 4720000 Transitions: 30403816 Memory used: 3431695KB
+-- States: 4730000 Transitions: 30468196 Memory used: 3465149KB
+-- States: 4740000 Transitions: 30532575 Memory used: 3481823KB
+-- States: 4750000 Transitions: 30597083 Memory used: 3498703KB
+-- States: 4760000 Transitions: 30661426 Memory used: 3515378KB
+-- States: 4770000 Transitions: 30725561 Memory used: 3532259KB
+-- States: 4780000 Transitions: 30789821 Memory used: 3548932KB
+-- States: 4790000 Transitions: 30853983 Memory used: 3582487KB
+-- States: 4800000 Transitions: 30918180 Memory used: 3599371KB
+-- States: 4810000 Transitions: 30982535 Memory used: 3616041KB
+-- States: 4820000 Transitions: 31046776 Memory used: 3632921KB
+-- States: 4830000 Transitions: 31110902 Memory used: 3649595KB
+-- States: 4840000 Transitions: 31175219 Memory used: 3666475KB
+-- States: 4850000 Transitions: 31239089 Memory used: 3683152KB
+-- States: 4860000 Transitions: 31302998 Memory used: 3716704KB
+-- States: 4870000 Transitions: 31366515 Memory used: 3733584KB
+-- States: 4880000 Transitions: 31430627 Memory used: 3750259KB
+-- States: 4890000 Transitions: 31494827 Memory used: 3767141KB
+-- States: 4900000 Transitions: 31558610 Memory used: 3783813KB
+-- States: 4910000 Transitions: 31622279 Memory used: 3800693KB
+-- States: 4920000 Transitions: 31686236 Memory used: 3817368KB
+-- States: 4930000 Transitions: 31750160 Memory used: 3850922KB
+-- States: 4940000 Transitions: 31813967 Memory used: 3867802KB
+-- States: 4950000 Transitions: 31878058 Memory used: 3884477KB
+-- States: 4960000 Transitions: 31941885 Memory used: 3901256KB
+-- States: 4970000 Transitions: 32005753 Memory used: 3918031KB
+-- States: 4980000 Transitions: 32069808 Memory used: 3934911KB
+-- States: 4990000 Transitions: 32133797 Memory used: 3951688KB
+-- States: 5000000 Transitions: 32197575 Memory used: 3968565KB
+-- States: 5010000 Transitions: 32261486 Memory used: 4001919KB
+-- States: 5020000 Transitions: 32325307 Memory used: 4018694KB
+-- States: 5030000 Transitions: 32389159 Memory used: 4035574KB
+-- States: 5040000 Transitions: 32452927 Memory used: 4052351KB
+-- States: 5050000 Transitions: 32516809 Memory used: 4069128KB
+-- States: 5060000 Transitions: 32580748 Memory used: 4085906KB
+-- States: 5070000 Transitions: 32644585 Memory used: 4102783KB
+-- States: 5080000 Transitions: 32708568 Memory used: 4136137KB
+-- States: 5090000 Transitions: 32772662 Memory used: 4152912KB
+-- States: 5100000 Transitions: 32836706 Memory used: 4169792KB
+-- States: 5110000 Transitions: 32900491 Memory used: 4186466KB
+-- States: 5120000 Transitions: 32964301 Memory used: 4203346KB
+-- States: 5130000 Transitions: 33028162 Memory used: 4220128KB
+-- States: 5140000 Transitions: 33092351 Memory used: 4237006KB
+-- States: 5150000 Transitions: 33156196 Memory used: 4270355KB
+-- States: 5160000 Transitions: 33220141 Memory used: 4287130KB
+-- States: 5170000 Transitions: 33284042 Memory used: 4304009KB
+-- States: 5180000 Transitions: 33347688 Memory used: 4320786KB
+-- States: 5190000 Transitions: 33411676 Memory used: 4337564KB
+-- States: 5200000 Transitions: 33475620 Memory used: 4354239KB
+-- States: 5210000 Transitions: 33539557 Memory used: 4371118KB
+-- States: 5220000 Transitions: 33603434 Memory used: 4387895KB
+-- States: 5230000 Transitions: 33667415 Memory used: 4421347KB
+-- States: 5240000 Transitions: 33731494 Memory used: 4438227KB
+-- States: 5250000 Transitions: 33795428 Memory used: 4454902KB
+-- States: 5260000 Transitions: 33859580 Memory used: 4471781KB
+-- States: 5270000 Transitions: 33923597 Memory used: 4488456KB
+-- States: 5280000 Transitions: 33987549 Memory used: 4505336KB
+-- States: 5290000 Transitions: 34051457 Memory used: 4522113KB
+-- States: 5300000 Transitions: 34115311 Memory used: 4555565KB
+-- States: 5310000 Transitions: 34179223 Memory used: 4572445KB
+-- States: 5320000 Transitions: 34243365 Memory used: 4589120KB
+-- States: 5330000 Transitions: 34307401 Memory used: 4605999KB
+-- States: 5340000 Transitions: 34371308 Memory used: 4622674KB
+-- States: 5350000 Transitions: 34435319 Memory used: 4639554KB
+-- States: 5360000 Transitions: 34499286 Memory used: 4656331KB
+-- States: 5370000 Transitions: 34563226 Memory used: 4673108KB
+-- States: 5380000 Transitions: 34627191 Memory used: 4706663KB
+-- States: 5390000 Transitions: 34691078 Memory used: 4723337KB
+-- States: 5400000 Transitions: 34755177 Memory used: 4740217KB
+-- States: 5410000 Transitions: 34819013 Memory used: 4756994KB
+-- States: 5420000 Transitions: 34882883 Memory used: 4773771KB
+-- States: 5430000 Transitions: 34946661 Memory used: 4790446KB
+-- States: 5440000 Transitions: 35010621 Memory used: 4807466KB
+-- States: 5450000 Transitions: 35074425 Memory used: 4840880KB
+-- States: 5460000 Transitions: 35138390 Memory used: 4857555KB
+-- States: 5470000 Transitions: 35202457 Memory used: 4874435KB
+-- States: 5480000 Transitions: 35266290 Memory used: 4891109KB
+-- States: 5490000 Transitions: 35330290 Memory used: 4907989KB
+-- States: 5500000 Transitions: 35394134 Memory used: 4924664KB
+-- States: 5510000 Transitions: 35458153 Memory used: 4941544KB
+-- States: 5520000 Transitions: 35522285 Memory used: 4975098KB
+-- States: 5530000 Transitions: 35586298 Memory used: 4991773KB
+-- States: 5540000 Transitions: 35650193 Memory used: 5008652KB
+-- States: 5550000 Transitions: 35714329 Memory used: 5025327KB
+-- States: 5560000 Transitions: 35778458 Memory used: 5042207KB
+-- States: 5570000 Transitions: 35842363 Memory used: 5058882KB
+-- States: 5580000 Transitions: 35906401 Memory used: 5075764KB
+-- States: 5590000 Transitions: 35970423 Memory used: 5092538KB
+-- States: 5600000 Transitions: 36034552 Memory used: 5125990KB
+-- States: 5610000 Transitions: 36098449 Memory used: 5142770KB
+-- States: 5620000 Transitions: 36162023 Memory used: 5159545KB
+-- States: 5630000 Transitions: 36226054 Memory used: 5176425KB
+-- States: 5640000 Transitions: 36290087 Memory used: 5193202KB
+-- States: 5650000 Transitions: 36354250 Memory used: 5210080KB
+-- States: 5660000 Transitions: 36418050 Memory used: 5226756KB
+-- States: 5670000 Transitions: 36481900 Memory used: 5260208KB
+-- States: 5680000 Transitions: 36546011 Memory used: 5276987KB
+-- States: 5690000 Transitions: 36609910 Memory used: 5293763KB
+-- States: 5700000 Transitions: 36673797 Memory used: 5310643KB
+-- States: 5710000 Transitions: 36737703 Memory used: 5327317KB
+-- States: 5720000 Transitions: 36801632 Memory used: 5344199KB
+-- States: 5730000 Transitions: 36865672 Memory used: 5360974KB
+-- States: 5740000 Transitions: 36929747 Memory used: 5377852KB
+-- States: 5750000 Transitions: 36993654 Memory used: 3516477KB
+-- States: 5760000 Transitions: 37057543 Memory used: 3533037KB
+-- States: 5770000 Transitions: 37121287 Memory used: 3549816KB
+-- States: 5780000 Transitions: 37185222 Memory used: 3566591KB
+-- States: 5790000 Transitions: 37249377 Memory used: 3583370KB
+-- States: 5800000 Transitions: 37313537 Memory used: 3600364KB
+-- States: 5810000 Transitions: 37377632 Memory used: 3617144KB
+-- States: 5820000 Transitions: 37441558 Memory used: 3650692KB
+-- States: 5830000 Transitions: 37505551 Memory used: 3667254KB
+-- States: 5840000 Transitions: 37569691 Memory used: 3684034KB
+-- States: 5850000 Transitions: 37633419 Memory used: 3700809KB
+-- States: 5860000 Transitions: 37697288 Memory used: 3717588KB
+-- States: 5870000 Transitions: 37761247 Memory used: 3734363KB
+-- States: 5880000 Transitions: 37825085 Memory used: 3751358KB
+-- States: 5890000 Transitions: 37889149 Memory used: 3784697KB
+-- States: 5900000 Transitions: 37953188 Memory used: 3801472KB
+-- States: 5910000 Transitions: 38017126 Memory used: 3818251KB
+-- States: 5920000 Transitions: 38080866 Memory used: 3835027KB
+-- States: 5930000 Transitions: 38145063 Memory used: 3852021KB
+-- States: 5940000 Transitions: 38209016 Memory used: 3868583KB
+-- States: 5950000 Transitions: 38273224 Memory used: 3885573KB
+-- States: 5960000 Transitions: 38337210 Memory used: 3902135KB
+-- States: 5970000 Transitions: 38401093 Memory used: 3935905KB
+-- States: 5980000 Transitions: 38464992 Memory used: 3952684KB
+-- States: 5990000 Transitions: 38529020 Memory used: 3969244KB
+-- States: 6000000 Transitions: 38593032 Memory used: 3986236KB
+-- States: 6010000 Transitions: 38657114 Memory used: 4002799KB
+-- States: 6020000 Transitions: 38721162 Memory used: 4019791KB
+-- States: 6030000 Transitions: 38785267 Memory used: 4036353KB
+-- States: 6040000 Transitions: 38849154 Memory used: 4069908KB
+-- States: 6050000 Transitions: 38913098 Memory used: 4086900KB
+-- States: 6060000 Transitions: 38977110 Memory used: 4103462KB
+-- States: 6070000 Transitions: 39041254 Memory used: 4120456KB
+-- States: 6080000 Transitions: 39105354 Memory used: 4137016KB
+-- States: 6090000 Transitions: 39169467 Memory used: 4153796KB
+-- States: 6100000 Transitions: 39233406 Memory used: 4170573KB
+-- States: 6110000 Transitions: 39297321 Memory used: 4187350KB
+-- States: 6120000 Transitions: 39361382 Memory used: 4221117KB
+-- States: 6130000 Transitions: 39425471 Memory used: 4237680KB
+-- States: 6140000 Transitions: 39489477 Memory used: 4254674KB
+-- States: 6150000 Transitions: 39553136 Memory used: 4271234KB
+-- States: 6160000 Transitions: 39616935 Memory used: 4288013KB
+-- States: 6170000 Transitions: 39680846 Memory used: 4304789KB
+-- States: 6180000 Transitions: 39744887 Memory used: 4321568KB
+-- States: 6190000 Transitions: 39808970 Memory used: 4355335KB
+-- States: 6200000 Transitions: 39872943 Memory used: 4371897KB
+-- States: 6210000 Transitions: 39936858 Memory used: 4388889KB
+-- States: 6220000 Transitions: 40000787 Memory used: 4405452KB
+-- States: 6230000 Transitions: 40064933 Memory used: 4422444KB
+-- States: 6240000 Transitions: 40128761 Memory used: 4439006KB
+-- States: 6250000 Transitions: 40192853 Memory used: 4455788KB
+-- States: 6260000 Transitions: 40256711 Memory used: 4489553KB
+-- States: 6270000 Transitions: 40320829 Memory used: 4506115KB
+-- States: 6280000 Transitions: 40384738 Memory used: 4523107KB
+-- States: 6290000 Transitions: 40448592 Memory used: 4539670KB
+-- States: 6300000 Transitions: 40512730 Memory used: 4724439KB
+-- States: 6310000 Transitions: 40576803 Memory used: 4740996KB
+-- States: 6320000 Transitions: 40640983 Memory used: 4757988KB
+-- States: 6330000 Transitions: 40704818 Memory used: 4774551KB
+-- States: 6340000 Transitions: 40768662 Memory used: 4808105KB
+-- States: 6350000 Transitions: 40832770 Memory used: 4824884KB
+-- States: 6360000 Transitions: 40896804 Memory used: 4841659KB
+-- States: 6370000 Transitions: 40960660 Memory used: 4858439KB
+-- States: 6380000 Transitions: 41024571 Memory used: 4875429KB
+-- States: 6390000 Transitions: 41088571 Memory used: 4892209KB
+-- States: 6400000 Transitions: 41152466 Memory used: 4908983KB
+-- States: 6410000 Transitions: 41216230 Memory used: 4942323KB
+-- States: 6420000 Transitions: 41280049 Memory used: 4959102KB
+-- States: 6430000 Transitions: 41343920 Memory used: 4975877KB
+-- States: 6440000 Transitions: 41407850 Memory used: 4992656KB
+-- States: 6450000 Transitions: 41472007 Memory used: 5009432KB
+-- States: 6460000 Transitions: 41536062 Memory used: 5026211KB
+-- States: 6470000 Transitions: 41599948 Memory used: 5042986KB
+-- States: 6480000 Transitions: 41663968 Memory used: 5076541KB
+-- States: 6490000 Transitions: 41727899 Memory used: 5093532KB
+-- States: 6500000 Transitions: 41791925 Memory used: 5110095KB
+-- States: 6510000 Transitions: 41855846 Memory used: 5127087KB
+-- States: 6520000 Transitions: 41920029 Memory used: 5143649KB
+-- States: 6530000 Transitions: 41983995 Memory used: 5160429KB
+-- States: 6540000 Transitions: 42048173 Memory used: 5177204KB
+-- States: 6550000 Transitions: 42112371 Memory used: 5193986KB
+-- States: 6560000 Transitions: 42176352 Memory used: 5227750KB
+-- States: 6570000 Transitions: 42240547 Memory used: 5244313KB
+-- States: 6580000 Transitions: 42304701 Memory used: 5261305KB
+-- States: 6590000 Transitions: 42368535 Memory used: 5277867KB
+-- States: 6600000 Transitions: 42432684 Memory used: 5294859KB
+-- States: 6610000 Transitions: 42496688 Memory used: 5311422KB
+-- States: 6620000 Transitions: 42560623 Memory used: 5328414KB
+-- States: 6630000 Transitions: 42624481 Memory used: 5361755KB
+-- States: 6640000 Transitions: 42688299 Memory used: 5378530KB
+-- States: 6650000 Transitions: 42752233 Memory used: 5395526KB
+-- States: 6660000 Transitions: 42816086 Memory used: 5412085KB
+-- States: 6670000 Transitions: 42880154 Memory used: 5429077KB
+-- States: 6680000 Transitions: 42944239 Memory used: 5445639KB
+-- States: 6690000 Transitions: 43008243 Memory used: 5462631KB
+-- States: 6700000 Transitions: 43072242 Memory used: 5495973KB
+-- States: 6710000 Transitions: 43136326 Memory used: 5512748KB
+-- States: 6720000 Transitions: 43200181 Memory used: 5529527KB
+-- States: 6730000 Transitions: 43264263 Memory used: 5546303KB
+-- States: 6740000 Transitions: 43328304 Memory used: 5563082KB
+-- States: 6750000 Transitions: 43392266 Memory used: 5580072KB
+-- States: 6760000 Transitions: 43456269 Memory used: 5596849KB
+-- States: 6770000 Transitions: 43520387 Memory used: 5613411KB
+-- States: 6780000 Transitions: 43584586 Memory used: 5646966KB
+-- States: 6790000 Transitions: 43648579 Memory used: 5663745KB
+-- States: 6800000 Transitions: 43712827 Memory used: 5680520KB
+-- States: 6810000 Transitions: 43776802 Memory used: 5697300KB
+-- States: 6820000 Transitions: 43840822 Memory used: 5714075KB
+-- States: 6830000 Transitions: 43904932 Memory used: 5730854KB
+-- States: 6840000 Transitions: 43968988 Memory used: 5747844KB
+-- States: 6850000 Transitions: 44033002 Memory used: 5781184KB
+-- States: 6860000 Transitions: 44097164 Memory used: 5798176KB
+-- States: 6870000 Transitions: 44161071 Memory used: 5814738KB
+-- States: 6880000 Transitions: 44224729 Memory used: 5831517KB
+-- States: 6890000 Transitions: 44288465 Memory used: 5848292KB
+-- States: 6900000 Transitions: 44352463 Memory used: 5865072KB
+-- States: 6910000 Transitions: 44416522 Memory used: 5881847KB
+-- States: 6920000 Transitions: 44480775 Memory used: 5915401KB
+-- States: 6930000 Transitions: 44544771 Memory used: 5932393KB
+-- States: 6940000 Transitions: 44608729 Memory used: 5948956KB
+-- States: 6950000 Transitions: 44672795 Memory used: 5965948KB
+-- States: 6960000 Transitions: 44736787 Memory used: 5982510KB
+-- States: 6970000 Transitions: 44800736 Memory used: 5999502KB
+-- States: 6980000 Transitions: 44864609 Memory used: 6016065KB
+-- States: 6990000 Transitions: 44928479 Memory used: 6033057KB
+-- States: 7000000 Transitions: 44992633 Memory used: 6066398KB
+-- States: 7010000 Transitions: 45056569 Memory used: 6083173KB
+-- States: 7020000 Transitions: 45120668 Memory used: 6100165KB
+-- States: 7030000 Transitions: 45184590 Memory used: 6116728KB
+-- States: 7040000 Transitions: 45248478 Memory used: 4370061KB
+-- States: 7050000 Transitions: 45312374 Memory used: 4386840KB
+-- States: 7060000 Transitions: 45376213 Memory used: 4403615KB
+-- States: 7070000 Transitions: 45440361 Memory used: 4420395KB
+-- States: 7080000 Transitions: 45504228 Memory used: 4437170KB
+-- States: 7090000 Transitions: 45568377 Memory used: 4453949KB
+-- States: 7100000 Transitions: 45632463 Memory used: 4470724KB
+-- States: 7110000 Transitions: 45696585 Memory used: 4504279KB
+-- States: 7120000 Transitions: 45760529 Memory used: 4521058KB
+-- States: 7130000 Transitions: 45824535 Memory used: 4537833KB
+-- States: 7140000 Transitions: 45888728 Memory used: 4554612KB
+-- States: 7150000 Transitions: 45952863 Memory used: 4571387KB
+-- States: 7160000 Transitions: 46017019 Memory used: 4588167KB
+-- States: 7170000 Transitions: 46080701 Memory used: 4605168KB
+-- States: 7180000 Transitions: 46144782 Memory used: 4638496KB
+-- States: 7190000 Transitions: 46208710 Memory used: 4655276KB
+-- States: 7200000 Transitions: 46272676 Memory used: 4672051KB
+-- States: 7210000 Transitions: 46336661 Memory used: 4688830KB
+-- States: 7220000 Transitions: 46400649 Memory used: 4705605KB
+-- States: 7230000 Transitions: 46464671 Memory used: 4722384KB
+-- States: 7240000 Transitions: 46528687 Memory used: 4739386KB
+-- States: 7250000 Transitions: 46592641 Memory used: 4756163KB
+-- States: 7260000 Transitions: 46656643 Memory used: 4789493KB
+-- States: 7270000 Transitions: 46720585 Memory used: 4806269KB
+-- States: 7280000 Transitions: 46784541 Memory used: 4823048KB
+-- States: 7290000 Transitions: 46848516 Memory used: 4839823KB
+-- States: 7300000 Transitions: 46912528 Memory used: 4856602KB
+-- States: 7310000 Transitions: 46976534 Memory used: 4873377KB
+-- States: 7320000 Transitions: 47040555 Memory used: 4890159KB
+-- States: 7330000 Transitions: 47104704 Memory used: 4923935KB
+-- States: 7340000 Transitions: 47168712 Memory used: 4940486KB
+-- States: 7350000 Transitions: 47232778 Memory used: 4957265KB
+-- States: 7360000 Transitions: 47296808 Memory used: 4974041KB
+-- States: 7370000 Transitions: 47360763 Memory used: 4990820KB
+-- States: 7380000 Transitions: 47424792 Memory used: 5007595KB
+-- States: 7390000 Transitions: 47488772 Memory used: 5024374KB
+-- States: 7400000 Transitions: 47552749 Memory used: 5058153KB
+-- States: 7410000 Transitions: 47616773 Memory used: 5074704KB
+-- States: 7420000 Transitions: 47680622 Memory used: 5091707KB
+-- States: 7430000 Transitions: 47744843 Memory used: 5108258KB
+-- States: 7440000 Transitions: 47808932 Memory used: 5125038KB
+-- States: 7450000 Transitions: 47873037 Memory used: 5141813KB
+-- States: 7460000 Transitions: 47937053 Memory used: 5158592KB
+-- States: 7470000 Transitions: 48001069 Memory used: 5192147KB
+-- States: 7480000 Transitions: 48064959 Memory used: 5208922KB
+-- States: 7490000 Transitions: 48129088 Memory used: 5225925KB
+-- States: 7500000 Transitions: 48193076 Memory used: 5242476KB
+-- States: 7510000 Transitions: 48257163 Memory used: 5259479KB
+-- States: 7520000 Transitions: 48321094 Memory used: 5276031KB
+-- States: 7530000 Transitions: 48384946 Memory used: 5292810KB
+-- States: 7540000 Transitions: 48448830 Memory used: 5309585KB
+-- States: 7550000 Transitions: 48512910 Memory used: 5343139KB
+-- States: 7560000 Transitions: 48576734 Memory used: 5360143KB
+-- States: 7570000 Transitions: 48640715 Memory used: 5376694KB
+-- States: 7580000 Transitions: 48704731 Memory used: 5393697KB
+-- States: 7590000 Transitions: 48768687 Memory used: 5410248KB
+-- States: 7600000 Transitions: 48832561 Memory used: 5427252KB
+-- States: 7610000 Transitions: 48896685 Memory used: 5443803KB
+-- States: 7620000 Transitions: 48960499 Memory used: 5477357KB
+-- States: 7630000 Transitions: 49024730 Memory used: 5494364KB
+-- States: 7640000 Transitions: 49088635 Memory used: 5510912KB
+-- States: 7650000 Transitions: 49152793 Memory used: 5527915KB
+-- States: 7660000 Transitions: 49216902 Memory used: 5544466KB
+-- States: 7670000 Transitions: 49280771 Memory used: 5561470KB
+-- States: 7680000 Transitions: 49344873 Memory used: 5578022KB
+-- States: 7690000 Transitions: 49408926 Memory used: 5611575KB
+-- States: 7700000 Transitions: 49472951 Memory used: 5628354KB
+-- States: 7710000 Transitions: 49536989 Memory used: 5645129KB
+-- States: 7720000 Transitions: 49600927 Memory used: 5662135KB
+-- States: 7730000 Transitions: 49664954 Memory used: 5678684KB
+-- States: 7740000 Transitions: 49728872 Memory used: 5695687KB
+-- States: 7750000 Transitions: 49792703 Memory used: 5712238KB
+-- States: 7760000 Transitions: 49856642 Memory used: 5729242KB
+-- States: 7770000 Transitions: 49920318 Memory used: 5762572KB
+-- States: 7780000 Transitions: 49984131 Memory used: 5779347KB
+-- States: 7790000 Transitions: 50048214 Memory used: 5796126KB
+-- States: 7800000 Transitions: 50112161 Memory used: 5812901KB
+-- States: 7810000 Transitions: 50176266 Memory used: 5829907KB
+-- States: 7820000 Transitions: 50240263 Memory used: 5846456KB
+-- States: 7830000 Transitions: 50304222 Memory used: 5863459KB
+-- States: 7840000 Transitions: 50368032 Memory used: 5896790KB
+-- States: 7850000 Transitions: 50431820 Memory used: 5913565KB
+-- States: 7860000 Transitions: 50495436 Memory used: 5930344KB
+-- States: 7870000 Transitions: 50559326 Memory used: 5947119KB
+-- States: 7880000 Transitions: 50623247 Memory used: 5963898KB
+-- States: 7890000 Transitions: 50687250 Memory used: 5980674KB
+-- States: 7900000 Transitions: 50751248 Memory used: 5997681KB
+-- States: 7910000 Transitions: 50815443 Memory used: 6031007KB
+-- States: 7920000 Transitions: 50879335 Memory used: 6047782KB
+-- States: 7930000 Transitions: 50943248 Memory used: 6064562KB
+-- States: 7940000 Transitions: 51007331 Memory used: 6081337KB
+-- States: 7950000 Transitions: 51071431 Memory used: 6098116KB
+-- States: 7960000 Transitions: 51135388 Memory used: 6114891KB
+-- States: 7970000 Transitions: 51199332 Memory used: 6131671KB
+-- States: 7980000 Transitions: 51263500 Memory used: 6148446KB
+-- States: 7990000 Transitions: 51327416 Memory used: 6182000KB
+-- States: 8000000 Transitions: 51391461 Memory used: 6198779KB
+-- States: 8010000 Transitions: 51455473 Memory used: 6215555KB
+-- States: 8020000 Transitions: 51519132 Memory used: 6232334KB
+-- States: 8030000 Transitions: 51582879 Memory used: 6249109KB
+-- States: 8040000 Transitions: 51646969 Memory used: 6265888KB
+-- States: 8050000 Transitions: 51710811 Memory used: 6282890KB
+-- States: 8060000 Transitions: 51774994 Memory used: 6316218KB
+-- States: 8070000 Transitions: 51838808 Memory used: 6332997KB
+-- States: 8080000 Transitions: 51902811 Memory used: 6349772KB
+-- States: 8090000 Transitions: 51966964 Memory used: 6366552KB
+-- States: 8100000 Transitions: 52030812 Memory used: 6383327KB
+-- States: 8110000 Transitions: 52094935 Memory used: 6400106KB
+-- States: 8120000 Transitions: 52159070 Memory used: 6417108KB
+-- States: 8130000 Transitions: 52222876 Memory used: 6450436KB
+-- States: 8140000 Transitions: 52286752 Memory used: 6467439KB
+-- States: 8150000 Transitions: 52350730 Memory used: 6483990KB
+-- States: 8160000 Transitions: 52414926 Memory used: 6500769KB
+-- States: 8170000 Transitions: 52478818 Memory used: 6517545KB
+-- States: 8180000 Transitions: 52542848 Memory used: 6534324KB
+-- States: 8190000 Transitions: 52606874 Memory used: 6551099KB
+-- States: 8200000 Transitions: 52670857 Memory used: 6567878KB
+-- States: 8210000 Transitions: 52734772 Memory used: 6601433KB
+-- States: 8220000 Transitions: 52798870 Memory used: 6618208KB
+-- States: 8230000 Transitions: 52862757 Memory used: 6635211KB
+-- States: 8240000 Transitions: 52926619 Memory used: 6651762KB
+-- States: 8250000 Transitions: 52990350 Memory used: 6668542KB
+-- States: 8260000 Transitions: 53054561 Memory used: 6685317KB
+-- States: 8270000 Transitions: 53118708 Memory used: 6702099KB
+-- States: 8280000 Transitions: 53182677 Memory used: 6735650KB
+-- States: 8290000 Transitions: 53246729 Memory used: 6752426KB
+-- States: 8300000 Transitions: 53310773 Memory used: 6769429KB
+-- States: 8310000 Transitions: 53374811 Memory used: 6785980KB
+-- States: 8320000 Transitions: 53438703 Memory used: 5041935KB
+-- States: 8330000 Transitions: 53502928 Memory used: 5058472KB
+-- States: 8340000 Transitions: 53566786 Memory used: 5092026KB
+-- States: 8350000 Transitions: 53630881 Memory used: 5109042KB
+-- States: 8360000 Transitions: 53694938 Memory used: 5125581KB
+-- States: 8370000 Transitions: 53758949 Memory used: 5142598KB
+-- States: 8380000 Transitions: 53822834 Memory used: 5159135KB
+-- States: 8390000 Transitions: 53886909 Memory used: 5176150KB
+-- States: 8400000 Transitions: 53950970 Memory used: 5192690KB
+-- States: 8410000 Transitions: 54015128 Memory used: 5226244KB
+-- States: 8420000 Transitions: 54079042 Memory used: 5243259KB
+-- States: 8430000 Transitions: 54143073 Memory used: 5259799KB
+-- States: 8440000 Transitions: 54207016 Memory used: 5276813KB
+-- States: 8450000 Transitions: 54270751 Memory used: 5293353KB
+-- States: 8460000 Transitions: 54334706 Memory used: 5310367KB
+-- States: 8470000 Transitions: 54398920 Memory used: 5326907KB
+-- States: 8480000 Transitions: 54462917 Memory used: 5360462KB
+-- States: 8490000 Transitions: 54526868 Memory used: 5377477KB
+-- States: 8500000 Transitions: 54590921 Memory used: 5394016KB
+-- States: 8510000 Transitions: 54655014 Memory used: 5411033KB
+-- States: 8520000 Transitions: 54718984 Memory used: 5427571KB
+-- States: 8530000 Transitions: 54782950 Memory used: 5444585KB
+-- States: 8540000 Transitions: 54847147 Memory used: 5461125KB
+-- States: 8550000 Transitions: 54911175 Memory used: 5477904KB
+-- States: 8560000 Transitions: 54975280 Memory used: 5511459KB
+-- States: 8570000 Transitions: 55039172 Memory used: 5528234KB
+-- States: 8580000 Transitions: 55103221 Memory used: 5545249KB
+-- States: 8590000 Transitions: 55167307 Memory used: 5561789KB
+-- States: 8600000 Transitions: 55231561 Memory used: 5578568KB
+-- States: 8610000 Transitions: 55295651 Memory used: 5595343KB
+-- States: 8620000 Transitions: 55359650 Memory used: 5612122KB
+-- States: 8630000 Transitions: 55423600 Memory used: 5645677KB
+-- States: 8640000 Transitions: 55487676 Memory used: 5662452KB
+-- States: 8650000 Transitions: 55551555 Memory used: 5679466KB
+-- States: 8660000 Transitions: 55615367 Memory used: 5696006KB
+-- States: 8670000 Transitions: 55679409 Memory used: 5712785KB
+-- States: 8680000 Transitions: 55743372 Memory used: 5729561KB
+-- States: 8690000 Transitions: 55807062 Memory used: 5746340KB
+-- States: 8700000 Transitions: 55871087 Memory used: 5779894KB
+-- States: 8710000 Transitions: 55935209 Memory used: 5796670KB
+-- States: 8720000 Transitions: 55999060 Memory used: 5813684KB
+-- States: 8730000 Transitions: 56063043 Memory used: 5830224KB
+-- States: 8740000 Transitions: 56126831 Memory used: 5847003KB
+-- States: 8750000 Transitions: 56190891 Memory used: 5863778KB
+-- States: 8760000 Transitions: 56254837 Memory used: 5880558KB
+-- States: 8770000 Transitions: 56318913 Memory used: 5897333KB
+-- States: 8780000 Transitions: 56382722 Memory used: 5930887KB
+-- States: 8790000 Transitions: 56446667 Memory used: 5947905KB
+-- States: 8800000 Transitions: 56510638 Memory used: 5964442KB
+-- States: 8810000 Transitions: 56574435 Memory used: 5981221KB
+-- States: 8820000 Transitions: 56638269 Memory used: 5997996KB
+-- States: 8830000 Transitions: 56702146 Memory used: 6014775KB
+-- States: 8840000 Transitions: 56766171 Memory used: 6031553KB
+-- States: 8850000 Transitions: 56830246 Memory used: 6065105KB
+-- States: 8860000 Transitions: 56894319 Memory used: 6082120KB
+-- States: 8870000 Transitions: 56958246 Memory used: 6098659KB
+-- States: 8880000 Transitions: 57022177 Memory used: 6115439KB
+-- States: 8890000 Transitions: 57086094 Memory used: 6132214KB
+-- States: 8900000 Transitions: 57150241 Memory used: 6148993KB
+-- States: 8910000 Transitions: 57214274 Memory used: 6165768KB
+-- States: 8920000 Transitions: 57278305 Memory used: 6199323KB
+-- States: 8930000 Transitions: 57342434 Memory used: 6216337KB
+-- States: 8940000 Transitions: 57406589 Memory used: 6232877KB
+-- States: 8950000 Transitions: 57470536 Memory used: 6249656KB
+-- States: 8960000 Transitions: 57534732 Memory used: 6266432KB
+-- States: 8970000 Transitions: 57598694 Memory used: 6283211KB
+-- States: 8980000 Transitions: 57662483 Memory used: 6299986KB
+-- States: 8990000 Transitions: 57726397 Memory used: 6316768KB
+-- States: 9000000 Transitions: 57790374 Memory used: 6350555KB
+-- States: 9010000 Transitions: 57854280 Memory used: 6367095KB
+-- States: 9020000 Transitions: 57918321 Memory used: 6383874KB
+-- States: 9030000 Transitions: 57982271 Memory used: 6400649KB
+-- States: 9040000 Transitions: 58046541 Memory used: 6417429KB
+-- States: 9050000 Transitions: 58110516 Memory used: 6434204KB
+-- States: 9060000 Transitions: 58174618 Memory used: 6450983KB
+-- States: 9070000 Transitions: 58238484 Memory used: 6484775KB
+-- States: 9080000 Transitions: 58302575 Memory used: 6501313KB
+-- States: 9090000 Transitions: 58366556 Memory used: 6518092KB
+-- States: 9100000 Transitions: 58430716 Memory used: 6534867KB
+-- States: 9110000 Transitions: 58494788 Memory used: 6551646KB
+-- States: 9120000 Transitions: 58558794 Memory used: 6568421KB
+-- States: 9130000 Transitions: 58622793 Memory used: 6585201KB
+-- States: 9140000 Transitions: 58686832 Memory used: 6618990KB
+-- States: 9150000 Transitions: 58751099 Memory used: 6635530KB
+-- States: 9160000 Transitions: 58814998 Memory used: 6652545KB
+-- States: 9170000 Transitions: 58879052 Memory used: 6669085KB
+-- States: 9180000 Transitions: 58943026 Memory used: 6685864KB
+-- States: 9190000 Transitions: 59006859 Memory used: 6702639KB
+-- States: 9200000 Transitions: 59070729 Memory used: 6719418KB
+-- States: 9210000 Transitions: 59134602 Memory used: 6736194KB
+-- States: 9220000 Transitions: 59198578 Memory used: 6769748KB
+-- States: 9230000 Transitions: 59262612 Memory used: 6786762KB
+-- States: 9240000 Transitions: 59326619 Memory used: 6803302KB
+-- States: 9250000 Transitions: 59390675 Memory used: 6820082KB
+-- States: 9260000 Transitions: 59454848 Memory used: 6836857KB
+-- States: 9270000 Transitions: 59518873 Memory used: 6853636KB
+-- States: 9280000 Transitions: 59582869 Memory used: 6870411KB
+-- States: 9290000 Transitions: 59646655 Memory used: 6903966KB
+-- States: 9300000 Transitions: 59710552 Memory used: 6920980KB
+-- States: 9310000 Transitions: 59774408 Memory used: 6937520KB
+-- States: 9320000 Transitions: 59838137 Memory used: 6954299KB
+-- States: 9330000 Transitions: 59902044 Memory used: 6971075KB
+-- States: 9340000 Transitions: 59965831 Memory used: 6987854KB
+-- States: 9350000 Transitions: 60030000 Memory used: 7004631KB
+-- States: 9360000 Transitions: 60093858 Memory used: 7038184KB
+-- States: 9370000 Transitions: 60157811 Memory used: 7055198KB
+-- States: 9380000 Transitions: 60221904 Memory used: 7071738KB
+-- States: 9390000 Transitions: 60285944 Memory used: 7088517KB
+-- States: 9400000 Transitions: 60349836 Memory used: 7105292KB
+-- States: 9410000 Transitions: 60413938 Memory used: 7122072KB
+-- States: 9420000 Transitions: 60477963 Memory used: 7138847KB
+-- States: 9430000 Transitions: 60541913 Memory used: 7155626KB
+-- States: 9440000 Transitions: 60605757 Memory used: 7189416KB
+-- States: 9450000 Transitions: 60669524 Memory used: 7205956KB
+-- States: 9460000 Transitions: 60733481 Memory used: 7222735KB
+-- States: 9470000 Transitions: 60797317 Memory used: 7239510KB
+-- States: 9480000 Transitions: 60861442 Memory used: 7256289KB
+-- States: 9490000 Transitions: 60925545 Memory used: 7273065KB
+-- States: 9500000 Transitions: 60989669 Memory used: 7289844KB
+-- States: 9510000 Transitions: 61053760 Memory used: 7323398KB
+-- States: 9520000 Transitions: 61117880 Memory used: 7340173KB
+-- States: 9530000 Transitions: 61181814 Memory used: 7357188KB
+-- States: 9540000 Transitions: 61246032 Memory used: 7373728KB
+-- States: 9550000 Transitions: 61310040 Memory used: 7390507KB
+-- States: 9560000 Transitions: 61374008 Memory used: 7407282KB
+-- States: 9570000 Transitions: 61437971 Memory used: 7424062KB
+-- States: 9580000 Transitions: 61501947 Memory used: 7457616KB
+-- States: 9590000 Transitions: 61565910 Memory used: 7474391KB
+-- States: 9600000 Transitions: 61629867 Memory used: 5746996KB
+-- States: 9610000 Transitions: 61693937 Memory used: 5780304KB
+-- States: 9620000 Transitions: 61758033 Memory used: 5797079KB
+-- States: 9630000 Transitions: 61822184 Memory used: 5814104KB
+-- States: 9640000 Transitions: 61886182 Memory used: 5830634KB
+-- States: 9650000 Transitions: 61950121 Memory used: 5847659KB
+-- States: 9660000 Transitions: 62013997 Memory used: 5864188KB
+-- States: 9670000 Transitions: 62077922 Memory used: 5881211KB
+-- States: 9680000 Transitions: 62141826 Memory used: 5897742KB
+-- States: 9690000 Transitions: 62205832 Memory used: 5931297KB
+-- States: 9700000 Transitions: 62269719 Memory used: 5948320KB
+-- States: 9710000 Transitions: 62333632 Memory used: 5964851KB
+-- States: 9720000 Transitions: 62397715 Memory used: 5981874KB
+-- States: 9730000 Transitions: 62461774 Memory used: 5998406KB
+-- States: 9740000 Transitions: 62525818 Memory used: 6015185KB
+-- States: 9750000 Transitions: 62589626 Memory used: 6031960KB
+-- States: 9760000 Transitions: 62653589 Memory used: 6065515KB
+-- States: 9770000 Transitions: 62717608 Memory used: 6082537KB
+-- States: 9780000 Transitions: 62781367 Memory used: 6099069KB
+-- States: 9790000 Transitions: 62845297 Memory used: 6116092KB
+-- States: 9800000 Transitions: 62909159 Memory used: 6132623KB
+-- States: 9810000 Transitions: 62973356 Memory used: 6149403KB
+-- States: 9820000 Transitions: 63037313 Memory used: 6166180KB
+-- States: 9830000 Transitions: 63101352 Memory used: 6199732KB
+-- States: 9840000 Transitions: 63165506 Memory used: 6216755KB
+-- States: 9850000 Transitions: 63229489 Memory used: 6233287KB
+-- States: 9860000 Transitions: 63293438 Memory used: 6250310KB
+-- States: 9870000 Transitions: 63357561 Memory used: 6266841KB
+-- States: 9880000 Transitions: 63421442 Memory used: 6283620KB
+-- States: 9890000 Transitions: 63485475 Memory used: 6300396KB
+-- States: 9900000 Transitions: 63549423 Memory used: 6317175KB
+-- States: 9910000 Transitions: 63613301 Memory used: 6350973KB
+-- States: 9920000 Transitions: 63677225 Memory used: 6367504KB
+-- States: 9930000 Transitions: 63741282 Memory used: 6384284KB
+-- States: 9940000 Transitions: 63805186 Memory used: 6401059KB
+-- States: 9950000 Transitions: 63869228 Memory used: 6417838KB
+-- States: 9960000 Transitions: 63932863 Memory used: 6434613KB
+-- States: 9970000 Transitions: 63996642 Memory used: 6451393KB
+-- States: 9980000 Transitions: 64060726 Memory used: 6485191KB
+-- States: 9990000 Transitions: 64124720 Memory used: 6501722KB
+-- States: 10000000 Transitions: 64188862 Memory used: 6518501KB
+-- States: 10010000 Transitions: 64252894 Memory used: 6535277KB
+-- States: 10020000 Transitions: 64317153 Memory used: 6552056KB
+-- States: 10030000 Transitions: 64380948 Memory used: 6568833KB
+-- States: 10040000 Transitions: 64444966 Memory used: 6585610KB
+-- States: 10050000 Transitions: 64508814 Memory used: 6619408KB
+-- States: 10060000 Transitions: 64572775 Memory used: 6635940KB
+-- States: 10070000 Transitions: 64636546 Memory used: 6652719KB
+-- States: 10080000 Transitions: 64700382 Memory used: 6669494KB
+-- States: 10090000 Transitions: 64764465 Memory used: 6686274KB
+-- States: 10100000 Transitions: 64828309 Memory used: 6703049KB
+-- States: 10110000 Transitions: 64892198 Memory used: 6719828KB
+-- States: 10120000 Transitions: 64956086 Memory used: 6736849KB
+-- States: 10130000 Transitions: 65019832 Memory used: 6770158KB
+-- States: 10140000 Transitions: 65083854 Memory used: 6787181KB
+-- States: 10150000 Transitions: 65147884 Memory used: 6803712KB
+-- States: 10160000 Transitions: 65211687 Memory used: 6820491KB
+-- States: 10170000 Transitions: 65275865 Memory used: 6854046KB
+-- States: 10180000 Transitions: 65339853 Memory used: 6870821KB
+-- States: 10190000 Transitions: 65403929 Memory used: 6887844KB
+-- States: 10200000 Transitions: 65468100 Memory used: 6904375KB
+-- States: 10210000 Transitions: 65532151 Memory used: 6921155KB
+-- States: 10220000 Transitions: 65596114 Memory used: 6937930KB
+-- States: 10230000 Transitions: 65659981 Memory used: 6954709KB
+-- States: 10240000 Transitions: 65723875 Memory used: 6988264KB
+-- States: 10250000 Transitions: 65787824 Memory used: 7005039KB
+-- States: 10260000 Transitions: 65851890 Memory used: 7022062KB
+-- States: 10270000 Transitions: 65916043 Memory used: 7038593KB
+-- States: 10280000 Transitions: 65980055 Memory used: 7055372KB
+-- States: 10290000 Transitions: 66044104 Memory used: 7072150KB
+-- States: 10300000 Transitions: 66108271 Memory used: 7088927KB
+-- States: 10310000 Transitions: 66172169 Memory used: 7105702KB
+-- States: 10320000 Transitions: 66236218 Memory used: 7139256KB
+-- States: 10330000 Transitions: 66300084 Memory used: 7156282KB
+-- States: 10340000 Transitions: 66363767 Memory used: 7172811KB
+-- States: 10350000 Transitions: 66427758 Memory used: 7189590KB
+-- States: 10360000 Transitions: 66491938 Memory used: 7206365KB
+-- States: 10370000 Transitions: 66556072 Memory used: 7223145KB
+-- States: 10380000 Transitions: 66620212 Memory used: 7239920KB
+-- States: 10390000 Transitions: 66684147 Memory used: 7273474KB
+-- States: 10400000 Transitions: 66748107 Memory used: 7290497KB
+-- States: 10410000 Transitions: 66812034 Memory used: 7307029KB
+-- States: 10420000 Transitions: 66875956 Memory used: 7324051KB
+-- States: 10430000 Transitions: 66940197 Memory used: 7340583KB
+-- States: 10440000 Transitions: 67004436 Memory used: 7357362KB
+-- States: 10450000 Transitions: 67068094 Memory used: 7374137KB
+-- States: 10460000 Transitions: 67131955 Memory used: 7407692KB
+-- States: 10470000 Transitions: 67195838 Memory used: 7424717KB
+-- States: 10480000 Transitions: 67259954 Memory used: 7441246KB
+-- States: 10490000 Transitions: 67324190 Memory used: 7458269KB
+-- States: 10500000 Transitions: 67388100 Memory used: 7474801KB
+-- States: 10510000 Transitions: 67451902 Memory used: 7491580KB
+-- States: 10520000 Transitions: 67515786 Memory used: 7508355KB
+-- States: 10530000 Transitions: 67579751 Memory used: 7525134KB
+-- States: 10540000 Transitions: 67643786 Memory used: 7558689KB
+-- States: 10550000 Transitions: 67707755 Memory used: 7575464KB
+-- States: 10560000 Transitions: 67771898 Memory used: 7592487KB
+-- States: 10570000 Transitions: 67835934 Memory used: 7609018KB
+-- States: 10580000 Transitions: 67899967 Memory used: 7625798KB
+-- States: 10590000 Transitions: 67963633 Memory used: 7642573KB
+-- States: 10600000 Transitions: 68027631 Memory used: 7659352KB
+-- States: 10610000 Transitions: 68091410 Memory used: 7692907KB
+-- States: 10620000 Transitions: 68155447 Memory used: 7709682KB
+-- States: 10630000 Transitions: 68219494 Memory used: 7726705KB
+-- States: 10640000 Transitions: 68283418 Memory used: 7743236KB
+-- States: 10650000 Transitions: 68347253 Memory used: 7760015KB
+-- States: 10660000 Transitions: 68411087 Memory used: 7776791KB
+-- States: 10670000 Transitions: 68475144 Memory used: 7793570KB
+-- States: 10680000 Transitions: 68539196 Memory used: 7827124KB
+-- States: 10690000 Transitions: 68603296 Memory used: 7843899KB
+-- States: 10700000 Transitions: 68667208 Memory used: 7860922KB
+-- States: 10710000 Transitions: 68731220 Memory used: 7877454KB
+-- States: 10720000 Transitions: 68795311 Memory used: 7894233KB
+-- States: 10730000 Transitions: 68859362 Memory used: 7911010KB
+-- States: 10740000 Transitions: 68923266 Memory used: 7927788KB
+-- States: 10750000 Transitions: 68987410 Memory used: 7944563KB
+-- States: 10760000 Transitions: 69051345 Memory used: 7978117KB
+-- States: 10770000 Transitions: 69115288 Memory used: 7995140KB
+-- States: 10780000 Transitions: 69179063 Memory used: 8011672KB
+-- States: 10790000 Transitions: 69243146 Memory used: 8028451KB
+-- States: 10800000 Transitions: 69307052 Memory used: 8045226KB
+-- States: 10810000 Transitions: 69371054 Memory used: 8062005KB
+-- States: 10820000 Transitions: 69435052 Memory used: 8078781KB
+-- States: 10830000 Transitions: 69498854 Memory used: 8112335KB
+-- States: 10840000 Transitions: 69562932 Memory used: 8129358KB
+-- States: 10850000 Transitions: 69626968 Memory used: 8145889KB
+-- States: 10860000 Transitions: 69691107 Memory used: 8162669KB
+-- States: 10870000 Transitions: 69755042 Memory used: 8179444KB
+-- States: 10880000 Transitions: 69819325 Memory used: 8196223KB
+-- States: 10890000 Transitions: 69883157 Memory used: 8212998KB
+-- States: 10900000 Transitions: 69946929 Memory used: 8246553KB
+-- States: 10910000 Transitions: 70010999 Memory used: 8263576KB
+-- States: 10920000 Transitions: 70074727 Memory used: 8280107KB
+-- States: 10930000 Transitions: 70138551 Memory used: 8297130KB
+-- States: 10940000 Transitions: 70202607 Memory used: 8313662KB
+-- States: 10950000 Transitions: 70266594 Memory used: 8330441KB
+-- States: 10960000 Transitions: 70330392 Memory used: 8347216KB
+-- States: 10970000 Transitions: 70394487 Memory used: 8363995KB
+-- States: 10980000 Transitions: 70458534 Memory used: 8397550KB
+-- States: 10990000 Transitions: 70522410 Memory used: 8414325KB
+-- States: 11000000 Transitions: 70586294 Memory used: 8431348KB
+-- States: 11010000 Transitions: 70650062 Memory used: 8447879KB
+-- States: 11020000 Transitions: 70713987 Memory used: 8464659KB
+-- States: 11030000 Transitions: 70778110 Memory used: 8481434KB
+-- States: 11040000 Transitions: 70842151 Memory used: 8498213KB
+-- States: 11050000 Transitions: 70906124 Memory used: 8531767KB
+-- States: 11060000 Transitions: 70969936 Memory used: 8548543KB
+-- States: 11070000 Transitions: 71033718 Memory used: 8565566KB
+-- States: 11080000 Transitions: 71097554 Memory used: 8582097KB
+-- States: 11090000 Transitions: 71161262 Memory used: 8598876KB
+-- States: 11100000 Transitions: 71225283 Memory used: 8615653KB
+-- States: 11110000 Transitions: 71289197 Memory used: 8632431KB
+-- States: 11120000 Transitions: 71353148 Memory used: 8665985KB
+-- States: 11130000 Transitions: 71417164 Memory used: 8682760KB
+-- States: 11140000 Transitions: 71481214 Memory used: 8699785KB
+-- States: 11150000 Transitions: 71545275 Memory used: 8716315KB
+-- States: 11160000 Transitions: 71609350 Memory used: 8733094KB
+-- States: 11170000 Transitions: 71672928 Memory used: 8749871KB
+-- States: 11180000 Transitions: 71737117 Memory used: 8766648KB
+-- States: 11190000 Transitions: 71800960 Memory used: 8783424KB
+-- States: 11200000 Transitions: 71864987 Memory used: 8816978KB
+-- States: 11210000 Transitions: 71929012 Memory used: 8834004KB
+-- States: 11220000 Transitions: 71993020 Memory used: 8850532KB
+-- States: 11230000 Transitions: 72057056 Memory used: 8867555KB
+-- States: 11240000 Transitions: 72121207 Memory used: 8884087KB
+-- States: 11250000 Transitions: 72185163 Memory used: 8900866KB
+-- States: 11260000 Transitions: 72249111 Memory used: 8917641KB
+-- States: 11270000 Transitions: 72313170 Memory used: 8951196KB
+-- States: 11280000 Transitions: 72376987 Memory used: 8968219KB
+-- States: 11290000 Transitions: 72440690 Memory used: 8984750KB
+-- States: 11300000 Transitions: 72504626 Memory used: 9001776KB
+-- States: 11310000 Transitions: 72568418 Memory used: 9018305KB
+-- States: 11320000 Transitions: 72632175 Memory used: 9035084KB
+-- States: 11330000 Transitions: 72696025 Memory used: 9051859KB
+-- States: 11340000 Transitions: 72760204 Memory used: 9085413KB
+-- States: 11350000 Transitions: 72824017 Memory used: 9102439KB
+-- States: 11360000 Transitions: 72888002 Memory used: 9118968KB
+-- States: 11370000 Transitions: 72952064 Memory used: 9135991KB
+-- States: 11380000 Transitions: 73016073 Memory used: 9152522KB
+-- States: 11390000 Transitions: 73080003 Memory used: 9169302KB
+-- States: 11400000 Transitions: 73143810 Memory used: 9186077KB
+-- States: 11410000 Transitions: 73207889 Memory used: 9202856KB
+-- States: 11420000 Transitions: 73271760 Memory used: 9236410KB
+-- States: 11430000 Transitions: 73335620 Memory used: 9253186KB
+-- States: 11440000 Transitions: 73399649 Memory used: 9270208KB
+-- States: 11450000 Transitions: 73463682 Memory used: 9286740KB
+-- States: 11460000 Transitions: 73527540 Memory used: 9303763KB
+-- States: 11470000 Transitions: 73591572 Memory used: 9320294KB
+-- States: 11480000 Transitions: 73655307 Memory used: 9337074KB
+-- States: 11490000 Transitions: 73719047 Memory used: 9370628KB
+-- States: 11500000 Transitions: 73783169 Memory used: 9387403KB
+-- States: 11510000 Transitions: 73846871 Memory used: 9404426KB
+-- States: 11520000 Transitions: 73910856 Memory used: 9420958KB
+-- States: 11530000 Transitions: 73974551 Memory used: 9437981KB
+-- States: 11540000 Transitions: 74038389 Memory used: 9454512KB
+-- States: 11550000 Transitions: 74101510 Memory used: 9471291KB
+-- States: 11560000 Transitions: 74164739 Memory used: 9488067KB
+-- States: 11568704 Transitions: 74219712 Memory used: 10441691KB
+Composed in 377533ms
+Formula !P_VISITOR_RULE_HALL = (true U (HALL_LOCKED & allow_Hall))
+GBA 2 states 3 transitions
+Buchi automata:
+P_VISITOR_RULE_HALL = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |HALL_LOCKED&allow_Hall -> S1).
+Composition:P_VISITOR_RULE_HALL = HALL_LOCKED || allow_Hall || SYNC || P_VISITOR_RULE_HALL
+State Space: 2 * 2 * 2 * 2 = 2 ** 4
+Composing...
+-- States: 16 Transitions: 41 Memory used: 5345333KB
+Composed in 944ms
+After Tau elimination = 8 state
+Tau reduction ON
+P_VISITOR_RULE_HALL minimising...
+Minimised States: 3 in 1ms
+make DFA(P_VISITOR_RULE_HALL)
+DFA(P_VISITOR_RULE_HALL) has 2 states.
+Tau reduction ON
+P_VISITOR_RULE_HALL minimising...
+Minimised States: 2 in 0ms
+Formula !P_LOCK_RULE_HALL1 = (true U ((!HALL_LOCKED & arrive_Hall[2]) & X (!lock_Hall U (resRoomStatus & !lock_Hall))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_LOCK_RULE_HALL1 = S0,
+S1@ =(true -> S1),
+S0 =(!HALL_LOCKED&arrive_Hall[2] -> S2 |true -> S0),
+S2 =(!lock_Hall -> S2 |resRoomStatus&!lock_Hall -> S1).
+Composition:P_LOCK_RULE_HALL1 = HALL_LOCKED || arrive_Hall[2] || resRoomStatus || lock_Hall || SYNC || P_LOCK_RULE_HALL1
+State Space: 2 * 2 * 2 * 2 * 2 * 4 = 2 ** 7
+Composing...
+-- States: 43 Transitions: 120 Memory used: 5355355KB
+Composed in 570ms
+After Tau elimination = 21 state
+Tau reduction ON
+P_LOCK_RULE_HALL1 minimising....
+Minimised States: 5 in 0ms
+make DFA(P_LOCK_RULE_HALL1)
+DFA(P_LOCK_RULE_HALL1) has 6 states.
+Tau reduction ON
+P_LOCK_RULE_HALL1 minimising....
+Minimised States: 3 in 0ms
+Formula !P_LOCK_RULE_HALL2 = (true U ((HALL_TH_LOCKED1 & HALL_TH_LOCKED2) & unLock_Hall))
+GBA 2 states 3 transitions
+Buchi automata:
+P_LOCK_RULE_HALL2 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |HALL_TH_LOCKED1&HALL_TH_LOCKED2&unLock_Hall -> S1).
+Composition:P_LOCK_RULE_HALL2 = HALL_TH_LOCKED1 || HALL_TH_LOCKED2 || unLock_Hall || SYNC || P_LOCK_RULE_HALL2
+State Space: 2 * 2 * 2 * 2 * 2 = 2 ** 5
+Composing...
+-- States: 32 Transitions: 97 Memory used: 5345340KB
+Composed in 595ms
+After Tau elimination = 16 state
+Tau reduction ON
+P_LOCK_RULE_HALL2 minimising....
+Minimised States: 5 in 0ms
+make DFA(P_LOCK_RULE_HALL2)
+DFA(P_LOCK_RULE_HALL2) has 4 states.
+Tau reduction ON
+P_LOCK_RULE_HALL2 minimising....
+Minimised States: 4 in 0ms
+Formula !P_UNLOCK_RULE_HALL1 = (true U ((HALL_LOCKED & allow_A) & X (!unLock_Hall U (resRoomStatus & !unLock_Hall))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_UNLOCK_RULE_HALL1 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |HALL_LOCKED&allow_A -> S2),
+S2 =(!unLock_Hall -> S2 |resRoomStatus&!unLock_Hall -> S1).
+Composition:P_UNLOCK_RULE_HALL1 = HALL_LOCKED || allow_A || resRoomStatus || unLock_Hall || SYNC || P_UNLOCK_RULE_HALL1
+State Space: 2 * 2 * 2 * 2 * 2 * 4 = 2 ** 7
+Composing...
+-- States: 44 Transitions: 124 Memory used: 5355429KB
+Composed in 574ms
+After Tau elimination = 22 state
+Tau reduction ON
+P_UNLOCK_RULE_HALL1 minimising.....
+Minimised States: 5 in 0ms
+make DFA(P_UNLOCK_RULE_HALL1)
+DFA(P_UNLOCK_RULE_HALL1) has 6 states.
+Tau reduction ON
+P_UNLOCK_RULE_HALL1 minimising....
+Minimised States: 3 in 0ms
+Formula !P_HALL_LOCK_TIMING = (true U (!HALL_LOCK_TIME & lock_Hall))
+GBA 2 states 3 transitions
+Buchi automata:
+P_HALL_LOCK_TIMING = S0,
+S1@ =(true -> S1),
+S0 =(!HALL_LOCK_TIME&lock_Hall -> S1 |true -> S0).
+Composition:P_HALL_LOCK_TIMING = HALL_LOCK_TIME || lock_Hall || SYNC || P_HALL_LOCK_TIMING
+State Space: 2 * 2 * 2 * 2 = 2 ** 4
+Composing...
+-- States: 16 Transitions: 41 Memory used: 5355447KB
+Composed in 625ms
+After Tau elimination = 8 state
+Tau reduction ON
+P_HALL_LOCK_TIMING minimising...
+Minimised States: 3 in 0ms
+make DFA(P_HALL_LOCK_TIMING)
+DFA(P_HALL_LOCK_TIMING) has 2 states.
+Tau reduction ON
+P_HALL_LOCK_TIMING minimising...
+Minimised States: 2 in 0ms
+Formula !P_HALL_UNLOCK_TIMING = (true U (!UNLOCK_TIME & unLock_Hall))
+GBA 2 states 3 transitions
+Buchi automata:
+P_HALL_UNLOCK_TIMING = S0,
+S1@ =(true -> S1),
+S0 =(!UNLOCK_TIME&unLock_Hall -> S1 |true -> S0).
+Composition:P_HALL_UNLOCK_TIMING = UNLOCK_TIME || unLock_Hall || SYNC || P_HALL_UNLOCK_TIMING
+State Space: 2 * 2 * 2 * 2 = 2 ** 4
+Composing...
+-- States: 16 Transitions: 289 Memory used: 5345451KB
+Composed in 593ms
+After Tau elimination = 8 state
+Tau reduction ON
+P_HALL_UNLOCK_TIMING minimising...
+Minimised States: 3 in 0ms
+make DFA(P_HALL_UNLOCK_TIMING)
+DFA(P_HALL_UNLOCK_TIMING) has 2 states.
+Tau reduction ON
+P_HALL_UNLOCK_TIMING minimising...
+Minimised States: 2 in 0ms
+Formula !P_VISITOR_RULE_A = (true U (A_LOCKED & allow_A))
+GBA 2 states 3 transitions
+Buchi automata:
+P_VISITOR_RULE_A = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |A_LOCKED&allow_A -> S1).
+Composition:P_VISITOR_RULE_A = A_LOCKED || allow_A || SYNC || P_VISITOR_RULE_A
+State Space: 2 * 2 * 2 * 2 = 2 ** 4
+Composing...
+-- States: 16 Transitions: 41 Memory used: 5345531KB
+Composed in 617ms
+After Tau elimination = 8 state
+Tau reduction ON
+P_VISITOR_RULE_A minimising...
+Minimised States: 3 in 0ms
+make DFA(P_VISITOR_RULE_A)
+DFA(P_VISITOR_RULE_A) has 2 states.
+Tau reduction ON
+P_VISITOR_RULE_A minimising...
+Minimised States: 2 in 0ms
+Formula !P_LOCK_RULE_A1 = (true U ((!A_LOCKED & arrive_A[2]) & X (!lock_A U (resRoomStatus & !lock_A))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_LOCK_RULE_A1 = S0,
+S1@ =(true -> S1),
+S0 =(!A_LOCKED&arrive_A[2] -> S2 |true -> S0),
+S2 =(!lock_A -> S2 |resRoomStatus&!lock_A -> S1).
+Composition:P_LOCK_RULE_A1 = A_LOCKED || arrive_A[2] || resRoomStatus || lock_A || SYNC || P_LOCK_RULE_A1
+State Space: 2 * 2 * 2 * 2 * 2 * 4 = 2 ** 7
+Composing...
+-- States: 43 Transitions: 120 Memory used: 5345530KB
+Composed in 640ms
+After Tau elimination = 21 state
+Tau reduction ON
+P_LOCK_RULE_A1 minimising....
+Minimised States: 5 in 0ms
+make DFA(P_LOCK_RULE_A1)
+DFA(P_LOCK_RULE_A1) has 6 states.
+Tau reduction ON
+P_LOCK_RULE_A1 minimising....
+Minimised States: 3 in 0ms
+Formula !P_LOCK_RULE_A2 = (true U ((A_TH_LOCKED1 & A_TH_LOCKED2) & unLock_A))
+GBA 2 states 3 transitions
+Buchi automata:
+P_LOCK_RULE_A2 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |A_TH_LOCKED1&A_TH_LOCKED2&unLock_A -> S1).
+Composition:P_LOCK_RULE_A2 = A_TH_LOCKED1 || A_TH_LOCKED2 || unLock_A || SYNC || P_LOCK_RULE_A2
+State Space: 2 * 2 * 2 * 2 * 2 = 2 ** 5
+Composing...
+-- States: 32 Transitions: 97 Memory used: 5345557KB
+Composed in 610ms
+After Tau elimination = 16 state
+Tau reduction ON
+P_LOCK_RULE_A2 minimising....
+Minimised States: 5 in 0ms
+make DFA(P_LOCK_RULE_A2)
+DFA(P_LOCK_RULE_A2) has 4 states.
+Tau reduction ON
+P_LOCK_RULE_A2 minimising....
+Minimised States: 4 in 0ms
+Formula !P_UNLOCK_RULE_A1 = (true U ((A_LOCKED & allow_B) & X (!unLock_A U (resRoomStatus & !unLock_A))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_UNLOCK_RULE_A1 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |A_LOCKED&allow_B -> S2),
+S2 =(!unLock_A -> S2 |resRoomStatus&!unLock_A -> S1).
+Composition:P_UNLOCK_RULE_A1 = A_LOCKED || allow_B || resRoomStatus || unLock_A || SYNC || P_UNLOCK_RULE_A1
+State Space: 2 * 2 * 2 * 2 * 2 * 4 = 2 ** 7
+Composing...
+-- States: 44 Transitions: 124 Memory used: 5345624KB
+Composed in 608ms
+After Tau elimination = 22 state
+Tau reduction ON
+P_UNLOCK_RULE_A1 minimising.....
+Minimised States: 5 in 0ms
+make DFA(P_UNLOCK_RULE_A1)
+DFA(P_UNLOCK_RULE_A1) has 6 states.
+Tau reduction ON
+P_UNLOCK_RULE_A1 minimising....
+Minimised States: 3 in 0ms
+Formula !P_A_LOCK_TIMING = (true U (!A_LOCK_TIME & lock_A))
+GBA 2 states 3 transitions
+Buchi automata:
+P_A_LOCK_TIMING = S0,
+S1@ =(true -> S1),
+S0 =(!A_LOCK_TIME&lock_A -> S1 |true -> S0).
+Composition:P_A_LOCK_TIMING = A_LOCK_TIME || lock_A || SYNC || P_A_LOCK_TIMING
+State Space: 2 * 2 * 2 * 2 = 2 ** 4
+Composing...
+-- States: 16 Transitions: 41 Memory used: 5345626KB
+Composed in 584ms
+After Tau elimination = 8 state
+Tau reduction ON
+P_A_LOCK_TIMING minimising...
+Minimised States: 3 in 8ms
+make DFA(P_A_LOCK_TIMING)
+DFA(P_A_LOCK_TIMING) has 2 states.
+Tau reduction ON
+P_A_LOCK_TIMING minimising...
+Minimised States: 2 in 0ms
+Formula !P_A_UNLOCK_TIMING = (true U (!UNLOCK_TIME & unLock_A))
+GBA 2 states 3 transitions
+Buchi automata:
+P_A_UNLOCK_TIMING = S0,
+S1@ =(true -> S1),
+S0 =(!UNLOCK_TIME&unLock_A -> S1 |true -> S0).
+Composition:P_A_UNLOCK_TIMING = UNLOCK_TIME || unLock_A || SYNC || P_A_UNLOCK_TIMING
+State Space: 2 * 2 * 2 * 2 = 2 ** 4
+Composing...
+-- States: 16 Transitions: 289 Memory used: 5345662KB
+Composed in 599ms
+After Tau elimination = 8 state
+Tau reduction ON
+P_A_UNLOCK_TIMING minimising...
+Minimised States: 3 in 0ms
+make DFA(P_A_UNLOCK_TIMING)
+DFA(P_A_UNLOCK_TIMING) has 2 states.
+Tau reduction ON
+P_A_UNLOCK_TIMING minimising...
+Minimised States: 2 in 0ms
+Formula !P_VISITOR_RULE_B = (true U (B_LOCKED & allow_B))
+GBA 2 states 3 transitions
+Buchi automata:
+P_VISITOR_RULE_B = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |B_LOCKED&allow_B -> S1).
+Composition:P_VISITOR_RULE_B = B_LOCKED || allow_B || SYNC || P_VISITOR_RULE_B
+State Space: 2 * 2 * 2 * 2 = 2 ** 4
+Composing...
+-- States: 16 Transitions: 41 Memory used: 5345743KB
+Composed in 650ms
+After Tau elimination = 8 state
+Tau reduction ON
+P_VISITOR_RULE_B minimising...
+Minimised States: 3 in 0ms
+make DFA(P_VISITOR_RULE_B)
+DFA(P_VISITOR_RULE_B) has 2 states.
+Tau reduction ON
+P_VISITOR_RULE_B minimising...
+Minimised States: 2 in 0ms
+Formula !P_LOCK_RULE_B1 = (true U ((!B_LOCKED & arrive_B[2]) & X (!lock_B U (resRoomStatus & !lock_B))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_LOCK_RULE_B1 = S0,
+S1@ =(true -> S1),
+S0 =(!B_LOCKED&arrive_B[2] -> S2 |true -> S0),
+S2 =(!lock_B -> S2 |resRoomStatus&!lock_B -> S1).
+Composition:P_LOCK_RULE_B1 = B_LOCKED || arrive_B[2] || resRoomStatus || lock_B || SYNC || P_LOCK_RULE_B1
+State Space: 2 * 2 * 2 * 2 * 2 * 4 = 2 ** 7
+Composing...
+-- States: 43 Transitions: 120 Memory used: 5345741KB
+Composed in 622ms
+After Tau elimination = 21 state
+Tau reduction ON
+P_LOCK_RULE_B1 minimising....
+Minimised States: 5 in 0ms
+make DFA(P_LOCK_RULE_B1)
+DFA(P_LOCK_RULE_B1) has 6 states.
+Tau reduction ON
+P_LOCK_RULE_B1 minimising....
+Minimised States: 3 in 0ms
+Formula !P_LOCK_RULE_B2 = (true U ((B_TH_LOCKED1 & B_TH_LOCKED2) & unLock_B))
+GBA 2 states 3 transitions
+Buchi automata:
+P_LOCK_RULE_B2 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |B_TH_LOCKED1&B_TH_LOCKED2&unLock_B -> S1).
+Composition:P_LOCK_RULE_B2 = B_TH_LOCKED1 || B_TH_LOCKED2 || unLock_B || SYNC || P_LOCK_RULE_B2
+State Space: 2 * 2 * 2 * 2 * 2 = 2 ** 5
+Composing...
+-- States: 32 Transitions: 97 Memory used: 5345750KB
+Composed in 583ms
+After Tau elimination = 16 state
+Tau reduction ON
+P_LOCK_RULE_B2 minimising....
+Minimised States: 5 in 0ms
+make DFA(P_LOCK_RULE_B2)
+DFA(P_LOCK_RULE_B2) has 4 states.
+Tau reduction ON
+P_LOCK_RULE_B2 minimising....
+Minimised States: 4 in 0ms
+Formula !P_UNLOCK_RULE_B1 = (true U ((B_LOCKED & allow_C) & X (!unLock_B U (resRoomStatus & !unLock_B))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_UNLOCK_RULE_B1 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |B_LOCKED&allow_C -> S2),
+S2 =(!unLock_B -> S2 |resRoomStatus&!unLock_B -> S1).
+Composition:P_UNLOCK_RULE_B1 = B_LOCKED || allow_C || resRoomStatus || unLock_B || SYNC || P_UNLOCK_RULE_B1
+State Space: 2 * 2 * 2 * 2 * 2 * 4 = 2 ** 7
+Composing...
+-- States: 44 Transitions: 124 Memory used: 5345819KB
+Composed in 598ms
+After Tau elimination = 22 state
+Tau reduction ON
+P_UNLOCK_RULE_B1 minimising.....
+Minimised States: 5 in 0ms
+make DFA(P_UNLOCK_RULE_B1)
+DFA(P_UNLOCK_RULE_B1) has 6 states.
+Tau reduction ON
+P_UNLOCK_RULE_B1 minimising....
+Minimised States: 3 in 0ms
+Formula !P_B_LOCK_TIMING = (true U (!B_LOCK_TIME & lock_B))
+GBA 2 states 3 transitions
+Buchi automata:
+P_B_LOCK_TIMING = S0,
+S1@ =(true -> S1),
+S0 =(!B_LOCK_TIME&lock_B -> S1 |true -> S0).
+Composition:P_B_LOCK_TIMING = B_LOCK_TIME || lock_B || SYNC || P_B_LOCK_TIMING
+State Space: 2 * 2 * 2 * 2 = 2 ** 4
+Composing...
+-- States: 16 Transitions: 41 Memory used: 5345803KB
+Composed in 624ms
+After Tau elimination = 8 state
+Tau reduction ON
+P_B_LOCK_TIMING minimising...
+Minimised States: 3 in 0ms
+make DFA(P_B_LOCK_TIMING)
+DFA(P_B_LOCK_TIMING) has 2 states.
+Tau reduction ON
+P_B_LOCK_TIMING minimising...
+Minimised States: 2 in 0ms
+Formula !P_B_UNLOCK_TIMING = (true U (!UNLOCK_TIME & unLock_B))
+GBA 2 states 3 transitions
+Buchi automata:
+P_B_UNLOCK_TIMING = S0,
+S1@ =(true -> S1),
+S0 =(!UNLOCK_TIME&unLock_B -> S1 |true -> S0).
+Composition:P_B_UNLOCK_TIMING = UNLOCK_TIME || unLock_B || SYNC || P_B_UNLOCK_TIMING
+State Space: 2 * 2 * 2 * 2 = 2 ** 4
+Composing...
+-- States: 16 Transitions: 289 Memory used: 5345834KB
+Composed in 584ms
+After Tau elimination = 8 state
+Tau reduction ON
+P_B_UNLOCK_TIMING minimising...
+Minimised States: 3 in 0ms
+make DFA(P_B_UNLOCK_TIMING)
+DFA(P_B_UNLOCK_TIMING) has 2 states.
+Tau reduction ON
+P_B_UNLOCK_TIMING minimising...
+Minimised States: 2 in 0ms
+Formula !P_VISITOR_RULE_C = (true U (C_LOCKED & allow_C))
+GBA 2 states 3 transitions
+Buchi automata:
+P_VISITOR_RULE_C = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |C_LOCKED&allow_C -> S1).
+Composition:P_VISITOR_RULE_C = C_LOCKED || allow_C || SYNC || P_VISITOR_RULE_C
+State Space: 2 * 2 * 2 * 2 = 2 ** 4
+Composing...
+-- States: 16 Transitions: 41 Memory used: 5345920KB
+Composed in 607ms
+After Tau elimination = 8 state
+Tau reduction ON
+P_VISITOR_RULE_C minimising...
+Minimised States: 3 in 0ms
+make DFA(P_VISITOR_RULE_C)
+DFA(P_VISITOR_RULE_C) has 2 states.
+Tau reduction ON
+P_VISITOR_RULE_C minimising...
+Minimised States: 2 in 0ms
+Formula !P_LOCK_RULE_C1 = (true U ((!C_LOCKED & arrive_C[2]) & X (!lock_C U (resRoomStatus & !lock_C))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_LOCK_RULE_C1 = S0,
+S1@ =(true -> S1),
+S0 =(!C_LOCKED&arrive_C[2] -> S2 |true -> S0),
+S2 =(!lock_C -> S2 |resRoomStatus&!lock_C -> S1).
+Composition:P_LOCK_RULE_C1 = C_LOCKED || arrive_C[2] || resRoomStatus || lock_C || SYNC || P_LOCK_RULE_C1
+State Space: 2 * 2 * 2 * 2 * 2 * 4 = 2 ** 7
+Composing...
+-- States: 43 Transitions: 120 Memory used: 5345914KB
+Composed in 676ms
+After Tau elimination = 21 state
+Tau reduction ON
+P_LOCK_RULE_C1 minimising....
+Minimised States: 5 in 0ms
+make DFA(P_LOCK_RULE_C1)
+DFA(P_LOCK_RULE_C1) has 6 states.
+Tau reduction ON
+P_LOCK_RULE_C1 minimising....
+Minimised States: 3 in 0ms
+Formula !P_LOCK_RULE_C2 = (true U ((C_TH_LOCKED1 & C_TH_LOCKED2) & unLock_C))
+GBA 2 states 3 transitions
+Buchi automata:
+P_LOCK_RULE_C2 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |C_TH_LOCKED1&C_TH_LOCKED2&unLock_C -> S1).
+Composition:P_LOCK_RULE_C2 = C_TH_LOCKED1 || C_TH_LOCKED2 || unLock_C || SYNC || P_LOCK_RULE_C2
+State Space: 2 * 2 * 2 * 2 * 2 = 2 ** 5
+Composing...
+-- States: 32 Transitions: 97 Memory used: 5345935KB
+Composed in 597ms
+After Tau elimination = 16 state
+Tau reduction ON
+P_LOCK_RULE_C2 minimising....
+Minimised States: 5 in 0ms
+make DFA(P_LOCK_RULE_C2)
+DFA(P_LOCK_RULE_C2) has 4 states.
+Tau reduction ON
+P_LOCK_RULE_C2 minimising....
+Minimised States: 4 in 0ms
+Formula !P_UNLOCK_RULE_C1 = (true U ((C_LOCKED & allow_D) & X (!unLock_C U (resRoomStatus & !unLock_C))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_UNLOCK_RULE_C1 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |C_LOCKED&allow_D -> S2),
+S2 =(!unLock_C -> S2 |resRoomStatus&!unLock_C -> S1).
+Composition:P_UNLOCK_RULE_C1 = C_LOCKED || allow_D || resRoomStatus || unLock_C || SYNC || P_UNLOCK_RULE_C1
+State Space: 2 * 2 * 2 * 2 * 2 * 4 = 2 ** 7
+Composing...
+-- States: 44 Transitions: 124 Memory used: 5345992KB
+Composed in 628ms
+After Tau elimination = 22 state
+Tau reduction ON
+P_UNLOCK_RULE_C1 minimising.....
+Minimised States: 5 in 0ms
+make DFA(P_UNLOCK_RULE_C1)
+DFA(P_UNLOCK_RULE_C1) has 6 states.
+Tau reduction ON
+P_UNLOCK_RULE_C1 minimising....
+Minimised States: 3 in 0ms
+Formula !P_C_LOCK_TIMING = (true U (!C_LOCK_TIME & lock_C))
+GBA 2 states 3 transitions
+Buchi automata:
+P_C_LOCK_TIMING = S0,
+S1@ =(true -> S1),
+S0 =(!C_LOCK_TIME&lock_C -> S1 |true -> S0).
+Composition:P_C_LOCK_TIMING = C_LOCK_TIME || lock_C || SYNC || P_C_LOCK_TIMING
+State Space: 2 * 2 * 2 * 2 = 2 ** 4
+Composing...
+-- States: 16 Transitions: 41 Memory used: 5345990KB
+Composed in 622ms
+After Tau elimination = 8 state
+Tau reduction ON
+P_C_LOCK_TIMING minimising...
+Minimised States: 3 in 0ms
+make DFA(P_C_LOCK_TIMING)
+DFA(P_C_LOCK_TIMING) has 2 states.
+Tau reduction ON
+P_C_LOCK_TIMING minimising...
+Minimised States: 2 in 0ms
+Formula !P_C_UNLOCK_TIMING = (true U (!UNLOCK_TIME & unLock_C))
+GBA 2 states 3 transitions
+Buchi automata:
+P_C_UNLOCK_TIMING = S0,
+S1@ =(true -> S1),
+S0 =(!UNLOCK_TIME&unLock_C -> S1 |true -> S0).
+Composition:P_C_UNLOCK_TIMING = UNLOCK_TIME || unLock_C || SYNC || P_C_UNLOCK_TIMING
+State Space: 2 * 2 * 2 * 2 = 2 ** 4
+Composing...
+-- States: 16 Transitions: 289 Memory used: 5346026KB
+Composed in 614ms
+After Tau elimination = 8 state
+Tau reduction ON
+P_C_UNLOCK_TIMING minimising...
+Minimised States: 3 in 0ms
+make DFA(P_C_UNLOCK_TIMING)
+DFA(P_C_UNLOCK_TIMING) has 2 states.
+Tau reduction ON
+P_C_UNLOCK_TIMING minimising...
+Minimised States: 2 in 0ms
+Formula !P_VISITOR_RULE_D = (true U (D_LOCKED & allow_D))
+GBA 2 states 3 transitions
+Buchi automata:
+P_VISITOR_RULE_D = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |D_LOCKED&allow_D -> S1).
+Composition:P_VISITOR_RULE_D = D_LOCKED || allow_D || SYNC || P_VISITOR_RULE_D
+State Space: 2 * 2 * 2 * 2 = 2 ** 4
+Composing...
+-- States: 16 Transitions: 41 Memory used: 5346104KB
+Composed in 608ms
+After Tau elimination = 8 state
+Tau reduction ON
+P_VISITOR_RULE_D minimising...
+Minimised States: 3 in 0ms
+make DFA(P_VISITOR_RULE_D)
+DFA(P_VISITOR_RULE_D) has 2 states.
+Tau reduction ON
+P_VISITOR_RULE_D minimising...
+Minimised States: 2 in 0ms
+Formula !P_LOCK_RULE_D1 = (true U ((!D_LOCKED & arrive_D[2]) & X (!lock_D U (resRoomStatus & !lock_D))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_LOCK_RULE_D1 = S0,
+S1@ =(true -> S1),
+S0 =(!D_LOCKED&arrive_D[2] -> S2 |true -> S0),
+S2 =(!lock_D -> S2 |resRoomStatus&!lock_D -> S1).
+Composition:P_LOCK_RULE_D1 = D_LOCKED || arrive_D[2] || resRoomStatus || lock_D || SYNC || P_LOCK_RULE_D1
+State Space: 2 * 2 * 2 * 2 * 2 * 4 = 2 ** 7
+Composing...
+-- States: 43 Transitions: 120 Memory used: 5346105KB
+Composed in 599ms
+After Tau elimination = 21 state
+Tau reduction ON
+P_LOCK_RULE_D1 minimising....
+Minimised States: 5 in 0ms
+make DFA(P_LOCK_RULE_D1)
+DFA(P_LOCK_RULE_D1) has 6 states.
+Tau reduction ON
+P_LOCK_RULE_D1 minimising....
+Minimised States: 3 in 0ms
+Formula !P_LOCK_RULE_D2 = (true U ((D_TH_LOCKED1 & D_TH_LOCKED2) & unLock_D))
+GBA 2 states 3 transitions
+Buchi automata:
+P_LOCK_RULE_D2 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |D_TH_LOCKED1&D_TH_LOCKED2&unLock_D -> S1).
+Composition:P_LOCK_RULE_D2 = D_TH_LOCKED1 || D_TH_LOCKED2 || unLock_D || SYNC || P_LOCK_RULE_D2
+State Space: 2 * 2 * 2 * 2 * 2 = 2 ** 5
+Composing...
+-- States: 32 Transitions: 97 Memory used: 5346120KB
+Composed in 583ms
+After Tau elimination = 16 state
+Tau reduction ON
+P_LOCK_RULE_D2 minimising....
+Minimised States: 5 in 0ms
+make DFA(P_LOCK_RULE_D2)
+DFA(P_LOCK_RULE_D2) has 4 states.
+Tau reduction ON
+P_LOCK_RULE_D2 minimising....
+Minimised States: 4 in 0ms
+Formula !P_UNLOCK_RULE_D1 = (true U ((D_LOCKED & allow_Out) & X (!unLock_D U (resRoomStatus & !unLock_D))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_UNLOCK_RULE_D1 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |D_LOCKED&allow_Out -> S2),
+S2 =(!unLock_D -> S2 |resRoomStatus&!unLock_D -> S1).
+Composition:P_UNLOCK_RULE_D1 = D_LOCKED || allow_Out || resRoomStatus || unLock_D || SYNC || P_UNLOCK_RULE_D1
+State Space: 2 * 2 * 2 * 2 * 2 * 4 = 2 ** 7
+Composing...
+-- States: 44 Transitions: 124 Memory used: 5346172KB
+Composed in 566ms
+After Tau elimination = 22 state
+Tau reduction ON
+P_UNLOCK_RULE_D1 minimising.....
+Minimised States: 5 in 0ms
+make DFA(P_UNLOCK_RULE_D1)
+DFA(P_UNLOCK_RULE_D1) has 6 states.
+Tau reduction ON
+P_UNLOCK_RULE_D1 minimising....
+Minimised States: 3 in 0ms
+Formula !P_D_LOCK_TIMING = (true U (!D_LOCK_TIME & lock_D))
+GBA 2 states 3 transitions
+Buchi automata:
+P_D_LOCK_TIMING = S0,
+S1@ =(true -> S1),
+S0 =(!D_LOCK_TIME&lock_D -> S1 |true -> S0).
+Composition:P_D_LOCK_TIMING = D_LOCK_TIME || lock_D || SYNC || P_D_LOCK_TIMING
+State Space: 2 * 2 * 2 * 2 = 2 ** 4
+Composing...
+-- States: 16 Transitions: 41 Memory used: 5346197KB
+Composed in 588ms
+After Tau elimination = 8 state
+Tau reduction ON
+P_D_LOCK_TIMING minimising...
+Minimised States: 3 in 0ms
+make DFA(P_D_LOCK_TIMING)
+DFA(P_D_LOCK_TIMING) has 2 states.
+Tau reduction ON
+P_D_LOCK_TIMING minimising...
+Minimised States: 2 in 0ms
+Formula !P_D_UNLOCK_TIMING = (true U (!UNLOCK_TIME & unLock_D))
+GBA 2 states 3 transitions
+Buchi automata:
+P_D_UNLOCK_TIMING = S0,
+S1@ =(true -> S1),
+S0 =(!UNLOCK_TIME&unLock_D -> S1 |true -> S0).
+Composition:P_D_UNLOCK_TIMING = UNLOCK_TIME || unLock_D || SYNC || P_D_UNLOCK_TIMING
+State Space: 2 * 2 * 2 * 2 = 2 ** 4
+Composing...
+-- States: 16 Transitions: 289 Memory used: 5346230KB
+Composed in 588ms
+After Tau elimination = 8 state
+Tau reduction ON
+P_D_UNLOCK_TIMING minimising...
+Minimised States: 3 in 0ms
+make DFA(P_D_UNLOCK_TIMING)
+DFA(P_D_UNLOCK_TIMING) has 2 states.
+Tau reduction ON
+P_D_UNLOCK_TIMING minimising...
+Minimised States: 2 in 0ms
+Compile is Complete!
+
+
+===================================================
+                    Composition                    
+===================================================
+Composition:TraditionalController = Environment || P_LOCK_RULE_A1 || P_D_UNLOCK_TIMING || P_VISITOR_RULE_HALL || P_UNLOCK_RULE_C1 || P_VISITOR_RULE_D || P_A_LOCK_TIMING || P_LOCK_RULE_C2 || P_HALL_UNLOCK_TIMING || P_LOCK_RULE_B2 || P_VISITOR_RULE_B || P_B_LOCK_TIMING || P_UNLOCK_RULE_A1 || P_B_UNLOCK_TIMING || P_LOCK_RULE_A2 || P_C_UNLOCK_TIMING || P_VISITOR_RULE_C || P_D_LOCK_TIMING || P_UNLOCK_RULE_HALL1 || P_UNLOCK_RULE_D1 || P_A_UNLOCK_TIMING || P_LOCK_RULE_HALL1 || P_UNLOCK_RULE_B1 || P_LOCK_RULE_D2 || P_LOCK_RULE_C1 || P_HALL_LOCK_TIMING || P_LOCK_RULE_B1 || P_C_LOCK_TIMING || P_LOCK_RULE_HALL2 || P_VISITOR_RULE_A || P_LOCK_RULE_D1
+State Space: 11568704 * 3 * 2 * 2 * 3 * 2 * 2 * 4 * 2 * 4 * 2 * 2 * 3 * 2 * 4 * 2 * 2 * 2 * 3 * 3 * 2 * 3 * 3 * 4 * 3 * 2 * 3 * 2 * 4 * 2 * 3 = 2 ** 69
+Composing...
+-- States: 10000 Transitions: 65867 Memory used: 9028928KB
+-- States: 10505 Transitions: 69024 Memory used: 9028928KB
+Composed in 1025ms
+Solving the LTS control problem.
+Environment states: 10506
+Game states: 10506
+Analysis time: 1666ms.
+Controller [10505] generated successfully.
+Composition:TraditionalController = TraditionalController || P_LOCK_RULE_A1 || P_D_UNLOCK_TIMING || P_VISITOR_RULE_HALL || P_UNLOCK_RULE_C1 || P_VISITOR_RULE_D || P_A_LOCK_TIMING || P_LOCK_RULE_C2 || P_HALL_UNLOCK_TIMING || P_LOCK_RULE_B2 || P_VISITOR_RULE_B || P_B_LOCK_TIMING || P_UNLOCK_RULE_A1 || P_B_UNLOCK_TIMING || P_LOCK_RULE_A2 || P_C_UNLOCK_TIMING || P_VISITOR_RULE_C || P_D_LOCK_TIMING || P_UNLOCK_RULE_HALL1 || P_UNLOCK_RULE_D1 || P_A_UNLOCK_TIMING || P_LOCK_RULE_HALL1 || P_UNLOCK_RULE_B1 || P_LOCK_RULE_D2 || P_LOCK_RULE_C1 || P_HALL_LOCK_TIMING || P_LOCK_RULE_B1 || P_C_LOCK_TIMING || P_LOCK_RULE_HALL2 || P_VISITOR_RULE_A || P_LOCK_RULE_D1
+State Space: 10505 * 3 * 2 * 2 * 3 * 2 * 2 * 4 * 2 * 4 * 2 * 2 * 3 * 2 * 4 * 2 * 2 * 2 * 3 * 3 * 2 * 3 * 3 * 4 * 3 * 2 * 3 * 2 * 4 * 2 * 3 = 2 ** 59
+Composing...
+-- States: 10000 Transitions: 16844 Memory used: 5443621KB
+-- States: 10505 Transitions: 17552 Memory used: 5460341KB
+Composed in 693ms
+
+
+[info] Composition is Complete!
+[info] Max Space      : 11568704
+[info] Max Transition : 74219712
+[info] Max Memory     : 10441692 MB
+[info] Execution Time : 406665 ms
+

@@ -1,0 +1,181 @@
+const RobotNum = 1
+const PodNum   = 2
+
+range RobotID = 1..RobotNum
+range PodID   = 1..PodNum
+range Status   = 0..1
+
+//Set
+set Robot = {robot[RobotID]}
+set Pod   = {pod[PodID]}
+set Area  = {shippingArea, boxGettingArea, replenishArea, packingArea}
+set AllArea  = {Area, Pod}
+
+//Action Set
+set MoveActions = {[Robot].move[AllArea]}
+set PickActions = {[Robot].pick[AllArea]}
+set PutActions = {[Robot].put[AllArea]}
+
+set AreaActions = {ship, supplyBox, supplyItem, getItem, getBox, pack}
+set RequestType = {replenishItem, bringItem, bringBox, ship}
+set RequestActions = {request[RequestType], replenish[PodID], bring[PodID]}
+set JudgeActions = {allow[RequestType], deny[RequestType]}
+set DoneActions = {done[RequestType]}
+
+set ControllableActions = {MoveActions, PickActions, PutActions, AreaActions, JudgeActions, DoneActions}
+set UncontrollableActions = {RequestActions}
+set AllActions = {MoveActions, PickActions, PutActions, AreaActions, JudgeActions, DoneActions, RequestActions}
+
+//******************************************************************************************//
+// Environment Model
+//******************************************************************************************//
+ROBOT = MOVEMENT['pod[1]][0],
+MOVEMENT[x:Pod][s:Status] = (move[y:Pod] -> MOVEMENT[y][s]
+					        |move['shippingArea] -> SHIP_AREA[s]
+					        |move['boxGettingArea] -> BOX_GET_AREA[s]
+					        |move['replenishArea] -> REPLENISH_AREA[s]
+					        |move['packingArea] -> PACK_AREA[s]
+		                    |when(s == 0) pick[x] -> MOVEMENT[x][1]
+		                    |when(s == 1) put[x] -> MOVEMENT[x][0]),
+REPLENISH_AREA[s:Status] = 	(move[y:Pod] -> MOVEMENT[y][s]
+							|move['shippingArea] -> SHIP_AREA[s]
+							|move['boxGettingArea] -> BOX_GET_AREA[s]
+							|move['packingArea] -> PACK_AREA[s]
+							|when(s == 0) pick['replenishArea] -> REPLENISH_AREA[1]
+							|when(s == 1) put['replenishArea] -> REPLENISH_AREA[0]),
+PACK_AREA[s:Status] =		(move[y:Pod] -> MOVEMENT[y][s]
+							|move['shippingArea] -> SHIP_AREA[s]
+							|move['boxGettingArea] -> BOX_GET_AREA[s]
+							|move['replenishArea] -> REPLENISH_AREA[s]
+							|when(s == 0) pick['packingArea] -> PACK_AREA[1]
+							|when(s == 1) put['packingArea] -> PACK_AREA[0]),
+BOX_GET_AREA[s:Status] =	(move[y:Pod] -> MOVEMENT[y][s]
+							|move['shippingArea] -> SHIP_AREA[s]
+							|move['replenishArea] -> REPLENISH_AREA[s]
+							|move['packingArea] -> PACK_AREA[s]
+							|when(s == 0) pick['boxGettingArea] -> BOX_GET_AREA[1]
+							|when(s == 1) put['boxGettingArea] -> BOX_GET_AREA[0]),
+SHIP_AREA[s:Status] =		(move[y:Pod] -> MOVEMENT[y][s]
+							|move['boxGettingArea] -> BOX_GET_AREA[s]
+							|move['replenishArea] -> REPLENISH_AREA[s]
+							|move['packingArea] -> PACK_AREA[s]
+							|when(s == 0)pick['shippingArea] -> SHIP_AREA[1]
+							|when(s == 1)put['shippingArea] -> SHIP_AREA[0]).
+
+
+REQUEST_1 = (request['replenishItem] -> JUDGE),
+JUDGE     = (allow['replenishItem] -> replenish[Pod] -> supplyBox -> done['replenishItem] -> REQUEST_1
+			|deny['replenishItem] -> REQUEST_1).
+
+REQUEST_2 = (request['bringItem] -> JUDGE),
+JUDGE     = (allow['bringItem] -> bring[Pod] -> getItem -> done['bringItem] -> REQUEST_2
+			|deny['bringItem] -> REQUEST_2).
+
+REQUEST_3 = (request['bringBox] -> JUDGE),
+JUDGE     = (allow['bringBox] -> supplyBox -> getBox -> done['bringBox] -> REQUEST_3
+			|deny['bringBox] -> REQUEST_3).
+
+REQUEST_4 = (request['ship] -> JUDGE),
+JUDGE     = (allow['ship] -> pack -> ship -> done['ship] -> REQUEST_4
+			|deny['ship] -> REQUEST_4).
+
+//*****************************************************************************
+// Requirement
+//*****************************************************************************
+
+/*Fluent*/
+fluent Repleshing = <replenish[Pod], done['replenishItem]> initially 0
+fluent ItemBringing = <bring[Pod], done['bringItem]> initially 0
+fluent BoxBringing = <allow['bringBox], done['bringBox]> initially 0
+fluent Shiping = <allow['ship], done['ship]> initially 0
+
+fluent GotItem = <getItem, ship> initially 0
+fluent GotBox = <getBox, ship> initially 0
+
+
+fluent Timing_DenyBringItem  = <getItem, ship> initially 0
+fluent Timing_DenyBringBox   = <getBox, ship> initially 0
+
+fluent DoneBringItem = <getItem, ship> initially 0
+fluent DoneBringBox  = <getBox, ship> initially 0
+
+fluent RobotTurn[n:Robot] = <{[n].move[AllArea], [n].move[AllArea], [n].move[AllArea]}, DoneActions>
+
+/*FLTL*/
+ltl_property P_ALLOW_RULE1 = [](!(DoneBringItem && DoneBringBox) -> !allow['ship])
+ltl_property P_ALLOW_RULE2 = [](Timing_DenyBringItem -> !allow['bringItem])
+ltl_property P_ALLOW_RULE3 = [](Timing_DenyBringBox  -> !allow['bringBox])
+ltl_property P_ALLOW_RULE4 = [](ItemBringing||BoxBringing||Shiping -> !allow['replenishItem])
+
+ltl_property P_DENY_RULE1 = [](DoneBringItem && DoneBringBox -> !deny['ship])
+ltl_property P_DENY_RULE2 = [](!Timing_DenyBringItem -> !deny['bringItem])
+ltl_property P_DENY_RULE3 = [](!Timing_DenyBringBox  -> !deny['bringBox])
+ltl_property P_DENY_RULE4 = [](!(ItemBringing||BoxBringing||Shiping) -> !deny['replenishItem])
+
+ltl_property P_ALLROBOT_RULE1 = [](RobotTurn['robot.[1]] -> !{[Robot].move[AllArea], [Robot].move[AllArea], [Robot].move[AllArea]}\{['robot.[1]].move[AllArea], ['robot.[1]].move[AllArea], ['robot.[1]].move[AllArea]})
+ltl_property P_ALLROBOT_RULE2 = [](RobotTurn['robot.[2]] -> !{[Robot].move[AllArea], [Robot].move[AllArea], [Robot].move[AllArea]}\{['robot.[2]].move[AllArea], ['robot.[2]].move[AllArea], ['robot.[2]].move[AllArea]})
+
+ltl_property P_ROBOT1_RULE1 = []({['robot.[1]].move[AllArea], ['robot.[1]].pick[AllArea], ['robot.[1]].put[AllArea]} -> Repleshing||ItemBringing||BoxBringing||Shiping)
+ltl_property P_ROBOT1_RULE2 = [](['robot.[1]].move[AllArea] -> X(!['robot.[1]].move[AllArea] W {['robot.[1]].pick[AllArea], ['robot.[1]].put[AllArea]}))
+ltl_property P_ROBOT1_RULE3 = []({['robot.[1]].pick[AllArea], ['robot.[1]].put[AllArea]} -> X(!{['robot.[1]].pick[AllArea], ['robot.[1]].put[AllArea]} W ['robot.[1]].move[AllArea]))
+
+ltl_property P_REPLENISH_ROBOT_RULE11 = [](replenish['pod.[1]] -> X(!{supplyItem, [Robot].pick[AllArea], [Robot].put[AllArea], [Robot].move[AllArea]}\{[Robot].move['pod.[1]]} W [Robot].move['pod.[1]]))
+ltl_property P_REPLENISH_ROBOT_RULE12 = [](replenish['pod.[1]] -> X(!supplyItem W [Robot].pick['pod.[1]]))
+ltl_property P_REPLENISH_ROBOT_RULE13 = [](replenish['pod.[1]]&&[Robot].pick['pod.[1]] -> X(!supplyItem W [Robot].move['pod.[1]]))
+ltl_property P_REPLENISH_ROBOT_RULE14 = [](replenish['pod.[1]]&&[Robot].pick['pod.[1]] -> X(!{[Robot].pick[AllArea], [Robot].put[AllArea], [Robot].move[AllArea]} W supplyItem))
+
+controllerSpec Specification =
+{
+	safety       = {
+					P_ALLOW_RULE1,
+					P_ALLOW_RULE2,
+					P_ALLOW_RULE3,
+					P_ALLOW_RULE4,
+
+					P_DENY_RULE1,
+					P_DENY_RULE2,
+					P_DENY_RULE3,
+					P_DENY_RULE4,
+
+					P_ALLROBOT_RULE1,
+					P_ALLROBOT_RULE2,
+
+					P_ROBOT1_RULE1,
+					P_ROBOT1_RULE2,
+					P_ROBOT1_RULE3,
+
+					P_REPLENISH_ROBOT_RULE11,
+					P_REPLENISH_ROBOT_RULE12,
+					P_REPLENISH_ROBOT_RULE21,
+					P_REPLENISH_ROBOT_RULE22,
+				   }
+	//liveness     = {GOAL}
+	controllable = {ControllableActions}
+}
+
+
+//for Directed Synthesis
+controllerSpec DirectedSpec = {
+  	safety       = {
+					
+				   }
+	controllable = {ControllableActions}
+	marking = {doneShip}
+	nonblocking
+}
+
+
+//*****************************************************************************
+//Controller
+//*****************************************************************************
+
+//Traditional Synthesis
+||Environment = (Robot:ROBOT || REQUEST_1 || REQUEST_2 || REQUEST_3 || REQUEST_4).
+controller ||TraditionalController = (Environment)~{Specification}.
+
+//Proposal Synthesis
+controller ||Controller = (Robot:ROBOT || SHIP_AREA || BOX_GET_AREA || ITEM_GET_AREA || PACK_AREA1 || PACK_AREA2 || PACK_AREA3 || REQUEST_1 || REQUEST_2 || REQUEST_3 || REQUEST_4)~{Specification}.
+
+//Directed Synthesis
+heuristic ||DirectedController = (Robot:ROBOT || SHIP_AREA || BOX_GET_AREA || ITEM_GET_AREA || PACK_AREA1 || PACK_AREA2 || PACK_AREA3 || REQUEST_1 || REQUEST_2 || REQUEST_3 || REQUEST_4)~{DirectedSpec}.
+

@@ -1,0 +1,203 @@
+//******************************************************************************
+//*  NewPrivacyBusSystem.lts (for MTSA)
+//*  Create Date      : 2021/1/11
+//*  Creator Name     : Takuto Yamauchi
+//*  Example          : Bus Streaming System
+//*  MTSA run command : [java -jar -Xmx8G mtsa.jar] メモリサイズに応じて8Gは要変更
+//*****************************************************************************/
+
+//*****************************************************************************
+// Environment
+//*****************************************************************************
+
+/*Set of Object*/
+//
+const N =10
+const K =10
+
+range SystemID = 1 .. N
+range DataID = 1 .. K
+
+/*Set of Actions*/
+set Authority = {admin, official, general}
+set RequestActions = {request[SystemID]}
+set ControllableActions = {select_data[SystemID][DataID], reject[SystemID], dataTransfer[SystemID][DataID], filter[SystemID], unfilter[SystemID], process[SystemID]}
+//set UnControllableActions = {}
+
+/*Environment Transitions*/
+System(ID = 1) = REQUEST,
+	REQUEST 				= 	(request[ID] -> DATA_SELECTION),
+	DATA_SELECTION			= 	(select_data[ID][data:DataID] -> FILTERING[data]
+								|reject[ID] -> REQUEST),
+	FILTERING[data:DataID] 	=	(filter[ID] -> GET_DATA[data] | unfilter[ID] -> GET_DATA[data]),
+	GET_DATA[data:DataID]	=	(dataTransfer[ID][data] -> REQUEST).
+	//USE_DATA				=	(process[ID] -> REQUEST).
+//PrivacyFilter = ().
+
+
+//*****************************************************************************
+// Requirement
+//*****************************************************************************
+/*Sets*/
+range AdminSystemID		= 1 .. 1
+range GeneralSystemID	= 2 .. N
+range AdminDataID		= 1 .. K
+range GeneralDataID		= K/2+1 .. K
+
+/*Fluents*/
+
+
+/*FLTL*/
+ltl_property P_JUDGEMENT_Admin = [](!reject[AdminSystemID])
+
+ltl_property P_JUDGEMENT_OK_01 = [](!{select_data[1][DataID]}\{select_data[1][1]})
+ltl_property P_JUDGEMENT_NG_01 = [](!reject[1])
+ltl_property P_JUDGEMENT_OK_02 = [](!{select_data[2][DataID]}\{select_data[2][2]})
+ltl_property P_JUDGEMENT_NG_02 = [](!reject[2])
+ltl_property P_JUDGEMENT_OK_03 = [](!{select_data[3][DataID]}\{select_data[3][3]})
+ltl_property P_JUDGEMENT_NG_03 = [](!reject[3])
+ltl_property P_JUDGEMENT_OK_04 = [](!{select_data[4][DataID]}\{select_data[4][4]})
+ltl_property P_JUDGEMENT_NG_04 = [](!reject[4])
+ltl_property P_JUDGEMENT_OK_05 = [](!{select_data[5][DataID]}\{select_data[5][5]})
+ltl_property P_JUDGEMENT_NG_05 = [](!reject[5])
+ltl_property P_JUDGEMENT_OK_06 = [](!{select_data[6][DataID]}\{select_data[6][6]})
+ltl_property P_JUDGEMENT_NG_06 = [](!reject[6])
+ltl_property P_JUDGEMENT_OK_07 = [](!{select_data[7][DataID]}\{select_data[7][7]})
+ltl_property P_JUDGEMENT_NG_07 = [](!reject[7])
+ltl_property P_JUDGEMENT_OK_08 = [](!{select_data[8][DataID]}\{select_data[8][8]})
+ltl_property P_JUDGEMENT_NG_08 = [](!reject[8])
+ltl_property P_JUDGEMENT_OK_09 = [](!{select_data[9][DataID]}\{select_data[9][9]})
+ltl_property P_JUDGEMENT_NG_09 = [](!reject[9])
+ltl_property P_JUDGEMENT_OK_10 = [](!{select_data[10][DataID]}\{select_data[10][10]})
+ltl_property P_JUDGEMENT_NG_10 = [](!reject[10])
+ltl_property P_JUDGEMENT_OK_11 = [](!{select_data[11][DataID]}\{select_data[11][11]})
+ltl_property P_JUDGEMENT_NG_11 = [](!reject[11])
+ltl_property P_JUDGEMENT_OK_12 = [](!{select_data[12][DataID]}\{select_data[12][12]})
+ltl_property P_JUDGEMENT_NG_12 = [](!reject[12])
+ltl_property P_JUDGEMENT_OK_13 = [](!{select_data[13][DataID]}\{select_data[13][13]})
+ltl_property P_JUDGEMENT_NG_13 = [](!reject[13])
+ltl_property P_JUDGEMENT_OK_14 = [](!{select_data[14][DataID]}\{select_data[14][14]})
+ltl_property P_JUDGEMENT_NG_14 = [](!reject[14])
+ltl_property P_JUDGEMENT_OK_15 = [](!{select_data[15][DataID]}\{select_data[15][15]})
+ltl_property P_JUDGEMENT_NG_15 = [](!reject[15])
+ltl_property P_JUDGEMENT_OK_16 = [](!{select_data[16][DataID]}\{select_data[16][16]})
+ltl_property P_JUDGEMENT_NG_16 = [](!reject[16])
+
+
+controllerSpec Specification =
+{
+	safety       = {
+					//P_JUDGEMENT_Admin,
+					P_JUDGEMENT_OK_01,P_JUDGEMENT_NG_01,
+					P_JUDGEMENT_OK_02,P_JUDGEMENT_NG_02,
+					P_JUDGEMENT_OK_03,P_JUDGEMENT_NG_03,
+					P_JUDGEMENT_OK_04,P_JUDGEMENT_NG_04,
+					P_JUDGEMENT_OK_05,P_JUDGEMENT_NG_05,
+					P_JUDGEMENT_OK_06,P_JUDGEMENT_NG_06,
+					P_JUDGEMENT_OK_07,P_JUDGEMENT_NG_07,
+					P_JUDGEMENT_OK_08,P_JUDGEMENT_NG_08,
+					P_JUDGEMENT_OK_09,P_JUDGEMENT_NG_09,
+					P_JUDGEMENT_OK_10,P_JUDGEMENT_NG_10,
+					//P_JUDGEMENT_OK_11,P_JUDGEMENT_NG_11,
+					//P_JUDGEMENT_OK_12,P_JUDGEMENT_NG_12,
+					//P_JUDGEMENT_OK_13,P_JUDGEMENT_NG_13,
+					//P_JUDGEMENT_OK_14,P_JUDGEMENT_NG_14,
+					//P_JUDGEMENT_OK_15,P_JUDGEMENT_NG_15,
+					//P_JUDGEMENT_OK_16,P_JUDGEMENT_NG_16,
+				   }
+	//liveness     = {GOAL}
+	controllable = {ControllableActions}
+}
+
+controllerSpec Spec1 =
+{
+	safety       = {P_JUDGEMENT_OK_01,P_JUDGEMENT_NG_01}
+	//liveness     = {GOAL}
+	controllable = {ControllableActions}
+}
+
+controllerSpec Spec2 =
+{
+	safety       = {P_JUDGEMENT_OK_02,P_JUDGEMENT_NG_02}
+	//liveness     = {GOAL}
+	controllable = {ControllableActions}
+}
+
+controllerSpec Spec3 =
+{
+	safety       = {P_JUDGEMENT_OK_03,P_JUDGEMENT_NG_03}
+	//liveness     = {GOAL}
+	controllable = {ControllableActions}
+}
+
+controllerSpec Spec4 =
+{
+	safety       = {P_JUDGEMENT_OK_04,P_JUDGEMENT_NG_04}
+	//liveness     = {GOAL}
+	controllable = {ControllableActions}
+}
+
+controllerSpec Spec5 =
+{
+	safety       = {P_JUDGEMENT_OK_05,P_JUDGEMENT_NG_05}
+	//liveness     = {GOAL}
+	controllable = {ControllableActions}
+}
+
+controllerSpec Spec6 =
+{
+	safety       = {P_JUDGEMENT_OK_06,P_JUDGEMENT_NG_06}
+	//liveness     = {GOAL}
+	controllable = {ControllableActions}
+}
+
+controllerSpec Spec7 =
+{
+    safety       = {P_JUDGEMENT_OK_07,P_JUDGEMENT_NG_07}
+    //liveness     = {GOAL}
+    controllable = {ControllableActions}
+}
+
+controllerSpec Spec8 =
+{
+    safety       = {P_JUDGEMENT_OK_08,P_JUDGEMENT_NG_08}
+    //liveness     = {GOAL}
+    controllable = {ControllableActions}
+}
+
+controllerSpec Spec9 =
+{
+    safety       = {P_JUDGEMENT_OK_09,P_JUDGEMENT_NG_09}
+    //liveness     = {GOAL}
+    controllable = {ControllableActions}
+}
+
+controllerSpec Spec10 =
+{
+    safety       = {P_JUDGEMENT_OK_10,P_JUDGEMENT_NG_10}
+    //liveness     = {GOAL}
+    controllable = {ControllableActions}
+}
+
+//*****************************************************************************
+//Controller
+//*****************************************************************************
+
+//General Synthesis
+||Environment = (forall [id:SystemID] System(id)).
+
+controller ||Controller = (forall [id:SystemID] System(id))~{Specification}.
+controller ||TraditionalController = (Environment)~{Specification}.
+
+controller ||C1 = (System(1))~{Spec1}.
+controller ||C2 = (System(2))~{Spec2}.
+controller ||C3 = (System(3))~{Spec3}.
+controller ||C4 = (System(4))~{Spec4}.
+controller ||C5 = (System(5))~{Spec5}.
+controller ||C6 = (System(6))~{Spec6}.
+controller ||C7 = (System(7))~{Spec7}.
+controller ||C8 = (System(8))~{Spec8}.
+controller ||C9 = (System(9))~{Spec9}.
+controller ||C10 = (System(10))~{Spec10}.
+
+||StepwiseController = (C1||C2||C3||C4||C5||C6||C7||C8||C9||C10).

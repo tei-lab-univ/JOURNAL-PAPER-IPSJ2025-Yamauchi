@@ -1,0 +1,393 @@
+\section{CSDCS（CDCSとSDCSの一元化）}
+\label{section:proposal}
+CDCSとSDCSにおける適用選択の課題を解消するため，本論文ではSDCSとCDCSを一元化したDCS，Consolidated Stepwise Discrete Controller Synthesis（CSDCS）を提案する．
+CSDCSの導入により，従来必要であったSDCSとCDCSの使い分けに関する判断工程が不要となり，両者の適用選択における課題を解消できる．
+CSDCSではSDCSとCDCSの一元化を実現するため，\ref{subsection:limitation}節の制約1と制約2を克服するようにSDCSとCDCSを組み合わせる．
+% CSDCSがSDCSおよびCDCSのいずれと比較しても同等以上の適用可能範囲と状態空間削減効果を備える必要がある．
+% CSDCSではその要件を満たすため，\ref{subsection:limitation}節で示された適用選択における{\bf 制約1}と{\bf 制約2}
+
+\subsection{技術詳細}
+CSDCSでは，SDCS（Algorithm\ref{algorithm:SDCS}）を基盤にしつつ，$g^{*}$の構築に関わる3つの過程（Parallel Composition，Modified Parallel Composition，Error State Abstraction）
+をCDCSで導入されたConsolidated Game Composition（定義\ref{def:consolidated_game_composition}）へと置換する．
+CDCSは$g^{*}$の構築過程をConsolidated Game Compositionに統合することで違反状態の抽象化を通じた計算空間削減を実現する．
+このConsolidated Game Compositionは，SDCSにおいて繰り返し行われるゲーム空間$g^{*}$の構築処理にも適用可能であり，
+SDCSの段階的な計算空間削減アプローチと整合的に機能する．
+SDCSの構造にCDCSの手法を統合することにより，CDCSおよびSDCSの両手法が対象とする適用可能範囲を包含でき，CSDCSは適用範囲の不一致に起因する制約1の克服を実現する．
+そのCSDCSアルゴリズムがAlgorithm~\ref{algorithm:CSDCS}である．
+
+\begin{algorithm}[t]
+\caption{CSDCS}
+\label{algorithm:CSDCS}
+\begin{algorithmic}[1]
+\renewcommand{\algorithmicrequire}{\textbf{Input:}}
+\renewcommand{\algorithmicensure}{\textbf{Output:}}
+\REQUIRE $E$ {\bf such that} $\forall e \in E, e = (id, S, A, \Delta, s^0)$
+\REQUIRE $R$ {\bf such that} $\forall r \in R, r = (id, S, A, \Delta, s^0)$
+\ENSURE $c$
+\STATE $\Lambda =$ {\bf Algorithm \ref{algorithm:CSDCS_huristic}($E$, $R$)}
+\FOR {$i^* = 1$ to $n(\Lambda)$}
+    \STATE $\lambda = (i^*, eids_{\lambda}, rids_{\lambda}, cid_{\lambda}) \in \Lambda$
+    \STATE $R^* = \{\forall r \in R \mid id_{r} \in rids_{\lambda}\}$
+    \STATE $E^* = \{\forall e \in E \mid A_{e} \cap A_{R^*} \neq \emptyset\}$
+    \STATE $g^* =$ {\bf Consolidated Game Composition($R^* \cup E^*$)}
+    \STATE $c   =$ {\bf Safety Game Solving($g^*$)}
+    \STATE $c^* = (cid_{\lambda}, S_{c}, A_{c}, \Delta_{c}, s^0_{c})$
+    \STATE $R   = R \backslash R^*$, $E = E \backslash E^* \cup \{c^*\}$
+\ENDFOR
+\STATE {\bf return} $c$
+\end{algorithmic}
+\end{algorithm}
+
+Algorithm\ref{algorithm:CSDCS}では，はじめに，任意のヒューリスティクスに基づいて合成シーケンス$\Lambda$を導出する（1-2行目）．
+その後，導出された$\Lambda$において$i_{\lambda}$が1の$\lambda$から順に繰り返しConsolidated Game Compositionを用いた部分合成を行う（3-11行目）．部分合成では，入力された$R$のうち$rids_{\lambda}$に$id_{r}$が含まれる$r$の集合を$R^*$とし（5行目），$R^*$と$E$から部分合成の適用可能条件式$A_{r} \subseteq A_{E^*} \backslash A_{E \backslash E^*}$を満たす$e \in E$の集合を$E^*$として導出する（6行目）．その後，導出された$R^*$と$E^*$を入力としてConsolidated Game Compositionを実行することでゲーム空間$g^*$を合成する（7行目）．その後，$g^*$を入力としてSafety Game Solvingを実行することで部分制御器$c$を合成し（8行目），合成された$c$の$id$に$cid_{\lambda}$を割り当てる（9行目）．最後に，次の$\lambda$で使用する$R$と$E$から使用した$R^*$と$E^*$を取り除き，$cid_{\lambda}$が割り当てられた部分制御器$c^*$を$E$に加える（10行目）．この部分合成を全ての$\Lambda$において$i_{\lambda}$の小さい方から順に繰り返し適用し，制御器$c$を合成する．
+
+このとき，Algorithm\ref{algorithm:CSDCS}は，各監視モデルに対して個別に繰り返し部分合成を実施するため，SDCSと同様にbasic DCSと比較して計算時間が増加する可能性（制約2）を内在する．
+
+この計算時間の増加に対処するため，CSDCSでは複数の監視モデルを同時に対象とした部分合成手法を導入し，部分合成の繰り返し回数を削減する．
+SDCSは，部分合成の回数を減少させるほど，各回で構築される状態空間が大規模化するため，計算空間削減性能が低下する特性を持つ．
+対して，Consolidated Game Compositionは，同時に入力される監視モデルの数が増加するにつれて，抽象化される違反状態に該当する状態が増え，計算空間削減性能が向上する特性を持つ．
+この特性を活用し，複数の監視モデルを同時に対象とした部分合成にConsolidated Game Compositionを適用することで，SDCS特有の計算空間削減効果を損なうことなく計算時間の増加を抑制でき，制約2を克服を実現する．
+
+複数の監視モデルを同時に部分合成するため，CSDCSではAlgorithm\ref{algorithm:CSDCS}における$\Lambda$導出過程（1行目）を改良する．
+$\lambda \in \Lambda$の$rids_{\lambda}$に複数の監視モデルの$id$を格納することで，同一ステップ内で複数の監視モデルを同時に対象とする部分合成が実現される．
+そのCSDCSのための$\Lambda$導出アルゴリズムがAlgorithm\ref{algorithm:CSDCS_huristic}である．
+
+\begin{algorithm}[t]
+\caption{CSDCSに特化した$\Lambda$の統合}
+\label{algorithm:CSDCS_huristic}
+\begin{algorithmic}[1]
+\renewcommand{\algorithmicrequire}{\textbf{Input:}}
+\renewcommand{\algorithmicensure}{\textbf{Output:}}
+\REQUIRE $E$ {\bf such that} $\forall e \in E, e = (id_{e}, S_{e}, A_{e}, \Delta_{e}, s^0_{e})$
+\REQUIRE $R$ {\bf such that} $\forall r \in R, r = (id_{r}, S_{r}, A_{r}, \Delta_{r}, s^0_{r})$
+\ENSURE  $\Lambda$
+\STATE $\Lambda =$ {\bf Algorithm \ref{algorithm:huristic}($E$, $R$, $1$)}, \;\;$i^{**} = 1$
+\STATE $cids = \{\forall cid_{\lambda} \mid (i_{\lambda}, eids_{\lambda}, rids_{\lambda}, cid_{\lambda}) \in \Lambda\}$
+\FOR {$i^* = 1$ to $n(\Lambda)$}
+    \STATE $\lambda = (i^*, eids_{\lambda}, rids_{\lambda}, cid_{\lambda}) \in \Lambda$
+    \IF{$n(eids_{\lambda} \cap cids) = 1$}
+        \STATE $cid^* = \exists id \in (eids_{\lambda} \cap cids)$
+        \STATE $\lambda^* = (i_{\lambda^*}, eids_{\lambda^*}, rids_{\lambda^*}, cid^*) \in \Lambda$
+        \STATE $eids^* = eids_{\lambda} \cup eids_{\lambda^*} \backslash \{cid^*\}$
+        \STATE $rids^* = rids_{\lambda} \cup rids_{\lambda^*}$
+        \STATE $\Lambda = \Lambda \backslash \{\lambda ,\lambda^*\} \cup \{i_{\lambda^*}, eids^*, rids^*, cid_{\lambda}\}$
+    \ELSE
+        \STATE $\Lambda = \Lambda \backslash \{\lambda\} \cup \{i^{**}, eids_{\lambda}, rids_{\lambda}, cid_{\lambda}\}$
+        \STATE $i^{**} = i^{**} + 1$
+    \ENDIF
+\ENDFOR
+\STATE {\bf return} $\Lambda$
+\end{algorithmic}
+\end{algorithm}
+
+Algorithm\ref{algorithm:CSDCS_huristic}では，Algorithm\ref{algorithm:huristic}を用いて監視モデルごとに部分合成する$\Lambda$を導出する（1行目）．その後，$\Lambda$で合成される全ての部分制御器の$cid$を$cids$として用意し（2行目），$i_{\lambda}$が1の$\lambda \in \Lambda$から順に$eids_{\lambda}$に$cid$が何個含まれているか確認する（3-5行目）．
+$eids_{\lambda}$に含まれる$cid$が1つの時（5行目），その唯一の$cid$を合成する$\lambda^*$と$\lambda$を統合する（6-10行目）．
+統合された$\lambda$は$\{i_{\lambda^*}, eids^*, rids^*, cid_{\lambda}\}$で表さる．
+$eids^*$は$eids_{\lambda}$に含まれる$cid_{\lambda^*}$と$eid_{\lambda^*}$を置き換えた$id$の集合で表される（8行目）．
+$rids^*$は$rids_{\lambda}$と$rid_{\lambda^*}$の和集合で表される（9行目）．
+その後，統合された$\lambda$と，統合元となった$\lambda$と$\lambda^*$を，$\Lambda$において置き換える（10行目）．
+$eids_{\lambda}$に含まれる$cid$が2つ以上，もしくは$cid$が含まれない場合は，統合によって減った$\lambda$数に合わせて$i_{\lambda}$を振り直す（11-14行目）．
+以上の工程を全ての$\lambda \in \Lambda$において繰り返し実行し， $n(eids_{\lambda} \cap cids) = 1$となる$\lambda$の統合を行う．
+
+このとき，Algorithm\ref{algorithm:CSDCS_huristic}では$n(eids_{\lambda} \cap cids) = 1$となる$\lambda$を統合した．
+その結果，CSDCS（Algorithm\ref{algorithm:CSDCS}）において1つの部分制御器を入力とする部分合成がCSDCSの合成過程から全て存在しなくなる．
+2つ以上の部分制御器を入力とする部分合成の場合，入力の部分制御器を合成する部分合成は完全に問題が分離できているため，SDCSによる計算空間削減効果が保証される．
+対して，1つの部分制御器を入力とする部分合成の場合，〜によって，SDCSによる計算空間削減効果は保証されない．
+% 対して，1つの部分制御器を入力とする部分合成の場合，
+% 確実にSDCSによる計算空間削減効果が得られる場合のみ適用する
+
+
+\subsection{機能の妥当性証明}
+機能の妥当性証明として，CSDCSがbasic DCSと常に同じ制御器を合成することを命題\ref{prf:proof1}の証明で示す．
+
+\begin{pro}
+    \label{prf:proof1}
+    1以上の自然数$i$と$j$において，環境モデル$E = \{e_1, e_2, \ldots, e_i\}$，監視モデル$R = \{r_1, r_2, \ldots, r_j\}$が与えられるとき，{\bf Algorithm \ref{algorithm:basic_controller_synthesis}($E$, $R$)}の出力$c$と，{\bf Algorithm \ref{algorithm:CSDCS}($E$, $R$)}の出力$c$は同じとなる．
+\end{pro}
+\begin{proof}
+    % 本証明では，同じ$E$と$R$が与えられるとき，Algorithm\ref{algorithm:CSDCS}（CSDCS）とAlgorithm\ref{algorithm:SDCS}（SDCS）が同じ$c$を合成することを示す．そして，Algorithm\ref{algorithm:SDCS}（SDCS）がAlgorithm\ref{algorithm:basic_controller_synthesis}（basic DCS）と同じ$c$を合成することを示すことで，命題\ref{prf:proof1}が成り立つことを証明する．
+    同じ$E$と$R$が与えられるとき，Algorithm\ref{algorithm:SDCS}（SDCS）とAlgorithm\ref{algorithm:basic_controller_synthesis}（basic DCS）は同じ$c$を合成できる\cite{yamauchi:IEICEJ2023}．よって，式\ref{equation:SDCS_basicDCS}が成り立つ．
+    \begin{equation}
+    \label{equation:SDCS_basicDCS}
+        {\bf Algorithm \ref{algorithm:SDCS}(E, R)} = {\bf Algorithm \ref{algorithm:basic_controller_synthesis}(E, R)}
+    \end{equation}
+
+    次に，Algorithm\ref{algorithm:SDCS}（SDCS）とAlgorithm\ref{algorithm:CSDCS}（CSDCS）は同じ制御器を合成できることを証明する．
+    Algorithm\ref{algorithm:CSDCS}では，Consolidated Game Composition，Algorithm\ref{algorithm:SDCS}ではParallel Composition，Modified Parallel Composition，Error State Abstractionの3つを用いて$g'$を合成する．
+    同じ$E^*$と$R^*$が与えられるとき，Consolidated Game Compositionによって合成される$g'$と，Parallel Composition，Modified Parallel Composition，Error State Abstractionの3つを通して合成される$g'$は同じとなる\cite{yamauchi:IPSJ2024}．
+    よって，同じ$E$と$R$が与えられるとき，Algorithm\ref{algorithm:CSDCS}とAlgorithm\ref{algorithm:SDCS}で合成される$g'$は常に同じとなる．
+    $g'$から$c$を導出する過程は全く同じであるため，同じ$E$と$R$が与えられるときAlgorithm\ref{algorithm:CSDCS}とAlgorithm\ref{algorithm:SDCS}は同じ$c$を合成できる．
+    よって，式\ref{equation:CSDCS_SDCS}が成り立つ．
+    \begin{equation}
+    \label{equation:CSDCS_SDCS}
+        {\bf Algorithm \ref{algorithm:CSDCS}(E, R)} = {\bf Algorithm \ref{algorithm:SDCS}(E, R)}
+    \end{equation}
+
+    すると，式\ref{equation:CSDCS_SDCS}と式\ref{equation:SDCS_basicDCS}から式\ref{equation:CDDCS_SDCS_basicDCS}が成り立つ．
+    \begin{align}
+    \label{equation:CDDCS_SDCS_basicDCS}
+        \begin{split}
+            {\bf Algorithm \ref{algorithm:CSDCS}(E, R)} &= {\bf Algorithm \ref{algorithm:SDCS}(E, R)}\\
+            &= {\bf Algorithm \ref{algorithm:basic_controller_synthesis}(E, R)}
+        \end{split}
+    \end{align}
+
+    よって，同じ$E$と$R$が与えられるとき，Algorithm\ref{algorithm:CSDCS}とAlgorithm\ref{algorithm:basic_controller_synthesis}で合成される$c$は同じとなるため，本命題は成り立つ．
+\end{proof}
+
+
+% [証明2]huristicが効果的であることの証明
+% どのような計算空間を削減するか
+% 無理そうな気もするので，それは実験で評価した方が良いかも
+
+
+
+
+
+
+
+
+
+% 以下，監視対象モデル数最小のSDCSを導出する話
+% ---------------------------------------------------------------
+
+
+
+
+% \subsection{CSDCSのための合成シーケンス導出アルゴリズム}
+% \label{subsection:CSDCS_huristic}
+% CSDCSでは，新たに導入されたConsolidated Game Compositionによる計算空間削減効果を最大限発揮させるため，複数の監視モデルを同時に分析（部分合成）することが求められる．
+% しかし，ベースとなっているSDCSは可能な限り監視モデルごとに細かく分析（部分合成）するほど計算空間削減効果が大きくなる手法であるため，
+% 両手法を取り入れたCSDCSの計算空間削減効果を最大化する上で，どの監視モデルを一括で分析（部分合成）し，どの監視モデルを分割して分析（部分合成）するか$\Lambda$の設計（Algorithm\ref{algorithm:CSDCS} 1行目）において重要となる．
+% そこで，本論文ではCSDCSの提案にあたって$E$と$R$の監視関係に着目した汎用的な$\Lambda$導出アルゴリズムを提供する．
+% その$\Lambda$導出アルゴリズムがAlgorithm\ref{algorithm:CSDCS_huristic}である．
+
+% % 合成プロセスの統合
+% \begin{algorithm}[t]
+% \caption{Consolidated Game Compositionを考慮した$\Lambda$導出}
+% \label{algorithm:CSDCS_huristic}
+% \begin{algorithmic}[1]
+% \renewcommand{\algorithmicrequire}{\textbf{Input:}}
+% \renewcommand{\algorithmicensure}{\textbf{Output:}}
+% \REQUIRE $E$ {\bf such that} $\forall e \in E, e = (id_{e}, S_{e}, A_{e}, \Delta_{e}, s^0_{e})$
+% \REQUIRE $R$ {\bf such that} $\forall r \in R, r = (id_{r}, S_{r}, A_{r}, \Delta_{r}, s^0_{r})$
+% \ENSURE  $\Lambda$
+% \STATE $\Lambda =$ {\bf Algorithm \ref{algorithm:influence} ($E$, $R$, $1$)}
+% \STATE $cids = \{\forall cid_{\lambda} \mid (step_{\lambda}, eids_{\lambda}, rids_{\lambda}, cid_{\lambda}) \in \Lambda\}$
+% \FOR {$i = 1$ to $n(\Lambda)$}
+%     \STATE $\lambda = (i, eids_{\lambda}, rids_{\lambda}, cid_{\lambda}) \in \Lambda$
+%     \IF{$n(eids_{\lambda} \cap cids) = 1$}
+%         \STATE $cid' = \exists id \in (eids_{\lambda} \cap cids)$
+%         \STATE $\lambda' = (step_{\lambda'}, eids_{\lambda'}, rids_{\lambda'}, cid') \in \Lambda$
+%         \STATE $eids^* = eids_{\lambda} \cup eids_{\lambda'} \backslash \{cid'\}$
+%         \STATE $rids^* = rids_{\lambda} \cup rids_{\lambda'}$
+%         \STATE $\Lambda = \Lambda \backslash \{\lambda ,\lambda'\} \cup \{step_{\lambda'}, eids^*, rids^*, cid_{\lambda}\}$
+%     \ENDIF
+% \ENDFOR
+% \STATE {\bf return} $\Lambda$
+% \end{algorithmic}
+% \end{algorithm}
+
+% Algorithm\ref{algorithm:CSDCS_huristic}では，はじめにCSDCSで分析される$R$全体の監視対象モデル数が最小となるような合成シーケンス$\Lambda$を導出する（1行目）．その後，導出された合成プロセス$\lambda$の$\Lambda$における依存関係に応じて，複数の$\lambda$を統合する（2-12行目）．
+% $\Lambda$に含まれる全ての部分制御器のid$cid_{\lambda}$の集合を$cids$として用意し，$step_{\lambda}$が1の$\lambda \in \Lambda$から順に$eids_{\lambda}$に部分制御器のidが何個含まれているか確認する（3-5行目）．$eids_{\lambda}$に含まれる部分制御器のidが1つの時（5行目），その部分制御器のidを$cid'$として取り出し（6行目），$cid'$を合成する$\lambda$を$\lambda'$として用意する（7行目）．そして，$eids_{\lambda}$に含まれるidから$cid'$を除き，その$cid'$を合成する際に使用する環境モデルのid$eid_{\lambda'}$を加えたものを$eids^*$（8行目）．$rids_{\lambda}$に含まれるidに$cid'$を合成する際に使用する監視モデルのid$rid_{\lambda'}$を加えたものを$rids^*$とする（9行目）．最後に，用意した$eids^*$と$rids^*$から$\lambda$と$\lambda$を統合した合成プロセスを構築し，$\Lambda$において$\lambda$，$\lambda'$と置き換える（10行目）．以上の工程を全ての$\lambda \in \Lambda$において繰り返し実行し，合成プロセスの統合を行う．このとき，Algorithm\ref{algorithm:CSDCS_huristic}の1行目にて導出されるCSDCSで分析される$R$全体の監視対象モデル数が最小となるような合成シーケンス$\Lambda$は，Algorithm\ref{algorithm:influence}にて導出される．
+% % [ToDo] なぜこの統合によってConsolidated Game Compositionの計算削減効果が発揮されるのか？（例を使った方が良い？）
+
+
+% % 影響量を考慮した合成プロセスの構築
+% \begin{algorithm}[t]
+% \caption{部分合成影響量を考慮した$\Lambda$の導出}
+% \label{algorithm:influence}
+% \begin{algorithmic}[1]
+% \renewcommand{\algorithmicrequire}{\textbf{Input:}}
+% \renewcommand{\algorithmicensure}{\textbf{Output:}}
+% \REQUIRE $E$ {\bf such that} $\forall e \in E, e = (id_{e}, S_{e}, A_{e}, \Delta_{e}, s^0_{e})$
+% \REQUIRE $R$ {\bf such that} $\forall r \in R, r = (id_{r}, S_{r}, A_{r}, \Delta_{r}, s^0_{r})$, $step^*$
+% \ENSURE  $\Lambda$
+% \STATE $\delta^{\min} = \infty$,\;\; $cid^* = ${\bf uniqueID}
+% \FORALL{$r \in R$}
+%     \STATE $E^* = \{\forall e \in E \mid A_{e} \cap A_{r} \neq \emptyset\}$
+%     \STATE $E^\delta = E \backslash E^* \cup \bigcup_{e \in E} \{(id_{e}, \emptyset, A_{E^*}, \emptyset, \emptyset)\}$
+%     \STATE $\delta = \sum_{r \in R} \big(\mu(r, E^{\delta}) - \mu(r, E)\big)$
+%     \IF{$\delta < \delta^{\min}$}
+%         \STATE $\delta^{\min} = \delta$, \;\;$R^* = \emptyset$
+%         \FORALL {$r' \in R \backslash \{r\}$}
+%             \STATE $E_{r'} = \{\forall e \in E \mid A_{e} \cap A_{r'} \neq \emptyset\}$
+%             \IF {$E_{r'} \subseteq E_{r}$}
+%                 \STATE $R^* = R^* \cup \{r'\}$
+%             \ENDIF
+%         \ENDFOR
+%         \STATE $eids^* = \{\forall id_{e} \mid (id_{e}, S_{e}, A_{e}, \Delta_{e}, s^0_{e}) \in E^*\}\}$
+%         \STATE $rids^* = \{\forall id_{r} \mid (id_{r}, S_{r}, A_{r}, \Delta_{r}, s^0_{r}) \in R^*\}\}$
+%         \STATE $c^* = (cid^*, \emptyset, A_{E^*}, \emptyset, \emptyset)$
+%         \STATE $E' = E \backslash E^* \cup \{c^*\}$, $R' = R \backslash R^*$
+%     \ENDIF
+% \ENDFOR
+% \STATE {\bf return} $\Lambda = \{(step^*, eids^*, rids^*, cid^*)\}$ $\cup$ {\bf Algorithm \ref{algorithm:influence}($E'$, $R'$, $step^*+1$)}
+% \end{algorithmic}
+% \end{algorithm}
+
+% Algorithm\ref{algorithm:CSDCS_huristic}では，監視モデルの監視対象モデル数に着目し，$E$と$R$から全監視モデルの監視対象モデル数が最小だと思われる合成シーケンス$\Lambda$を導出する．
+% このとき，監視対象モデル数は定義\ref{def:monitored_model}に基づいて導出できる．
+
+% \begin{dfn}{\textbf{監視対象モデル数　}}
+% \label{def:monitored_model}
+%     監視対象モデル数$\mu(r, E)$は，監視モデル$r$と環境モデルの集合$E$において部分合成の適用可能条件$A_{r} \subseteq A_{E^*} \backslash A_{E \backslash E^*}$を満たす$E^*$の最小の要素数を表す．
+%     この時，要素数最小の$E^*$は$\{\forall e \in E \mid A_e \cap A_r \neq \emptyset\}$で導出できるため，その要素数である$\mu(r, E)$は以下の式によって導出できる．
+%     \begin{equation}
+%     \label{function:cost}
+%         \mu \langle r,E \rangle = n(\{\forall e \in E \mid A_e \cap A_r \neq \emptyset\})
+%     \end{equation}
+% \end{dfn}
+
+% 監視対象モデル数$\mu \langle r,E \rangle$は，$r$の部分合成で構築されるゲーム空間$g'$の構築要素となる環境モデルの数を表し，監視対象モデル数に対して$g'$の状態数は指数関数的に増加する性質を持つ．部分合成を用いたDCSでは後に分析される$r$の$g'$ほど空間削減効果が大きくなるため，監視対象モデル数が大きなモデルほど後に分析することで，部分合成の計算空間削減効果が大きくなると考えられる．
+% よって，監視対象モデル数が最小のものから順に部分合成する$\Lambda$を用いることで計算空間削減効果を大きくできるかと考えられるが，その$r$の監視対象モデル数がいくら小さくとも，$r$以外の監視対象モデル数を増加させる$r$も存在する．
+% そこで，その状況に対処するために$r$を部分合成することによる$r$以外の監視対象モデル数の増加量を$r$と部分合成影響量$\delta$とし，この$\delta$を考慮することで，$E$と$R$から全監視モデルの監視対象モデル数が最小だと思われる合成シーケンス$\Lambda$が導出できると考えた．
+% このとき，部分合成影響量$\delta$は以下にように定義する．
+
+% \begin{dfn}{\textbf{部分合成影響量　}}
+% \label{def:component_model}
+%     部分合成影響量$\delta$は，監視モデル$r$を部分合成する前の環境モデル群を$E$，$r$を部分合成する前の環境モデル群を$E^\delta$とした時，全ての$R$において
+%     % 影響量$\delta$は，SDCSにおいて$r$を部分合成した時監視モデル全体の監視対象モデル数が
+%     \begin{equation}
+%     \label{function:influence}
+%         \delta = \sum_{r \in R} \big(\mu \langle r, E^{\delta} \rangle - \mu \langle r, E \rangle\big)
+%     \end{equation}
+% \end{dfn}
+
+
+% 計算空間効率の良い合成プロセスを導出するにあたって，部分制御器が未分析な監視モデルの監視対象モデルとなるSDCSの仕組みに着目した．
+% SDCSでは，入力の監視モデルを順序づけし，その順序に従ってゲーム空間を構築・分析していく．
+% そしてゲーム空間の分析する度に部分制御器が出力され，以降に分析される監視モデルの監視対象モデルとなる．
+
+% この時，〜の例を考えてみる．
+% SDCSにおいてはじめに分析する監視モデルの監視対象モデルが全コンポーネントモデルとなる場合，以降全ての監視モデルにおいて全コンポーネントモデルで分析を行う必要があるため，非常に効率が悪い．
+
+% よって，未分析の監視モデルの監視対象モデル数を考慮することで，制御器を合成するにあたって構築される最大のゲーム空間を小さくすることが可能となる．
+
+% そこで本論文では，「監視モデルの分析によって，未分析な監視モデルの監視対象モデル数がどれだけ増加するか」を表した指標である，影響量を考慮して計算空間効率の良い合成プロセスを構築する．
+% この時，監視対象モデル数は定義\ref{def:monitored_model}によって定義される．
+
+% \begin{dfn}{\textbf{監視対象モデル数　}}
+% \label{def:num_of_monitored_model}
+%     監視対象モデル数$\mu(r, E)$は，監視モデル$r$と環境モデルの集合$E$において部分合成の適用可能条件$A_{r} \subseteq A_{E^*} \backslash A_{E \backslash E^*}$を満たす$E^*$の最小の要素数を表す．
+%     この時，要素数最小の$E^*$は$\{\forall e \in E \mid A_e \cap A_r \neq \emptyset\}$で導出できるため，その要素数である$\mu(r, E)$は以下の式によって導出できる．
+%     \begin{equation}
+%     \label{function:cost}
+%         \mu \langle r,E \rangle = n(\{\forall e \in E \mid A_e \cap A_r \neq \emptyset\})
+%     \end{equation}
+% \end{dfn}
+
+
+
+% この監視対象モデル数を用いて，影響量は定義\ref{def:component_model}で定義される．
+
+% \begin{dfn}{\textbf{影響量　}}
+% \label{def:component_model}
+%     影響量$\delta$は，監視モデル$r$を部分合成する前の環境モデル群を$E$，$r$を部分合成する前の環境モデル群を$E^\delta$とした時，全ての$R$において
+%     % 影響量$\delta$は，SDCSにおいて$r$を部分合成した時監視モデル全体の監視対象モデル数が
+%     \begin{equation}
+%     \label{function:influence}
+%         \delta = \sum_{r \in R} \big(\mu \langle r, E^{\delta} \rangle - \mu \langle r, E \rangle\big)
+%     \end{equation}
+% \end{dfn}
+
+% この影響量が最小となる監視モデルから優先的に分析する合成プロセスを適用することで，効率的な計算空間で制御器の合成が可能となる．
+
+% % 一括分析を考慮した合成プロセスの統合
+% 分析対象モデルに部分制御器を一つしか含まない場合，合成を集約する．
+
+
+
+% その複数の
+% Algorithm\ref{algorithm:SDCS}における計算時間増加の課題に対処するために，CSDCSでは最小限の部分合成回数で高い計算空間削減効果が期待される合成シーケンスであることが望ましい．
+
+% そこでCSDCSでは，可能な限り複数の監視モデルを同時に部分合成し，計算空間がボトルネックとなる可能性が高いタイミングでのみ部分合成を適用する，CSDCSに特化した合成シーケンスを提案する．
+
+% 計算空間がボトルネックとなりやすいタイミングとしては，まずはじめに複数の環境モデルを入力とした部分合成が実施されるタイミングが考えられる．
+% 部分合成過程で行われるConsolidated Game Compositionの性質から，入力の環境モデル数に対して出力のゲーム空間の状態数は指数増加する．
+% よって環境モデル数が増加する監視対象モデル数が二以上の部分合成はボトルネックとなりやすい．
+
+% しかし，この条件だけでは最悪で環境モデルの数だけ部分合成する必要があるため，まだ部分合成の数が多い．
+% そこで，
+
+% よって，本論文では部分制御器を2つ以上含む部分合成で入力となる部分制御器の部分合成だけ実施することで，少ない部分合成回数で高い計算空間削減効果を目指す．
+% そのアルゴリズムがAlgorithm\ref{algorithm:CSDCS_huristic}である．
+
+
+
+% 部分合成する回数を減らすにあたって，部分的に分析した方が良い監視モデルと，他と同時に分析しても良い監視モデルを考える必要があるが，本論文では2つの監視モデルの監視対象モデルの依存関係に着目した．
+
+
+
+
+% 監視対象モデルが完全に被らない場合→分解して解くべき（SDCSが有効に働く）\\
+% 監視対象モデルに重複が見られる場合→同じサブ問題として解くべき（CDCSが有効に働く）\\
+
+% 一部の監視モデルを同時に分析するにあたって，同時に分析する監視モデルの数が多くなるほどConsolidated Game Compositionの計算空間削減効果が大きくなる性質を活用する．
+
+
+% -----
+% また，Consolidated Game Compositionは複数の監視モデルを同時に分析するほど計算空間を削減できる手法であるため，監視モデルごとに分析していてはCDCSより削減効果が小さくなる．
+
+% そこでCSDCSでは，一部の監視モデルを同時に部分合成する．
+% 一部の監視モデルを同時に分析することで，SDCSの計算空間削減効果は小さくなるが，Consolidated Game Compositionの削減効果は大きくなる．また，監視モデルを同時に分析するほど，CSDCSにおける部分合成の回数が少なくなるため計算時間の増加抑制することが可能となる．
+% そこで，続く\ref{subsection:CSDCS_2}節では，一部の監視モデルを同時に部分合成するCSDCSに特化した合成シーケンス導出アルゴリズムを提案する．
+% -----
+
+% Algorithm\ref{algorithm:CSDCS}の1行目において，SDCSで用いられてきた監視モデルごとに部分合成する合成シーケンスを用いると，CDCSの計算空間削減効果が十分に発揮されない場合が存在する．
+
+% 式\ref{function:SDCS_reduced_state}より，SDCSは分析済みの監視モデル数が多くなるほど，違反状態に該当する状態数が増加するため計算空間削減効果が大きくなる．
+% そこで，SDCSではどのゲーム空間がSDCSのボトルネックになったとしても分析済みの監視モデル数が最大化されるよう，一度の分析（部分合成）で分析する監視モデル数が最小となるような監視モデルごとにゲーム空間を構築する合成シーケンスが提案されてきた．
+
+% しかし，式\ref{function:CDCS_reduced_state}より，CSDCSで導入するConsolidated Game Compositionは，一度の分析（部分合成）で分析する監視モデルの数が多くなるほど，違反状態に該当する状態空間が多くなるため計算空間削減効果が大きくなる．
+% このことから，SDCSとConsolidated Game Compositionの両方の計算空間削減効果を最大化するための，CSDCSに特化した合成シーケンス導出ポリシーが必要となる．
+
+% そこで本論文では，CSDCSで構築されるゲーム空間の包含関係に着目した，CSDCSに特化した合成シーケンスを提案する．
+% 監視モデルごとに部分合成する従来の合成シーケンスに対して，SDCSによる計算空間削減効果が小さいと思われる合成プロセスを統合することで，CSDCSにおいてConsolidated Game Compositionの計算空間削減効果を最大化する．
+% このとき，統合する合成プロセスはゲーム空間を構成する環境モデルの要素に着目して決定する．
+
+%[ToDo] なんで部分制御器がひとつの場合合成プロセスを統合するのかの理由がほしい
+
+
+% すると，統合される合成プロセスは常に以下の条件式\ref{function:merge_process}を満たす．
+% \begin{equation}
+% \label{function:merge_process}
+%     n(eids_{\lambda} \cap cids) = 1
+% \end{equation}
+
+
+% % ゲーム空間の包含関係に着目した削減効果に関する説明
+
+% 以上の合成プロセスの統合技術を導入した，CSDCSに特化した合成シーケンス$\Lambda$導出アルゴリズムがAlgorithm\ref{algorithm:CSDCS_huristic}である．
+
+% % 合成プロセスの統合
+% \begin{algorithm}[t]
+% \caption{Consolidated Game Compositionを考慮した$\Lambda$導出}
+% \label{algorithm:CSDCS_huristic}
+% \begin{algorithmic}[1]
+% \renewcommand{\algorithmicrequire}{\textbf{Input:}}
+% \renewcommand{\algorithmicensure}{\textbf{Output:}}
+% \REQUIRE $E$ {\bf such that} $\forall e \in E, e = (id_{e}, S_{e}, A_{e}, \Delta_{e}, s^0_{e})$
+% \REQUIRE $R$ {\bf such that} $\forall r \in R, r = (id_{r}, S_{r}, A_{r}, \Delta_{r}, s^0_{r})$
+% \ENSURE  $\Lambda$
+% \STATE $\Lambda =$ {\bf Huristic($E$, $R$)}
+% \STATE $cids = \{\forall cid_{\lambda} \mid (step_{\lambda}, eids_{\lambda}, rids_{\lambda}, cid_{\lambda}) \in \Lambda\}$
+% \FOR {$i = 1$ to $n(\Lambda)$}
+%     \STATE $\lambda = (i, eids_{\lambda}, rids_{\lambda}, cid_{\lambda}) \in \Lambda$
+%     \IF{$n(eids_{\lambda} \cap cids) = 1$}
+%         \STATE $cid' = \exists id \in (eids_{\lambda} \cap cids)$
+%         \STATE $\lambda' = (step_{\lambda'}, eids_{\lambda'}, rids_{\lambda'}, cid') \in \Lambda$
+%         \STATE $eids^* = eids_{\lambda} \cup eids_{\lambda'} \backslash \{cid'\}$
+%         \STATE $rids^* = rids_{\lambda} \cup rids_{\lambda'}$
+%         \STATE $\Lambda = \Lambda \backslash \{\lambda ,\lambda'\} \cup \{step_{\lambda'}, eids^*, rids^*, cid_{\lambda}\}$
+%     \ENDIF
+% \ENDFOR
+% \STATE {\bf return} $\Lambda$
+% \end{algorithmic}
+% \end{algorithm}
+
+% % アルゴリズムの詳細
+% Algorithm\ref{algorithm:CSDCS_huristic}では，はじめにCSDCSで分析される$R$全体の監視対象モデル数が最小となるような合成シーケンス$\Lambda$を導出する（1行目）．その後，導出された合成プロセス$\lambda$の$\Lambda$における依存関係に応じて，複数の$\lambda$を統合する（2-12行目）．
+% $\Lambda$に含まれる全ての部分制御器のid$cid_{\lambda}$の集合を$cids$として用意し，$step_{\lambda}$が1の$\lambda \in \Lambda$から順に$eids_{\lambda}$に部分制御器のidが何個含まれているか確認する（3-5行目）．$eids_{\lambda}$に含まれる部分制御器のidが1つの時（5行目），その部分制御器のidを$cid'$として取り出し（6行目），$cid'$を合成する$\lambda$を$\lambda'$として用意する（7行目）．そして，$eids_{\lambda}$に含まれるidから$cid'$を除き，その$cid'$を合成する際に使用する環境モデルのid$eid_{\lambda'}$を加えたものを$eids^*$（8行目）．$rids_{\lambda}$に含まれるidに$cid'$を合成する際に使用する監視モデルのid$rid_{\lambda'}$を加えたものを$rids^*$とする（9行目）．最後に，用意した$eids^*$と$rids^*$から$\lambda$と$\lambda$を統合した合成プロセスを構築し，$\Lambda$において$\lambda$，$\lambda'$と置き換える（10行目）．以上の工程を全ての$\lambda \in \Lambda$において繰り返し実行し，合成プロセスの統合を行う．
+% % このとき，Algorithm\ref{algorithm:CSDCS_huristic}の1行目にて導出されるCSDCSで分析される$R$全体の監視対象モデル数が最小となるような合成シーケンス$\Lambda$は，Algorithm\ref{algorithm:influence}にて導出される．
+

@@ -1,0 +1,122 @@
+\documentclass[submit]{ipsj}
+%\documentclass{ipsj}
+
+\usepackage{graphicx}
+\usepackage{latexsym}
+
+%% add package
+\usepackage{comment} %コメントアウト
+\usepackage{algorithm} %アルゴリズム
+\usepackage{algorithmic} %アルゴリズム
+\usepackage{enumerate} %アイテマイズ
+\usepackage{amssymb, amsmath} %数式の揃え
+\usepackage{amsthm} %証明環境
+\usepackage{booktabs} %表の線
+\usepackage{multirow}
+% \usepackage{ulem} %斜線
+\usepackage[legacycolonsymbols]{mathtools}
+
+\def\Underline{\setbox0\hbox\bgroup\let\\\endUnderline}
+\def\endUnderline{\vphantom{y}\egroup\smash{\underline{\box0}}\\}
+\def\|{\verb|}
+\def\newblock{\hskip .11em plus .33em minus .07em}
+
+\renewcommand{\proofname}{\textbf{証明}}
+
+\setcounter{巻数}{59}
+\setcounter{号数}{1}
+\setcounter{page}{1}
+
+
+\受付{2016}{3}{4}
+% \再受付{2015}{7}{16}   %省略可能
+% \再再受付{2015}{7}{20} %省略可能
+% \再再受付{2015}{11}{20} %省略可能
+\採録{2016}{8}{1}
+
+
+% 新しい記号の作成
+\makeatletter
+% \newcommand{\process}{\mathrel{\vphantom{\vee}\mathpalette\process@\relax}}
+% \newcommand{\process@}[2]{%
+%   \wedge
+% }
+\newcommand{\sequence}{\mathrel{\vphantom{\wedge}\mathpalette\sequence@\relax}}
+\newcommand{\sequence@}[2]{%
+  \ooalign{\hidewidth$\m@th#1{\wedge}$\hidewidth\cr$\m@th#1{\vee}$\cr}%
+}
+\makeatother
+
+
+\begin{document}
+
+\title{ゲーム空間の一括構築を用いた段階的な部分合成による離散制御器合成の計算空間削減}
+
+\etitle{Computational Space Reduction of Discrete Controller Synthesis by Stepwise Partial Synthesis with Consolidated Game Composition}
+
+\affiliate{WASEDA}{早稲田大学 Waseda University}
+\affiliate{TIT}{東京工業大学 Tokyo Institute of Technology}
+\affiliate{NII}{国立情報学研究所 National Institute of Informatics (NII)}
+
+\author{山内 拓人}{Takuto Yamauchi}{WASEDA,TIT}[takuto.yamauchi@aoni.waaseda.jp]
+\author{李 家隆}{Jialong Li}{WASEDA}[]
+\author{鄭 顕志}{Kenji Tei}{WASEDA,TIT,NII}[]
+\author{本位田 真一}{Shinichi Honiden}{NII}[]
+
+\begin{abstract}
+想定される動作環境下で安全性が保証された動作仕様を自動合成するDiscrete Controller Synthesis（DCS）において，計算空間の指数爆発の課題はその実践的な適用を阻む主要因となっている．
+本課題に対処するため，本論文では先行の計算空間削減手法を相補的に組み合わせたConsolidated Stepwise Discrete Controller Synthesis（CSDCS）を提案する．段階的なゲーム空間構築アプローチに違反状態空間の抽象化処理を採用することで，計算空間削減効果を維持したまま計算空間の構築回数を抑えることができる．
+結果，従来トレードオフの関係にあった計算空間削減と計算時間削減の両方を高い水準で両立を可能にした．
+その性能を形式的な妥当性証明と7つのシナリオを通して確認した結果，計算時間を平均-43.6，計算空間を平均51.8\%間削減しつつ従来のDCSと同じ機能を果たすことが可能であることがわかった．
+\end{abstract}
+\begin{jkeyword}
+離散制御器合成，二人型対戦ゲーム理論，ラベル付き遷移システム
+\end{jkeyword}
+
+
+\begin{eabstract}
+% 再度翻訳
+In Discrete Controller Synthesis, a technique for automatically generating operational specifications that ensure safety under assumed environments, state-space explosion remains a major obstacle to practical application.
+To address this issue, this paper proposes Consolidated Stepwise Discrete Controller Synthesis (CSDCS), which combines existing state-space reduction techniques in a complementary manner.
+CSDCS incorporates violation-state abstraction into the stepwise game-space construction approach proposed in prior work, thereby reducing the number of game constructions while maintaining the space reduction effect. This enables a balance between state-space reduction and computational efficiency.
+To evaluate CSDCS, we formally prove its correctness and conduct experiments based on seven scenarios. The results confirm that CSDCS achieves an average of 43.6\% reduction in computation time while maintaining a high state-space reduction effect of 51.8\% on average.
+\end{eabstract}
+\begin{ekeyword}
+Discrete Controller Synthesis, Two-players Game Theory, Labeled Transition System
+\end{ekeyword}
+
+\maketitle
+
+\theoremstyle{definition}
+\newtheorem{highlight}{}
+\newtheorem{thm}{定理}
+\newtheorem{dfn}[thm]{定義}
+\newtheorem{pro}{命題}
+\newtheorem{lem}{補題}
+\newtheorem{thx}{謝辞}
+
+
+% 本文ここから
+\input{./*1_序論.tex}
+\input{./*2_背景技術.tex}
+\input{./*3_課題.tex}
+\input{./*4_提案.tex}
+\input{./*5_評価.tex}
+\input{./*6_関連研究.tex}
+\input{./*7_結論.tex}
+
+
+\bibliographystyle{unsrt}
+\bibliography{*参考文献}
+
+\begin{biography}
+\profile{n}{山内 拓人}{2021年に早稲田大学理工学術院基幹理工学研究科情報理工・情報通信専攻修士課程修了．2021年より早稲田大学理工学術院基幹理工学研究科情報理工・情報通信専攻博士後期課程に所属．早稲田大学助手．自己適応システム，離散制御器合成の研究に従事．}%
+\profile{n}{李 家隆}{2021年に早稲田大学理工学術院基幹理工学研究科情報理工・情報通信専攻修士課程修了．2021年より早稲田大学理工学術院基幹理工学研究科情報理工・情報通信専攻博士後期課程に所属，現在に至る．自己適応システム，要求工学の研究に従事．}
+\profile{m,E}{鄭 顕志}{2008 年早稲田大学大学院理工学研究科博士課程修了．同大学助手，助教，国立情報学研究所助教，准教授，早稲田大学研究院准教授/主任研究員を経て 2019 年より早稲田大学准教授．現在に至る．現在，国立情報学研究所 GRACEセンター特任准教授を兼任．博士 (工学) (早稲田大学)．自己適応システム，ソフトウェアアーキテクチャ，モデル駆動工学の研究に従事．}
+% \profile{m,E}{鷲崎 弘宜}{早稲田大学 研究推進部 副部長，早稲田大学グローバルソフトウェアエンジニアリング研究所所長，早稲田大学理工学術院基幹理工学部情報理工学科教授，国立情報学研究所客員教授，株式会社システム情報取締役（監査等委員），株式会社エクスモーション 社外取締役，ガイオ・テクノロジー株式会社 技術アドバイザ．IEEE Computer Society PEAB Engineering Discipline Committee Chair，ISO/IEC/JTC1 SC7/WG20 Convenor，enPiT-Pro スマートエスイー事業責任者．ビジネスと社会のためのスマートなソフトウェアエンジニアリングの研究，教育，社会実装に従事．}
+\profile{h,L}{本位田 真一}{1978年早稲田大学大学院理工学研究科修士課程修了．（株）東芝を経て2000年より国立情報学研究所教授，2012年より同研究所副所長を兼務．2001年より東京大学大学院情報理工学系研究科教授を兼任，2018年より早稲田大学理工学術院教授,現在に至る．現在，英国UCL客員教授を兼任．2005年度パリ第6大学招聘教授．2015年度リヨン第1大学招聘教授．日本学術会議連携会員．情報処理学会フェロー．}
+\end{biography}
+
+
+
+\end{document}

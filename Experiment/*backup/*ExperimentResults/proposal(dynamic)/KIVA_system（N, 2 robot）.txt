@@ -1,0 +1,3029 @@
+Compiled: INITIAL(1)
+Compiled: INITIAL(2)
+Compiled: SHIP_AREA
+Compiled: BOX_GET_AREA
+Compiled: ITEM_GET_AREA
+Compiled: PACK_AREA
+Compiled: REQUEST_1
+Compiled: REQUEST_2
+Compiled: REQUEST_3
+Compiled: REQUEST_4
+Formula !P_REPLENISH_ROBOT_RULE = (true U robot2.move.{boxGettingArea, shippingArea})
+GBA 2 states 3 transitions
+Buchi automata:
+P_REPLENISH_ROBOT_RULE = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |robot2.move.{boxGettingArea, shippingArea} -> S1).
+Composition:P_REPLENISH_ROBOT_RULE = robot2.move.{boxGettingArea, shippingArea} || SYNC || P_REPLENISH_ROBOT_RULE
+State Space: 2 * 2 * 2 = 2 ** 3
+Composing...
+-- States: 5 Transitions: 11 Memory used: 34175KB
+Composed in 69ms
+After Tau elimination = 3 state
+Tau reduction ON
+P_REPLENISH_ROBOT_RULE minimising..
+Minimised States: 2 in 0ms
+make DFA(P_REPLENISH_ROBOT_RULE)
+DFA(P_REPLENISH_ROBOT_RULE) has 1 states.
+Tau reduction ON
+P_REPLENISH_ROBOT_RULE minimising..
+Minimised States: 1 in 0ms
+Formula !P_SHIP_ROBOT_RULE = (true U robot1.move.itemGettingArea)
+GBA 2 states 3 transitions
+Buchi automata:
+P_SHIP_ROBOT_RULE = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |robot1.move.itemGettingArea -> S1).
+Composition:P_SHIP_ROBOT_RULE = robot1.move.itemGettingArea || SYNC || P_SHIP_ROBOT_RULE
+State Space: 2 * 2 * 2 = 2 ** 3
+Composing...
+-- States: 5 Transitions: 8 Memory used: 33160KB
+Composed in 55ms
+After Tau elimination = 3 state
+Tau reduction ON
+P_SHIP_ROBOT_RULE minimising..
+Minimised States: 2 in 0ms
+make DFA(P_SHIP_ROBOT_RULE)
+DFA(P_SHIP_ROBOT_RULE) has 1 states.
+Tau reduction ON
+P_SHIP_ROBOT_RULE minimising..
+Minimised States: 1 in 0ms
+Formula !P_REQUEST_TIMING_1 = (true U (reqBringBox & X (!doneBringBox U (reqShip & !doneBringBox))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_REQUEST_TIMING_1 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |reqBringBox -> S2),
+S2 =(!doneBringBox -> S2 |reqShip&!doneBringBox -> S1).
+Composition:P_REQUEST_TIMING_1 = reqBringBox || reqShip || doneBringBox || SYNC || P_REQUEST_TIMING_1
+State Space: 2 * 2 * 2 * 2 * 4 = 2 ** 6
+Composing...
+-- States: 24 Transitions: 56 Memory used: 32910KB
+Composed in 42ms
+After Tau elimination = 12 state
+Tau reduction ON
+P_REQUEST_TIMING_1 minimising....
+Minimised States: 4 in 0ms
+make DFA(P_REQUEST_TIMING_1)
+DFA(P_REQUEST_TIMING_1) has 4 states.
+Tau reduction ON
+P_REQUEST_TIMING_1 minimising...
+Minimised States: 2 in 0ms
+Formula !P_REQUEST_TIMING_2 = (true U (reqShip & X (!doneShip U (reqBringBox & !doneShip))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_REQUEST_TIMING_2 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |reqShip -> S2),
+S2 =(!doneShip -> S2 |reqBringBox&!doneShip -> S1).
+Composition:P_REQUEST_TIMING_2 = reqShip || reqBringBox || doneShip || SYNC || P_REQUEST_TIMING_2
+State Space: 2 * 2 * 2 * 2 * 4 = 2 ** 6
+Composing...
+-- States: 24 Transitions: 56 Memory used: 32879KB
+Composed in 50ms
+After Tau elimination = 12 state
+Tau reduction ON
+P_REQUEST_TIMING_2 minimising....
+Minimised States: 4 in 0ms
+make DFA(P_REQUEST_TIMING_2)
+DFA(P_REQUEST_TIMING_2) has 4 states.
+Tau reduction ON
+P_REQUEST_TIMING_2 minimising...
+Minimised States: 2 in 0ms
+Formula !P_REQUEST_TIMING_3 = (true U (reqReplenishItem & X (!doneReplenishItem U (reqBringItem & !doneReplenishItem))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_REQUEST_TIMING_3 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |reqReplenishItem -> S2),
+S2 =(!doneReplenishItem -> S2 |reqBringItem&!doneReplenishItem -> S1).
+Composition:P_REQUEST_TIMING_3 = reqReplenishItem || reqBringItem || doneReplenishItem || SYNC || P_REQUEST_TIMING_3
+State Space: 2 * 2 * 2 * 2 * 4 = 2 ** 6
+Composing...
+-- States: 24 Transitions: 56 Memory used: 32945KB
+Composed in 52ms
+After Tau elimination = 12 state
+Tau reduction ON
+P_REQUEST_TIMING_3 minimising....
+Minimised States: 4 in 0ms
+make DFA(P_REQUEST_TIMING_3)
+DFA(P_REQUEST_TIMING_3) has 4 states.
+Tau reduction ON
+P_REQUEST_TIMING_3 minimising...
+Minimised States: 2 in 0ms
+Formula !P_REQUEST_TIMING_4 = (true U (reqBringItem & X (!doneBringItem U (reqReplenishItem & !doneBringItem))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_REQUEST_TIMING_4 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |reqBringItem -> S2),
+S2 =(!doneBringItem -> S2 |reqReplenishItem&!doneBringItem -> S1).
+Composition:P_REQUEST_TIMING_4 = reqBringItem || reqReplenishItem || doneBringItem || SYNC || P_REQUEST_TIMING_4
+State Space: 2 * 2 * 2 * 2 * 4 = 2 ** 6
+Composing...
+-- States: 24 Transitions: 56 Memory used: 32973KB
+Composed in 31ms
+After Tau elimination = 12 state
+Tau reduction ON
+P_REQUEST_TIMING_4 minimising....
+Minimised States: 4 in 0ms
+make DFA(P_REQUEST_TIMING_4)
+DFA(P_REQUEST_TIMING_4) has 4 states.
+Tau reduction ON
+P_REQUEST_TIMING_4 minimising...
+Minimised States: 2 in 0ms
+Formula !P_REQUEST_ONLY_1 = (true U ((!PROCESS_BRING_BOX & !PROCESS_SHIP) & robot1.{move, pick, put}.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}}))
+GBA 2 states 3 transitions
+Buchi automata:
+P_REQUEST_ONLY_1 = S0,
+S1@ =(true -> S1),
+S0 =(!PROCESS_SHIP&!PROCESS_BRING_BOX&robot1.{move, pick, put}.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} -> S1 |true -> S0).
+Composition:P_REQUEST_ONLY_1 = PROCESS_SHIP || PROCESS_BRING_BOX || robot1.{move, pick, put}.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} || SYNC || P_REQUEST_ONLY_1
+State Space: 2 * 2 * 2 * 2 * 2 = 2 ** 5
+Composing...
+-- States: 32 Transitions: 385 Memory used: 33057KB
+Composed in 33ms
+After Tau elimination = 16 state
+Tau reduction ON
+P_REQUEST_ONLY_1 minimising....
+Minimised States: 5 in 0ms
+make DFA(P_REQUEST_ONLY_1)
+DFA(P_REQUEST_ONLY_1) has 4 states.
+Tau reduction ON
+P_REQUEST_ONLY_1 minimising...
+Minimised States: 4 in 0ms
+Formula !P_REQUEST_ONLY_2 = (true U ((!PROCESS_BRING_ITEM & !PROCESS_REPLENISH_ITEM) & robot2.{move, pick, put}.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}}))
+GBA 2 states 3 transitions
+Buchi automata:
+P_REQUEST_ONLY_2 = S0,
+S1@ =(true -> S1),
+S0 =(!PROCESS_REPLENISH_ITEM&!PROCESS_BRING_ITEM&robot2.{move, pick, put}.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} -> S1 |true -> S0).
+Composition:P_REQUEST_ONLY_2 = PROCESS_REPLENISH_ITEM || PROCESS_BRING_ITEM || robot2.{move, pick, put}.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} || SYNC || P_REQUEST_ONLY_2
+State Space: 2 * 2 * 2 * 2 * 2 = 2 ** 5
+Composing...
+-- States: 32 Transitions: 385 Memory used: 33201KB
+Composed in 46ms
+After Tau elimination = 16 state
+Tau reduction ON
+P_REQUEST_ONLY_2 minimising....
+Minimised States: 5 in 0ms
+make DFA(P_REQUEST_ONLY_2)
+DFA(P_REQUEST_ONLY_2) has 4 states.
+Tau reduction ON
+P_REQUEST_ONLY_2 minimising...
+Minimised States: 4 in 0ms
+Formula !P_ROBOT1_ARM_RULE_1 = (true U ((!PROCESS_BRING_BOX & !PROCESS_SHIP) & robot1.{pick, put}.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}}))
+GBA 2 states 3 transitions
+Buchi automata:
+P_ROBOT1_ARM_RULE_1 = S0,
+S1@ =(true -> S1),
+S0 =(!PROCESS_SHIP&!PROCESS_BRING_BOX&robot1.{pick, put}.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} -> S1 |true -> S0).
+Composition:P_ROBOT1_ARM_RULE_1 = PROCESS_SHIP || PROCESS_BRING_BOX || robot1.{pick, put}.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} || SYNC || P_ROBOT1_ARM_RULE_1
+State Space: 2 * 2 * 2 * 2 * 2 = 2 ** 5
+Composing...
+-- States: 32 Transitions: 289 Memory used: 33224KB
+Composed in 34ms
+After Tau elimination = 16 state
+Tau reduction ON
+P_ROBOT1_ARM_RULE_1 minimising....
+Minimised States: 5 in 0ms
+make DFA(P_ROBOT1_ARM_RULE_1)
+DFA(P_ROBOT1_ARM_RULE_1) has 4 states.
+Tau reduction ON
+P_ROBOT1_ARM_RULE_1 minimising...
+Minimised States: 4 in 0ms
+Formula !P_ROBOT1_ARM_RULE_2 = (true U (robot1.pick.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} & X (!robot1.put.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} U (robot1.pick.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} & !robot1.put.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}}))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_ROBOT1_ARM_RULE_2 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |robot1.pick.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} -> S2),
+S2 =(!robot1.put.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} -> S2 |robot1.pick.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}}&!robot1.put.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} -> S1).
+Composition:P_ROBOT1_ARM_RULE_2 = robot1.pick.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} || robot1.put.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} || SYNC || P_ROBOT1_ARM_RULE_2
+State Space: 2 * 2 * 2 * 4 = 2 ** 5
+Composing...
+-- States: 16 Transitions: 110 Memory used: 33187KB
+Composed in 33ms
+After Tau elimination = 8 state
+Tau reduction ON
+P_ROBOT1_ARM_RULE_2 minimising....
+Minimised States: 4 in 0ms
+make DFA(P_ROBOT1_ARM_RULE_2)
+DFA(P_ROBOT1_ARM_RULE_2) has 4 states.
+Tau reduction ON
+P_ROBOT1_ARM_RULE_2 minimising...
+Minimised States: 2 in 0ms
+Formula !P_ROBOT1_ARM_RULE_3 = (true U (robot1.put.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} & X (!robot1.pick.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} U (robot1.put.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} & !robot1.pick.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}}))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_ROBOT1_ARM_RULE_3 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |robot1.put.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} -> S2),
+S2 =(!robot1.pick.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} -> S2 |robot1.put.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}}&!robot1.pick.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} -> S1).
+Composition:P_ROBOT1_ARM_RULE_3 = robot1.put.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} || robot1.pick.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} || SYNC || P_ROBOT1_ARM_RULE_3
+State Space: 2 * 2 * 2 * 4 = 2 ** 5
+Composing...
+-- States: 16 Transitions: 110 Memory used: 33182KB
+Composed in 37ms
+After Tau elimination = 8 state
+Tau reduction ON
+P_ROBOT1_ARM_RULE_3 minimising....
+Minimised States: 4 in 0ms
+make DFA(P_ROBOT1_ARM_RULE_3)
+DFA(P_ROBOT1_ARM_RULE_3) has 4 states.
+Tau reduction ON
+P_ROBOT1_ARM_RULE_3 minimising...
+Minimised States: 2 in 0ms
+Formula !P_ROBOT2_ARM_RULE_1 = (true U ((!PROCESS_BRING_ITEM & !PROCESS_REPLENISH_ITEM) & robot2.{pick, put}.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}}))
+GBA 2 states 3 transitions
+Buchi automata:
+P_ROBOT2_ARM_RULE_1 = S0,
+S1@ =(true -> S1),
+S0 =(!PROCESS_REPLENISH_ITEM&!PROCESS_BRING_ITEM&robot2.{pick, put}.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} -> S1 |true -> S0).
+Composition:P_ROBOT2_ARM_RULE_1 = PROCESS_REPLENISH_ITEM || PROCESS_BRING_ITEM || robot2.{pick, put}.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} || SYNC || P_ROBOT2_ARM_RULE_1
+State Space: 2 * 2 * 2 * 2 * 2 = 2 ** 5
+Composing...
+-- States: 32 Transitions: 289 Memory used: 33267KB
+Composed in 29ms
+After Tau elimination = 16 state
+Tau reduction ON
+P_ROBOT2_ARM_RULE_1 minimising....
+Minimised States: 5 in 7ms
+make DFA(P_ROBOT2_ARM_RULE_1)
+DFA(P_ROBOT2_ARM_RULE_1) has 4 states.
+Tau reduction ON
+P_ROBOT2_ARM_RULE_1 minimising...
+Minimised States: 4 in 0ms
+Formula !P_ROBOT2_ARM_RULE_2 = (true U (robot2.pick.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} & X (!robot2.put.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} U (robot2.pick.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} & !robot2.put.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}}))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_ROBOT2_ARM_RULE_2 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |robot2.pick.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} -> S2),
+S2 =(!robot2.put.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} -> S2 |robot2.pick.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}}&!robot2.put.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} -> S1).
+Composition:P_ROBOT2_ARM_RULE_2 = robot2.pick.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} || robot2.put.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} || SYNC || P_ROBOT2_ARM_RULE_2
+State Space: 2 * 2 * 2 * 4 = 2 ** 5
+Composing...
+-- States: 16 Transitions: 110 Memory used: 33373KB
+Composed in 37ms
+After Tau elimination = 8 state
+Tau reduction ON
+P_ROBOT2_ARM_RULE_2 minimising....
+Minimised States: 4 in 0ms
+make DFA(P_ROBOT2_ARM_RULE_2)
+DFA(P_ROBOT2_ARM_RULE_2) has 4 states.
+Tau reduction ON
+P_ROBOT2_ARM_RULE_2 minimising...
+Minimised States: 2 in 0ms
+Formula !P_ROBOT2_ARM_RULE_3 = (true U (robot2.put.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} & X (!robot2.pick.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} U (robot2.put.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} & !robot2.pick.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}}))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_ROBOT2_ARM_RULE_3 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |robot2.put.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} -> S2),
+S2 =(!robot2.pick.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} -> S2 |robot2.put.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}}&!robot2.pick.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} -> S1).
+Composition:P_ROBOT2_ARM_RULE_3 = robot2.put.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} || robot2.pick.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} || SYNC || P_ROBOT2_ARM_RULE_3
+State Space: 2 * 2 * 2 * 4 = 2 ** 5
+Composing...
+-- States: 16 Transitions: 110 Memory used: 33374KB
+Composed in 33ms
+After Tau elimination = 8 state
+Tau reduction ON
+P_ROBOT2_ARM_RULE_3 minimising....
+Minimised States: 4 in 0ms
+make DFA(P_ROBOT2_ARM_RULE_3)
+DFA(P_ROBOT2_ARM_RULE_3) has 4 states.
+Tau reduction ON
+P_ROBOT2_ARM_RULE_3 minimising...
+Minimised States: 2 in 0ms
+Formula !P_REPLENISH_RULE_2 = (true U (replenish[1..2] & X (!robot2.move[1..2] U (robot2.{move.{boxGettingArea, itemGettingArea, packingArea, shippingArea}, {pick, put}.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}}} & !robot2.move[1..2]))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_REPLENISH_RULE_2 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |replenish[1..2] -> S2),
+S2 =(!robot2.move[1..2] -> S2 |robot2.{move.{boxGettingArea, itemGettingArea, packingArea, shippingArea}, {pick, put}.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}}}&!robot2.move[1..2] -> S1).
+Composition:P_REPLENISH_RULE_2 = replenish[1..2] || robot2.{move.{boxGettingArea, itemGettingArea, packingArea, shippingArea}, {pick, put}.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}}} || robot2.move[1..2] || SYNC || P_REPLENISH_RULE_2
+State Space: 2 * 2 * 2 * 2 * 4 = 2 ** 6
+Composing...
+-- States: 24 Transitions: 260 Memory used: 33458KB
+Composed in 36ms
+After Tau elimination = 12 state
+Tau reduction ON
+P_REPLENISH_RULE_2 minimising....
+Minimised States: 4 in 1ms
+make DFA(P_REPLENISH_RULE_2)
+DFA(P_REPLENISH_RULE_2) has 4 states.
+Tau reduction ON
+P_REPLENISH_RULE_2 minimising...
+Minimised States: 2 in 0ms
+Formula !P_BRING_RULE_2 = (true U (bring[1..2] & X (!robot2.move[1..2] U (robot2.{move.{boxGettingArea, itemGettingArea, packingArea, shippingArea}, {pick, put}.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}}} & !robot2.move[1..2]))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_BRING_RULE_2 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |bring[1..2] -> S2),
+S2 =(!robot2.move[1..2] -> S2 |robot2.{move.{boxGettingArea, itemGettingArea, packingArea, shippingArea}, {pick, put}.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}}}&!robot2.move[1..2] -> S1).
+Composition:P_BRING_RULE_2 = bring[1..2] || robot2.{move.{boxGettingArea, itemGettingArea, packingArea, shippingArea}, {pick, put}.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}}} || robot2.move[1..2] || SYNC || P_BRING_RULE_2
+State Space: 2 * 2 * 2 * 2 * 4 = 2 ** 6
+Composing...
+-- States: 24 Transitions: 260 Memory used: 33531KB
+Composed in 34ms
+After Tau elimination = 12 state
+Tau reduction ON
+P_BRING_RULE_2 minimising....
+Minimised States: 4 in 1ms
+make DFA(P_BRING_RULE_2)
+DFA(P_BRING_RULE_2) has 4 states.
+Tau reduction ON
+P_BRING_RULE_2 minimising...
+Minimised States: 2 in 0ms
+Formula !P_AREA_RULE_1 = (true U (!SHIP_TIMING & ship))
+GBA 2 states 3 transitions
+Buchi automata:
+P_AREA_RULE_1 = S0,
+S1@ =(true -> S1),
+S0 =(!SHIP_TIMING&ship -> S1 |true -> S0).
+Composition:P_AREA_RULE_1 = SHIP_TIMING || ship || SYNC || P_AREA_RULE_1
+State Space: 2 * 2 * 2 * 2 = 2 ** 4
+Composing...
+-- States: 16 Transitions: 41 Memory used: 33473KB
+Composed in 32ms
+After Tau elimination = 8 state
+Tau reduction ON
+P_AREA_RULE_1 minimising...
+Minimised States: 3 in 0ms
+make DFA(P_AREA_RULE_1)
+DFA(P_AREA_RULE_1) has 2 states.
+Tau reduction ON
+P_AREA_RULE_1 minimising...
+Minimised States: 2 in 0ms
+Formula !P_AREA_RULE_2 = (true U (!BOX_TIMING & supplyBox))
+GBA 2 states 3 transitions
+Buchi automata:
+P_AREA_RULE_2 = S0,
+S1@ =(true -> S1),
+S0 =(!BOX_TIMING&supplyBox -> S1 |true -> S0).
+Composition:P_AREA_RULE_2 = BOX_TIMING || supplyBox || SYNC || P_AREA_RULE_2
+State Space: 2 * 2 * 2 * 2 = 2 ** 4
+Composing...
+-- States: 16 Transitions: 41 Memory used: 33453KB
+Composed in 34ms
+After Tau elimination = 8 state
+Tau reduction ON
+P_AREA_RULE_2 minimising...
+Minimised States: 3 in 0ms
+make DFA(P_AREA_RULE_2)
+DFA(P_AREA_RULE_2) has 2 states.
+Tau reduction ON
+P_AREA_RULE_2 minimising...
+Minimised States: 2 in 0ms
+Formula !P_AREA_RULE_3 = (true U (!ITEM_TIMING & supplyItem))
+GBA 2 states 3 transitions
+Buchi automata:
+P_AREA_RULE_3 = S0,
+S1@ =(true -> S1),
+S0 =(!ITEM_TIMING&supplyItem -> S1 |true -> S0).
+Composition:P_AREA_RULE_3 = ITEM_TIMING || supplyItem || SYNC || P_AREA_RULE_3
+State Space: 2 * 2 * 2 * 2 = 2 ** 4
+Composing...
+-- States: 16 Transitions: 41 Memory used: 33480KB
+Composed in 37ms
+After Tau elimination = 8 state
+Tau reduction ON
+P_AREA_RULE_3 minimising...
+Minimised States: 3 in 0ms
+make DFA(P_AREA_RULE_3)
+DFA(P_AREA_RULE_3) has 2 states.
+Tau reduction ON
+P_AREA_RULE_3 minimising...
+Minimised States: 2 in 0ms
+Formula !P_AREA_RULE_4 = (true U ((!PROCESS_BRING_ITEM | (GET_TIMING_2 | !GET_TIMING_1)) & getItem))
+GBA 2 states 5 transitions
+Buchi automata:
+P_AREA_RULE_4 = S0,
+S1@ =(true -> S1),
+S0 =(!GET_TIMING_1&getItem -> S1 |!PROCESS_BRING_ITEM&getItem -> S1 |true -> S0 |GET_TIMING_2&getItem -> S1).
+Composition:P_AREA_RULE_4 = GET_TIMING_1 || GET_TIMING_2 || PROCESS_BRING_ITEM || getItem || SYNC || P_AREA_RULE_4
+State Space: 2 * 2 * 2 * 2 * 2 * 2 = 2 ** 6
+Composing...
+-- States: 64 Transitions: 263 Memory used: 33609KB
+Composed in 34ms
+After Tau elimination = 32 state
+Tau reduction ON
+P_AREA_RULE_4 minimising....
+Minimised States: 5 in 0ms
+make DFA(P_AREA_RULE_4)
+DFA(P_AREA_RULE_4) has 4 states.
+Tau reduction ON
+P_AREA_RULE_4 minimising....
+Minimised States: 4 in 0ms
+Formula !P_AREA_RULE_5 = (true U (!PACK_TIMING_1 & pack))
+GBA 2 states 3 transitions
+Buchi automata:
+P_AREA_RULE_5 = S0,
+S1@ =(true -> S1),
+S0 =(!PACK_TIMING_1&pack -> S1 |true -> S0).
+Composition:P_AREA_RULE_5 = PACK_TIMING_1 || pack || SYNC || P_AREA_RULE_5
+State Space: 2 * 2 * 2 * 2 = 2 ** 4
+Composing...
+-- States: 16 Transitions: 41 Memory used: 33550KB
+Composed in 33ms
+After Tau elimination = 8 state
+Tau reduction ON
+P_AREA_RULE_5 minimising...
+Minimised States: 3 in 0ms
+make DFA(P_AREA_RULE_5)
+DFA(P_AREA_RULE_5) has 2 states.
+Tau reduction ON
+P_AREA_RULE_5 minimising...
+Minimised States: 2 in 0ms
+Formula !P_AREA_RULE_6 = (true U (!PACK_TIMING_2 & pack))
+GBA 2 states 3 transitions
+Buchi automata:
+P_AREA_RULE_6 = S0,
+S1@ =(true -> S1),
+S0 =(!PACK_TIMING_2&pack -> S1 |true -> S0).
+Composition:P_AREA_RULE_6 = PACK_TIMING_2 || pack || SYNC || P_AREA_RULE_6
+State Space: 2 * 2 * 2 * 2 = 2 ** 4
+Composing...
+-- States: 16 Transitions: 41 Memory used: 33555KB
+Composed in 34ms
+After Tau elimination = 8 state
+Tau reduction ON
+P_AREA_RULE_6 minimising...
+Minimised States: 3 in 0ms
+make DFA(P_AREA_RULE_6)
+DFA(P_AREA_RULE_6) has 2 states.
+Tau reduction ON
+P_AREA_RULE_6 minimising...
+Minimised States: 2 in 0ms
+Formula !P_AREA_RULE_7 = (true U (pack & X (!doneBringBox U (pack & !doneBringBox))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_AREA_RULE_7 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |pack -> S2),
+S2 =(!doneBringBox -> S2 |pack&!doneBringBox -> S1).
+Composition:P_AREA_RULE_7 = pack || doneBringBox || SYNC || P_AREA_RULE_7
+State Space: 2 * 2 * 2 * 4 = 2 ** 5
+Composing...
+-- States: 16 Transitions: 30 Memory used: 33575KB
+Composed in 39ms
+After Tau elimination = 8 state
+Tau reduction ON
+P_AREA_RULE_7 minimising....
+Minimised States: 4 in 1ms
+make DFA(P_AREA_RULE_7)
+DFA(P_AREA_RULE_7) has 4 states.
+Tau reduction ON
+P_AREA_RULE_7 minimising...
+Minimised States: 2 in 0ms
+Formula !P_AREA_RULE_8 = (true U (pack & X (!doneBringItem U (pack & !doneBringItem))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_AREA_RULE_8 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |pack -> S2),
+S2 =(!doneBringItem -> S2 |pack&!doneBringItem -> S1).
+Composition:P_AREA_RULE_8 = pack || doneBringItem || SYNC || P_AREA_RULE_8
+State Space: 2 * 2 * 2 * 4 = 2 ** 5
+Composing...
+-- States: 16 Transitions: 30 Memory used: 33590KB
+Composed in 34ms
+After Tau elimination = 8 state
+Tau reduction ON
+P_AREA_RULE_8 minimising....
+Minimised States: 4 in 0ms
+make DFA(P_AREA_RULE_8)
+DFA(P_AREA_RULE_8) has 4 states.
+Tau reduction ON
+P_AREA_RULE_8 minimising...
+Minimised States: 2 in 0ms
+Formula !P_REPLENISH_ITEM_RULE_1 = (true U (PROCESS_REPLENISH_ITEM & robot2.{move, pick, put}.{boxGettingArea, packingArea, shippingArea}))
+GBA 2 states 3 transitions
+Buchi automata:
+P_REPLENISH_ITEM_RULE_1 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |PROCESS_REPLENISH_ITEM&robot2.{move, pick, put}.{boxGettingArea, packingArea, shippingArea} -> S1).
+Composition:P_REPLENISH_ITEM_RULE_1 = PROCESS_REPLENISH_ITEM || robot2.{move, pick, put}.{boxGettingArea, packingArea, shippingArea} || SYNC || P_REPLENISH_ITEM_RULE_1
+State Space: 2 * 2 * 2 * 2 = 2 ** 4
+Composing...
+-- States: 16 Transitions: 105 Memory used: 33635KB
+Composed in 33ms
+After Tau elimination = 8 state
+Tau reduction ON
+P_REPLENISH_ITEM_RULE_1 minimising...
+Minimised States: 3 in 0ms
+make DFA(P_REPLENISH_ITEM_RULE_1)
+DFA(P_REPLENISH_ITEM_RULE_1) has 2 states.
+Tau reduction ON
+P_REPLENISH_ITEM_RULE_1 minimising...
+Minimised States: 2 in 0ms
+Formula !P_REPLENISH_ITEM_RULE_2 = (true U (reqReplenishItem & X (!replenish[1..2] U (robot2.{move, pick, put}.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} & !replenish[1..2]))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_REPLENISH_ITEM_RULE_2 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |reqReplenishItem -> S2),
+S2 =(!replenish[1..2] -> S2 |robot2.{move, pick, put}.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}}&!replenish[1..2] -> S1).
+Composition:P_REPLENISH_ITEM_RULE_2 = reqReplenishItem || robot2.{move, pick, put}.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} || replenish[1..2] || SYNC || P_REPLENISH_ITEM_RULE_2
+State Space: 2 * 2 * 2 * 2 * 4 = 2 ** 6
+Composing...
+-- States: 24 Transitions: 272 Memory used: 33762KB
+Composed in 33ms
+After Tau elimination = 12 state
+Tau reduction ON
+P_REPLENISH_ITEM_RULE_2 minimising....
+Minimised States: 4 in 0ms
+make DFA(P_REPLENISH_ITEM_RULE_2)
+DFA(P_REPLENISH_ITEM_RULE_2) has 4 states.
+Tau reduction ON
+P_REPLENISH_ITEM_RULE_2 minimising...
+Minimised States: 2 in 0ms
+Formula !P_REPLENISH_ITEM_RULE_3 = (true U (reqReplenishItem & X (!robot2.move[1..2] U (robot2.pick.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} & !robot2.move[1..2]))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_REPLENISH_ITEM_RULE_3 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |reqReplenishItem -> S2),
+S2 =(!robot2.move[1..2] -> S2 |robot2.pick.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}}&!robot2.move[1..2] -> S1).
+Composition:P_REPLENISH_ITEM_RULE_3 = reqReplenishItem || robot2.pick.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} || robot2.move[1..2] || SYNC || P_REPLENISH_ITEM_RULE_3
+State Space: 2 * 2 * 2 * 2 * 4 = 2 ** 6
+Composing...
+-- States: 24 Transitions: 128 Memory used: 33785KB
+Composed in 34ms
+After Tau elimination = 12 state
+Tau reduction ON
+P_REPLENISH_ITEM_RULE_3 minimising....
+Minimised States: 4 in 0ms
+make DFA(P_REPLENISH_ITEM_RULE_3)
+DFA(P_REPLENISH_ITEM_RULE_3) has 4 states.
+Tau reduction ON
+P_REPLENISH_ITEM_RULE_3 minimising...
+Minimised States: 2 in 0ms
+Formula !P_REPLENISH_ITEM_RULE_4 = (true U ((PROCESS_REPLENISH_ITEM & robot2.move[1..2]) & X (!robot2.{pick, put}[1..2] U (robot2.move.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} & !robot2.{pick, put}[1..2]))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_REPLENISH_ITEM_RULE_4 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |PROCESS_REPLENISH_ITEM&robot2.move[1..2] -> S2),
+S2 =(!robot2.{pick, put}[1..2] -> S2 |robot2.move.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}}&!robot2.{pick, put}[1..2] -> S1).
+Composition:P_REPLENISH_ITEM_RULE_4 = PROCESS_REPLENISH_ITEM || robot2.move[1..2] || robot2.move.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} || robot2.{pick, put}[1..2] || SYNC || P_REPLENISH_ITEM_RULE_4
+State Space: 2 * 2 * 2 * 2 * 2 * 4 = 2 ** 7
+Composing...
+-- States: 62 Transitions: 413 Memory used: 33915KB
+Composed in 47ms
+After Tau elimination = 30 state
+Tau reduction ON
+P_REPLENISH_ITEM_RULE_4 minimising....
+Minimised States: 5 in 1ms
+make DFA(P_REPLENISH_ITEM_RULE_4)
+DFA(P_REPLENISH_ITEM_RULE_4) has 8 states.
+Tau reduction ON
+P_REPLENISH_ITEM_RULE_4 minimising.....
+Minimised States: 4 in 0ms
+Formula !P_REPLENISH_ITEM_RULE_5 = (true U (reqReplenishItem & X (!robot2.pick[1..2] U (robot2.put[1..2] & !robot2.pick[1..2]))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_REPLENISH_ITEM_RULE_5 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |reqReplenishItem -> S2),
+S2 =(!robot2.pick[1..2] -> S2 |robot2.put[1..2]&!robot2.pick[1..2] -> S1).
+Composition:P_REPLENISH_ITEM_RULE_5 = reqReplenishItem || robot2.put[1..2] || robot2.pick[1..2] || SYNC || P_REPLENISH_ITEM_RULE_5
+State Space: 2 * 2 * 2 * 2 * 4 = 2 ** 6
+Composing...
+-- States: 24 Transitions: 80 Memory used: 33869KB
+Composed in 33ms
+After Tau elimination = 12 state
+Tau reduction ON
+P_REPLENISH_ITEM_RULE_5 minimising....
+Minimised States: 4 in 0ms
+make DFA(P_REPLENISH_ITEM_RULE_5)
+DFA(P_REPLENISH_ITEM_RULE_5) has 4 states.
+Tau reduction ON
+P_REPLENISH_ITEM_RULE_5 minimising...
+Minimised States: 2 in 0ms
+Formula !P_REPLENISH_ITEM_RULE_6 = (true U ((PROCESS_REPLENISH_ITEM & robot2.pick[1..2]) & X (!robot2.move.itemGettingArea U (robot2.{move.{[1..2], {boxGettingArea, packingArea, shippingArea}}, {pick, put}.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}}} & !robot2.move.itemGettingArea))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_REPLENISH_ITEM_RULE_6 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |PROCESS_REPLENISH_ITEM&robot2.pick[1..2] -> S2),
+S2 =(!robot2.move.itemGettingArea -> S2 |robot2.{move.{[1..2], {boxGettingArea, packingArea, shippingArea}}, {pick, put}.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}}}&!robot2.move.itemGettingArea -> S1).
+Composition:P_REPLENISH_ITEM_RULE_6 = PROCESS_REPLENISH_ITEM || robot2.pick[1..2] || robot2.{move.{[1..2], {boxGettingArea, packingArea, shippingArea}}, {pick, put}.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}}} || robot2.move.itemGettingArea || SYNC || P_REPLENISH_ITEM_RULE_6
+State Space: 2 * 2 * 2 * 2 * 2 * 4 = 2 ** 7
+Composing...
+-- States: 62 Transitions: 653 Memory used: 34125KB
+Composed in 33ms
+After Tau elimination = 30 state
+Tau reduction ON
+P_REPLENISH_ITEM_RULE_6 minimising....
+Minimised States: 5 in 0ms
+make DFA(P_REPLENISH_ITEM_RULE_6)
+DFA(P_REPLENISH_ITEM_RULE_6) has 8 states.
+Tau reduction ON
+P_REPLENISH_ITEM_RULE_6 minimising.....
+Minimised States: 4 in 0ms
+Formula !P_REPLENISH_ITEM_RULE_7 = (true U (robot2.move.itemGettingArea & X (!robot2.pick.itemGettingArea U (robot2.move[1..2] & !robot2.pick.itemGettingArea))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_REPLENISH_ITEM_RULE_7 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |robot2.move.itemGettingArea -> S2),
+S2 =(!robot2.pick.itemGettingArea -> S2 |robot2.move[1..2]&!robot2.pick.itemGettingArea -> S1).
+Composition:P_REPLENISH_ITEM_RULE_7 = robot2.move.itemGettingArea || robot2.move[1..2] || robot2.pick.itemGettingArea || SYNC || P_REPLENISH_ITEM_RULE_7
+State Space: 2 * 2 * 2 * 2 * 4 = 2 ** 6
+Composing...
+-- States: 24 Transitions: 68 Memory used: 34008KB
+Composed in 34ms
+After Tau elimination = 12 state
+Tau reduction ON
+P_REPLENISH_ITEM_RULE_7 minimising....
+Minimised States: 4 in 0ms
+make DFA(P_REPLENISH_ITEM_RULE_7)
+DFA(P_REPLENISH_ITEM_RULE_7) has 4 states.
+Tau reduction ON
+P_REPLENISH_ITEM_RULE_7 minimising...
+Minimised States: 2 in 0ms
+Formula !P_REPLENISH_ITEM_RULE_8 = (true U (robot2.move.itemGettingArea & X (!supplyItem U (robot2.pick.itemGettingArea & !supplyItem))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_REPLENISH_ITEM_RULE_8 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |robot2.move.itemGettingArea -> S2),
+S2 =(!supplyItem -> S2 |robot2.pick.itemGettingArea&!supplyItem -> S1).
+Composition:P_REPLENISH_ITEM_RULE_8 = robot2.move.itemGettingArea || robot2.pick.itemGettingArea || supplyItem || SYNC || P_REPLENISH_ITEM_RULE_8
+State Space: 2 * 2 * 2 * 2 * 4 = 2 ** 6
+Composing...
+-- States: 24 Transitions: 56 Memory used: 33961KB
+Composed in 33ms
+After Tau elimination = 12 state
+Tau reduction ON
+P_REPLENISH_ITEM_RULE_8 minimising....
+Minimised States: 4 in 0ms
+make DFA(P_REPLENISH_ITEM_RULE_8)
+DFA(P_REPLENISH_ITEM_RULE_8) has 4 states.
+Tau reduction ON
+P_REPLENISH_ITEM_RULE_8 minimising...
+Minimised States: 2 in 0ms
+Formula !P_REPLENISH_ITEM_RULE_9 = (true U (supplyItem & X (!doneReplenishItem U (supplyItem & !doneReplenishItem))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_REPLENISH_ITEM_RULE_9 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |supplyItem -> S2),
+S2 =(!doneReplenishItem -> S2 |supplyItem&!doneReplenishItem -> S1).
+Composition:P_REPLENISH_ITEM_RULE_9 = supplyItem || doneReplenishItem || SYNC || P_REPLENISH_ITEM_RULE_9
+State Space: 2 * 2 * 2 * 4 = 2 ** 5
+Composing...
+-- States: 16 Transitions: 30 Memory used: 33985KB
+Composed in 40ms
+After Tau elimination = 8 state
+Tau reduction ON
+P_REPLENISH_ITEM_RULE_9 minimising....
+Minimised States: 4 in 0ms
+make DFA(P_REPLENISH_ITEM_RULE_9)
+DFA(P_REPLENISH_ITEM_RULE_9) has 4 states.
+Tau reduction ON
+P_REPLENISH_ITEM_RULE_9 minimising...
+Minimised States: 2 in 0ms
+Formula !P_REPLENISH_ITEM_RULE_10 = (true U (robot2.pick.itemGettingArea & X (!doneReplenishItem U (robot2.put.itemGettingArea & !doneReplenishItem))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_REPLENISH_ITEM_RULE_10 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |robot2.pick.itemGettingArea -> S2),
+S2 =(!doneReplenishItem -> S2 |robot2.put.itemGettingArea&!doneReplenishItem -> S1).
+Composition:P_REPLENISH_ITEM_RULE_10 = robot2.pick.itemGettingArea || robot2.put.itemGettingArea || doneReplenishItem || SYNC || P_REPLENISH_ITEM_RULE_10
+State Space: 2 * 2 * 2 * 2 * 4 = 2 ** 6
+Composing...
+-- States: 24 Transitions: 56 Memory used: 34016KB
+Composed in 34ms
+After Tau elimination = 12 state
+Tau reduction ON
+P_REPLENISH_ITEM_RULE_10 minimising....
+Minimised States: 4 in 1ms
+make DFA(P_REPLENISH_ITEM_RULE_10)
+DFA(P_REPLENISH_ITEM_RULE_10) has 4 states.
+Tau reduction ON
+P_REPLENISH_ITEM_RULE_10 minimising...
+Minimised States: 2 in 0ms
+Formula !P_REPLENISH_ITEM_RULE_12 = (true U ((PROCESS_REPLENISH_ITEM & robot2.put[1..2]) & X (!doneReplenishItem U (robot2.{move, pick, put}.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} & !doneReplenishItem))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_REPLENISH_ITEM_RULE_12 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |PROCESS_REPLENISH_ITEM&robot2.put[1..2] -> S2),
+S2 =(!doneReplenishItem -> S2 |robot2.{move, pick, put}.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}}&!doneReplenishItem -> S1).
+Composition:P_REPLENISH_ITEM_RULE_12 = PROCESS_REPLENISH_ITEM || robot2.put[1..2] || robot2.{move, pick, put}.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} || doneReplenishItem || SYNC || P_REPLENISH_ITEM_RULE_12
+State Space: 2 * 2 * 2 * 2 * 2 * 4 = 2 ** 7
+Composing...
+-- States: 44 Transitions: 477 Memory used: 34191KB
+Composed in 32ms
+After Tau elimination = 22 state
+Tau reduction ON
+P_REPLENISH_ITEM_RULE_12 minimising.....
+Minimised States: 5 in 0ms
+make DFA(P_REPLENISH_ITEM_RULE_12)
+DFA(P_REPLENISH_ITEM_RULE_12) has 6 states.
+Tau reduction ON
+P_REPLENISH_ITEM_RULE_12 minimising....
+Minimised States: 3 in 0ms
+Formula !P_REPLENISH_ITEM_RULE_13 = (true U ((PROCESS_REPLENISH_ITEM & reqReplenishItem) & X (!robot2.put[1..2] U (doneReplenishItem & !robot2.put[1..2]))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_REPLENISH_ITEM_RULE_13 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |PROCESS_REPLENISH_ITEM&reqReplenishItem -> S2),
+S2 =(!robot2.put[1..2] -> S2 |doneReplenishItem&!robot2.put[1..2] -> S1).
+Composition:P_REPLENISH_ITEM_RULE_13 = PROCESS_REPLENISH_ITEM || reqReplenishItem || doneReplenishItem || robot2.put[1..2] || SYNC || P_REPLENISH_ITEM_RULE_13
+State Space: 2 * 2 * 2 * 2 * 2 * 4 = 2 ** 7
+Composing...
+-- States: 31 Transitions: 86 Memory used: 34230KB
+Composed in 42ms
+After Tau elimination = 15 state
+Tau reduction ON
+P_REPLENISH_ITEM_RULE_13 minimising....
+Minimised States: 4 in 0ms
+make DFA(P_REPLENISH_ITEM_RULE_13)
+DFA(P_REPLENISH_ITEM_RULE_13) has 4 states.
+Tau reduction ON
+P_REPLENISH_ITEM_RULE_13 minimising...
+Minimised States: 2 in 0ms
+Formula !P_BRING_ITEM_RULE_1 = (true U (PROCESS_BRING_ITEM & robot2.{move, pick, put}.{boxGettingArea, itemGettingArea, shippingArea}))
+GBA 2 states 3 transitions
+Buchi automata:
+P_BRING_ITEM_RULE_1 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |PROCESS_BRING_ITEM&robot2.{move, pick, put}.{boxGettingArea, itemGettingArea, shippingArea} -> S1).
+Composition:P_BRING_ITEM_RULE_1 = PROCESS_BRING_ITEM || robot2.{move, pick, put}.{boxGettingArea, itemGettingArea, shippingArea} || SYNC || P_BRING_ITEM_RULE_1
+State Space: 2 * 2 * 2 * 2 = 2 ** 4
+Composing...
+-- States: 16 Transitions: 105 Memory used: 34168KB
+Composed in 34ms
+After Tau elimination = 8 state
+Tau reduction ON
+P_BRING_ITEM_RULE_1 minimising...
+Minimised States: 3 in 0ms
+make DFA(P_BRING_ITEM_RULE_1)
+DFA(P_BRING_ITEM_RULE_1) has 2 states.
+Tau reduction ON
+P_BRING_ITEM_RULE_1 minimising...
+Minimised States: 2 in 0ms
+Formula !P_BRING_ITEM_RULE_2 = (true U (reqBringItem & X (!bring[1..2] U (robot2.{move, pick, put}.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} & !bring[1..2]))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_BRING_ITEM_RULE_2 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |reqBringItem -> S2),
+S2 =(!bring[1..2] -> S2 |robot2.{move, pick, put}.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}}&!bring[1..2] -> S1).
+Composition:P_BRING_ITEM_RULE_2 = reqBringItem || robot2.{move, pick, put}.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} || bring[1..2] || SYNC || P_BRING_ITEM_RULE_2
+State Space: 2 * 2 * 2 * 2 * 4 = 2 ** 6
+Composing...
+-- States: 24 Transitions: 272 Memory used: 34277KB
+Composed in 39ms
+After Tau elimination = 12 state
+Tau reduction ON
+P_BRING_ITEM_RULE_2 minimising....
+Minimised States: 4 in 0ms
+make DFA(P_BRING_ITEM_RULE_2)
+DFA(P_BRING_ITEM_RULE_2) has 4 states.
+Tau reduction ON
+P_BRING_ITEM_RULE_2 minimising...
+Minimised States: 2 in 0ms
+Formula !P_BRING_ITEM_RULE_3 = (true U (reqBringItem & X (!robot2.move[1..2] U (robot2.pick.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} & !robot2.move[1..2]))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_BRING_ITEM_RULE_3 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |reqBringItem -> S2),
+S2 =(!robot2.move[1..2] -> S2 |robot2.pick.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}}&!robot2.move[1..2] -> S1).
+Composition:P_BRING_ITEM_RULE_3 = reqBringItem || robot2.pick.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} || robot2.move[1..2] || SYNC || P_BRING_ITEM_RULE_3
+State Space: 2 * 2 * 2 * 2 * 4 = 2 ** 6
+Composing...
+-- States: 24 Transitions: 128 Memory used: 34463KB
+Composed in 33ms
+After Tau elimination = 12 state
+Tau reduction ON
+P_BRING_ITEM_RULE_3 minimising....
+Minimised States: 4 in 0ms
+make DFA(P_BRING_ITEM_RULE_3)
+DFA(P_BRING_ITEM_RULE_3) has 4 states.
+Tau reduction ON
+P_BRING_ITEM_RULE_3 minimising...
+Minimised States: 2 in 0ms
+Formula !P_BRING_ITEM_RULE_4 = (true U ((PROCESS_BRING_ITEM & robot2.move[1..2]) & X (!robot2.{pick, put}[1..2] U (robot2.move.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} & !robot2.{pick, put}[1..2]))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_BRING_ITEM_RULE_4 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |PROCESS_BRING_ITEM&robot2.move[1..2] -> S2),
+S2 =(!robot2.{pick, put}[1..2] -> S2 |robot2.move.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}}&!robot2.{pick, put}[1..2] -> S1).
+Composition:P_BRING_ITEM_RULE_4 = PROCESS_BRING_ITEM || robot2.move[1..2] || robot2.move.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} || robot2.{pick, put}[1..2] || SYNC || P_BRING_ITEM_RULE_4
+State Space: 2 * 2 * 2 * 2 * 2 * 4 = 2 ** 7
+Composing...
+-- States: 62 Transitions: 413 Memory used: 34517KB
+Composed in 34ms
+After Tau elimination = 30 state
+Tau reduction ON
+P_BRING_ITEM_RULE_4 minimising....
+Minimised States: 5 in 0ms
+make DFA(P_BRING_ITEM_RULE_4)
+DFA(P_BRING_ITEM_RULE_4) has 8 states.
+Tau reduction ON
+P_BRING_ITEM_RULE_4 minimising.....
+Minimised States: 4 in 0ms
+Formula !P_BRING_ITEM_RULE_5 = (true U (reqBringItem & X (!robot2.pick[1..2] U (robot2.put[1..2] & !robot2.pick[1..2]))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_BRING_ITEM_RULE_5 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |reqBringItem -> S2),
+S2 =(!robot2.pick[1..2] -> S2 |robot2.put[1..2]&!robot2.pick[1..2] -> S1).
+Composition:P_BRING_ITEM_RULE_5 = reqBringItem || robot2.put[1..2] || robot2.pick[1..2] || SYNC || P_BRING_ITEM_RULE_5
+State Space: 2 * 2 * 2 * 2 * 4 = 2 ** 6
+Composing...
+-- States: 24 Transitions: 80 Memory used: 34455KB
+Composed in 33ms
+After Tau elimination = 12 state
+Tau reduction ON
+P_BRING_ITEM_RULE_5 minimising....
+Minimised States: 4 in 0ms
+make DFA(P_BRING_ITEM_RULE_5)
+DFA(P_BRING_ITEM_RULE_5) has 4 states.
+Tau reduction ON
+P_BRING_ITEM_RULE_5 minimising...
+Minimised States: 2 in 0ms
+Formula !P_BRING_ITEM_RULE_6 = (true U ((PROCESS_BRING_ITEM & robot2.pick[1..2]) & X (!robot2.move.packingArea U (robot2.{move.{[1..2], {boxGettingArea, itemGettingArea, shippingArea}}, {pick, put}.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}}} & !robot2.move.packingArea))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_BRING_ITEM_RULE_6 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |PROCESS_BRING_ITEM&robot2.pick[1..2] -> S2),
+S2 =(!robot2.move.packingArea -> S2 |robot2.{move.{[1..2], {boxGettingArea, itemGettingArea, shippingArea}}, {pick, put}.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}}}&!robot2.move.packingArea -> S1).
+Composition:P_BRING_ITEM_RULE_6 = PROCESS_BRING_ITEM || robot2.pick[1..2] || robot2.{move.{[1..2], {boxGettingArea, itemGettingArea, shippingArea}}, {pick, put}.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}}} || robot2.move.packingArea || SYNC || P_BRING_ITEM_RULE_6
+State Space: 2 * 2 * 2 * 2 * 2 * 4 = 2 ** 7
+Composing...
+-- States: 62 Transitions: 653 Memory used: 34645KB
+Composed in 41ms
+After Tau elimination = 30 state
+Tau reduction ON
+P_BRING_ITEM_RULE_6 minimising....
+Minimised States: 5 in 1ms
+make DFA(P_BRING_ITEM_RULE_6)
+DFA(P_BRING_ITEM_RULE_6) has 8 states.
+Tau reduction ON
+P_BRING_ITEM_RULE_6 minimising.....
+Minimised States: 4 in 0ms
+Formula !P_BRING_ITEM_RULE_7 = (true U ((PROCESS_BRING_ITEM & robot2.move.packingArea) & X (!robot2.pick.packingArea U (robot2.move[1..2] & !robot2.pick.packingArea))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_BRING_ITEM_RULE_7 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |PROCESS_BRING_ITEM&robot2.move.packingArea -> S2),
+S2 =(!robot2.pick.packingArea -> S2 |robot2.move[1..2]&!robot2.pick.packingArea -> S1).
+Composition:P_BRING_ITEM_RULE_7 = PROCESS_BRING_ITEM || robot2.move.packingArea || robot2.move[1..2] || robot2.pick.packingArea || SYNC || P_BRING_ITEM_RULE_7
+State Space: 2 * 2 * 2 * 2 * 2 * 4 = 2 ** 7
+Composing...
+-- States: 62 Transitions: 231 Memory used: 34672KB
+Composed in 33ms
+After Tau elimination = 30 state
+Tau reduction ON
+P_BRING_ITEM_RULE_7 minimising....
+Minimised States: 5 in 0ms
+make DFA(P_BRING_ITEM_RULE_7)
+DFA(P_BRING_ITEM_RULE_7) has 8 states.
+Tau reduction ON
+P_BRING_ITEM_RULE_7 minimising.....
+Minimised States: 4 in 0ms
+Formula !P_BRING_ITEM_RULE_8 = (true U ((PROCESS_BRING_ITEM & robot2.move.packingArea) & X (!getItem U (robot2.pick.packingArea & !getItem))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_BRING_ITEM_RULE_8 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |PROCESS_BRING_ITEM&robot2.move.packingArea -> S2),
+S2 =(!getItem -> S2 |robot2.pick.packingArea&!getItem -> S1).
+Composition:P_BRING_ITEM_RULE_8 = PROCESS_BRING_ITEM || robot2.move.packingArea || robot2.pick.packingArea || getItem || SYNC || P_BRING_ITEM_RULE_8
+State Space: 2 * 2 * 2 * 2 * 2 * 4 = 2 ** 7
+Composing...
+-- States: 62 Transitions: 201 Memory used: 34618KB
+Composed in 42ms
+After Tau elimination = 30 state
+Tau reduction ON
+P_BRING_ITEM_RULE_8 minimising....
+Minimised States: 5 in 0ms
+make DFA(P_BRING_ITEM_RULE_8)
+DFA(P_BRING_ITEM_RULE_8) has 8 states.
+Tau reduction ON
+P_BRING_ITEM_RULE_8 minimising.....
+Minimised States: 4 in 0ms
+Formula !P_BRING_ITEM_RULE_9 = (true U (getItem & X (!doneBringItem U (getItem & !doneBringItem))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_BRING_ITEM_RULE_9 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |getItem -> S2),
+S2 =(!doneBringItem -> S2 |getItem&!doneBringItem -> S1).
+Composition:P_BRING_ITEM_RULE_9 = getItem || doneBringItem || SYNC || P_BRING_ITEM_RULE_9
+State Space: 2 * 2 * 2 * 4 = 2 ** 5
+Composing...
+-- States: 16 Transitions: 30 Memory used: 34563KB
+Composed in 37ms
+After Tau elimination = 8 state
+Tau reduction ON
+P_BRING_ITEM_RULE_9 minimising....
+Minimised States: 4 in 0ms
+make DFA(P_BRING_ITEM_RULE_9)
+DFA(P_BRING_ITEM_RULE_9) has 4 states.
+Tau reduction ON
+P_BRING_ITEM_RULE_9 minimising...
+Minimised States: 2 in 0ms
+Formula !P_BRING_ITEM_RULE_10 = (true U ((PROCESS_BRING_ITEM & robot2.pick.packingArea) & X (!doneBringItem U (robot2.put.packingArea & !doneBringItem))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_BRING_ITEM_RULE_10 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |PROCESS_BRING_ITEM&robot2.pick.packingArea -> S2),
+S2 =(!doneBringItem -> S2 |robot2.put.packingArea&!doneBringItem -> S1).
+Composition:P_BRING_ITEM_RULE_10 = PROCESS_BRING_ITEM || robot2.pick.packingArea || robot2.put.packingArea || doneBringItem || SYNC || P_BRING_ITEM_RULE_10
+State Space: 2 * 2 * 2 * 2 * 2 * 4 = 2 ** 7
+Composing...
+-- States: 44 Transitions: 124 Memory used: 34621KB
+Composed in 34ms
+After Tau elimination = 22 state
+Tau reduction ON
+P_BRING_ITEM_RULE_10 minimising.....
+Minimised States: 5 in 0ms
+make DFA(P_BRING_ITEM_RULE_10)
+DFA(P_BRING_ITEM_RULE_10) has 6 states.
+Tau reduction ON
+P_BRING_ITEM_RULE_10 minimising....
+Minimised States: 3 in 0ms
+Formula !P_BRING_ITEM_RULE_12 = (true U ((PROCESS_BRING_ITEM & robot2.put[1..2]) & X (!doneBringItem U (robot2.{move, pick, put}.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} & !doneBringItem))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_BRING_ITEM_RULE_12 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |PROCESS_BRING_ITEM&robot2.put[1..2] -> S2),
+S2 =(!doneBringItem -> S2 |robot2.{move, pick, put}.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}}&!doneBringItem -> S1).
+Composition:P_BRING_ITEM_RULE_12 = PROCESS_BRING_ITEM || robot2.put[1..2] || robot2.{move, pick, put}.{[1..2], {boxGettingArea, itemGettingArea, packingArea, shippingArea}} || doneBringItem || SYNC || P_BRING_ITEM_RULE_12
+State Space: 2 * 2 * 2 * 2 * 2 * 4 = 2 ** 7
+Composing...
+-- States: 44 Transitions: 477 Memory used: 34841KB
+Composed in 34ms
+After Tau elimination = 22 state
+Tau reduction ON
+P_BRING_ITEM_RULE_12 minimising.....
+Minimised States: 5 in 0ms
+make DFA(P_BRING_ITEM_RULE_12)
+DFA(P_BRING_ITEM_RULE_12) has 6 states.
+Tau reduction ON
+P_BRING_ITEM_RULE_12 minimising....
+Minimised States: 3 in 0ms
+Formula !P_BRING_ITEM_RULE_13 = (true U ((PROCESS_BRING_ITEM & reqBringItem) & X (!robot2.put[1..2] U (doneBringItem & !robot2.put[1..2]))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_BRING_ITEM_RULE_13 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |PROCESS_BRING_ITEM&reqBringItem -> S2),
+S2 =(!robot2.put[1..2] -> S2 |doneBringItem&!robot2.put[1..2] -> S1).
+Composition:P_BRING_ITEM_RULE_13 = PROCESS_BRING_ITEM || reqBringItem || doneBringItem || robot2.put[1..2] || SYNC || P_BRING_ITEM_RULE_13
+State Space: 2 * 2 * 2 * 2 * 2 * 4 = 2 ** 7
+Composing...
+-- States: 31 Transitions: 86 Memory used: 34787KB
+Composed in 34ms
+After Tau elimination = 15 state
+Tau reduction ON
+P_BRING_ITEM_RULE_13 minimising....
+Minimised States: 4 in 0ms
+make DFA(P_BRING_ITEM_RULE_13)
+DFA(P_BRING_ITEM_RULE_13) has 4 states.
+Tau reduction ON
+P_BRING_ITEM_RULE_13 minimising...
+Minimised States: 2 in 0ms
+Formula !P_BRING_BOX_RULE_1 = (true U (PROCESS_BRING_BOX & robot1.{move.{[1..2], {itemGettingArea, shippingArea}}, pick.{[1..2], {itemGettingArea, packingArea, shippingArea}}, put.{[1..2], {boxGettingArea, itemGettingArea, shippingArea}}}))
+GBA 2 states 3 transitions
+Buchi automata:
+P_BRING_BOX_RULE_1 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |PROCESS_BRING_BOX&robot1.{move.{[1..2], {itemGettingArea, shippingArea}}, pick.{[1..2], {itemGettingArea, packingArea, shippingArea}}, put.{[1..2], {boxGettingArea, itemGettingArea, shippingArea}}} -> S1).
+Composition:P_BRING_BOX_RULE_1 = PROCESS_BRING_BOX || robot1.{move.{[1..2], {itemGettingArea, shippingArea}}, pick.{[1..2], {itemGettingArea, packingArea, shippingArea}}, put.{[1..2], {boxGettingArea, itemGettingArea, shippingArea}}} || SYNC || P_BRING_BOX_RULE_1
+State Space: 2 * 2 * 2 * 2 = 2 ** 4
+Composing...
+-- States: 16 Transitions: 145 Memory used: 34763KB
+Composed in 38ms
+After Tau elimination = 8 state
+Tau reduction ON
+P_BRING_BOX_RULE_1 minimising...
+Minimised States: 3 in 0ms
+make DFA(P_BRING_BOX_RULE_1)
+DFA(P_BRING_BOX_RULE_1) has 2 states.
+Tau reduction ON
+P_BRING_BOX_RULE_1 minimising...
+Minimised States: 2 in 0ms
+Formula !P_BRING_BOX_RULE_2 = (true U (reqBringBox & X (!robot1.pick.boxGettingArea U (robot1.move.packingArea & !robot1.pick.boxGettingArea))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_BRING_BOX_RULE_2 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |reqBringBox -> S2),
+S2 =(!robot1.pick.boxGettingArea -> S2 |robot1.move.packingArea&!robot1.pick.boxGettingArea -> S1).
+Composition:P_BRING_BOX_RULE_2 = reqBringBox || robot1.move.packingArea || robot1.pick.boxGettingArea || SYNC || P_BRING_BOX_RULE_2
+State Space: 2 * 2 * 2 * 2 * 4 = 2 ** 6
+Composing...
+-- States: 24 Transitions: 56 Memory used: 34792KB
+Composed in 42ms
+After Tau elimination = 12 state
+Tau reduction ON
+P_BRING_BOX_RULE_2 minimising....
+Minimised States: 4 in 0ms
+make DFA(P_BRING_BOX_RULE_2)
+DFA(P_BRING_BOX_RULE_2) has 4 states.
+Tau reduction ON
+P_BRING_BOX_RULE_2 minimising...
+Minimised States: 2 in 0ms
+Formula !P_BRING_BOX_RULE_3 = (true U (reqBringBox & X (!supplyBox U (robot1.pick.boxGettingArea & !supplyBox))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_BRING_BOX_RULE_3 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |reqBringBox -> S2),
+S2 =(!supplyBox -> S2 |robot1.pick.boxGettingArea&!supplyBox -> S1).
+Composition:P_BRING_BOX_RULE_3 = reqBringBox || robot1.pick.boxGettingArea || supplyBox || SYNC || P_BRING_BOX_RULE_3
+State Space: 2 * 2 * 2 * 2 * 4 = 2 ** 6
+Composing...
+-- States: 24 Transitions: 56 Memory used: 34803KB
+Composed in 39ms
+After Tau elimination = 12 state
+Tau reduction ON
+P_BRING_BOX_RULE_3 minimising....
+Minimised States: 4 in 0ms
+make DFA(P_BRING_BOX_RULE_3)
+DFA(P_BRING_BOX_RULE_3) has 4 states.
+Tau reduction ON
+P_BRING_BOX_RULE_3 minimising...
+Minimised States: 2 in 0ms
+Formula !P_BRING_BOX_RULE_4 = (true U (supplyBox & X (!robot1.pick.boxGettingArea U (supplyBox & !robot1.pick.boxGettingArea))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_BRING_BOX_RULE_4 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |supplyBox -> S2),
+S2 =(!robot1.pick.boxGettingArea -> S2 |supplyBox&!robot1.pick.boxGettingArea -> S1).
+Composition:P_BRING_BOX_RULE_4 = supplyBox || robot1.pick.boxGettingArea || SYNC || P_BRING_BOX_RULE_4
+State Space: 2 * 2 * 2 * 4 = 2 ** 5
+Composing...
+-- States: 16 Transitions: 30 Memory used: 34814KB
+Composed in 37ms
+After Tau elimination = 8 state
+Tau reduction ON
+P_BRING_BOX_RULE_4 minimising....
+Minimised States: 4 in 1ms
+make DFA(P_BRING_BOX_RULE_4)
+DFA(P_BRING_BOX_RULE_4) has 4 states.
+Tau reduction ON
+P_BRING_BOX_RULE_4 minimising...
+Minimised States: 2 in 0ms
+Formula !P_BRING_BOX_RULE_5 = (true U (robot1.pick.boxGettingArea & X (!doneBringBox U (robot1.move.boxGettingArea & !doneBringBox))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_BRING_BOX_RULE_5 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |robot1.pick.boxGettingArea -> S2),
+S2 =(!doneBringBox -> S2 |robot1.move.boxGettingArea&!doneBringBox -> S1).
+Composition:P_BRING_BOX_RULE_5 = robot1.pick.boxGettingArea || robot1.move.boxGettingArea || doneBringBox || SYNC || P_BRING_BOX_RULE_5
+State Space: 2 * 2 * 2 * 2 * 4 = 2 ** 6
+Composing...
+-- States: 24 Transitions: 56 Memory used: 34837KB
+Composed in 40ms
+After Tau elimination = 12 state
+Tau reduction ON
+P_BRING_BOX_RULE_5 minimising....
+Minimised States: 4 in 0ms
+make DFA(P_BRING_BOX_RULE_5)
+DFA(P_BRING_BOX_RULE_5) has 4 states.
+Tau reduction ON
+P_BRING_BOX_RULE_5 minimising...
+Minimised States: 2 in 0ms
+Formula !P_BRING_BOX_RULE_6 = (true U (reqBringBox & X (!robot1.put.packingArea U (doneBringBox & !robot1.put.packingArea))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_BRING_BOX_RULE_6 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |reqBringBox -> S2),
+S2 =(!robot1.put.packingArea -> S2 |doneBringBox&!robot1.put.packingArea -> S1).
+Composition:P_BRING_BOX_RULE_6 = reqBringBox || doneBringBox || robot1.put.packingArea || SYNC || P_BRING_BOX_RULE_6
+State Space: 2 * 2 * 2 * 2 * 4 = 2 ** 6
+Composing...
+-- States: 24 Transitions: 56 Memory used: 34870KB
+Composed in 39ms
+After Tau elimination = 12 state
+Tau reduction ON
+P_BRING_BOX_RULE_6 minimising....
+Minimised States: 4 in 0ms
+make DFA(P_BRING_BOX_RULE_6)
+DFA(P_BRING_BOX_RULE_6) has 4 states.
+Tau reduction ON
+P_BRING_BOX_RULE_6 minimising...
+Minimised States: 2 in 0ms
+Formula !P_SHIP_RULE_0 = (true U (!REQ_SHIP_TIMEING & reqShip))
+GBA 2 states 3 transitions
+Buchi automata:
+P_SHIP_RULE_0 = S0,
+S1@ =(true -> S1),
+S0 =(!REQ_SHIP_TIMEING&reqShip -> S1 |true -> S0).
+Composition:P_SHIP_RULE_0 = REQ_SHIP_TIMEING || reqShip || SYNC || P_SHIP_RULE_0
+State Space: 2 * 2 * 2 * 2 = 2 ** 4
+Composing...
+-- States: 16 Transitions: 41 Memory used: 34876KB
+Composed in 36ms
+After Tau elimination = 8 state
+Tau reduction ON
+P_SHIP_RULE_0 minimising...
+Minimised States: 3 in 0ms
+make DFA(P_SHIP_RULE_0)
+DFA(P_SHIP_RULE_0) has 2 states.
+Tau reduction ON
+P_SHIP_RULE_0 minimising...
+Minimised States: 2 in 0ms
+Formula !P_SHIP_RULE_1 = (true U (PROCESS_SHIP & robot1.{move.{[1..2], {boxGettingArea, itemGettingArea}}, pick.{[1..2], {boxGettingArea, itemGettingArea, shippingArea}}, put.{[1..2], {boxGettingArea, itemGettingArea, packingArea}}}))
+GBA 2 states 3 transitions
+Buchi automata:
+P_SHIP_RULE_1 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |PROCESS_SHIP&robot1.{move.{[1..2], {boxGettingArea, itemGettingArea}}, pick.{[1..2], {boxGettingArea, itemGettingArea, shippingArea}}, put.{[1..2], {boxGettingArea, itemGettingArea, packingArea}}} -> S1).
+Composition:P_SHIP_RULE_1 = PROCESS_SHIP || robot1.{move.{[1..2], {boxGettingArea, itemGettingArea}}, pick.{[1..2], {boxGettingArea, itemGettingArea, shippingArea}}, put.{[1..2], {boxGettingArea, itemGettingArea, packingArea}}} || SYNC || P_SHIP_RULE_1
+State Space: 2 * 2 * 2 * 2 = 2 ** 4
+Composing...
+-- States: 16 Transitions: 145 Memory used: 34929KB
+Composed in 47ms
+After Tau elimination = 8 state
+Tau reduction ON
+P_SHIP_RULE_1 minimising...
+Minimised States: 3 in 0ms
+make DFA(P_SHIP_RULE_1)
+DFA(P_SHIP_RULE_1) has 2 states.
+Tau reduction ON
+P_SHIP_RULE_1 minimising...
+Minimised States: 2 in 0ms
+Formula !P_SHIP_RULE_2 = (true U (reqShip & X (!robot1.pick.packingArea U (robot1.move.shippingArea & !robot1.pick.packingArea))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_SHIP_RULE_2 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |reqShip -> S2),
+S2 =(!robot1.pick.packingArea -> S2 |robot1.move.shippingArea&!robot1.pick.packingArea -> S1).
+Composition:P_SHIP_RULE_2 = reqShip || robot1.move.shippingArea || robot1.pick.packingArea || SYNC || P_SHIP_RULE_2
+State Space: 2 * 2 * 2 * 2 * 4 = 2 ** 6
+Composing...
+-- States: 24 Transitions: 56 Memory used: 34998KB
+Composed in 34ms
+After Tau elimination = 12 state
+Tau reduction ON
+P_SHIP_RULE_2 minimising....
+Minimised States: 4 in 7ms
+make DFA(P_SHIP_RULE_2)
+DFA(P_SHIP_RULE_2) has 4 states.
+Tau reduction ON
+P_SHIP_RULE_2 minimising...
+Minimised States: 2 in 0ms
+Formula !P_SHIP_RULE_3 = (true U (robot1.move.shippingArea & X (!doneShip U (robot1.move.packingArea & !doneShip))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_SHIP_RULE_3 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |robot1.move.shippingArea -> S2),
+S2 =(!doneShip -> S2 |robot1.move.packingArea&!doneShip -> S1).
+Composition:P_SHIP_RULE_3 = robot1.move.shippingArea || robot1.move.packingArea || doneShip || SYNC || P_SHIP_RULE_3
+State Space: 2 * 2 * 2 * 2 * 4 = 2 ** 6
+Composing...
+-- States: 24 Transitions: 56 Memory used: 35017KB
+Composed in 33ms
+After Tau elimination = 12 state
+Tau reduction ON
+P_SHIP_RULE_3 minimising....
+Minimised States: 4 in 0ms
+make DFA(P_SHIP_RULE_3)
+DFA(P_SHIP_RULE_3) has 4 states.
+Tau reduction ON
+P_SHIP_RULE_3 minimising...
+Minimised States: 2 in 0ms
+Formula !P_SHIP_RULE_4 = (true U (reqShip & X (!robot1.put.shippingArea U (ship & !robot1.put.shippingArea))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_SHIP_RULE_4 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |reqShip -> S2),
+S2 =(!robot1.put.shippingArea -> S2 |ship&!robot1.put.shippingArea -> S1).
+Composition:P_SHIP_RULE_4 = reqShip || ship || robot1.put.shippingArea || SYNC || P_SHIP_RULE_4
+State Space: 2 * 2 * 2 * 2 * 4 = 2 ** 6
+Composing...
+-- States: 24 Transitions: 56 Memory used: 34999KB
+Composed in 36ms
+After Tau elimination = 12 state
+Tau reduction ON
+P_SHIP_RULE_4 minimising....
+Minimised States: 4 in 0ms
+make DFA(P_SHIP_RULE_4)
+DFA(P_SHIP_RULE_4) has 4 states.
+Tau reduction ON
+P_SHIP_RULE_4 minimising...
+Minimised States: 2 in 0ms
+Formula !P_SHIP_RULE_5 = (true U (ship & X (!doneShip U (ship & !doneShip))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_SHIP_RULE_5 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |ship -> S2),
+S2 =(!doneShip -> S2 |ship&!doneShip -> S1).
+Composition:P_SHIP_RULE_5 = ship || doneShip || SYNC || P_SHIP_RULE_5
+State Space: 2 * 2 * 2 * 4 = 2 ** 5
+Composing...
+-- States: 16 Transitions: 30 Memory used: 35013KB
+Composed in 33ms
+After Tau elimination = 8 state
+Tau reduction ON
+P_SHIP_RULE_5 minimising....
+Minimised States: 4 in 0ms
+make DFA(P_SHIP_RULE_5)
+DFA(P_SHIP_RULE_5) has 4 states.
+Tau reduction ON
+P_SHIP_RULE_5 minimising...
+Minimised States: 2 in 0ms
+Formula !P_SHIP_RULE_6 = (true U (reqShip & X (!ship U (doneShip & !ship))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_SHIP_RULE_6 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |reqShip -> S2),
+S2 =(!ship -> S2 |doneShip&!ship -> S1).
+Composition:P_SHIP_RULE_6 = reqShip || doneShip || ship || SYNC || P_SHIP_RULE_6
+State Space: 2 * 2 * 2 * 2 * 4 = 2 ** 6
+Composing...
+-- States: 24 Transitions: 56 Memory used: 35071KB
+Composed in 41ms
+After Tau elimination = 12 state
+Tau reduction ON
+P_SHIP_RULE_6 minimising....
+Minimised States: 4 in 0ms
+make DFA(P_SHIP_RULE_6)
+DFA(P_SHIP_RULE_6) has 4 states.
+Tau reduction ON
+P_SHIP_RULE_6 minimising...
+Minimised States: 2 in 0ms
+Formula !P_REPLENISH_RULE01 = (true U (REPLENISH.1 & robot2.move[1..2]))
+GBA 2 states 3 transitions
+Buchi automata:
+P_REPLENISH_RULE01 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |REPLENISH.1&robot2.move[1..2] -> S1).
+Composition:P_REPLENISH_RULE01 = REPLENISH.1 || robot2.move[1..2] || SYNC || P_REPLENISH_RULE01
+State Space: 2 * 2 * 2 * 2 = 2 ** 4
+Composing...
+-- States: 13 Transitions: 34 Memory used: 35050KB
+Composed in 25ms
+After Tau elimination = 7 state
+Tau reduction ON
+P_REPLENISH_RULE01 minimising...
+Minimised States: 3 in 0ms
+make DFA(P_REPLENISH_RULE01)
+DFA(P_REPLENISH_RULE01) has 2 states.
+Tau reduction ON
+P_REPLENISH_RULE01 minimising...
+Minimised States: 2 in 0ms
+Formula !P_BRING_RULE01 = (true U (BRING.1 & robot2.move[1..2]))
+GBA 2 states 3 transitions
+Buchi automata:
+P_BRING_RULE01 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |BRING.1&robot2.move[1..2] -> S1).
+Composition:P_BRING_RULE01 = BRING.1 || robot2.move[1..2] || SYNC || P_BRING_RULE01
+State Space: 2 * 2 * 2 * 2 = 2 ** 4
+Composing...
+-- States: 13 Transitions: 34 Memory used: 35080KB
+Composed in 50ms
+After Tau elimination = 7 state
+Tau reduction ON
+P_BRING_RULE01 minimising...
+Minimised States: 3 in 0ms
+make DFA(P_BRING_RULE01)
+DFA(P_BRING_RULE01) has 2 states.
+Tau reduction ON
+P_BRING_RULE01 minimising...
+Minimised States: 2 in 0ms
+Formula !P_REPLENISH_ITEM_RULE01_11 = (true U (replenish[1] & X (!doneReplenishItem U (robot2.move[2] & !doneReplenishItem))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_REPLENISH_ITEM_RULE01_11 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |replenish[1] -> S2),
+S2 =(!doneReplenishItem -> S2 |robot2.move[2]&!doneReplenishItem -> S1).
+Composition:P_REPLENISH_ITEM_RULE01_11 = replenish[1] || robot2.move[2] || doneReplenishItem || SYNC || P_REPLENISH_ITEM_RULE01_11
+State Space: 2 * 2 * 2 * 2 * 4 = 2 ** 6
+Composing...
+-- States: 24 Transitions: 56 Memory used: 35142KB
+Composed in 34ms
+After Tau elimination = 12 state
+Tau reduction ON
+P_REPLENISH_ITEM_RULE01_11 minimising....
+Minimised States: 4 in 0ms
+make DFA(P_REPLENISH_ITEM_RULE01_11)
+DFA(P_REPLENISH_ITEM_RULE01_11) has 4 states.
+Tau reduction ON
+P_REPLENISH_ITEM_RULE01_11 minimising...
+Minimised States: 2 in 0ms
+Formula !P_BRING_ITEM_RULE01_11 = (true U (bring[1] & X (!doneBringItem U (robot2.move[2] & !doneBringItem))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_BRING_ITEM_RULE01_11 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |bring[1] -> S2),
+S2 =(!doneBringItem -> S2 |robot2.move[2]&!doneBringItem -> S1).
+Composition:P_BRING_ITEM_RULE01_11 = bring[1] || robot2.move[2] || doneBringItem || SYNC || P_BRING_ITEM_RULE01_11
+State Space: 2 * 2 * 2 * 2 * 4 = 2 ** 6
+Composing...
+-- States: 24 Transitions: 56 Memory used: 35162KB
+Composed in 34ms
+After Tau elimination = 12 state
+Tau reduction ON
+P_BRING_ITEM_RULE01_11 minimising....
+Minimised States: 4 in 0ms
+make DFA(P_BRING_ITEM_RULE01_11)
+DFA(P_BRING_ITEM_RULE01_11) has 4 states.
+Tau reduction ON
+P_BRING_ITEM_RULE01_11 minimising...
+Minimised States: 2 in 0ms
+Formula !P_REPLENISH_RULE02 = (true U (REPLENISH.2 & robot2.move[1..2]))
+GBA 2 states 3 transitions
+Buchi automata:
+P_REPLENISH_RULE02 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |REPLENISH.2&robot2.move[1..2] -> S1).
+Composition:P_REPLENISH_RULE02 = REPLENISH.2 || robot2.move[1..2] || SYNC || P_REPLENISH_RULE02
+State Space: 2 * 2 * 2 * 2 = 2 ** 4
+Composing...
+-- States: 13 Transitions: 34 Memory used: 35146KB
+Composed in 39ms
+After Tau elimination = 7 state
+Tau reduction ON
+P_REPLENISH_RULE02 minimising...
+Minimised States: 3 in 0ms
+make DFA(P_REPLENISH_RULE02)
+DFA(P_REPLENISH_RULE02) has 2 states.
+Tau reduction ON
+P_REPLENISH_RULE02 minimising...
+Minimised States: 2 in 0ms
+Formula !P_BRING_RULE02 = (true U (BRING.2 & robot2.move[1..2]))
+GBA 2 states 3 transitions
+Buchi automata:
+P_BRING_RULE02 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |BRING.2&robot2.move[1..2] -> S1).
+Composition:P_BRING_RULE02 = BRING.2 || robot2.move[1..2] || SYNC || P_BRING_RULE02
+State Space: 2 * 2 * 2 * 2 = 2 ** 4
+Composing...
+-- States: 13 Transitions: 34 Memory used: 35161KB
+Composed in 34ms
+After Tau elimination = 7 state
+Tau reduction ON
+P_BRING_RULE02 minimising...
+Minimised States: 3 in 0ms
+make DFA(P_BRING_RULE02)
+DFA(P_BRING_RULE02) has 2 states.
+Tau reduction ON
+P_BRING_RULE02 minimising...
+Minimised States: 2 in 0ms
+Formula !P_REPLENISH_ITEM_RULE02_11 = (true U (replenish[2] & X (!doneReplenishItem U (robot2.move[1] & !doneReplenishItem))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_REPLENISH_ITEM_RULE02_11 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |replenish[2] -> S2),
+S2 =(!doneReplenishItem -> S2 |robot2.move[1]&!doneReplenishItem -> S1).
+Composition:P_REPLENISH_ITEM_RULE02_11 = replenish[2] || robot2.move[1] || doneReplenishItem || SYNC || P_REPLENISH_ITEM_RULE02_11
+State Space: 2 * 2 * 2 * 2 * 4 = 2 ** 6
+Composing...
+-- States: 24 Transitions: 56 Memory used: 35219KB
+Composed in 42ms
+After Tau elimination = 12 state
+Tau reduction ON
+P_REPLENISH_ITEM_RULE02_11 minimising....
+Minimised States: 4 in 0ms
+make DFA(P_REPLENISH_ITEM_RULE02_11)
+DFA(P_REPLENISH_ITEM_RULE02_11) has 4 states.
+Tau reduction ON
+P_REPLENISH_ITEM_RULE02_11 minimising...
+Minimised States: 2 in 0ms
+Formula !P_BRING_ITEM_RULE02_11 = (true U (bring[2] & X (!doneBringItem U (robot2.move[1] & !doneBringItem))))
+GBA 3 states 5 transitions
+Buchi automata:
+P_BRING_ITEM_RULE02_11 = S0,
+S1@ =(true -> S1),
+S0 =(true -> S0 |bring[2] -> S2),
+S2 =(!doneBringItem -> S2 |robot2.move[1]&!doneBringItem -> S1).
+Composition:P_BRING_ITEM_RULE02_11 = bring[2] || robot2.move[1] || doneBringItem || SYNC || P_BRING_ITEM_RULE02_11
+State Space: 2 * 2 * 2 * 2 * 4 = 2 ** 6
+Composing...
+-- States: 24 Transitions: 56 Memory used: 35261KB
+Composed in 42ms
+After Tau elimination = 12 state
+Tau reduction ON
+P_BRING_ITEM_RULE02_11 minimising....
+Minimised States: 4 in 0ms
+make DFA(P_BRING_ITEM_RULE02_11)
+DFA(P_BRING_ITEM_RULE02_11) has 4 states.
+Tau reduction ON
+P_BRING_ITEM_RULE02_11 minimising...
+Minimised States: 2 in 0ms
+Compile is Complete!
+
+
+===================================================
+           Stepwise Controller Synthesis           
+===================================================
+
+[info] Monitor Models
+     * P_REPLENISH_ITEM_RULE_6 : [robot2.move.itemGettingArea, robot2.put.itemGettingArea, robot2.pick.itemGettingArea, robot2.pick.packingArea, robot2.put.1, robot2.put.2, robot2.move.2, robot2.move.1, robot2.put.boxGettingArea, robot2.put.packingArea, robot2.move.shippingArea, robot2.move.boxGettingArea, doneReplenishItem, reqReplenishItem, robot2.pick.shippingArea, robot2.pick.1, robot2.move.packingArea, robot2.pick.boxGettingArea, robot2.put.shippingArea, robot2.pick.2]
+     * P_BRING_ITEM_RULE_8 : [robot2.pick.packingArea, doneBringItem, getItem, reqBringItem, robot2.move.packingArea]
+     * P_BRING_ITEM_RULE_4 : [robot2.move.itemGettingArea, robot2.put.1, robot2.put.2, robot2.move.2, robot2.move.1, robot2.move.shippingArea, doneBringItem, robot2.move.boxGettingArea, reqBringItem, robot2.pick.1, robot2.move.packingArea, robot2.pick.2]
+     * P_BRING_BOX_RULE_5 : [doneBringBox, robot1.pick.boxGettingArea, robot1.move.boxGettingArea]
+     * P_SHIP_RULE_3 : [robot1.move.shippingArea, doneShip, robot1.move.packingArea]
+     * P_BRING_ITEM_RULE_10 : [robot2.pick.packingArea, doneBringItem, reqBringItem, robot2.put.packingArea]
+     * P_REPLENISH_ITEM_RULE_1 : [robot2.move.shippingArea, robot2.pick.packingArea, robot2.move.boxGettingArea, doneReplenishItem, reqReplenishItem, robot2.put.boxGettingArea, robot2.pick.shippingArea, robot2.put.packingArea, robot2.move.packingArea, robot2.pick.boxGettingArea, robot2.put.shippingArea]
+     * P_AREA_RULE_3 : [robot2.put.itemGettingArea, robot2.pick.itemGettingArea, supplyItem]
+     * P_BRING_ITEM_RULE_1 : [robot2.move.shippingArea, robot2.move.itemGettingArea, robot2.put.itemGettingArea, robot2.pick.itemGettingArea, doneBringItem, robot2.move.boxGettingArea, reqBringItem, robot2.put.boxGettingArea, robot2.pick.shippingArea, robot2.pick.boxGettingArea, robot2.put.shippingArea]
+     * P_SHIP_RULE_6 : [reqShip, ship, doneShip]
+     * P_AREA_RULE_5 : [doneBringBox, reqShip, pack]
+     * P_REPLENISH_ITEM_RULE02_11 : [replenish.2, doneReplenishItem, robot2.move.1]
+     * P_BRING_ITEM_RULE_6 : [robot2.move.itemGettingArea, robot2.put.itemGettingArea, robot2.pick.itemGettingArea, robot2.pick.packingArea, robot2.put.1, robot2.put.2, robot2.move.2, robot2.move.1, robot2.put.boxGettingArea, robot2.put.packingArea, robot2.move.shippingArea, doneBringItem, robot2.move.boxGettingArea, reqBringItem, robot2.pick.shippingArea, robot2.pick.1, robot2.move.packingArea, robot2.pick.boxGettingArea, robot2.put.shippingArea, robot2.pick.2]
+     * P_BRING_ITEM_RULE_5 : [robot2.put.1, robot2.put.2, reqBringItem, robot2.pick.1, robot2.pick.2]
+     * P_BRING_ITEM_RULE_13 : [robot2.put.1, doneBringItem, robot2.put.2, reqBringItem]
+     * P_BRING_BOX_RULE_3 : [reqBringBox, robot1.pick.boxGettingArea, supplyBox]
+     * P_AREA_RULE_2 : [robot1.pick.boxGettingArea, supplyBox, robot1.move.boxGettingArea]
+     * P_SHIP_RULE_0 : [reqShip, doneShip, pack]
+     * P_ROBOT1_ARM_RULE_2 : [robot1.put.packingArea, robot1.put.1, robot1.put.2, robot1.put.itemGettingArea, robot1.pick.itemGettingArea, robot1.put.boxGettingArea, robot1.pick.packingArea, robot1.put.shippingArea, robot1.pick.shippingArea, robot1.pick.boxGettingArea, robot1.pick.1, robot1.pick.2]
+     * P_REQUEST_TIMING_1 : [doneBringBox, reqBringBox, reqShip]
+     * P_SHIP_RULE_5 : [ship, doneShip]
+     * P_ROBOT2_ARM_RULE_1 : [robot2.put.itemGettingArea, robot2.pick.itemGettingArea, robot2.pick.packingArea, robot2.put.1, robot2.put.2, robot2.put.boxGettingArea, robot2.put.packingArea, doneBringItem, doneReplenishItem, reqReplenishItem, reqBringItem, robot2.pick.shippingArea, robot2.pick.1, robot2.pick.2, robot2.pick.boxGettingArea, robot2.put.shippingArea]
+     * P_AREA_RULE_4 : [doneBringBox, robot2.pick.packingArea, doneBringItem, getItem, reqBringItem, robot2.put.packingArea]
+     * P_BRING_ITEM_RULE_2 : [robot2.move.itemGettingArea, robot2.put.itemGettingArea, robot2.pick.itemGettingArea, robot2.pick.packingArea, robot2.put.1, robot2.put.2, robot2.move.2, robot2.move.1, robot2.put.boxGettingArea, robot2.put.packingArea, bring.2, robot2.move.shippingArea, bring.1, robot2.move.boxGettingArea, reqBringItem, robot2.pick.shippingArea, robot2.pick.1, robot2.move.packingArea, robot2.pick.2, robot2.pick.boxGettingArea, robot2.put.shippingArea]
+     * P_AREA_RULE_6 : [doneBringItem, reqShip, pack]
+     * P_SHIP_RULE_2 : [reqShip, robot1.move.shippingArea, robot1.pick.packingArea]
+     * P_REPLENISH_RULE01 : [replenish.1, robot2.move.2, robot2.move.1]
+     * P_REPLENISH_ITEM_RULE_9 : [doneReplenishItem, supplyItem]
+     * P_BRING_ITEM_RULE_12 : [robot2.move.itemGettingArea, robot2.put.itemGettingArea, robot2.pick.itemGettingArea, robot2.pick.packingArea, robot2.put.1, robot2.put.2, robot2.move.2, robot2.move.1, robot2.put.boxGettingArea, robot2.put.packingArea, robot2.move.shippingArea, doneBringItem, robot2.move.boxGettingArea, reqBringItem, robot2.pick.shippingArea, robot2.pick.1, robot2.move.packingArea, robot2.pick.2, robot2.pick.boxGettingArea, robot2.put.shippingArea]
+     * P_ROBOT2_ARM_RULE_3 : [robot2.put.itemGettingArea, robot2.pick.itemGettingArea, robot2.pick.packingArea, robot2.put.1, robot2.put.2, robot2.put.boxGettingArea, robot2.put.packingArea, robot2.pick.shippingArea, robot2.pick.1, robot2.pick.2, robot2.pick.boxGettingArea, robot2.put.shippingArea]
+     * P_BRING_BOX_RULE_4 : [robot1.pick.boxGettingArea, supplyBox]
+     * P_REPLENISH_ITEM_RULE_8 : [robot2.move.itemGettingArea, robot2.pick.itemGettingArea, supplyItem]
+     * P_REPLENISH_ITEM_RULE_4 : [robot2.move.itemGettingArea, robot2.put.1, robot2.put.2, robot2.move.2, robot2.move.1, robot2.move.shippingArea, robot2.move.boxGettingArea, doneReplenishItem, reqReplenishItem, robot2.pick.1, robot2.move.packingArea, robot2.pick.2]
+     * P_REPLENISH_RULE_2 : [robot2.move.itemGettingArea, robot2.put.itemGettingArea, replenish.1, robot2.pick.itemGettingArea, robot2.pick.packingArea, robot2.put.1, replenish.2, robot2.put.2, robot2.move.2, robot2.move.1, robot2.put.boxGettingArea, robot2.put.packingArea, robot2.move.shippingArea, robot2.move.boxGettingArea, robot2.pick.shippingArea, robot2.pick.1, robot2.move.packingArea, robot2.pick.2, robot2.pick.boxGettingArea, robot2.put.shippingArea]
+     * P_REPLENISH_ITEM_RULE_7 : [robot2.move.itemGettingArea, robot2.pick.itemGettingArea, robot2.move.2, robot2.move.1]
+     * P_SHIP_RULE_1 : [robot1.put.packingArea, robot1.put.1, robot1.put.2, reqShip, robot1.put.itemGettingArea, robot1.pick.itemGettingArea, robot1.move.1, robot1.move.boxGettingArea, robot1.move.itemGettingArea, doneShip, robot1.put.boxGettingArea, robot1.move.2, robot1.pick.shippingArea, robot1.pick.boxGettingArea, robot1.pick.1, robot1.pick.2]
+     * P_AREA_RULE_8 : [doneBringItem, pack]
+     * P_BRING_BOX_RULE_1 : [doneBringBox, robot1.put.1, robot1.put.2, robot1.put.itemGettingArea, robot1.pick.itemGettingArea, robot1.move.1, robot1.move.shippingArea, robot1.move.itemGettingArea, robot1.put.boxGettingArea, robot1.pick.packingArea, robot1.put.shippingArea, robot1.move.2, reqBringBox, robot1.pick.shippingArea, robot1.pick.1, robot1.pick.2]
+     * P_REQUEST_TIMING_4 : [doneBringItem, reqReplenishItem, reqBringItem]
+     * P_REQUEST_ONLY_2 : [robot2.move.itemGettingArea, robot2.put.itemGettingArea, robot2.put.1, robot2.pick.itemGettingArea, robot2.pick.packingArea, robot2.put.2, robot2.move.2, robot2.move.1, robot2.put.boxGettingArea, robot2.put.packingArea, robot2.move.shippingArea, doneBringItem, robot2.move.boxGettingArea, doneReplenishItem, reqReplenishItem, reqBringItem, robot2.pick.shippingArea, robot2.pick.1, robot2.move.packingArea, robot2.pick.2, robot2.pick.boxGettingArea, robot2.put.shippingArea]
+     * P_ROBOT1_ARM_RULE_3 : [robot1.put.packingArea, robot1.put.1, robot1.put.2, robot1.put.itemGettingArea, robot1.pick.itemGettingArea, robot1.put.boxGettingArea, robot1.pick.packingArea, robot1.put.shippingArea, robot1.pick.boxGettingArea, robot1.pick.shippingArea, robot1.pick.1, robot1.pick.2]
+     * P_BRING_ITEM_RULE02_11 : [bring.2, doneBringItem, robot2.move.1]
+     * P_REPLENISH_ITEM_RULE_3 : [robot2.pick.itemGettingArea, robot2.pick.packingArea, reqReplenishItem, robot2.move.2, robot2.move.1, robot2.pick.shippingArea, robot2.pick.1, robot2.pick.2, robot2.pick.boxGettingArea]
+     * P_BRING_RULE02 : [bring.2, robot2.move.2, robot2.move.1]
+     * P_ROBOT1_ARM_RULE_1 : [doneBringBox, robot1.put.packingArea, robot1.put.1, robot1.put.2, reqShip, robot1.put.itemGettingArea, robot1.pick.itemGettingArea, doneShip, robot1.put.boxGettingArea, robot1.pick.packingArea, robot1.put.shippingArea, reqBringBox, robot1.pick.shippingArea, robot1.pick.boxGettingArea, robot1.pick.1, robot1.pick.2]
+     * P_BRING_BOX_RULE_6 : [doneBringBox, robot1.put.packingArea, reqBringBox]
+     * P_REPLENISH_RULE02 : [replenish.2, robot2.move.2, robot2.move.1]
+     * P_BRING_RULE_2 : [robot2.move.itemGettingArea, robot2.put.itemGettingArea, robot2.pick.itemGettingArea, robot2.pick.packingArea, robot2.put.1, robot2.put.2, robot2.move.2, robot2.move.1, robot2.put.boxGettingArea, robot2.put.packingArea, robot2.move.shippingArea, bring.2, robot2.move.boxGettingArea, bring.1, robot2.pick.shippingArea, robot2.pick.1, robot2.move.packingArea, robot2.pick.2, robot2.pick.boxGettingArea, robot2.put.shippingArea]
+     * P_REPLENISH_ITEM_RULE_5 : [robot2.put.1, robot2.put.2, reqReplenishItem, robot2.pick.1, robot2.pick.2]
+     * P_REQUEST_ONLY_1 : [doneBringBox, robot1.put.packingArea, robot1.put.1, robot1.put.2, reqShip, robot1.put.itemGettingArea, robot1.pick.itemGettingArea, robot1.move.1, robot1.move.shippingArea, robot1.move.boxGettingArea, robot1.move.itemGettingArea, doneShip, robot1.put.boxGettingArea, robot1.pick.packingArea, robot1.put.shippingArea, robot1.move.2, robot1.move.packingArea, reqBringBox, robot1.pick.shippingArea, robot1.pick.boxGettingArea, robot1.pick.1, robot1.pick.2]
+     * P_BRING_ITEM_RULE_3 : [robot2.pick.itemGettingArea, robot2.pick.packingArea, robot2.move.2, robot2.move.1, reqBringItem, robot2.pick.shippingArea, robot2.pick.1, robot2.pick.2, robot2.pick.boxGettingArea]
+     * P_REPLENISH_ITEM_RULE_12 : [robot2.move.itemGettingArea, robot2.put.itemGettingArea, robot2.pick.itemGettingArea, robot2.pick.packingArea, robot2.put.1, robot2.put.2, robot2.move.2, robot2.move.1, robot2.put.boxGettingArea, robot2.put.packingArea, robot2.move.shippingArea, robot2.move.boxGettingArea, doneReplenishItem, reqReplenishItem, robot2.pick.shippingArea, robot2.pick.1, robot2.move.packingArea, robot2.pick.2, robot2.pick.boxGettingArea, robot2.put.shippingArea]
+     * P_BRING_ITEM_RULE01_11 : [doneBringItem, bring.1, robot2.move.2]
+     * P_REPLENISH_ROBOT_RULE : [robot2.move.shippingArea, robot2.move.boxGettingArea]
+     * P_BRING_RULE01 : [bring.1, robot2.move.2, robot2.move.1]
+     * P_SHIP_RULE_4 : [reqShip, ship, robot1.put.shippingArea]
+     * P_SHIP_ROBOT_RULE : [robot1.move.itemGettingArea]
+     * P_REQUEST_TIMING_3 : [doneReplenishItem, reqReplenishItem, reqBringItem]
+     * P_BRING_ITEM_RULE_7 : [robot2.pick.packingArea, doneBringItem, robot2.move.2, robot2.move.1, reqBringItem, robot2.move.packingArea]
+     * P_BRING_BOX_RULE_2 : [reqBringBox, robot1.pick.boxGettingArea, robot1.move.packingArea]
+     * P_REPLENISH_ITEM_RULE01_11 : [replenish.1, doneReplenishItem, robot2.move.2]
+     * P_REQUEST_TIMING_2 : [reqBringBox, reqShip, doneShip]
+     * P_REPLENISH_ITEM_RULE_10 : [robot2.put.itemGettingArea, robot2.pick.itemGettingArea, doneReplenishItem]
+     * P_ROBOT2_ARM_RULE_2 : [robot2.put.itemGettingArea, robot2.put.1, robot2.pick.itemGettingArea, robot2.pick.packingArea, robot2.put.2, robot2.put.boxGettingArea, robot2.put.packingArea, robot2.pick.shippingArea, robot2.pick.1, robot2.put.shippingArea, robot2.pick.2, robot2.pick.boxGettingArea]
+     * P_AREA_RULE_1 : [ship, doneShip, robot1.put.shippingArea]
+     * P_REPLENISH_ITEM_RULE_13 : [robot2.put.1, robot2.put.2, doneReplenishItem, reqReplenishItem]
+     * P_AREA_RULE_7 : [doneBringBox, pack]
+     * P_BRING_ITEM_RULE_9 : [doneBringItem, getItem]
+     * P_REPLENISH_ITEM_RULE_2 : [robot2.move.itemGettingArea, replenish.1, robot2.put.itemGettingArea, replenish.2, robot2.pick.itemGettingArea, robot2.pick.packingArea, robot2.put.1, robot2.put.2, robot2.move.2, robot2.move.1, robot2.put.boxGettingArea, robot2.put.packingArea, robot2.move.shippingArea, robot2.move.boxGettingArea, reqReplenishItem, robot2.pick.shippingArea, robot2.pick.1, robot2.move.packingArea, robot2.pick.2, robot2.pick.boxGettingArea, robot2.put.shippingArea]
+
+[info] Environment Models
+     * robot1:INITIAL(1) : [robot1.put.shippingArea, robot1.move.shippingArea, robot1.pick.boxGettingArea, robot1.pick.packingArea, robot1.move.packingArea, robot1.move.2, robot1.move.1, robot1.put.itemGettingArea, robot1.move.boxGettingArea, robot1.pick.2, robot1.pick.1, robot1.put.2, robot1.put.boxGettingArea, robot1.put.1, robot1.pick.itemGettingArea, robot1.move.itemGettingArea, robot1.put.packingArea, robot1.pick.shippingArea]
+     * robot2:INITIAL(2) : [robot2.put.shippingArea, robot2.move.shippingArea, robot2.pick.boxGettingArea, robot2.pick.packingArea, robot2.move.packingArea, robot2.move.2, robot2.move.1, robot2.put.itemGettingArea, robot2.move.boxGettingArea, robot2.pick.2, robot2.pick.1, robot2.put.2, robot2.put.boxGettingArea, robot2.put.1, robot2.pick.itemGettingArea, robot2.move.itemGettingArea, robot2.put.packingArea, robot2.pick.shippingArea]
+     * SHIP_AREA : [ship]
+     * BOX_GET_AREA : [supplyBox]
+     * ITEM_GET_AREA : [getItem, supplyItem]
+     * PACK_AREA : [pack]
+     * REQUEST_1 : [replenish.1, replenish.2, doneReplenishItem, reqReplenishItem]
+     * REQUEST_2 : [bring.2, bring.1, doneBringItem, reqBringItem]
+     * REQUEST_3 : [doneBringBox, reqBringBox]
+     * REQUEST_4 : [reqShip, doneShip]
+
+
+---------------------------------------------------
+                     STEP 1
+---------------------------------------------------
+[info] Monitor Models
+     * P_REPLENISH_ITEM_RULE_6 : [robot2:INITIAL(2), REQUEST_1]
+     * P_BRING_ITEM_RULE_8 : [robot2:INITIAL(2), ITEM_GET_AREA, REQUEST_2]
+     * P_BRING_ITEM_RULE_4 : [robot2:INITIAL(2), REQUEST_2]
+     * P_BRING_BOX_RULE_5 : [robot1:INITIAL(1), REQUEST_3]
+     * P_SHIP_RULE_3 : [robot1:INITIAL(1), REQUEST_4]
+     * P_BRING_ITEM_RULE_10 : [robot2:INITIAL(2), REQUEST_2]
+     * P_REPLENISH_ITEM_RULE_1 : [robot2:INITIAL(2), REQUEST_1]
+     * P_AREA_RULE_3 : [robot2:INITIAL(2), ITEM_GET_AREA]
+     * P_BRING_ITEM_RULE_1 : [robot2:INITIAL(2), REQUEST_2]
+     * P_SHIP_RULE_6 : [SHIP_AREA, REQUEST_4]
+     * P_AREA_RULE_5 : [PACK_AREA, REQUEST_3, REQUEST_4]
+     * P_REPLENISH_ITEM_RULE02_11 : [robot2:INITIAL(2), REQUEST_1]
+     * P_BRING_ITEM_RULE_6 : [robot2:INITIAL(2), REQUEST_2]
+     * P_BRING_ITEM_RULE_5 : [robot2:INITIAL(2), REQUEST_2]
+     * P_BRING_ITEM_RULE_13 : [robot2:INITIAL(2), REQUEST_2]
+     * P_BRING_BOX_RULE_3 : [robot1:INITIAL(1), BOX_GET_AREA, REQUEST_3]
+     * P_AREA_RULE_2 : [robot1:INITIAL(1), BOX_GET_AREA]
+     * P_SHIP_RULE_0 : [PACK_AREA, REQUEST_4]
+     * P_ROBOT1_ARM_RULE_2 : [robot1:INITIAL(1)]
+     * P_REQUEST_TIMING_1 : [REQUEST_3, REQUEST_4]
+     * P_SHIP_RULE_5 : [SHIP_AREA, REQUEST_4]
+     * P_ROBOT2_ARM_RULE_1 : [robot2:INITIAL(2), REQUEST_1, REQUEST_2]
+     * P_AREA_RULE_4 : [robot2:INITIAL(2), ITEM_GET_AREA, REQUEST_2, REQUEST_3]
+     * P_BRING_ITEM_RULE_2 : [robot2:INITIAL(2), REQUEST_2]
+     * P_AREA_RULE_6 : [PACK_AREA, REQUEST_2, REQUEST_4]
+     * P_SHIP_RULE_2 : [robot1:INITIAL(1), REQUEST_4]
+     * P_REPLENISH_RULE01 : [robot2:INITIAL(2), REQUEST_1]
+     * P_REPLENISH_ITEM_RULE_9 : [ITEM_GET_AREA, REQUEST_1]
+     * P_BRING_ITEM_RULE_12 : [robot2:INITIAL(2), REQUEST_2]
+     * P_ROBOT2_ARM_RULE_3 : [robot2:INITIAL(2)]
+     * P_BRING_BOX_RULE_4 : [robot1:INITIAL(1), BOX_GET_AREA]
+     * P_REPLENISH_ITEM_RULE_8 : [robot2:INITIAL(2), ITEM_GET_AREA]
+     * P_REPLENISH_ITEM_RULE_4 : [robot2:INITIAL(2), REQUEST_1]
+     * P_REPLENISH_RULE_2 : [robot2:INITIAL(2), REQUEST_1]
+     * P_REPLENISH_ITEM_RULE_7 : [robot2:INITIAL(2)]
+     * P_SHIP_RULE_1 : [robot1:INITIAL(1), REQUEST_4]
+     * P_AREA_RULE_8 : [PACK_AREA, REQUEST_2]
+     * P_BRING_BOX_RULE_1 : [robot1:INITIAL(1), REQUEST_3]
+     * P_REQUEST_TIMING_4 : [REQUEST_1, REQUEST_2]
+     * P_REQUEST_ONLY_2 : [robot2:INITIAL(2), REQUEST_1, REQUEST_2]
+     * P_ROBOT1_ARM_RULE_3 : [robot1:INITIAL(1)]
+     * P_BRING_ITEM_RULE02_11 : [robot2:INITIAL(2), REQUEST_2]
+     * P_REPLENISH_ITEM_RULE_3 : [robot2:INITIAL(2), REQUEST_1]
+     * P_BRING_RULE02 : [robot2:INITIAL(2), REQUEST_2]
+     * P_ROBOT1_ARM_RULE_1 : [robot1:INITIAL(1), REQUEST_3, REQUEST_4]
+     * P_BRING_BOX_RULE_6 : [robot1:INITIAL(1), REQUEST_3]
+     * P_REPLENISH_RULE02 : [robot2:INITIAL(2), REQUEST_1]
+     * P_BRING_RULE_2 : [robot2:INITIAL(2), REQUEST_2]
+     * P_REPLENISH_ITEM_RULE_5 : [robot2:INITIAL(2), REQUEST_1]
+     * P_REQUEST_ONLY_1 : [robot1:INITIAL(1), REQUEST_3, REQUEST_4]
+     * P_BRING_ITEM_RULE_3 : [robot2:INITIAL(2), REQUEST_2]
+     * P_REPLENISH_ITEM_RULE_12 : [robot2:INITIAL(2), REQUEST_1]
+     * P_BRING_ITEM_RULE01_11 : [robot2:INITIAL(2), REQUEST_2]
+     * P_REPLENISH_ROBOT_RULE : [robot2:INITIAL(2)]
+     * P_BRING_RULE01 : [robot2:INITIAL(2), REQUEST_2]
+     * P_SHIP_RULE_4 : [robot1:INITIAL(1), SHIP_AREA, REQUEST_4]
+     * P_SHIP_ROBOT_RULE : [robot1:INITIAL(1)]
+     * P_REQUEST_TIMING_3 : [REQUEST_1, REQUEST_2]
+     * P_BRING_ITEM_RULE_7 : [robot2:INITIAL(2), REQUEST_2]
+     * P_BRING_BOX_RULE_2 : [robot1:INITIAL(1), REQUEST_3]
+     * P_REPLENISH_ITEM_RULE01_11 : [robot2:INITIAL(2), REQUEST_1]
+     * P_REQUEST_TIMING_2 : [REQUEST_3, REQUEST_4]
+     * P_REPLENISH_ITEM_RULE_10 : [robot2:INITIAL(2), REQUEST_1]
+     * P_ROBOT2_ARM_RULE_2 : [robot2:INITIAL(2)]
+     * P_AREA_RULE_1 : [robot1:INITIAL(1), SHIP_AREA, REQUEST_4]
+     * P_REPLENISH_ITEM_RULE_13 : [robot2:INITIAL(2), REQUEST_1]
+     * P_AREA_RULE_7 : [PACK_AREA, REQUEST_3]
+     * P_BRING_ITEM_RULE_9 : [ITEM_GET_AREA, REQUEST_2]
+     * P_REPLENISH_ITEM_RULE_2 : [robot2:INITIAL(2), REQUEST_1]
+
+[info] Environment Models
+     * robot1:INITIAL(1) : []
+     * robot2:INITIAL(2) : []
+     * SHIP_AREA : []
+     * BOX_GET_AREA : []
+     * ITEM_GET_AREA : []
+     * PACK_AREA : []
+     * REQUEST_1 : []
+     * REQUEST_2 : []
+     * REQUEST_3 : []
+     * REQUEST_4 : []
+
+[info] Synthetic Cost (number of monitored models)
+     * P_REPLENISH_ITEM_RULE_6 : 2
+     * P_BRING_ITEM_RULE_8 : 3
+     * P_BRING_ITEM_RULE_4 : 2
+     * P_BRING_BOX_RULE_5 : 2
+     * P_SHIP_RULE_3 : 2
+     * P_BRING_ITEM_RULE_10 : 2
+     * P_REPLENISH_ITEM_RULE_1 : 2
+     * P_AREA_RULE_3 : 2
+     * P_BRING_ITEM_RULE_1 : 2
+     * P_SHIP_RULE_6 : 2
+     * P_AREA_RULE_5 : 3
+     * P_REPLENISH_ITEM_RULE02_11 : 2
+     * P_BRING_ITEM_RULE_6 : 2
+     * P_BRING_ITEM_RULE_5 : 2
+     * P_BRING_ITEM_RULE_13 : 2
+     * P_BRING_BOX_RULE_3 : 3
+     * P_AREA_RULE_2 : 2
+     * P_SHIP_RULE_0 : 2
+     * P_ROBOT1_ARM_RULE_2 : 1
+     * P_REQUEST_TIMING_1 : 2
+     * P_SHIP_RULE_5 : 2
+     * P_ROBOT2_ARM_RULE_1 : 3
+     * P_AREA_RULE_4 : 4
+     * P_BRING_ITEM_RULE_2 : 2
+     * P_AREA_RULE_6 : 3
+     * P_SHIP_RULE_2 : 2
+     * P_REPLENISH_RULE01 : 2
+     * P_REPLENISH_ITEM_RULE_9 : 2
+     * P_BRING_ITEM_RULE_12 : 2
+     * P_ROBOT2_ARM_RULE_3 : 1
+     * P_BRING_BOX_RULE_4 : 2
+     * P_REPLENISH_ITEM_RULE_8 : 2
+     * P_REPLENISH_ITEM_RULE_4 : 2
+     * P_REPLENISH_RULE_2 : 2
+     * P_REPLENISH_ITEM_RULE_7 : 1
+     * P_SHIP_RULE_1 : 2
+     * P_AREA_RULE_8 : 2
+     * P_BRING_BOX_RULE_1 : 2
+     * P_REQUEST_TIMING_4 : 2
+     * P_REQUEST_ONLY_2 : 3
+     * P_ROBOT1_ARM_RULE_3 : 1
+     * P_BRING_ITEM_RULE02_11 : 2
+     * P_REPLENISH_ITEM_RULE_3 : 2
+     * P_BRING_RULE02 : 2
+     * P_ROBOT1_ARM_RULE_1 : 3
+     * P_BRING_BOX_RULE_6 : 2
+     * P_REPLENISH_RULE02 : 2
+     * P_BRING_RULE_2 : 2
+     * P_REPLENISH_ITEM_RULE_5 : 2
+     * P_REQUEST_ONLY_1 : 3
+     * P_BRING_ITEM_RULE_3 : 2
+     * P_REPLENISH_ITEM_RULE_12 : 2
+     * P_BRING_ITEM_RULE01_11 : 2
+     * P_REPLENISH_ROBOT_RULE : 1
+     * P_BRING_RULE01 : 2
+     * P_SHIP_RULE_4 : 3
+     * P_SHIP_ROBOT_RULE : 1
+     * P_REQUEST_TIMING_3 : 2
+     * P_BRING_ITEM_RULE_7 : 2
+     * P_BRING_BOX_RULE_2 : 2
+     * P_REPLENISH_ITEM_RULE01_11 : 2
+     * P_REQUEST_TIMING_2 : 2
+     * P_REPLENISH_ITEM_RULE_10 : 2
+     * P_ROBOT2_ARM_RULE_2 : 1
+     * P_AREA_RULE_1 : 3
+     * P_REPLENISH_ITEM_RULE_13 : 2
+     * P_AREA_RULE_7 : 2
+     * P_BRING_ITEM_RULE_9 : 2
+     * P_REPLENISH_ITEM_RULE_2 : 2
+
+Composition:PartController_1 = robot1:INITIAL(1) || P_ROBOT1_ARM_RULE_2 || P_ROBOT1_ARM_RULE_2 || P_ROBOT1_ARM_RULE_3 || P_SHIP_ROBOT_RULE
+State Space: 6 * 2 * 2 * 2 * 1 = 2 ** 6
+Composing...
+-- States: 15 Transitions: 111 Memory used: 35501KB
+Composed in 39ms
+Solving the LTS control problem.
+Environment states: 16
+Game states: 16
+Analysis time: 109ms.
+Controller [15] generated successfully.
+Composition:PartController_1 = PartController_1 || P_ROBOT1_ARM_RULE_2 || P_ROBOT1_ARM_RULE_2 || P_ROBOT1_ARM_RULE_3 || P_SHIP_ROBOT_RULE
+State Space: 15 * 2 * 2 * 2 * 1 = 2 ** 7
+Composing...
+-- States: 15 Transitions: 86 Memory used: 37045KB
+Composed in 37ms
+
+[info] STEP1 Infomation
+[info] Output Model     : PartController_1
+[info] Input Models     : [robot1:INITIAL(1), P_ROBOT1_ARM_RULE_2, P_ROBOT1_ARM_RULE_2, P_ROBOT1_ARM_RULE_3, P_SHIP_ROBOT_RULE]
+[info] Component Models : [robot1:INITIAL(1)]
+[info] Execution Time
+     * policy only      : 7 ms
+     * synthesis only   : 207 ms
+     * total            : 214 ms
+
+
+---------------------------------------------------
+                     STEP 2
+---------------------------------------------------
+[info] Monitor Models
+     * P_REPLENISH_ITEM_RULE_6 : [robot2:INITIAL(2), REQUEST_1]
+     * P_BRING_ITEM_RULE_8 : [robot2:INITIAL(2), ITEM_GET_AREA, REQUEST_2]
+     * P_BRING_ITEM_RULE_4 : [robot2:INITIAL(2), REQUEST_2]
+     * P_BRING_BOX_RULE_5 : [REQUEST_3, robot1:INITIAL(1)]
+     * P_SHIP_RULE_3 : [REQUEST_4, robot1:INITIAL(1)]
+     * P_BRING_ITEM_RULE_10 : [robot2:INITIAL(2), REQUEST_2]
+     * P_REPLENISH_ITEM_RULE_1 : [robot2:INITIAL(2), REQUEST_1]
+     * P_AREA_RULE_3 : [robot2:INITIAL(2), ITEM_GET_AREA]
+     * P_BRING_ITEM_RULE_1 : [robot2:INITIAL(2), REQUEST_2]
+     * P_SHIP_RULE_6 : [SHIP_AREA, REQUEST_4]
+     * P_AREA_RULE_5 : [PACK_AREA, REQUEST_3, REQUEST_4]
+     * P_REPLENISH_ITEM_RULE02_11 : [robot2:INITIAL(2), REQUEST_1]
+     * P_BRING_ITEM_RULE_6 : [robot2:INITIAL(2), REQUEST_2]
+     * P_BRING_ITEM_RULE_5 : [robot2:INITIAL(2), REQUEST_2]
+     * P_BRING_ITEM_RULE_13 : [robot2:INITIAL(2), REQUEST_2]
+     * P_BRING_BOX_RULE_3 : [BOX_GET_AREA, REQUEST_3, robot1:INITIAL(1)]
+     * P_AREA_RULE_2 : [BOX_GET_AREA, robot1:INITIAL(1)]
+     * P_SHIP_RULE_0 : [PACK_AREA, REQUEST_4]
+     * P_REQUEST_TIMING_1 : [REQUEST_3, REQUEST_4]
+     * P_SHIP_RULE_5 : [SHIP_AREA, REQUEST_4]
+     * P_ROBOT2_ARM_RULE_1 : [robot2:INITIAL(2), REQUEST_1, REQUEST_2]
+     * P_AREA_RULE_4 : [robot2:INITIAL(2), ITEM_GET_AREA, REQUEST_2, REQUEST_3]
+     * P_BRING_ITEM_RULE_2 : [robot2:INITIAL(2), REQUEST_2]
+     * P_AREA_RULE_6 : [PACK_AREA, REQUEST_2, REQUEST_4]
+     * P_SHIP_RULE_2 : [REQUEST_4, robot1:INITIAL(1)]
+     * P_REPLENISH_RULE01 : [robot2:INITIAL(2), REQUEST_1]
+     * P_REPLENISH_ITEM_RULE_9 : [ITEM_GET_AREA, REQUEST_1]
+     * P_BRING_ITEM_RULE_12 : [robot2:INITIAL(2), REQUEST_2]
+     * P_ROBOT2_ARM_RULE_3 : [robot2:INITIAL(2)]
+     * P_BRING_BOX_RULE_4 : [BOX_GET_AREA, robot1:INITIAL(1)]
+     * P_REPLENISH_ITEM_RULE_8 : [robot2:INITIAL(2), ITEM_GET_AREA]
+     * P_REPLENISH_ITEM_RULE_4 : [robot2:INITIAL(2), REQUEST_1]
+     * P_REPLENISH_RULE_2 : [robot2:INITIAL(2), REQUEST_1]
+     * P_REPLENISH_ITEM_RULE_7 : [robot2:INITIAL(2)]
+     * P_SHIP_RULE_1 : [REQUEST_4, robot1:INITIAL(1)]
+     * P_AREA_RULE_8 : [PACK_AREA, REQUEST_2]
+     * P_BRING_BOX_RULE_1 : [REQUEST_3, robot1:INITIAL(1)]
+     * P_REQUEST_TIMING_4 : [REQUEST_1, REQUEST_2]
+     * P_REQUEST_ONLY_2 : [robot2:INITIAL(2), REQUEST_1, REQUEST_2]
+     * P_BRING_ITEM_RULE02_11 : [robot2:INITIAL(2), REQUEST_2]
+     * P_REPLENISH_ITEM_RULE_3 : [robot2:INITIAL(2), REQUEST_1]
+     * P_BRING_RULE02 : [robot2:INITIAL(2), REQUEST_2]
+     * P_ROBOT1_ARM_RULE_1 : [REQUEST_3, REQUEST_4, robot1:INITIAL(1)]
+     * P_BRING_BOX_RULE_6 : [REQUEST_3, robot1:INITIAL(1)]
+     * P_REPLENISH_RULE02 : [robot2:INITIAL(2), REQUEST_1]
+     * P_BRING_RULE_2 : [robot2:INITIAL(2), REQUEST_2]
+     * P_REPLENISH_ITEM_RULE_5 : [robot2:INITIAL(2), REQUEST_1]
+     * P_REQUEST_ONLY_1 : [REQUEST_3, REQUEST_4, robot1:INITIAL(1)]
+     * P_BRING_ITEM_RULE_3 : [robot2:INITIAL(2), REQUEST_2]
+     * P_REPLENISH_ITEM_RULE_12 : [robot2:INITIAL(2), REQUEST_1]
+     * P_BRING_ITEM_RULE01_11 : [robot2:INITIAL(2), REQUEST_2]
+     * P_REPLENISH_ROBOT_RULE : [robot2:INITIAL(2)]
+     * P_BRING_RULE01 : [robot2:INITIAL(2), REQUEST_2]
+     * P_SHIP_RULE_4 : [SHIP_AREA, REQUEST_4, robot1:INITIAL(1)]
+     * P_REQUEST_TIMING_3 : [REQUEST_1, REQUEST_2]
+     * P_BRING_ITEM_RULE_7 : [robot2:INITIAL(2), REQUEST_2]
+     * P_BRING_BOX_RULE_2 : [REQUEST_3, robot1:INITIAL(1)]
+     * P_REPLENISH_ITEM_RULE01_11 : [robot2:INITIAL(2), REQUEST_1]
+     * P_REQUEST_TIMING_2 : [REQUEST_3, REQUEST_4]
+     * P_REPLENISH_ITEM_RULE_10 : [robot2:INITIAL(2), REQUEST_1]
+     * P_ROBOT2_ARM_RULE_2 : [robot2:INITIAL(2)]
+     * P_AREA_RULE_1 : [SHIP_AREA, REQUEST_4, robot1:INITIAL(1)]
+     * P_REPLENISH_ITEM_RULE_13 : [robot2:INITIAL(2), REQUEST_1]
+     * P_AREA_RULE_7 : [PACK_AREA, REQUEST_3]
+     * P_BRING_ITEM_RULE_9 : [ITEM_GET_AREA, REQUEST_2]
+     * P_REPLENISH_ITEM_RULE_2 : [robot2:INITIAL(2), REQUEST_1]
+
+[info] Environment Models
+     * robot2:INITIAL(2) : []
+     * SHIP_AREA : []
+     * BOX_GET_AREA : []
+     * ITEM_GET_AREA : []
+     * PACK_AREA : []
+     * REQUEST_1 : []
+     * REQUEST_2 : []
+     * REQUEST_3 : []
+     * REQUEST_4 : []
+     * PartController_1 : [robot1:INITIAL(1)]
+
+[info] Synthetic Cost (number of monitored models)
+     * P_REPLENISH_ITEM_RULE_6 : 2
+     * P_BRING_ITEM_RULE_8 : 3
+     * P_BRING_ITEM_RULE_4 : 2
+     * P_BRING_BOX_RULE_5 : 2
+     * P_SHIP_RULE_3 : 2
+     * P_BRING_ITEM_RULE_10 : 2
+     * P_REPLENISH_ITEM_RULE_1 : 2
+     * P_AREA_RULE_3 : 2
+     * P_BRING_ITEM_RULE_1 : 2
+     * P_SHIP_RULE_6 : 2
+     * P_AREA_RULE_5 : 3
+     * P_REPLENISH_ITEM_RULE02_11 : 2
+     * P_BRING_ITEM_RULE_6 : 2
+     * P_BRING_ITEM_RULE_5 : 2
+     * P_BRING_ITEM_RULE_13 : 2
+     * P_BRING_BOX_RULE_3 : 3
+     * P_AREA_RULE_2 : 2
+     * P_SHIP_RULE_0 : 2
+     * P_REQUEST_TIMING_1 : 2
+     * P_SHIP_RULE_5 : 2
+     * P_ROBOT2_ARM_RULE_1 : 3
+     * P_AREA_RULE_4 : 4
+     * P_BRING_ITEM_RULE_2 : 2
+     * P_AREA_RULE_6 : 3
+     * P_SHIP_RULE_2 : 2
+     * P_REPLENISH_RULE01 : 2
+     * P_REPLENISH_ITEM_RULE_9 : 2
+     * P_BRING_ITEM_RULE_12 : 2
+     * P_ROBOT2_ARM_RULE_3 : 1
+     * P_BRING_BOX_RULE_4 : 2
+     * P_REPLENISH_ITEM_RULE_8 : 2
+     * P_REPLENISH_ITEM_RULE_4 : 2
+     * P_REPLENISH_RULE_2 : 2
+     * P_REPLENISH_ITEM_RULE_7 : 1
+     * P_SHIP_RULE_1 : 2
+     * P_AREA_RULE_8 : 2
+     * P_BRING_BOX_RULE_1 : 2
+     * P_REQUEST_TIMING_4 : 2
+     * P_REQUEST_ONLY_2 : 3
+     * P_BRING_ITEM_RULE02_11 : 2
+     * P_REPLENISH_ITEM_RULE_3 : 2
+     * P_BRING_RULE02 : 2
+     * P_ROBOT1_ARM_RULE_1 : 3
+     * P_BRING_BOX_RULE_6 : 2
+     * P_REPLENISH_RULE02 : 2
+     * P_BRING_RULE_2 : 2
+     * P_REPLENISH_ITEM_RULE_5 : 2
+     * P_REQUEST_ONLY_1 : 3
+     * P_BRING_ITEM_RULE_3 : 2
+     * P_REPLENISH_ITEM_RULE_12 : 2
+     * P_BRING_ITEM_RULE01_11 : 2
+     * P_REPLENISH_ROBOT_RULE : 1
+     * P_BRING_RULE01 : 2
+     * P_SHIP_RULE_4 : 3
+     * P_REQUEST_TIMING_3 : 2
+     * P_BRING_ITEM_RULE_7 : 2
+     * P_BRING_BOX_RULE_2 : 2
+     * P_REPLENISH_ITEM_RULE01_11 : 2
+     * P_REQUEST_TIMING_2 : 2
+     * P_REPLENISH_ITEM_RULE_10 : 2
+     * P_ROBOT2_ARM_RULE_2 : 1
+     * P_AREA_RULE_1 : 3
+     * P_REPLENISH_ITEM_RULE_13 : 2
+     * P_AREA_RULE_7 : 2
+     * P_BRING_ITEM_RULE_9 : 2
+     * P_REPLENISH_ITEM_RULE_2 : 2
+
+Composition:PartController_2 = BOX_GET_AREA || PartController_1 || P_AREA_RULE_2 || P_AREA_RULE_2 || P_BRING_BOX_RULE_4
+State Space: 1 * 15 * 2 * 2 * 2 = 2 ** 7
+Composing...
+-- States: 44 Transitions: 296 Memory used: 37103KB
+Composed in 41ms
+Solving the LTS control problem.
+Environment states: 45
+Game states: 45
+Analysis time: 51ms.
+Controller [44] generated successfully.
+Composition:PartController_2 = PartController_2 || P_AREA_RULE_2 || P_AREA_RULE_2 || P_BRING_BOX_RULE_4
+State Space: 44 * 2 * 2 * 2 = 2 ** 9
+Composing...
+-- States: 44 Transitions: 267 Memory used: 38209KB
+Composed in 47ms
+
+[info] STEP2 Infomation
+[info] Output Model     : PartController_2
+[info] Input Models     : [BOX_GET_AREA, PartController_1, P_AREA_RULE_2, P_AREA_RULE_2, P_BRING_BOX_RULE_4]
+[info] Component Models : [robot1:INITIAL(1), BOX_GET_AREA]
+[info] Execution Time
+     * policy only      : 10 ms
+     * synthesis only   : 139 ms
+     * total            : 149 ms
+
+
+---------------------------------------------------
+                     STEP 3
+---------------------------------------------------
+[info] Monitor Models
+     * P_REPLENISH_ITEM_RULE_6 : [robot2:INITIAL(2), REQUEST_1]
+     * P_BRING_ITEM_RULE_8 : [robot2:INITIAL(2), ITEM_GET_AREA, REQUEST_2]
+     * P_BRING_ITEM_RULE_4 : [robot2:INITIAL(2), REQUEST_2]
+     * P_BRING_BOX_RULE_5 : [REQUEST_3, robot1:INITIAL(1), BOX_GET_AREA]
+     * P_SHIP_RULE_3 : [REQUEST_4, robot1:INITIAL(1), BOX_GET_AREA]
+     * P_BRING_ITEM_RULE_10 : [robot2:INITIAL(2), REQUEST_2]
+     * P_REPLENISH_ITEM_RULE_1 : [robot2:INITIAL(2), REQUEST_1]
+     * P_AREA_RULE_3 : [robot2:INITIAL(2), ITEM_GET_AREA]
+     * P_BRING_ITEM_RULE_1 : [robot2:INITIAL(2), REQUEST_2]
+     * P_SHIP_RULE_6 : [SHIP_AREA, REQUEST_4]
+     * P_AREA_RULE_5 : [PACK_AREA, REQUEST_3, REQUEST_4]
+     * P_REPLENISH_ITEM_RULE02_11 : [robot2:INITIAL(2), REQUEST_1]
+     * P_BRING_ITEM_RULE_6 : [robot2:INITIAL(2), REQUEST_2]
+     * P_BRING_ITEM_RULE_5 : [robot2:INITIAL(2), REQUEST_2]
+     * P_BRING_ITEM_RULE_13 : [robot2:INITIAL(2), REQUEST_2]
+     * P_BRING_BOX_RULE_3 : [REQUEST_3, robot1:INITIAL(1), BOX_GET_AREA]
+     * P_SHIP_RULE_0 : [PACK_AREA, REQUEST_4]
+     * P_REQUEST_TIMING_1 : [REQUEST_3, REQUEST_4]
+     * P_SHIP_RULE_5 : [SHIP_AREA, REQUEST_4]
+     * P_ROBOT2_ARM_RULE_1 : [robot2:INITIAL(2), REQUEST_1, REQUEST_2]
+     * P_AREA_RULE_4 : [robot2:INITIAL(2), ITEM_GET_AREA, REQUEST_2, REQUEST_3]
+     * P_BRING_ITEM_RULE_2 : [robot2:INITIAL(2), REQUEST_2]
+     * P_AREA_RULE_6 : [PACK_AREA, REQUEST_2, REQUEST_4]
+     * P_SHIP_RULE_2 : [REQUEST_4, robot1:INITIAL(1), BOX_GET_AREA]
+     * P_REPLENISH_RULE01 : [robot2:INITIAL(2), REQUEST_1]
+     * P_REPLENISH_ITEM_RULE_9 : [ITEM_GET_AREA, REQUEST_1]
+     * P_BRING_ITEM_RULE_12 : [robot2:INITIAL(2), REQUEST_2]
+     * P_ROBOT2_ARM_RULE_3 : [robot2:INITIAL(2)]
+     * P_REPLENISH_ITEM_RULE_8 : [robot2:INITIAL(2), ITEM_GET_AREA]
+     * P_REPLENISH_ITEM_RULE_4 : [robot2:INITIAL(2), REQUEST_1]
+     * P_REPLENISH_RULE_2 : [robot2:INITIAL(2), REQUEST_1]
+     * P_REPLENISH_ITEM_RULE_7 : [robot2:INITIAL(2)]
+     * P_SHIP_RULE_1 : [REQUEST_4, robot1:INITIAL(1), BOX_GET_AREA]
+     * P_AREA_RULE_8 : [PACK_AREA, REQUEST_2]
+     * P_BRING_BOX_RULE_1 : [REQUEST_3, robot1:INITIAL(1), BOX_GET_AREA]
+     * P_REQUEST_TIMING_4 : [REQUEST_1, REQUEST_2]
+     * P_REQUEST_ONLY_2 : [robot2:INITIAL(2), REQUEST_1, REQUEST_2]
+     * P_BRING_ITEM_RULE02_11 : [robot2:INITIAL(2), REQUEST_2]
+     * P_REPLENISH_ITEM_RULE_3 : [robot2:INITIAL(2), REQUEST_1]
+     * P_BRING_RULE02 : [robot2:INITIAL(2), REQUEST_2]
+     * P_ROBOT1_ARM_RULE_1 : [REQUEST_3, REQUEST_4, robot1:INITIAL(1), BOX_GET_AREA]
+     * P_BRING_BOX_RULE_6 : [REQUEST_3, robot1:INITIAL(1), BOX_GET_AREA]
+     * P_REPLENISH_RULE02 : [robot2:INITIAL(2), REQUEST_1]
+     * P_BRING_RULE_2 : [robot2:INITIAL(2), REQUEST_2]
+     * P_REPLENISH_ITEM_RULE_5 : [robot2:INITIAL(2), REQUEST_1]
+     * P_REQUEST_ONLY_1 : [REQUEST_3, REQUEST_4, robot1:INITIAL(1), BOX_GET_AREA]
+     * P_BRING_ITEM_RULE_3 : [robot2:INITIAL(2), REQUEST_2]
+     * P_REPLENISH_ITEM_RULE_12 : [robot2:INITIAL(2), REQUEST_1]
+     * P_BRING_ITEM_RULE01_11 : [robot2:INITIAL(2), REQUEST_2]
+     * P_REPLENISH_ROBOT_RULE : [robot2:INITIAL(2)]
+     * P_BRING_RULE01 : [robot2:INITIAL(2), REQUEST_2]
+     * P_SHIP_RULE_4 : [SHIP_AREA, REQUEST_4, robot1:INITIAL(1), BOX_GET_AREA]
+     * P_REQUEST_TIMING_3 : [REQUEST_1, REQUEST_2]
+     * P_BRING_ITEM_RULE_7 : [robot2:INITIAL(2), REQUEST_2]
+     * P_BRING_BOX_RULE_2 : [REQUEST_3, robot1:INITIAL(1), BOX_GET_AREA]
+     * P_REPLENISH_ITEM_RULE01_11 : [robot2:INITIAL(2), REQUEST_1]
+     * P_REQUEST_TIMING_2 : [REQUEST_3, REQUEST_4]
+     * P_REPLENISH_ITEM_RULE_10 : [robot2:INITIAL(2), REQUEST_1]
+     * P_ROBOT2_ARM_RULE_2 : [robot2:INITIAL(2)]
+     * P_AREA_RULE_1 : [SHIP_AREA, REQUEST_4, robot1:INITIAL(1), BOX_GET_AREA]
+     * P_REPLENISH_ITEM_RULE_13 : [robot2:INITIAL(2), REQUEST_1]
+     * P_AREA_RULE_7 : [PACK_AREA, REQUEST_3]
+     * P_BRING_ITEM_RULE_9 : [ITEM_GET_AREA, REQUEST_2]
+     * P_REPLENISH_ITEM_RULE_2 : [robot2:INITIAL(2), REQUEST_1]
+
+[info] Environment Models
+     * robot2:INITIAL(2) : []
+     * SHIP_AREA : []
+     * ITEM_GET_AREA : []
+     * PACK_AREA : []
+     * REQUEST_1 : []
+     * REQUEST_2 : []
+     * REQUEST_3 : []
+     * REQUEST_4 : []
+     * PartController_2 : [robot1:INITIAL(1), BOX_GET_AREA]
+
+[info] Synthetic Cost (number of monitored models)
+     * P_REPLENISH_ITEM_RULE_6 : 2
+     * P_BRING_ITEM_RULE_8 : 3
+     * P_BRING_ITEM_RULE_4 : 2
+     * P_BRING_BOX_RULE_5 : 3
+     * P_SHIP_RULE_3 : 3
+     * P_BRING_ITEM_RULE_10 : 2
+     * P_REPLENISH_ITEM_RULE_1 : 2
+     * P_AREA_RULE_3 : 2
+     * P_BRING_ITEM_RULE_1 : 2
+     * P_SHIP_RULE_6 : 2
+     * P_AREA_RULE_5 : 3
+     * P_REPLENISH_ITEM_RULE02_11 : 2
+     * P_BRING_ITEM_RULE_6 : 2
+     * P_BRING_ITEM_RULE_5 : 2
+     * P_BRING_ITEM_RULE_13 : 2
+     * P_BRING_BOX_RULE_3 : 3
+     * P_SHIP_RULE_0 : 2
+     * P_REQUEST_TIMING_1 : 2
+     * P_SHIP_RULE_5 : 2
+     * P_ROBOT2_ARM_RULE_1 : 3
+     * P_AREA_RULE_4 : 4
+     * P_BRING_ITEM_RULE_2 : 2
+     * P_AREA_RULE_6 : 3
+     * P_SHIP_RULE_2 : 3
+     * P_REPLENISH_RULE01 : 2
+     * P_REPLENISH_ITEM_RULE_9 : 2
+     * P_BRING_ITEM_RULE_12 : 2
+     * P_ROBOT2_ARM_RULE_3 : 1
+     * P_REPLENISH_ITEM_RULE_8 : 2
+     * P_REPLENISH_ITEM_RULE_4 : 2
+     * P_REPLENISH_RULE_2 : 2
+     * P_REPLENISH_ITEM_RULE_7 : 1
+     * P_SHIP_RULE_1 : 3
+     * P_AREA_RULE_8 : 2
+     * P_BRING_BOX_RULE_1 : 3
+     * P_REQUEST_TIMING_4 : 2
+     * P_REQUEST_ONLY_2 : 3
+     * P_BRING_ITEM_RULE02_11 : 2
+     * P_REPLENISH_ITEM_RULE_3 : 2
+     * P_BRING_RULE02 : 2
+     * P_ROBOT1_ARM_RULE_1 : 4
+     * P_BRING_BOX_RULE_6 : 3
+     * P_REPLENISH_RULE02 : 2
+     * P_BRING_RULE_2 : 2
+     * P_REPLENISH_ITEM_RULE_5 : 2
+     * P_REQUEST_ONLY_1 : 4
+     * P_BRING_ITEM_RULE_3 : 2
+     * P_REPLENISH_ITEM_RULE_12 : 2
+     * P_BRING_ITEM_RULE01_11 : 2
+     * P_REPLENISH_ROBOT_RULE : 1
+     * P_BRING_RULE01 : 2
+     * P_SHIP_RULE_4 : 4
+     * P_REQUEST_TIMING_3 : 2
+     * P_BRING_ITEM_RULE_7 : 2
+     * P_BRING_BOX_RULE_2 : 3
+     * P_REPLENISH_ITEM_RULE01_11 : 2
+     * P_REQUEST_TIMING_2 : 2
+     * P_REPLENISH_ITEM_RULE_10 : 2
+     * P_ROBOT2_ARM_RULE_2 : 1
+     * P_AREA_RULE_1 : 4
+     * P_REPLENISH_ITEM_RULE_13 : 2
+     * P_AREA_RULE_7 : 2
+     * P_BRING_ITEM_RULE_9 : 2
+     * P_REPLENISH_ITEM_RULE_2 : 2
+
+Composition:PartController_3 = REQUEST_3 || PartController_2 || P_BRING_BOX_RULE_5 || P_BRING_BOX_RULE_5 || P_BRING_BOX_RULE_3 || P_BRING_BOX_RULE_1 || P_BRING_BOX_RULE_6 || P_BRING_BOX_RULE_2
+State Space: 2 * 44 * 2 * 2 * 2 * 2 * 2 * 2 = 2 ** 13
+Composing...
+-- States: 174 Transitions: 1185 Memory used: 38445KB
+Composed in 42ms
+Solving the LTS control problem.
+Environment states: 175
+Game states: 175
+Analysis time: 75ms.
+Controller [139] generated successfully.
+Composition:PartController_3 = PartController_3 || P_BRING_BOX_RULE_5 || P_BRING_BOX_RULE_5 || P_BRING_BOX_RULE_3 || P_BRING_BOX_RULE_1 || P_BRING_BOX_RULE_6 || P_BRING_BOX_RULE_2
+State Space: 139 * 2 * 2 * 2 * 2 * 2 * 2 = 2 ** 14
+Composing...
+-- States: 139 Transitions: 601 Memory used: 40510KB
+Composed in 52ms
+
+[info] STEP3 Infomation
+[info] Output Model     : PartController_3
+[info] Input Models     : [REQUEST_3, PartController_2, P_BRING_BOX_RULE_5, P_BRING_BOX_RULE_5, P_BRING_BOX_RULE_3, P_BRING_BOX_RULE_1, P_BRING_BOX_RULE_6, P_BRING_BOX_RULE_2]
+[info] Component Models : [REQUEST_3, robot1:INITIAL(1), BOX_GET_AREA]
+[info] Execution Time
+     * policy only      : 2 ms
+     * synthesis only   : 169 ms
+     * total            : 171 ms
+
+
+---------------------------------------------------
+                     STEP 4
+---------------------------------------------------
+[info] Monitor Models
+     * P_REPLENISH_ITEM_RULE_6 : [robot2:INITIAL(2), REQUEST_1]
+     * P_BRING_ITEM_RULE_8 : [robot2:INITIAL(2), ITEM_GET_AREA, REQUEST_2]
+     * P_BRING_ITEM_RULE_4 : [robot2:INITIAL(2), REQUEST_2]
+     * P_SHIP_RULE_3 : [REQUEST_4, REQUEST_3, robot1:INITIAL(1), BOX_GET_AREA]
+     * P_BRING_ITEM_RULE_10 : [robot2:INITIAL(2), REQUEST_2]
+     * P_REPLENISH_ITEM_RULE_1 : [robot2:INITIAL(2), REQUEST_1]
+     * P_AREA_RULE_3 : [robot2:INITIAL(2), ITEM_GET_AREA]
+     * P_BRING_ITEM_RULE_1 : [robot2:INITIAL(2), REQUEST_2]
+     * P_SHIP_RULE_6 : [SHIP_AREA, REQUEST_4]
+     * P_AREA_RULE_5 : [PACK_AREA, REQUEST_4, REQUEST_3, robot1:INITIAL(1), BOX_GET_AREA]
+     * P_REPLENISH_ITEM_RULE02_11 : [robot2:INITIAL(2), REQUEST_1]
+     * P_BRING_ITEM_RULE_6 : [robot2:INITIAL(2), REQUEST_2]
+     * P_BRING_ITEM_RULE_5 : [robot2:INITIAL(2), REQUEST_2]
+     * P_BRING_ITEM_RULE_13 : [robot2:INITIAL(2), REQUEST_2]
+     * P_SHIP_RULE_0 : [PACK_AREA, REQUEST_4]
+     * P_REQUEST_TIMING_1 : [REQUEST_4, REQUEST_3, robot1:INITIAL(1), BOX_GET_AREA]
+     * P_SHIP_RULE_5 : [SHIP_AREA, REQUEST_4]
+     * P_ROBOT2_ARM_RULE_1 : [robot2:INITIAL(2), REQUEST_1, REQUEST_2]
+     * P_AREA_RULE_4 : [robot2:INITIAL(2), ITEM_GET_AREA, REQUEST_2, REQUEST_3, robot1:INITIAL(1), BOX_GET_AREA]
+     * P_BRING_ITEM_RULE_2 : [robot2:INITIAL(2), REQUEST_2]
+     * P_AREA_RULE_6 : [PACK_AREA, REQUEST_2, REQUEST_4]
+     * P_SHIP_RULE_2 : [REQUEST_4, REQUEST_3, robot1:INITIAL(1), BOX_GET_AREA]
+     * P_REPLENISH_RULE01 : [robot2:INITIAL(2), REQUEST_1]
+     * P_REPLENISH_ITEM_RULE_9 : [ITEM_GET_AREA, REQUEST_1]
+     * P_BRING_ITEM_RULE_12 : [robot2:INITIAL(2), REQUEST_2]
+     * P_ROBOT2_ARM_RULE_3 : [robot2:INITIAL(2)]
+     * P_REPLENISH_ITEM_RULE_8 : [robot2:INITIAL(2), ITEM_GET_AREA]
+     * P_REPLENISH_ITEM_RULE_4 : [robot2:INITIAL(2), REQUEST_1]
+     * P_REPLENISH_RULE_2 : [robot2:INITIAL(2), REQUEST_1]
+     * P_REPLENISH_ITEM_RULE_7 : [robot2:INITIAL(2)]
+     * P_SHIP_RULE_1 : [REQUEST_4, REQUEST_3, robot1:INITIAL(1), BOX_GET_AREA]
+     * P_AREA_RULE_8 : [PACK_AREA, REQUEST_2]
+     * P_REQUEST_TIMING_4 : [REQUEST_1, REQUEST_2]
+     * P_REQUEST_ONLY_2 : [robot2:INITIAL(2), REQUEST_1, REQUEST_2]
+     * P_BRING_ITEM_RULE02_11 : [robot2:INITIAL(2), REQUEST_2]
+     * P_REPLENISH_ITEM_RULE_3 : [robot2:INITIAL(2), REQUEST_1]
+     * P_BRING_RULE02 : [robot2:INITIAL(2), REQUEST_2]
+     * P_ROBOT1_ARM_RULE_1 : [REQUEST_4, REQUEST_3, robot1:INITIAL(1), BOX_GET_AREA]
+     * P_REPLENISH_RULE02 : [robot2:INITIAL(2), REQUEST_1]
+     * P_BRING_RULE_2 : [robot2:INITIAL(2), REQUEST_2]
+     * P_REPLENISH_ITEM_RULE_5 : [robot2:INITIAL(2), REQUEST_1]
+     * P_REQUEST_ONLY_1 : [REQUEST_4, REQUEST_3, robot1:INITIAL(1), BOX_GET_AREA]
+     * P_BRING_ITEM_RULE_3 : [robot2:INITIAL(2), REQUEST_2]
+     * P_REPLENISH_ITEM_RULE_12 : [robot2:INITIAL(2), REQUEST_1]
+     * P_BRING_ITEM_RULE01_11 : [robot2:INITIAL(2), REQUEST_2]
+     * P_REPLENISH_ROBOT_RULE : [robot2:INITIAL(2)]
+     * P_BRING_RULE01 : [robot2:INITIAL(2), REQUEST_2]
+     * P_SHIP_RULE_4 : [SHIP_AREA, REQUEST_4, REQUEST_3, robot1:INITIAL(1), BOX_GET_AREA]
+     * P_REQUEST_TIMING_3 : [REQUEST_1, REQUEST_2]
+     * P_BRING_ITEM_RULE_7 : [robot2:INITIAL(2), REQUEST_2]
+     * P_REPLENISH_ITEM_RULE01_11 : [robot2:INITIAL(2), REQUEST_1]
+     * P_REQUEST_TIMING_2 : [REQUEST_4, REQUEST_3, robot1:INITIAL(1), BOX_GET_AREA]
+     * P_REPLENISH_ITEM_RULE_10 : [robot2:INITIAL(2), REQUEST_1]
+     * P_ROBOT2_ARM_RULE_2 : [robot2:INITIAL(2)]
+     * P_AREA_RULE_1 : [SHIP_AREA, REQUEST_4, REQUEST_3, robot1:INITIAL(1), BOX_GET_AREA]
+     * P_REPLENISH_ITEM_RULE_13 : [robot2:INITIAL(2), REQUEST_1]
+     * P_AREA_RULE_7 : [PACK_AREA, REQUEST_3, robot1:INITIAL(1), BOX_GET_AREA]
+     * P_BRING_ITEM_RULE_9 : [ITEM_GET_AREA, REQUEST_2]
+     * P_REPLENISH_ITEM_RULE_2 : [robot2:INITIAL(2), REQUEST_1]
+
+[info] Environment Models
+     * robot2:INITIAL(2) : []
+     * SHIP_AREA : []
+     * ITEM_GET_AREA : []
+     * PACK_AREA : []
+     * REQUEST_1 : []
+     * REQUEST_2 : []
+     * REQUEST_4 : []
+     * PartController_3 : [REQUEST_3, robot1:INITIAL(1), BOX_GET_AREA]
+
+[info] Synthetic Cost (number of monitored models)
+     * P_REPLENISH_ITEM_RULE_6 : 2
+     * P_BRING_ITEM_RULE_8 : 3
+     * P_BRING_ITEM_RULE_4 : 2
+     * P_SHIP_RULE_3 : 4
+     * P_BRING_ITEM_RULE_10 : 2
+     * P_REPLENISH_ITEM_RULE_1 : 2
+     * P_AREA_RULE_3 : 2
+     * P_BRING_ITEM_RULE_1 : 2
+     * P_SHIP_RULE_6 : 2
+     * P_AREA_RULE_5 : 5
+     * P_REPLENISH_ITEM_RULE02_11 : 2
+     * P_BRING_ITEM_RULE_6 : 2
+     * P_BRING_ITEM_RULE_5 : 2
+     * P_BRING_ITEM_RULE_13 : 2
+     * P_SHIP_RULE_0 : 2
+     * P_REQUEST_TIMING_1 : 4
+     * P_SHIP_RULE_5 : 2
+     * P_ROBOT2_ARM_RULE_1 : 3
+     * P_AREA_RULE_4 : 6
+     * P_BRING_ITEM_RULE_2 : 2
+     * P_AREA_RULE_6 : 3
+     * P_SHIP_RULE_2 : 4
+     * P_REPLENISH_RULE01 : 2
+     * P_REPLENISH_ITEM_RULE_9 : 2
+     * P_BRING_ITEM_RULE_12 : 2
+     * P_ROBOT2_ARM_RULE_3 : 1
+     * P_REPLENISH_ITEM_RULE_8 : 2
+     * P_REPLENISH_ITEM_RULE_4 : 2
+     * P_REPLENISH_RULE_2 : 2
+     * P_REPLENISH_ITEM_RULE_7 : 1
+     * P_SHIP_RULE_1 : 4
+     * P_AREA_RULE_8 : 2
+     * P_REQUEST_TIMING_4 : 2
+     * P_REQUEST_ONLY_2 : 3
+     * P_BRING_ITEM_RULE02_11 : 2
+     * P_REPLENISH_ITEM_RULE_3 : 2
+     * P_BRING_RULE02 : 2
+     * P_ROBOT1_ARM_RULE_1 : 4
+     * P_REPLENISH_RULE02 : 2
+     * P_BRING_RULE_2 : 2
+     * P_REPLENISH_ITEM_RULE_5 : 2
+     * P_REQUEST_ONLY_1 : 4
+     * P_BRING_ITEM_RULE_3 : 2
+     * P_REPLENISH_ITEM_RULE_12 : 2
+     * P_BRING_ITEM_RULE01_11 : 2
+     * P_REPLENISH_ROBOT_RULE : 1
+     * P_BRING_RULE01 : 2
+     * P_SHIP_RULE_4 : 5
+     * P_REQUEST_TIMING_3 : 2
+     * P_BRING_ITEM_RULE_7 : 2
+     * P_REPLENISH_ITEM_RULE01_11 : 2
+     * P_REQUEST_TIMING_2 : 4
+     * P_REPLENISH_ITEM_RULE_10 : 2
+     * P_ROBOT2_ARM_RULE_2 : 1
+     * P_AREA_RULE_1 : 5
+     * P_REPLENISH_ITEM_RULE_13 : 2
+     * P_AREA_RULE_7 : 4
+     * P_BRING_ITEM_RULE_9 : 2
+     * P_REPLENISH_ITEM_RULE_2 : 2
+
+Composition:PartController_4 = PACK_AREA || PartController_3 || P_AREA_RULE_7 || P_AREA_RULE_7
+State Space: 1 * 139 * 2 * 2 = 2 ** 10
+Composing...
+-- States: 278 Transitions: 1480 Memory used: 40717KB
+Composed in 46ms
+Solving the LTS control problem.
+Environment states: 279
+Game states: 279
+Analysis time: 84ms.
+Controller [278] generated successfully.
+Composition:PartController_4 = PartController_4 || P_AREA_RULE_7 || P_AREA_RULE_7
+State Space: 278 * 2 * 2 = 2 ** 11
+Composing...
+-- States: 278 Transitions: 1341 Memory used: 42616KB
+Composed in 54ms
+
+[info] STEP4 Infomation
+[info] Output Model     : PartController_4
+[info] Input Models     : [PACK_AREA, PartController_3, P_AREA_RULE_7, P_AREA_RULE_7]
+[info] Component Models : [PACK_AREA, REQUEST_3, robot1:INITIAL(1), BOX_GET_AREA]
+[info] Execution Time
+     * policy only      : 0 ms
+     * synthesis only   : 185 ms
+     * total            : 185 ms
+
+
+---------------------------------------------------
+                     STEP 5
+---------------------------------------------------
+[info] Monitor Models
+     * P_REPLENISH_ITEM_RULE_6 : [robot2:INITIAL(2), REQUEST_1]
+     * P_BRING_ITEM_RULE_8 : [robot2:INITIAL(2), ITEM_GET_AREA, REQUEST_2]
+     * P_BRING_ITEM_RULE_4 : [robot2:INITIAL(2), REQUEST_2]
+     * P_SHIP_RULE_3 : [REQUEST_4, PACK_AREA, REQUEST_3, robot1:INITIAL(1), BOX_GET_AREA]
+     * P_BRING_ITEM_RULE_10 : [robot2:INITIAL(2), REQUEST_2]
+     * P_REPLENISH_ITEM_RULE_1 : [robot2:INITIAL(2), REQUEST_1]
+     * P_AREA_RULE_3 : [robot2:INITIAL(2), ITEM_GET_AREA]
+     * P_BRING_ITEM_RULE_1 : [robot2:INITIAL(2), REQUEST_2]
+     * P_SHIP_RULE_6 : [SHIP_AREA, REQUEST_4]
+     * P_AREA_RULE_5 : [REQUEST_4, PACK_AREA, REQUEST_3, robot1:INITIAL(1), BOX_GET_AREA]
+     * P_REPLENISH_ITEM_RULE02_11 : [robot2:INITIAL(2), REQUEST_1]
+     * P_BRING_ITEM_RULE_6 : [robot2:INITIAL(2), REQUEST_2]
+     * P_BRING_ITEM_RULE_5 : [robot2:INITIAL(2), REQUEST_2]
+     * P_BRING_ITEM_RULE_13 : [robot2:INITIAL(2), REQUEST_2]
+     * P_SHIP_RULE_0 : [REQUEST_4, PACK_AREA, REQUEST_3, robot1:INITIAL(1), BOX_GET_AREA]
+     * P_REQUEST_TIMING_1 : [REQUEST_4, PACK_AREA, REQUEST_3, robot1:INITIAL(1), BOX_GET_AREA]
+     * P_SHIP_RULE_5 : [SHIP_AREA, REQUEST_4]
+     * P_ROBOT2_ARM_RULE_1 : [robot2:INITIAL(2), REQUEST_1, REQUEST_2]
+     * P_AREA_RULE_4 : [robot2:INITIAL(2), ITEM_GET_AREA, REQUEST_2, PACK_AREA, REQUEST_3, robot1:INITIAL(1), BOX_GET_AREA]
+     * P_BRING_ITEM_RULE_2 : [robot2:INITIAL(2), REQUEST_2]
+     * P_AREA_RULE_6 : [REQUEST_2, REQUEST_4, PACK_AREA, REQUEST_3, robot1:INITIAL(1), BOX_GET_AREA]
+     * P_SHIP_RULE_2 : [REQUEST_4, PACK_AREA, REQUEST_3, robot1:INITIAL(1), BOX_GET_AREA]
+     * P_REPLENISH_RULE01 : [robot2:INITIAL(2), REQUEST_1]
+     * P_REPLENISH_ITEM_RULE_9 : [ITEM_GET_AREA, REQUEST_1]
+     * P_BRING_ITEM_RULE_12 : [robot2:INITIAL(2), REQUEST_2]
+     * P_ROBOT2_ARM_RULE_3 : [robot2:INITIAL(2)]
+     * P_REPLENISH_ITEM_RULE_8 : [robot2:INITIAL(2), ITEM_GET_AREA]
+     * P_REPLENISH_ITEM_RULE_4 : [robot2:INITIAL(2), REQUEST_1]
+     * P_REPLENISH_RULE_2 : [robot2:INITIAL(2), REQUEST_1]
+     * P_REPLENISH_ITEM_RULE_7 : [robot2:INITIAL(2)]
+     * P_SHIP_RULE_1 : [REQUEST_4, PACK_AREA, REQUEST_3, robot1:INITIAL(1), BOX_GET_AREA]
+     * P_AREA_RULE_8 : [REQUEST_2, PACK_AREA, REQUEST_3, robot1:INITIAL(1), BOX_GET_AREA]
+     * P_REQUEST_TIMING_4 : [REQUEST_1, REQUEST_2]
+     * P_REQUEST_ONLY_2 : [robot2:INITIAL(2), REQUEST_1, REQUEST_2]
+     * P_BRING_ITEM_RULE02_11 : [robot2:INITIAL(2), REQUEST_2]
+     * P_REPLENISH_ITEM_RULE_3 : [robot2:INITIAL(2), REQUEST_1]
+     * P_BRING_RULE02 : [robot2:INITIAL(2), REQUEST_2]
+     * P_ROBOT1_ARM_RULE_1 : [REQUEST_4, PACK_AREA, REQUEST_3, robot1:INITIAL(1), BOX_GET_AREA]
+     * P_REPLENISH_RULE02 : [robot2:INITIAL(2), REQUEST_1]
+     * P_BRING_RULE_2 : [robot2:INITIAL(2), REQUEST_2]
+     * P_REPLENISH_ITEM_RULE_5 : [robot2:INITIAL(2), REQUEST_1]
+     * P_REQUEST_ONLY_1 : [REQUEST_4, PACK_AREA, REQUEST_3, robot1:INITIAL(1), BOX_GET_AREA]
+     * P_BRING_ITEM_RULE_3 : [robot2:INITIAL(2), REQUEST_2]
+     * P_REPLENISH_ITEM_RULE_12 : [robot2:INITIAL(2), REQUEST_1]
+     * P_BRING_ITEM_RULE01_11 : [robot2:INITIAL(2), REQUEST_2]
+     * P_REPLENISH_ROBOT_RULE : [robot2:INITIAL(2)]
+     * P_BRING_RULE01 : [robot2:INITIAL(2), REQUEST_2]
+     * P_SHIP_RULE_4 : [SHIP_AREA, REQUEST_4, PACK_AREA, REQUEST_3, robot1:INITIAL(1), BOX_GET_AREA]
+     * P_REQUEST_TIMING_3 : [REQUEST_1, REQUEST_2]
+     * P_BRING_ITEM_RULE_7 : [robot2:INITIAL(2), REQUEST_2]
+     * P_REPLENISH_ITEM_RULE01_11 : [robot2:INITIAL(2), REQUEST_1]
+     * P_REQUEST_TIMING_2 : [REQUEST_4, PACK_AREA, REQUEST_3, robot1:INITIAL(1), BOX_GET_AREA]
+     * P_REPLENISH_ITEM_RULE_10 : [robot2:INITIAL(2), REQUEST_1]
+     * P_ROBOT2_ARM_RULE_2 : [robot2:INITIAL(2)]
+     * P_AREA_RULE_1 : [SHIP_AREA, REQUEST_4, PACK_AREA, REQUEST_3, robot1:INITIAL(1), BOX_GET_AREA]
+     * P_REPLENISH_ITEM_RULE_13 : [robot2:INITIAL(2), REQUEST_1]
+     * P_BRING_ITEM_RULE_9 : [ITEM_GET_AREA, REQUEST_2]
+     * P_REPLENISH_ITEM_RULE_2 : [robot2:INITIAL(2), REQUEST_1]
+
+[info] Environment Models
+     * robot2:INITIAL(2) : []
+     * SHIP_AREA : []
+     * ITEM_GET_AREA : []
+     * REQUEST_1 : []
+     * REQUEST_2 : []
+     * REQUEST_4 : []
+     * PartController_4 : [PACK_AREA, REQUEST_3, robot1:INITIAL(1), BOX_GET_AREA]
+
+[info] Synthetic Cost (number of monitored models)
+     * P_REPLENISH_ITEM_RULE_6 : 2
+     * P_BRING_ITEM_RULE_8 : 3
+     * P_BRING_ITEM_RULE_4 : 2
+     * P_SHIP_RULE_3 : 5
+     * P_BRING_ITEM_RULE_10 : 2
+     * P_REPLENISH_ITEM_RULE_1 : 2
+     * P_AREA_RULE_3 : 2
+     * P_BRING_ITEM_RULE_1 : 2
+     * P_SHIP_RULE_6 : 2
+     * P_AREA_RULE_5 : 5
+     * P_REPLENISH_ITEM_RULE02_11 : 2
+     * P_BRING_ITEM_RULE_6 : 2
+     * P_BRING_ITEM_RULE_5 : 2
+     * P_BRING_ITEM_RULE_13 : 2
+     * P_SHIP_RULE_0 : 5
+     * P_REQUEST_TIMING_1 : 5
+     * P_SHIP_RULE_5 : 2
+     * P_ROBOT2_ARM_RULE_1 : 3
+     * P_AREA_RULE_4 : 7
+     * P_BRING_ITEM_RULE_2 : 2
+     * P_AREA_RULE_6 : 6
+     * P_SHIP_RULE_2 : 5
+     * P_REPLENISH_RULE01 : 2
+     * P_REPLENISH_ITEM_RULE_9 : 2
+     * P_BRING_ITEM_RULE_12 : 2
+     * P_ROBOT2_ARM_RULE_3 : 1
+     * P_REPLENISH_ITEM_RULE_8 : 2
+     * P_REPLENISH_ITEM_RULE_4 : 2
+     * P_REPLENISH_RULE_2 : 2
+     * P_REPLENISH_ITEM_RULE_7 : 1
+     * P_SHIP_RULE_1 : 5
+     * P_AREA_RULE_8 : 5
+     * P_REQUEST_TIMING_4 : 2
+     * P_REQUEST_ONLY_2 : 3
+     * P_BRING_ITEM_RULE02_11 : 2
+     * P_REPLENISH_ITEM_RULE_3 : 2
+     * P_BRING_RULE02 : 2
+     * P_ROBOT1_ARM_RULE_1 : 5
+     * P_REPLENISH_RULE02 : 2
+     * P_BRING_RULE_2 : 2
+     * P_REPLENISH_ITEM_RULE_5 : 2
+     * P_REQUEST_ONLY_1 : 5
+     * P_BRING_ITEM_RULE_3 : 2
+     * P_REPLENISH_ITEM_RULE_12 : 2
+     * P_BRING_ITEM_RULE01_11 : 2
+     * P_REPLENISH_ROBOT_RULE : 1
+     * P_BRING_RULE01 : 2
+     * P_SHIP_RULE_4 : 6
+     * P_REQUEST_TIMING_3 : 2
+     * P_BRING_ITEM_RULE_7 : 2
+     * P_REPLENISH_ITEM_RULE01_11 : 2
+     * P_REQUEST_TIMING_2 : 5
+     * P_REPLENISH_ITEM_RULE_10 : 2
+     * P_ROBOT2_ARM_RULE_2 : 1
+     * P_AREA_RULE_1 : 6
+     * P_REPLENISH_ITEM_RULE_13 : 2
+     * P_BRING_ITEM_RULE_9 : 2
+     * P_REPLENISH_ITEM_RULE_2 : 2
+
+Composition:PartController_5 = REQUEST_4 || PartController_4 || P_SHIP_RULE_3 || P_SHIP_RULE_3 || P_AREA_RULE_5 || P_SHIP_RULE_0 || P_REQUEST_TIMING_1 || P_SHIP_RULE_2 || P_SHIP_RULE_1 || P_ROBOT1_ARM_RULE_1 || P_REQUEST_ONLY_1 || P_REQUEST_TIMING_2
+State Space: 2 * 278 * 2 * 2 * 2 * 2 * 2 * 2 * 2 * 4 * 4 * 2 = 2 ** 22
+Composing...
+-- States: 208 Transitions: 961 Memory used: 42455KB
+Composed in 45ms
+Solving the LTS control problem.
+Environment states: 209
+Game states: 209
+Analysis time: 71ms.
+Controller [192] generated successfully.
+Composition:PartController_5 = PartController_5 || P_SHIP_RULE_3 || P_SHIP_RULE_3 || P_AREA_RULE_5 || P_SHIP_RULE_0 || P_REQUEST_TIMING_1 || P_SHIP_RULE_2 || P_SHIP_RULE_1 || P_ROBOT1_ARM_RULE_1 || P_REQUEST_ONLY_1 || P_REQUEST_TIMING_2
+State Space: 192 * 2 * 2 * 2 * 2 * 2 * 2 * 2 * 4 * 4 * 2 = 2 ** 20
+Composing...
+-- States: 192 Transitions: 322 Memory used: 42751KB
+Composed in 46ms
+
+[info] STEP5 Infomation
+[info] Output Model     : PartController_5
+[info] Input Models     : [REQUEST_4, PartController_4, P_SHIP_RULE_3, P_SHIP_RULE_3, P_AREA_RULE_5, P_SHIP_RULE_0, P_REQUEST_TIMING_1, P_SHIP_RULE_2, P_SHIP_RULE_1, P_ROBOT1_ARM_RULE_1, P_REQUEST_ONLY_1, P_REQUEST_TIMING_2]
+[info] Component Models : [REQUEST_4, PACK_AREA, REQUEST_3, robot1:INITIAL(1), BOX_GET_AREA]
+[info] Execution Time
+     * policy only      : 0 ms
+     * synthesis only   : 162 ms
+     * total            : 162 ms
+
+
+---------------------------------------------------
+                     STEP 6
+---------------------------------------------------
+[info] Monitor Models
+     * P_REPLENISH_ITEM_RULE_6 : [robot2:INITIAL(2), REQUEST_1]
+     * P_BRING_ITEM_RULE_8 : [robot2:INITIAL(2), ITEM_GET_AREA, REQUEST_2]
+     * P_BRING_ITEM_RULE_4 : [robot2:INITIAL(2), REQUEST_2]
+     * P_BRING_ITEM_RULE_10 : [robot2:INITIAL(2), REQUEST_2]
+     * P_REPLENISH_ITEM_RULE_1 : [robot2:INITIAL(2), REQUEST_1]
+     * P_AREA_RULE_3 : [robot2:INITIAL(2), ITEM_GET_AREA]
+     * P_BRING_ITEM_RULE_1 : [robot2:INITIAL(2), REQUEST_2]
+     * P_SHIP_RULE_6 : [SHIP_AREA, REQUEST_4, PACK_AREA, REQUEST_3, robot1:INITIAL(1), BOX_GET_AREA]
+     * P_REPLENISH_ITEM_RULE02_11 : [robot2:INITIAL(2), REQUEST_1]
+     * P_BRING_ITEM_RULE_6 : [robot2:INITIAL(2), REQUEST_2]
+     * P_BRING_ITEM_RULE_5 : [robot2:INITIAL(2), REQUEST_2]
+     * P_BRING_ITEM_RULE_13 : [robot2:INITIAL(2), REQUEST_2]
+     * P_SHIP_RULE_5 : [SHIP_AREA, REQUEST_4, PACK_AREA, REQUEST_3, robot1:INITIAL(1), BOX_GET_AREA]
+     * P_ROBOT2_ARM_RULE_1 : [robot2:INITIAL(2), REQUEST_1, REQUEST_2]
+     * P_AREA_RULE_4 : [robot2:INITIAL(2), ITEM_GET_AREA, REQUEST_2, REQUEST_4, PACK_AREA, REQUEST_3, robot1:INITIAL(1), BOX_GET_AREA]
+     * P_BRING_ITEM_RULE_2 : [robot2:INITIAL(2), REQUEST_2]
+     * P_AREA_RULE_6 : [REQUEST_2, REQUEST_4, PACK_AREA, REQUEST_3, robot1:INITIAL(1), BOX_GET_AREA]
+     * P_REPLENISH_RULE01 : [robot2:INITIAL(2), REQUEST_1]
+     * P_REPLENISH_ITEM_RULE_9 : [ITEM_GET_AREA, REQUEST_1]
+     * P_BRING_ITEM_RULE_12 : [robot2:INITIAL(2), REQUEST_2]
+     * P_ROBOT2_ARM_RULE_3 : [robot2:INITIAL(2)]
+     * P_REPLENISH_ITEM_RULE_8 : [robot2:INITIAL(2), ITEM_GET_AREA]
+     * P_REPLENISH_ITEM_RULE_4 : [robot2:INITIAL(2), REQUEST_1]
+     * P_REPLENISH_RULE_2 : [robot2:INITIAL(2), REQUEST_1]
+     * P_REPLENISH_ITEM_RULE_7 : [robot2:INITIAL(2)]
+     * P_AREA_RULE_8 : [REQUEST_2, REQUEST_4, PACK_AREA, REQUEST_3, robot1:INITIAL(1), BOX_GET_AREA]
+     * P_REQUEST_TIMING_4 : [REQUEST_1, REQUEST_2]
+     * P_REQUEST_ONLY_2 : [robot2:INITIAL(2), REQUEST_1, REQUEST_2]
+     * P_BRING_ITEM_RULE02_11 : [robot2:INITIAL(2), REQUEST_2]
+     * P_REPLENISH_ITEM_RULE_3 : [robot2:INITIAL(2), REQUEST_1]
+     * P_BRING_RULE02 : [robot2:INITIAL(2), REQUEST_2]
+     * P_REPLENISH_RULE02 : [robot2:INITIAL(2), REQUEST_1]
+     * P_BRING_RULE_2 : [robot2:INITIAL(2), REQUEST_2]
+     * P_REPLENISH_ITEM_RULE_5 : [robot2:INITIAL(2), REQUEST_1]
+     * P_BRING_ITEM_RULE_3 : [robot2:INITIAL(2), REQUEST_2]
+     * P_REPLENISH_ITEM_RULE_12 : [robot2:INITIAL(2), REQUEST_1]
+     * P_BRING_ITEM_RULE01_11 : [robot2:INITIAL(2), REQUEST_2]
+     * P_REPLENISH_ROBOT_RULE : [robot2:INITIAL(2)]
+     * P_BRING_RULE01 : [robot2:INITIAL(2), REQUEST_2]
+     * P_SHIP_RULE_4 : [SHIP_AREA, REQUEST_4, PACK_AREA, REQUEST_3, robot1:INITIAL(1), BOX_GET_AREA]
+     * P_REQUEST_TIMING_3 : [REQUEST_1, REQUEST_2]
+     * P_BRING_ITEM_RULE_7 : [robot2:INITIAL(2), REQUEST_2]
+     * P_REPLENISH_ITEM_RULE01_11 : [robot2:INITIAL(2), REQUEST_1]
+     * P_REPLENISH_ITEM_RULE_10 : [robot2:INITIAL(2), REQUEST_1]
+     * P_ROBOT2_ARM_RULE_2 : [robot2:INITIAL(2)]
+     * P_AREA_RULE_1 : [SHIP_AREA, REQUEST_4, PACK_AREA, REQUEST_3, robot1:INITIAL(1), BOX_GET_AREA]
+     * P_REPLENISH_ITEM_RULE_13 : [robot2:INITIAL(2), REQUEST_1]
+     * P_BRING_ITEM_RULE_9 : [ITEM_GET_AREA, REQUEST_2]
+     * P_REPLENISH_ITEM_RULE_2 : [robot2:INITIAL(2), REQUEST_1]
+
+[info] Environment Models
+     * robot2:INITIAL(2) : []
+     * SHIP_AREA : []
+     * ITEM_GET_AREA : []
+     * REQUEST_1 : []
+     * REQUEST_2 : []
+     * PartController_5 : [REQUEST_4, PACK_AREA, REQUEST_3, robot1:INITIAL(1), BOX_GET_AREA]
+
+[info] Synthetic Cost (number of monitored models)
+     * P_REPLENISH_ITEM_RULE_6 : 2
+     * P_BRING_ITEM_RULE_8 : 3
+     * P_BRING_ITEM_RULE_4 : 2
+     * P_BRING_ITEM_RULE_10 : 2
+     * P_REPLENISH_ITEM_RULE_1 : 2
+     * P_AREA_RULE_3 : 2
+     * P_BRING_ITEM_RULE_1 : 2
+     * P_SHIP_RULE_6 : 6
+     * P_REPLENISH_ITEM_RULE02_11 : 2
+     * P_BRING_ITEM_RULE_6 : 2
+     * P_BRING_ITEM_RULE_5 : 2
+     * P_BRING_ITEM_RULE_13 : 2
+     * P_SHIP_RULE_5 : 6
+     * P_ROBOT2_ARM_RULE_1 : 3
+     * P_AREA_RULE_4 : 8
+     * P_BRING_ITEM_RULE_2 : 2
+     * P_AREA_RULE_6 : 6
+     * P_REPLENISH_RULE01 : 2
+     * P_REPLENISH_ITEM_RULE_9 : 2
+     * P_BRING_ITEM_RULE_12 : 2
+     * P_ROBOT2_ARM_RULE_3 : 1
+     * P_REPLENISH_ITEM_RULE_8 : 2
+     * P_REPLENISH_ITEM_RULE_4 : 2
+     * P_REPLENISH_RULE_2 : 2
+     * P_REPLENISH_ITEM_RULE_7 : 1
+     * P_AREA_RULE_8 : 6
+     * P_REQUEST_TIMING_4 : 2
+     * P_REQUEST_ONLY_2 : 3
+     * P_BRING_ITEM_RULE02_11 : 2
+     * P_REPLENISH_ITEM_RULE_3 : 2
+     * P_BRING_RULE02 : 2
+     * P_REPLENISH_RULE02 : 2
+     * P_BRING_RULE_2 : 2
+     * P_REPLENISH_ITEM_RULE_5 : 2
+     * P_BRING_ITEM_RULE_3 : 2
+     * P_REPLENISH_ITEM_RULE_12 : 2
+     * P_BRING_ITEM_RULE01_11 : 2
+     * P_REPLENISH_ROBOT_RULE : 1
+     * P_BRING_RULE01 : 2
+     * P_SHIP_RULE_4 : 6
+     * P_REQUEST_TIMING_3 : 2
+     * P_BRING_ITEM_RULE_7 : 2
+     * P_REPLENISH_ITEM_RULE01_11 : 2
+     * P_REPLENISH_ITEM_RULE_10 : 2
+     * P_ROBOT2_ARM_RULE_2 : 1
+     * P_AREA_RULE_1 : 6
+     * P_REPLENISH_ITEM_RULE_13 : 2
+     * P_BRING_ITEM_RULE_9 : 2
+     * P_REPLENISH_ITEM_RULE_2 : 2
+
+Composition:PartController_6 = SHIP_AREA || PartController_5 || P_SHIP_RULE_6 || P_SHIP_RULE_6 || P_SHIP_RULE_5 || P_SHIP_RULE_4 || P_AREA_RULE_1
+State Space: 1 * 192 * 2 * 2 * 2 * 2 * 2 = 2 ** 13
+Composing...
+-- States: 49 Transitions: 118 Memory used: 42528KB
+Composed in 50ms
+Solving the LTS control problem.
+Environment states: 50
+Game states: 50
+Analysis time: 55ms.
+Controller [49] generated successfully.
+Composition:PartController_6 = PartController_6 || P_SHIP_RULE_6 || P_SHIP_RULE_6 || P_SHIP_RULE_5 || P_SHIP_RULE_4 || P_AREA_RULE_1
+State Space: 49 * 2 * 2 * 2 * 2 * 2 = 2 ** 11
+Composing...
+-- States: 49 Transitions: 65 Memory used: 42392KB
+Composed in 44ms
+
+[info] STEP6 Infomation
+[info] Output Model     : PartController_6
+[info] Input Models     : [SHIP_AREA, PartController_5, P_SHIP_RULE_6, P_SHIP_RULE_6, P_SHIP_RULE_5, P_SHIP_RULE_4, P_AREA_RULE_1]
+[info] Component Models : [REQUEST_4, PACK_AREA, REQUEST_3, SHIP_AREA, robot1:INITIAL(1), BOX_GET_AREA]
+[info] Execution Time
+     * policy only      : 0 ms
+     * synthesis only   : 149 ms
+     * total            : 149 ms
+
+
+---------------------------------------------------
+                     STEP 7
+---------------------------------------------------
+[info] Monitor Models
+     * P_REPLENISH_ITEM_RULE_6 : [robot2:INITIAL(2), REQUEST_1]
+     * P_BRING_ITEM_RULE_8 : [robot2:INITIAL(2), ITEM_GET_AREA, REQUEST_2]
+     * P_BRING_ITEM_RULE_4 : [robot2:INITIAL(2), REQUEST_2]
+     * P_BRING_ITEM_RULE_10 : [robot2:INITIAL(2), REQUEST_2]
+     * P_REPLENISH_ITEM_RULE_1 : [robot2:INITIAL(2), REQUEST_1]
+     * P_AREA_RULE_3 : [robot2:INITIAL(2), ITEM_GET_AREA]
+     * P_BRING_ITEM_RULE_1 : [robot2:INITIAL(2), REQUEST_2]
+     * P_REPLENISH_ITEM_RULE02_11 : [robot2:INITIAL(2), REQUEST_1]
+     * P_BRING_ITEM_RULE_6 : [robot2:INITIAL(2), REQUEST_2]
+     * P_BRING_ITEM_RULE_5 : [robot2:INITIAL(2), REQUEST_2]
+     * P_BRING_ITEM_RULE_13 : [robot2:INITIAL(2), REQUEST_2]
+     * P_ROBOT2_ARM_RULE_1 : [robot2:INITIAL(2), REQUEST_1, REQUEST_2]
+     * P_AREA_RULE_4 : [robot2:INITIAL(2), ITEM_GET_AREA, REQUEST_2, REQUEST_4, PACK_AREA, REQUEST_3, SHIP_AREA, robot1:INITIAL(1), BOX_GET_AREA]
+     * P_BRING_ITEM_RULE_2 : [robot2:INITIAL(2), REQUEST_2]
+     * P_AREA_RULE_6 : [REQUEST_2, REQUEST_4, PACK_AREA, REQUEST_3, SHIP_AREA, robot1:INITIAL(1), BOX_GET_AREA]
+     * P_REPLENISH_RULE01 : [robot2:INITIAL(2), REQUEST_1]
+     * P_REPLENISH_ITEM_RULE_9 : [ITEM_GET_AREA, REQUEST_1]
+     * P_BRING_ITEM_RULE_12 : [robot2:INITIAL(2), REQUEST_2]
+     * P_ROBOT2_ARM_RULE_3 : [robot2:INITIAL(2)]
+     * P_REPLENISH_ITEM_RULE_8 : [robot2:INITIAL(2), ITEM_GET_AREA]
+     * P_REPLENISH_ITEM_RULE_4 : [robot2:INITIAL(2), REQUEST_1]
+     * P_REPLENISH_RULE_2 : [robot2:INITIAL(2), REQUEST_1]
+     * P_REPLENISH_ITEM_RULE_7 : [robot2:INITIAL(2)]
+     * P_AREA_RULE_8 : [REQUEST_2, REQUEST_4, PACK_AREA, REQUEST_3, SHIP_AREA, robot1:INITIAL(1), BOX_GET_AREA]
+     * P_REQUEST_TIMING_4 : [REQUEST_1, REQUEST_2]
+     * P_REQUEST_ONLY_2 : [robot2:INITIAL(2), REQUEST_1, REQUEST_2]
+     * P_BRING_ITEM_RULE02_11 : [robot2:INITIAL(2), REQUEST_2]
+     * P_REPLENISH_ITEM_RULE_3 : [robot2:INITIAL(2), REQUEST_1]
+     * P_BRING_RULE02 : [robot2:INITIAL(2), REQUEST_2]
+     * P_REPLENISH_RULE02 : [robot2:INITIAL(2), REQUEST_1]
+     * P_BRING_RULE_2 : [robot2:INITIAL(2), REQUEST_2]
+     * P_REPLENISH_ITEM_RULE_5 : [robot2:INITIAL(2), REQUEST_1]
+     * P_BRING_ITEM_RULE_3 : [robot2:INITIAL(2), REQUEST_2]
+     * P_REPLENISH_ITEM_RULE_12 : [robot2:INITIAL(2), REQUEST_1]
+     * P_BRING_ITEM_RULE01_11 : [robot2:INITIAL(2), REQUEST_2]
+     * P_REPLENISH_ROBOT_RULE : [robot2:INITIAL(2)]
+     * P_BRING_RULE01 : [robot2:INITIAL(2), REQUEST_2]
+     * P_REQUEST_TIMING_3 : [REQUEST_1, REQUEST_2]
+     * P_BRING_ITEM_RULE_7 : [robot2:INITIAL(2), REQUEST_2]
+     * P_REPLENISH_ITEM_RULE01_11 : [robot2:INITIAL(2), REQUEST_1]
+     * P_REPLENISH_ITEM_RULE_10 : [robot2:INITIAL(2), REQUEST_1]
+     * P_ROBOT2_ARM_RULE_2 : [robot2:INITIAL(2)]
+     * P_REPLENISH_ITEM_RULE_13 : [robot2:INITIAL(2), REQUEST_1]
+     * P_BRING_ITEM_RULE_9 : [ITEM_GET_AREA, REQUEST_2]
+     * P_REPLENISH_ITEM_RULE_2 : [robot2:INITIAL(2), REQUEST_1]
+
+[info] Environment Models
+     * robot2:INITIAL(2) : []
+     * ITEM_GET_AREA : []
+     * REQUEST_1 : []
+     * REQUEST_2 : []
+     * PartController_6 : [REQUEST_4, PACK_AREA, REQUEST_3, SHIP_AREA, robot1:INITIAL(1), BOX_GET_AREA]
+
+[info] Synthetic Cost (number of monitored models)
+     * P_REPLENISH_ITEM_RULE_6 : 2
+     * P_BRING_ITEM_RULE_8 : 3
+     * P_BRING_ITEM_RULE_4 : 2
+     * P_BRING_ITEM_RULE_10 : 2
+     * P_REPLENISH_ITEM_RULE_1 : 2
+     * P_AREA_RULE_3 : 2
+     * P_BRING_ITEM_RULE_1 : 2
+     * P_REPLENISH_ITEM_RULE02_11 : 2
+     * P_BRING_ITEM_RULE_6 : 2
+     * P_BRING_ITEM_RULE_5 : 2
+     * P_BRING_ITEM_RULE_13 : 2
+     * P_ROBOT2_ARM_RULE_1 : 3
+     * P_AREA_RULE_4 : 9
+     * P_BRING_ITEM_RULE_2 : 2
+     * P_AREA_RULE_6 : 7
+     * P_REPLENISH_RULE01 : 2
+     * P_REPLENISH_ITEM_RULE_9 : 2
+     * P_BRING_ITEM_RULE_12 : 2
+     * P_ROBOT2_ARM_RULE_3 : 1
+     * P_REPLENISH_ITEM_RULE_8 : 2
+     * P_REPLENISH_ITEM_RULE_4 : 2
+     * P_REPLENISH_RULE_2 : 2
+     * P_REPLENISH_ITEM_RULE_7 : 1
+     * P_AREA_RULE_8 : 7
+     * P_REQUEST_TIMING_4 : 2
+     * P_REQUEST_ONLY_2 : 3
+     * P_BRING_ITEM_RULE02_11 : 2
+     * P_REPLENISH_ITEM_RULE_3 : 2
+     * P_BRING_RULE02 : 2
+     * P_REPLENISH_RULE02 : 2
+     * P_BRING_RULE_2 : 2
+     * P_REPLENISH_ITEM_RULE_5 : 2
+     * P_BRING_ITEM_RULE_3 : 2
+     * P_REPLENISH_ITEM_RULE_12 : 2
+     * P_BRING_ITEM_RULE01_11 : 2
+     * P_REPLENISH_ROBOT_RULE : 1
+     * P_BRING_RULE01 : 2
+     * P_REQUEST_TIMING_3 : 2
+     * P_BRING_ITEM_RULE_7 : 2
+     * P_REPLENISH_ITEM_RULE01_11 : 2
+     * P_REPLENISH_ITEM_RULE_10 : 2
+     * P_ROBOT2_ARM_RULE_2 : 1
+     * P_REPLENISH_ITEM_RULE_13 : 2
+     * P_BRING_ITEM_RULE_9 : 2
+     * P_REPLENISH_ITEM_RULE_2 : 2
+
+Composition:PartController_7 = robot2:INITIAL(2) || P_ROBOT2_ARM_RULE_3 || P_ROBOT2_ARM_RULE_3 || P_REPLENISH_ITEM_RULE_7 || P_REPLENISH_ROBOT_RULE || P_ROBOT2_ARM_RULE_2
+State Space: 6 * 2 * 2 * 2 * 1 * 2 = 2 ** 7
+Composing...
+-- States: 17 Transitions: 125 Memory used: 42388KB
+Composed in 45ms
+Solving the LTS control problem.
+Environment states: 18
+Game states: 18
+Analysis time: 50ms.
+Controller [17] generated successfully.
+Composition:PartController_7 = PartController_7 || P_ROBOT2_ARM_RULE_3 || P_ROBOT2_ARM_RULE_3 || P_REPLENISH_ITEM_RULE_7 || P_REPLENISH_ROBOT_RULE || P_ROBOT2_ARM_RULE_2
+State Space: 17 * 2 * 2 * 2 * 1 * 2 = 2 ** 9
+Composing...
+-- States: 17 Transitions: 67 Memory used: 43205KB
+Composed in 42ms
+
+[info] STEP7 Infomation
+[info] Output Model     : PartController_7
+[info] Input Models     : [robot2:INITIAL(2), P_ROBOT2_ARM_RULE_3, P_ROBOT2_ARM_RULE_3, P_REPLENISH_ITEM_RULE_7, P_REPLENISH_ROBOT_RULE, P_ROBOT2_ARM_RULE_2]
+[info] Component Models : [robot2:INITIAL(2)]
+[info] Execution Time
+     * policy only      : 0 ms
+     * synthesis only   : 138 ms
+     * total            : 138 ms
+
+
+---------------------------------------------------
+                     STEP 8
+---------------------------------------------------
+[info] Monitor Models
+     * P_REPLENISH_ITEM_RULE_6 : [REQUEST_1, robot2:INITIAL(2)]
+     * P_BRING_ITEM_RULE_8 : [ITEM_GET_AREA, REQUEST_2, robot2:INITIAL(2)]
+     * P_BRING_ITEM_RULE_4 : [REQUEST_2, robot2:INITIAL(2)]
+     * P_BRING_ITEM_RULE_10 : [REQUEST_2, robot2:INITIAL(2)]
+     * P_REPLENISH_ITEM_RULE_1 : [REQUEST_1, robot2:INITIAL(2)]
+     * P_AREA_RULE_3 : [ITEM_GET_AREA, robot2:INITIAL(2)]
+     * P_BRING_ITEM_RULE_1 : [REQUEST_2, robot2:INITIAL(2)]
+     * P_REPLENISH_ITEM_RULE02_11 : [REQUEST_1, robot2:INITIAL(2)]
+     * P_BRING_ITEM_RULE_6 : [REQUEST_2, robot2:INITIAL(2)]
+     * P_BRING_ITEM_RULE_5 : [REQUEST_2, robot2:INITIAL(2)]
+     * P_BRING_ITEM_RULE_13 : [REQUEST_2, robot2:INITIAL(2)]
+     * P_ROBOT2_ARM_RULE_1 : [REQUEST_1, REQUEST_2, robot2:INITIAL(2)]
+     * P_AREA_RULE_4 : [ITEM_GET_AREA, REQUEST_2, REQUEST_4, PACK_AREA, REQUEST_3, SHIP_AREA, robot1:INITIAL(1), BOX_GET_AREA, robot2:INITIAL(2)]
+     * P_BRING_ITEM_RULE_2 : [REQUEST_2, robot2:INITIAL(2)]
+     * P_AREA_RULE_6 : [REQUEST_2, REQUEST_4, PACK_AREA, REQUEST_3, SHIP_AREA, robot1:INITIAL(1), BOX_GET_AREA]
+     * P_REPLENISH_RULE01 : [REQUEST_1, robot2:INITIAL(2)]
+     * P_REPLENISH_ITEM_RULE_9 : [ITEM_GET_AREA, REQUEST_1]
+     * P_BRING_ITEM_RULE_12 : [REQUEST_2, robot2:INITIAL(2)]
+     * P_REPLENISH_ITEM_RULE_8 : [ITEM_GET_AREA, robot2:INITIAL(2)]
+     * P_REPLENISH_ITEM_RULE_4 : [REQUEST_1, robot2:INITIAL(2)]
+     * P_REPLENISH_RULE_2 : [REQUEST_1, robot2:INITIAL(2)]
+     * P_AREA_RULE_8 : [REQUEST_2, REQUEST_4, PACK_AREA, REQUEST_3, SHIP_AREA, robot1:INITIAL(1), BOX_GET_AREA]
+     * P_REQUEST_TIMING_4 : [REQUEST_1, REQUEST_2]
+     * P_REQUEST_ONLY_2 : [REQUEST_1, REQUEST_2, robot2:INITIAL(2)]
+     * P_BRING_ITEM_RULE02_11 : [REQUEST_2, robot2:INITIAL(2)]
+     * P_REPLENISH_ITEM_RULE_3 : [REQUEST_1, robot2:INITIAL(2)]
+     * P_BRING_RULE02 : [REQUEST_2, robot2:INITIAL(2)]
+     * P_REPLENISH_RULE02 : [REQUEST_1, robot2:INITIAL(2)]
+     * P_BRING_RULE_2 : [REQUEST_2, robot2:INITIAL(2)]
+     * P_REPLENISH_ITEM_RULE_5 : [REQUEST_1, robot2:INITIAL(2)]
+     * P_BRING_ITEM_RULE_3 : [REQUEST_2, robot2:INITIAL(2)]
+     * P_REPLENISH_ITEM_RULE_12 : [REQUEST_1, robot2:INITIAL(2)]
+     * P_BRING_ITEM_RULE01_11 : [REQUEST_2, robot2:INITIAL(2)]
+     * P_BRING_RULE01 : [REQUEST_2, robot2:INITIAL(2)]
+     * P_REQUEST_TIMING_3 : [REQUEST_1, REQUEST_2]
+     * P_BRING_ITEM_RULE_7 : [REQUEST_2, robot2:INITIAL(2)]
+     * P_REPLENISH_ITEM_RULE01_11 : [REQUEST_1, robot2:INITIAL(2)]
+     * P_REPLENISH_ITEM_RULE_10 : [REQUEST_1, robot2:INITIAL(2)]
+     * P_REPLENISH_ITEM_RULE_13 : [REQUEST_1, robot2:INITIAL(2)]
+     * P_BRING_ITEM_RULE_9 : [ITEM_GET_AREA, REQUEST_2]
+     * P_REPLENISH_ITEM_RULE_2 : [REQUEST_1, robot2:INITIAL(2)]
+
+[info] Environment Models
+     * ITEM_GET_AREA : []
+     * REQUEST_1 : []
+     * REQUEST_2 : []
+     * PartController_6 : [REQUEST_4, PACK_AREA, REQUEST_3, SHIP_AREA, robot1:INITIAL(1), BOX_GET_AREA]
+     * PartController_7 : [robot2:INITIAL(2)]
+
+[info] Synthetic Cost (number of monitored models)
+     * P_REPLENISH_ITEM_RULE_6 : 2
+     * P_BRING_ITEM_RULE_8 : 3
+     * P_BRING_ITEM_RULE_4 : 2
+     * P_BRING_ITEM_RULE_10 : 2
+     * P_REPLENISH_ITEM_RULE_1 : 2
+     * P_AREA_RULE_3 : 2
+     * P_BRING_ITEM_RULE_1 : 2
+     * P_REPLENISH_ITEM_RULE02_11 : 2
+     * P_BRING_ITEM_RULE_6 : 2
+     * P_BRING_ITEM_RULE_5 : 2
+     * P_BRING_ITEM_RULE_13 : 2
+     * P_ROBOT2_ARM_RULE_1 : 3
+     * P_AREA_RULE_4 : 9
+     * P_BRING_ITEM_RULE_2 : 2
+     * P_AREA_RULE_6 : 7
+     * P_REPLENISH_RULE01 : 2
+     * P_REPLENISH_ITEM_RULE_9 : 2
+     * P_BRING_ITEM_RULE_12 : 2
+     * P_REPLENISH_ITEM_RULE_8 : 2
+     * P_REPLENISH_ITEM_RULE_4 : 2
+     * P_REPLENISH_RULE_2 : 2
+     * P_AREA_RULE_8 : 7
+     * P_REQUEST_TIMING_4 : 2
+     * P_REQUEST_ONLY_2 : 3
+     * P_BRING_ITEM_RULE02_11 : 2
+     * P_REPLENISH_ITEM_RULE_3 : 2
+     * P_BRING_RULE02 : 2
+     * P_REPLENISH_RULE02 : 2
+     * P_BRING_RULE_2 : 2
+     * P_REPLENISH_ITEM_RULE_5 : 2
+     * P_BRING_ITEM_RULE_3 : 2
+     * P_REPLENISH_ITEM_RULE_12 : 2
+     * P_BRING_ITEM_RULE01_11 : 2
+     * P_BRING_RULE01 : 2
+     * P_REQUEST_TIMING_3 : 2
+     * P_BRING_ITEM_RULE_7 : 2
+     * P_REPLENISH_ITEM_RULE01_11 : 2
+     * P_REPLENISH_ITEM_RULE_10 : 2
+     * P_REPLENISH_ITEM_RULE_13 : 2
+     * P_BRING_ITEM_RULE_9 : 2
+     * P_REPLENISH_ITEM_RULE_2 : 2
+
+Composition:PartController_8 = ITEM_GET_AREA || PartController_7 || P_AREA_RULE_3 || P_AREA_RULE_3 || P_REPLENISH_ITEM_RULE_8
+State Space: 1 * 17 * 2 * 2 * 2 = 2 ** 8
+Composing...
+-- States: 31 Transitions: 173 Memory used: 43212KB
+Composed in 46ms
+Solving the LTS control problem.
+Environment states: 32
+Game states: 32
+Analysis time: 53ms.
+Controller [31] generated successfully.
+Composition:PartController_8 = PartController_8 || P_AREA_RULE_3 || P_AREA_RULE_3 || P_REPLENISH_ITEM_RULE_8
+State Space: 31 * 2 * 2 * 2 = 2 ** 8
+Composing...
+-- States: 31 Transitions: 154 Memory used: 44147KB
+Composed in 45ms
+
+[info] STEP8 Infomation
+[info] Output Model     : PartController_8
+[info] Input Models     : [ITEM_GET_AREA, PartController_7, P_AREA_RULE_3, P_AREA_RULE_3, P_REPLENISH_ITEM_RULE_8]
+[info] Component Models : [robot2:INITIAL(2), ITEM_GET_AREA]
+[info] Execution Time
+     * policy only      : 0 ms
+     * synthesis only   : 144 ms
+     * total            : 144 ms
+
+
+---------------------------------------------------
+                     STEP 9
+---------------------------------------------------
+[info] Monitor Models
+     * P_REPLENISH_ITEM_RULE_6 : [REQUEST_1, robot2:INITIAL(2), ITEM_GET_AREA]
+     * P_BRING_ITEM_RULE_8 : [REQUEST_2, robot2:INITIAL(2), ITEM_GET_AREA]
+     * P_BRING_ITEM_RULE_4 : [REQUEST_2, robot2:INITIAL(2), ITEM_GET_AREA]
+     * P_BRING_ITEM_RULE_10 : [REQUEST_2, robot2:INITIAL(2), ITEM_GET_AREA]
+     * P_REPLENISH_ITEM_RULE_1 : [REQUEST_1, robot2:INITIAL(2), ITEM_GET_AREA]
+     * P_BRING_ITEM_RULE_1 : [REQUEST_2, robot2:INITIAL(2), ITEM_GET_AREA]
+     * P_REPLENISH_ITEM_RULE02_11 : [REQUEST_1, robot2:INITIAL(2), ITEM_GET_AREA]
+     * P_BRING_ITEM_RULE_6 : [REQUEST_2, robot2:INITIAL(2), ITEM_GET_AREA]
+     * P_BRING_ITEM_RULE_5 : [REQUEST_2, robot2:INITIAL(2), ITEM_GET_AREA]
+     * P_BRING_ITEM_RULE_13 : [REQUEST_2, robot2:INITIAL(2), ITEM_GET_AREA]
+     * P_ROBOT2_ARM_RULE_1 : [REQUEST_1, REQUEST_2, robot2:INITIAL(2), ITEM_GET_AREA]
+     * P_AREA_RULE_4 : [REQUEST_2, REQUEST_4, PACK_AREA, REQUEST_3, SHIP_AREA, robot1:INITIAL(1), BOX_GET_AREA, robot2:INITIAL(2), ITEM_GET_AREA]
+     * P_BRING_ITEM_RULE_2 : [REQUEST_2, robot2:INITIAL(2), ITEM_GET_AREA]
+     * P_AREA_RULE_6 : [REQUEST_2, REQUEST_4, PACK_AREA, REQUEST_3, SHIP_AREA, robot1:INITIAL(1), BOX_GET_AREA]
+     * P_REPLENISH_RULE01 : [REQUEST_1, robot2:INITIAL(2), ITEM_GET_AREA]
+     * P_REPLENISH_ITEM_RULE_9 : [REQUEST_1, robot2:INITIAL(2), ITEM_GET_AREA]
+     * P_BRING_ITEM_RULE_12 : [REQUEST_2, robot2:INITIAL(2), ITEM_GET_AREA]
+     * P_REPLENISH_ITEM_RULE_4 : [REQUEST_1, robot2:INITIAL(2), ITEM_GET_AREA]
+     * P_REPLENISH_RULE_2 : [REQUEST_1, robot2:INITIAL(2), ITEM_GET_AREA]
+     * P_AREA_RULE_8 : [REQUEST_2, REQUEST_4, PACK_AREA, REQUEST_3, SHIP_AREA, robot1:INITIAL(1), BOX_GET_AREA]
+     * P_REQUEST_TIMING_4 : [REQUEST_1, REQUEST_2]
+     * P_REQUEST_ONLY_2 : [REQUEST_1, REQUEST_2, robot2:INITIAL(2), ITEM_GET_AREA]
+     * P_BRING_ITEM_RULE02_11 : [REQUEST_2, robot2:INITIAL(2), ITEM_GET_AREA]
+     * P_REPLENISH_ITEM_RULE_3 : [REQUEST_1, robot2:INITIAL(2), ITEM_GET_AREA]
+     * P_BRING_RULE02 : [REQUEST_2, robot2:INITIAL(2), ITEM_GET_AREA]
+     * P_REPLENISH_RULE02 : [REQUEST_1, robot2:INITIAL(2), ITEM_GET_AREA]
+     * P_BRING_RULE_2 : [REQUEST_2, robot2:INITIAL(2), ITEM_GET_AREA]
+     * P_REPLENISH_ITEM_RULE_5 : [REQUEST_1, robot2:INITIAL(2), ITEM_GET_AREA]
+     * P_BRING_ITEM_RULE_3 : [REQUEST_2, robot2:INITIAL(2), ITEM_GET_AREA]
+     * P_REPLENISH_ITEM_RULE_12 : [REQUEST_1, robot2:INITIAL(2), ITEM_GET_AREA]
+     * P_BRING_ITEM_RULE01_11 : [REQUEST_2, robot2:INITIAL(2), ITEM_GET_AREA]
+     * P_BRING_RULE01 : [REQUEST_2, robot2:INITIAL(2), ITEM_GET_AREA]
+     * P_REQUEST_TIMING_3 : [REQUEST_1, REQUEST_2]
+     * P_BRING_ITEM_RULE_7 : [REQUEST_2, robot2:INITIAL(2), ITEM_GET_AREA]
+     * P_REPLENISH_ITEM_RULE01_11 : [REQUEST_1, robot2:INITIAL(2), ITEM_GET_AREA]
+     * P_REPLENISH_ITEM_RULE_10 : [REQUEST_1, robot2:INITIAL(2), ITEM_GET_AREA]
+     * P_REPLENISH_ITEM_RULE_13 : [REQUEST_1, robot2:INITIAL(2), ITEM_GET_AREA]
+     * P_BRING_ITEM_RULE_9 : [REQUEST_2, robot2:INITIAL(2), ITEM_GET_AREA]
+     * P_REPLENISH_ITEM_RULE_2 : [REQUEST_1, robot2:INITIAL(2), ITEM_GET_AREA]
+
+[info] Environment Models
+     * REQUEST_1 : []
+     * REQUEST_2 : []
+     * PartController_6 : [REQUEST_4, PACK_AREA, REQUEST_3, SHIP_AREA, robot1:INITIAL(1), BOX_GET_AREA]
+     * PartController_8 : [robot2:INITIAL(2), ITEM_GET_AREA]
+
+[info] Synthetic Cost (number of monitored models)
+     * P_REPLENISH_ITEM_RULE_6 : 3
+     * P_BRING_ITEM_RULE_8 : 3
+     * P_BRING_ITEM_RULE_4 : 3
+     * P_BRING_ITEM_RULE_10 : 3
+     * P_REPLENISH_ITEM_RULE_1 : 3
+     * P_BRING_ITEM_RULE_1 : 3
+     * P_REPLENISH_ITEM_RULE02_11 : 3
+     * P_BRING_ITEM_RULE_6 : 3
+     * P_BRING_ITEM_RULE_5 : 3
+     * P_BRING_ITEM_RULE_13 : 3
+     * P_ROBOT2_ARM_RULE_1 : 4
+     * P_AREA_RULE_4 : 9
+     * P_BRING_ITEM_RULE_2 : 3
+     * P_AREA_RULE_6 : 7
+     * P_REPLENISH_RULE01 : 3
+     * P_REPLENISH_ITEM_RULE_9 : 3
+     * P_BRING_ITEM_RULE_12 : 3
+     * P_REPLENISH_ITEM_RULE_4 : 3
+     * P_REPLENISH_RULE_2 : 3
+     * P_AREA_RULE_8 : 7
+     * P_REQUEST_TIMING_4 : 2
+     * P_REQUEST_ONLY_2 : 4
+     * P_BRING_ITEM_RULE02_11 : 3
+     * P_REPLENISH_ITEM_RULE_3 : 3
+     * P_BRING_RULE02 : 3
+     * P_REPLENISH_RULE02 : 3
+     * P_BRING_RULE_2 : 3
+     * P_REPLENISH_ITEM_RULE_5 : 3
+     * P_BRING_ITEM_RULE_3 : 3
+     * P_REPLENISH_ITEM_RULE_12 : 3
+     * P_BRING_ITEM_RULE01_11 : 3
+     * P_BRING_RULE01 : 3
+     * P_REQUEST_TIMING_3 : 2
+     * P_BRING_ITEM_RULE_7 : 3
+     * P_REPLENISH_ITEM_RULE01_11 : 3
+     * P_REPLENISH_ITEM_RULE_10 : 3
+     * P_REPLENISH_ITEM_RULE_13 : 3
+     * P_BRING_ITEM_RULE_9 : 3
+     * P_REPLENISH_ITEM_RULE_2 : 3
+
+Composition:PartController_9 = REQUEST_1 || PartController_8 || P_REPLENISH_ITEM_RULE_6 || P_REPLENISH_ITEM_RULE_6 || P_REPLENISH_ITEM_RULE_1 || P_REPLENISH_ITEM_RULE02_11 || P_REPLENISH_RULE01 || P_REPLENISH_ITEM_RULE_9 || P_REPLENISH_ITEM_RULE_4 || P_REPLENISH_RULE_2 || P_REPLENISH_ITEM_RULE_3 || P_REPLENISH_RULE02 || P_REPLENISH_ITEM_RULE_5 || P_REPLENISH_ITEM_RULE_12 || P_REPLENISH_ITEM_RULE01_11 || P_REPLENISH_ITEM_RULE_10 || P_REPLENISH_ITEM_RULE_13 || P_REPLENISH_ITEM_RULE_2
+State Space: 4 * 31 * 4 * 4 * 2 * 2 * 2 * 2 * 4 * 2 * 2 * 2 * 2 * 3 * 2 * 2 * 2 * 2 = 2 ** 27
+Composing...
+-- States: 180 Transitions: 1036 Memory used: 44562KB
+Composed in 45ms
+Solving the LTS control problem.
+Environment states: 181
+Game states: 181
+Analysis time: 63ms.
+Controller [180] generated successfully.
+Composition:PartController_9 = PartController_9 || P_REPLENISH_ITEM_RULE_6 || P_REPLENISH_ITEM_RULE_6 || P_REPLENISH_ITEM_RULE_1 || P_REPLENISH_ITEM_RULE02_11 || P_REPLENISH_RULE01 || P_REPLENISH_ITEM_RULE_9 || P_REPLENISH_ITEM_RULE_4 || P_REPLENISH_RULE_2 || P_REPLENISH_ITEM_RULE_3 || P_REPLENISH_RULE02 || P_REPLENISH_ITEM_RULE_5 || P_REPLENISH_ITEM_RULE_12 || P_REPLENISH_ITEM_RULE01_11 || P_REPLENISH_ITEM_RULE_10 || P_REPLENISH_ITEM_RULE_13 || P_REPLENISH_ITEM_RULE_2
+State Space: 180 * 4 * 4 * 2 * 2 * 2 * 2 * 4 * 2 * 2 * 2 * 2 * 3 * 2 * 2 * 2 * 2 = 2 ** 28
+Composing...
+-- States: 180 Transitions: 480 Memory used: 46610KB
+Composed in 51ms
+
+[info] STEP9 Infomation
+[info] Output Model     : PartController_9
+[info] Input Models     : [REQUEST_1, PartController_8, P_REPLENISH_ITEM_RULE_6, P_REPLENISH_ITEM_RULE_6, P_REPLENISH_ITEM_RULE_1, P_REPLENISH_ITEM_RULE02_11, P_REPLENISH_RULE01, P_REPLENISH_ITEM_RULE_9, P_REPLENISH_ITEM_RULE_4, P_REPLENISH_RULE_2, P_REPLENISH_ITEM_RULE_3, P_REPLENISH_RULE02, P_REPLENISH_ITEM_RULE_5, P_REPLENISH_ITEM_RULE_12, P_REPLENISH_ITEM_RULE01_11, P_REPLENISH_ITEM_RULE_10, P_REPLENISH_ITEM_RULE_13, P_REPLENISH_ITEM_RULE_2]
+[info] Component Models : [REQUEST_1, robot2:INITIAL(2), ITEM_GET_AREA]
+[info] Execution Time
+     * policy only      : 1 ms
+     * synthesis only   : 159 ms
+     * total            : 160 ms
+
+
+---------------------------------------------------
+                     STEP 10
+---------------------------------------------------
+[info] Monitor Models
+     * P_BRING_ITEM_RULE_8 : [REQUEST_2, REQUEST_1, robot2:INITIAL(2), ITEM_GET_AREA]
+     * P_BRING_ITEM_RULE_4 : [REQUEST_2, REQUEST_1, robot2:INITIAL(2), ITEM_GET_AREA]
+     * P_BRING_ITEM_RULE_10 : [REQUEST_2, REQUEST_1, robot2:INITIAL(2), ITEM_GET_AREA]
+     * P_BRING_ITEM_RULE_1 : [REQUEST_2, REQUEST_1, robot2:INITIAL(2), ITEM_GET_AREA]
+     * P_BRING_ITEM_RULE_6 : [REQUEST_2, REQUEST_1, robot2:INITIAL(2), ITEM_GET_AREA]
+     * P_BRING_ITEM_RULE_5 : [REQUEST_2, REQUEST_1, robot2:INITIAL(2), ITEM_GET_AREA]
+     * P_BRING_ITEM_RULE_13 : [REQUEST_2, REQUEST_1, robot2:INITIAL(2), ITEM_GET_AREA]
+     * P_ROBOT2_ARM_RULE_1 : [REQUEST_2, REQUEST_1, robot2:INITIAL(2), ITEM_GET_AREA]
+     * P_AREA_RULE_4 : [REQUEST_2, REQUEST_4, PACK_AREA, REQUEST_3, SHIP_AREA, robot1:INITIAL(1), BOX_GET_AREA, REQUEST_1, robot2:INITIAL(2), ITEM_GET_AREA]
+     * P_BRING_ITEM_RULE_2 : [REQUEST_2, REQUEST_1, robot2:INITIAL(2), ITEM_GET_AREA]
+     * P_AREA_RULE_6 : [REQUEST_2, REQUEST_4, PACK_AREA, REQUEST_3, SHIP_AREA, robot1:INITIAL(1), BOX_GET_AREA]
+     * P_BRING_ITEM_RULE_12 : [REQUEST_2, REQUEST_1, robot2:INITIAL(2), ITEM_GET_AREA]
+     * P_AREA_RULE_8 : [REQUEST_2, REQUEST_4, PACK_AREA, REQUEST_3, SHIP_AREA, robot1:INITIAL(1), BOX_GET_AREA]
+     * P_REQUEST_TIMING_4 : [REQUEST_2, REQUEST_1, robot2:INITIAL(2), ITEM_GET_AREA]
+     * P_REQUEST_ONLY_2 : [REQUEST_2, REQUEST_1, robot2:INITIAL(2), ITEM_GET_AREA]
+     * P_BRING_ITEM_RULE02_11 : [REQUEST_2, REQUEST_1, robot2:INITIAL(2), ITEM_GET_AREA]
+     * P_BRING_RULE02 : [REQUEST_2, REQUEST_1, robot2:INITIAL(2), ITEM_GET_AREA]
+     * P_BRING_RULE_2 : [REQUEST_2, REQUEST_1, robot2:INITIAL(2), ITEM_GET_AREA]
+     * P_BRING_ITEM_RULE_3 : [REQUEST_2, REQUEST_1, robot2:INITIAL(2), ITEM_GET_AREA]
+     * P_BRING_ITEM_RULE01_11 : [REQUEST_2, REQUEST_1, robot2:INITIAL(2), ITEM_GET_AREA]
+     * P_BRING_RULE01 : [REQUEST_2, REQUEST_1, robot2:INITIAL(2), ITEM_GET_AREA]
+     * P_REQUEST_TIMING_3 : [REQUEST_2, REQUEST_1, robot2:INITIAL(2), ITEM_GET_AREA]
+     * P_BRING_ITEM_RULE_7 : [REQUEST_2, REQUEST_1, robot2:INITIAL(2), ITEM_GET_AREA]
+     * P_BRING_ITEM_RULE_9 : [REQUEST_2, REQUEST_1, robot2:INITIAL(2), ITEM_GET_AREA]
+
+[info] Environment Models
+     * REQUEST_2 : []
+     * PartController_6 : [REQUEST_4, PACK_AREA, REQUEST_3, SHIP_AREA, robot1:INITIAL(1), BOX_GET_AREA]
+     * PartController_9 : [REQUEST_1, robot2:INITIAL(2), ITEM_GET_AREA]
+
+[info] Synthetic Cost (number of monitored models)
+     * P_BRING_ITEM_RULE_8 : 4
+     * P_BRING_ITEM_RULE_4 : 4
+     * P_BRING_ITEM_RULE_10 : 4
+     * P_BRING_ITEM_RULE_1 : 4
+     * P_BRING_ITEM_RULE_6 : 4
+     * P_BRING_ITEM_RULE_5 : 4
+     * P_BRING_ITEM_RULE_13 : 4
+     * P_ROBOT2_ARM_RULE_1 : 4
+     * P_AREA_RULE_4 : 10
+     * P_BRING_ITEM_RULE_2 : 4
+     * P_AREA_RULE_6 : 7
+     * P_BRING_ITEM_RULE_12 : 4
+     * P_AREA_RULE_8 : 7
+     * P_REQUEST_TIMING_4 : 4
+     * P_REQUEST_ONLY_2 : 4
+     * P_BRING_ITEM_RULE02_11 : 4
+     * P_BRING_RULE02 : 4
+     * P_BRING_RULE_2 : 4
+     * P_BRING_ITEM_RULE_3 : 4
+     * P_BRING_ITEM_RULE01_11 : 4
+     * P_BRING_RULE01 : 4
+     * P_REQUEST_TIMING_3 : 4
+     * P_BRING_ITEM_RULE_7 : 4
+     * P_BRING_ITEM_RULE_9 : 4
+
+Composition:PartController_10 = REQUEST_2 || PartController_9 || P_BRING_ITEM_RULE_8 || P_BRING_ITEM_RULE_8 || P_BRING_ITEM_RULE_4 || P_BRING_ITEM_RULE_10 || P_BRING_ITEM_RULE_1 || P_BRING_ITEM_RULE_6 || P_BRING_ITEM_RULE_5 || P_BRING_ITEM_RULE_13 || P_ROBOT2_ARM_RULE_1 || P_BRING_ITEM_RULE_2 || P_BRING_ITEM_RULE_12 || P_REQUEST_TIMING_4 || P_REQUEST_ONLY_2 || P_BRING_ITEM_RULE02_11 || P_BRING_RULE02 || P_BRING_RULE_2 || P_BRING_ITEM_RULE_3 || P_BRING_ITEM_RULE01_11 || P_BRING_RULE01 || P_REQUEST_TIMING_3 || P_BRING_ITEM_RULE_7 || P_BRING_ITEM_RULE_9
+State Space: 4 * 180 * 4 * 4 * 4 * 3 * 2 * 4 * 2 * 2 * 4 * 2 * 3 * 2 * 4 * 2 * 2 * 2 * 2 * 2 * 2 * 2 * 4 * 2 = 2 ** 41
+Composing...
+-- States: 108 Transitions: 604 Memory used: 46617KB
+Composed in 52ms
+Solving the LTS control problem.
+Environment states: 109
+Game states: 109
+Analysis time: 58ms.
+Controller [89] generated successfully.
+Composition:PartController_10 = PartController_10 || P_BRING_ITEM_RULE_8 || P_BRING_ITEM_RULE_8 || P_BRING_ITEM_RULE_4 || P_BRING_ITEM_RULE_10 || P_BRING_ITEM_RULE_1 || P_BRING_ITEM_RULE_6 || P_BRING_ITEM_RULE_5 || P_BRING_ITEM_RULE_13 || P_ROBOT2_ARM_RULE_1 || P_BRING_ITEM_RULE_2 || P_BRING_ITEM_RULE_12 || P_REQUEST_TIMING_4 || P_REQUEST_ONLY_2 || P_BRING_ITEM_RULE02_11 || P_BRING_RULE02 || P_BRING_RULE_2 || P_BRING_ITEM_RULE_3 || P_BRING_ITEM_RULE01_11 || P_BRING_RULE01 || P_REQUEST_TIMING_3 || P_BRING_ITEM_RULE_7 || P_BRING_ITEM_RULE_9
+State Space: 89 * 4 * 4 * 4 * 3 * 2 * 4 * 2 * 2 * 4 * 2 * 3 * 2 * 4 * 2 * 2 * 2 * 2 * 2 * 2 * 2 * 4 * 2 = 2 ** 38
+Composing...
+-- States: 89 Transitions: 133 Memory used: 47019KB
+Composed in 42ms
+
+[info] STEP10 Infomation
+[info] Output Model     : PartController_10
+[info] Input Models     : [REQUEST_2, PartController_9, P_BRING_ITEM_RULE_8, P_BRING_ITEM_RULE_8, P_BRING_ITEM_RULE_4, P_BRING_ITEM_RULE_10, P_BRING_ITEM_RULE_1, P_BRING_ITEM_RULE_6, P_BRING_ITEM_RULE_5, P_BRING_ITEM_RULE_13, P_ROBOT2_ARM_RULE_1, P_BRING_ITEM_RULE_2, P_BRING_ITEM_RULE_12, P_REQUEST_TIMING_4, P_REQUEST_ONLY_2, P_BRING_ITEM_RULE02_11, P_BRING_RULE02, P_BRING_RULE_2, P_BRING_ITEM_RULE_3, P_BRING_ITEM_RULE01_11, P_BRING_RULE01, P_REQUEST_TIMING_3, P_BRING_ITEM_RULE_7, P_BRING_ITEM_RULE_9]
+[info] Component Models : [REQUEST_1, REQUEST_2, robot2:INITIAL(2), ITEM_GET_AREA]
+[info] Execution Time
+     * policy only      : 0 ms
+     * synthesis only   : 158 ms
+     * total            : 158 ms
+
+
+---------------------------------------------------
+                     STEP 11
+---------------------------------------------------
+[info] Monitor Models
+     * P_AREA_RULE_4 : [REQUEST_4, PACK_AREA, REQUEST_3, SHIP_AREA, robot1:INITIAL(1), BOX_GET_AREA, REQUEST_1, REQUEST_2, robot2:INITIAL(2), ITEM_GET_AREA]
+     * P_AREA_RULE_6 : [REQUEST_4, PACK_AREA, REQUEST_3, SHIP_AREA, robot1:INITIAL(1), BOX_GET_AREA, REQUEST_1, REQUEST_2, robot2:INITIAL(2), ITEM_GET_AREA]
+     * P_AREA_RULE_8 : [REQUEST_4, PACK_AREA, REQUEST_3, SHIP_AREA, robot1:INITIAL(1), BOX_GET_AREA, REQUEST_1, REQUEST_2, robot2:INITIAL(2), ITEM_GET_AREA]
+
+[info] Environment Models
+     * PartController_6 : [REQUEST_4, PACK_AREA, REQUEST_3, SHIP_AREA, robot1:INITIAL(1), BOX_GET_AREA]
+     * PartController_10 : [REQUEST_1, REQUEST_2, robot2:INITIAL(2), ITEM_GET_AREA]
+
+[info] Synthetic Cost (number of monitored models)
+     * P_AREA_RULE_4 : 10
+     * P_AREA_RULE_6 : 10
+     * P_AREA_RULE_8 : 10
+
+Composition:StepwiseController = PartController_6 || PartController_10 || P_AREA_RULE_4 || P_AREA_RULE_4 || P_AREA_RULE_6 || P_AREA_RULE_8
+State Space: 49 * 89 * 4 * 4 * 2 * 2 = 2 ** 19
+Composing...
+-- States: 6400 Transitions: 19077 Memory used: 57535KB
+Composed in 63ms
+Solving the LTS control problem.
+Environment states: 6401
+Game states: 6401
+Analysis time: 588ms.
+Controller [6400] generated successfully.
+Composition:StepwiseController = StepwiseController || P_AREA_RULE_4 || P_AREA_RULE_4 || P_AREA_RULE_6 || P_AREA_RULE_8
+State Space: 6400 * 4 * 4 * 2 * 2 = 2 ** 19
+Composing...
+-- States: 6400 Transitions: 14356 Memory used: 88874KB
+Composed in 80ms
+
+[info] STEP11 Infomation
+[info] Output Model     : StepwiseController
+[info] Input Models     : [PartController_6, PartController_10, P_AREA_RULE_4, P_AREA_RULE_4, P_AREA_RULE_6, P_AREA_RULE_8]
+[info] Component Models : [robot2:INITIAL(2), REQUEST_4, REQUEST_1, PACK_AREA, REQUEST_2, REQUEST_3, SHIP_AREA, ITEM_GET_AREA, robot1:INITIAL(1), BOX_GET_AREA]
+[info] Execution Time
+     * policy only      : 0 ms
+     * synthesis only   : 752 ms
+     * total            : 752 ms
+
+
+
+
+[info] Stepwise Controller Synthesis is Complete!
+[info] Max Space      : 6400
+[info] Max Transition : 19077
+[info] Max Memory     : 88875 MB
+[info] Execution Time
+     * policy only    : 20 ms
+     * synthesis only : 2362 ms
+     * total          : 5186 ms
+
+
