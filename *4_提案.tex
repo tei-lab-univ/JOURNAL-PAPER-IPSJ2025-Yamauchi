@@ -9,13 +9,13 @@ CSDCSではSDCSとCDCSの一元化を実現するため，\ref{subsection:limita
 \subsection{技術詳細}
 CSDCSでは，SDCS（Algorithm\ref{algorithm:SDCS}）を基盤にしつつ，$g^{*}$の構築に関わる3つの過程（Parallel Composition，Modified Parallel Composition，Error State Abstraction）
 をCDCSで導入されたConsolidated Game Composition（定義\ref{def:consolidated_game_composition}）へと置換する．
-CDCSは$g^{*}$の構築過程をConsolidated Game Compositionに統合することで違反状態の抽象化を通じた計算空間削減を実現する．
+CDCSは$g^{*}$の構築過程をConsolidated Game Compositionに統合することで$s_{err}$の抽象化を通じた計算空間削減を実現する．
 このConsolidated Game Compositionは，SDCSにおいて繰り返し行われるゲーム空間$g^{*}$の構築処理にも適用可能であり，
 SDCSの段階的な計算空間削減アプローチと整合的に機能する．
 SDCSの構造にCDCSの手法を統合することにより，CDCSおよびSDCSの両手法が対象とする適用可能範囲を包含でき，CSDCSは適用範囲の不一致に起因する制約1の克服を実現する．
 そのCSDCSアルゴリズムがAlgorithm~\ref{algorithm:CSDCS}である．
 
-\begin{algorithm}[t]
+\begin{algorithm}[h]
 \caption{CSDCS}
 \label{algorithm:CSDCS}
 \begin{algorithmic}[1]
@@ -52,7 +52,7 @@ SDCSは，部分合成の回数を減少させるほど，各回で構築され�
 $\lambda \in \Lambda$の$rids_{\lambda}$に複数の監視モデルの$id$を格納することで，同一ステップ内で複数の監視モデルを同時に対象とする部分合成が実現される．
 そのCSDCSのための$\Lambda$導出アルゴリズムがAlgorithm\ref{algorithm:CSDCS_huristic}である．
 
-\begin{algorithm}[t]
+\begin{algorithm}[h]
 \caption{CSDCSに特化した$\Lambda$の統合}
 \label{algorithm:CSDCS_huristic}
 \begin{algorithmic}[1]
@@ -89,13 +89,14 @@ $rids^*$は$rids_{\lambda}$と$rid_{\lambda^*}$の和集合で表される（9�
 $eids_{\lambda}$に含まれる$cid$が2つ以上，もしくは$cid$が含まれない場合は，統合によって減った$\lambda$数に合わせて$i_{\lambda}$を振り直す（11-14行目）．
 以上の工程を全ての$\lambda \in \Lambda$において繰り返し実行し， $n(eids_{\lambda} \cap cids) = 1$となる$\lambda$の統合を行う．
 
+{\color{red}
 このとき，Algorithm\ref{algorithm:CSDCS_huristic}では$n(eids_{\lambda} \cap cids) = 1$となる$\lambda$を統合した．
 その結果，CSDCS（Algorithm\ref{algorithm:CSDCS}）において1つの部分制御器を入力とする部分合成がCSDCSの合成過程から全て存在しなくなる．
 2つ以上の部分制御器を入力とする部分合成の場合，入力の部分制御器を合成する部分合成は完全に問題が分離できているため，SDCSによる計算空間削減効果が保証される．
 対して，1つの部分制御器を入力とする部分合成の場合，〜によって，SDCSによる計算空間削減効果は保証されない．
 % 対して，1つの部分制御器を入力とする部分合成の場合，
 % 確実にSDCSによる計算空間削減効果が得られる場合のみ適用する
-
+}
 
 \subsection{機能の妥当性証明}
 機能の妥当性証明として，CSDCSがbasic DCSと常に同じ制御器を合成することを命題\ref{prf:proof1}の証明で示す．

@@ -6,13 +6,12 @@
 
 \subsection{CDCS}
 \label{subsection:CDCS}
-CDCS\cite{yamauchi:IPSJ2024}は，監視モデルの違反状態に該当するゲーム空間の状態を，全てひとつの状態に抽象化しつつゲーム空間構築することで，DCSの計算空間を削減する．
-安全性ゲームを解く上で，ゲーム空間の違反状態から伸びる遷移は探索する必要がない．
-そこで，ゲーム空間構築過程で複雑な違反状態の構築を回避することで，計算空間削減を実現する．
-% この抽象化によって，構築されるゲーム空間の状態削減を実現した．
+CDCS\cite{yamauchi:IPSJ2024}は，監視モデルの$s_{err}$に該当する全ての状態を，ひとつの$s_{err}$に抽象化しつつ，ゲーム空間構築することで，DCSの計算空間を削減する．
+安全性ゲームを解く上で，ゲーム空間の$s_{err}$から伸びる遷移は探索する必要がない．
+そこで，ゲーム空間構築過程で複雑な$s_{err}$の構築を回避することで，計算空間削減を実現する．
 CDCSのアルゴリズムをAlgorithm\ref{algorithm:CDCS}に示す．
 
-\begin{algorithm}[t]
+\begin{algorithm}[h]
 \caption{CDCS}
 \label{algorithm:CDCS}
 \begin{algorithmic}[1]
@@ -28,12 +27,12 @@ CDCSのアルゴリズムをAlgorithm\ref{algorithm:CDCS}に示す．
 \end{algorithmic}
 \end{algorithm}
 
-Algorithm\ref{algorithm:CDCS}では，Algorithm\ref{algorithm:basic_controller_synthesis}におけるParallel Composition，Modified Parallel Composition，Error State Abstractionの3つを一括で行うConsolidated Game Compositionを用いて，$E$と$R$から直接，違反状態が圧縮されたゲーム空間$g^*$を構築する（1行目）．その後，basic DCSと同様に$g^*$を入力としてSafety Game Solvingを用いて$c$を導出する．
+Algorithm\ref{algorithm:CDCS}では，Algorithm\ref{algorithm:basic_controller_synthesis}におけるParallel Composition，Modified Parallel Composition，Error State Abstraction全てを一括で行うConsolidated Game Compositionを用いて，$E$と$R$から直接$g^*$を構築する（1行目）．その後，basic DCSと同様に$g^*$を入力としてSafety Game Solvingを用いて$c$を導出する．
 CDCSを実現するConsolidated Game Compositionは定義\ref{def:consolidated_game_composition}で定義される．
 
 \begin{dfn}{\textbf{Consolidated Game Composition}}
 \label{def:consolidated_game_composition}
-    記号$\between$で表され，環境モデル群$E$と監視モデル群$R$に含まれる全てのLTSの集合 $E \cup R$を入力とし，違反状態が圧縮されたゲーム空間$g^*$を構築し，出力する．
+    記号$\between$で表され，環境モデル群$E$と監視モデル群$R$に含まれる全てのLTSの集合 $E \cup R$を入力とし，$g^*$を直接構築し，出力する．
     LTS $x,y \in E \cup R$が入力される時，$x = (S_{x}, A_{x}, \Delta_{x}, s^0_{x})$,
     $y = (S_{y}, A_{y}, \Delta_{y}, s^0_{y})$とする．
     $g^* = x \between y = (S, A, \Delta, s^0)$の時，初期状態$s^0$は状態の集合$\{ s^0_{x}, s^0_{y} \}$で表され，遷移$(s,a,s')\in\Delta$は式\ref{formula:pc1}，\ref{formula:pc2}，\ref{formula:pc3}を満たす初期状態$s^0$から到達可能な全状態間を結ぶ全遷移の集合である．
@@ -72,7 +71,7 @@ CDCSを実現するConsolidated Game Compositionは定義\ref{def:consolidated_g
     以上の$E$と$R$から$g^*$を直接導出する作業を"{\bf Consolidated Game Composition ($E \cup R$)}"で表す．
 \end{dfn}
 
-このConsolidated Game Compositionを用いることによって，入力されたモデルの$s_{err}$が重ね合わされる全状態をひとつの$s_{err}$として圧縮しつつ，ゲーム空間$g'$を構築できる．これにより，$s_{err}$が重ね合わされる状態空間だけ計算空間が削減できる．
+このConsolidated Game Compositionを用いることによって，$s_{err}$が重ね合わされる全状態をひとつの$s_{err}$として圧縮しつつ，$g^*$を構築できる．これにより，$s_{err}$が重ね合わされる状態の数だけ計算空間が削減される．
 
 
 % ---------------------------------------------------------------------------------------------------------- %
@@ -84,7 +83,7 @@ SDCS\cite{yamauchi:IEICEJ2023}は，部分合成を段階的に行うことで�
 部分制御器を用いてゲーム空間の構築と分析を段階的に行うことで，先の分析で安全性非充足となった状態空間の構築を以降全ての分析で回避できるため，計算空間削減を実現する．
 SDCSのアルゴリズムをAlgorithm\ref{algorithm:SDCS}に示す．
 
-\begin{algorithm}[t]
+\begin{algorithm}[h]
 \caption{SDCS}
 \label{algorithm:SDCS}
 \begin{algorithmic}[1]
@@ -109,7 +108,19 @@ SDCSのアルゴリズムをAlgorithm\ref{algorithm:SDCS}に示す．
 \end{algorithmic}
 \end{algorithm}
 
-\begin{algorithm}[t]
+Algorithm\ref{algorithm:SDCS}では，$\Lambda$に則って，繰り返し部分合成（6-9行目）を適用することで制御器$c$を導出する．
+このとき，$\Lambda$は以下で定義される．
+
+\begin{dfn}{\textbf{合成シーケンス　}}
+\label{def:synthesis_sequence}
+    合成シーケンス$\Lambda$は合成プロセス$\lambda = (i_{\lambda}, eids_{\lambda}, rids_{\lambda}, cid_{\lambda})$の集合によって表される．
+    $i_{\lambda}$は$\Lambda$において何番目に実行する$\lambda$であるかを表し，1から連続する整数が与えられる．
+    $eids_{\lambda}$は$\lambda$で入力される環境モデル（LTS）の$id$の集合，$rids_{\lambda}$は$\lambda$で入力される監視モデル（LTS）の$id$の集合を表す．$cid_{\lambda}$は$\lambda$の出力となる部分制御器（LTS）$c$の$id$を表し，$\lambda$において$c$を合成した際には$id_{c}$にこの$cid_{\lambda}$を割り当てる．
+\end{dfn}
+
+SDCSにおける$\Lambda$は，Algorithm\ref{algorithm:huristic}によって導出できる（1行目）\cite{yamauchi:KBSE2024}．
+
+\begin{algorithm}[h]
 \caption{監視対象モデル数を考慮した$\Lambda$の合成}
 \label{algorithm:huristic}
 \begin{algorithmic}[1]
@@ -135,17 +146,6 @@ SDCSのアルゴリズムをAlgorithm\ref{algorithm:SDCS}に示す．
 \end{algorithmic}
 \end{algorithm}
 
-Algorithm\ref{algorithm:SDCS}では，$\Lambda$に則って，繰り返し部分合成（6-9行目）を適用することで制御器$c$を導出する．
-このとき，$\Lambda$は以下で定義される．
-
-\begin{dfn}{\textbf{合成シーケンス　}}
-\label{def:synthesis_sequence}
-    合成シーケンス$\Lambda$は合成プロセス$\lambda = (i_{\lambda}, eids_{\lambda}, rids_{\lambda}, cid_{\lambda})$の集合によって表される．
-    $i_{\lambda}$は$\Lambda$において何番目に実行する$\lambda$であるかを表し，1から連続する整数が与えられる．
-    $eids_{\lambda}$は$\lambda$で入力される環境モデル（LTS）の$id$の集合，$rids_{\lambda}$は$\lambda$で入力される監視モデル（LTS）の$id$の集合を表す．$cid_{\lambda}$は$\lambda$の出力となる部分制御器（LTS）$c$の$id$を表し，$\lambda$において$c$を合成した際には$id_{c}$にこの$cid_{\lambda}$を割り当てる．
-\end{dfn}
-
-SDCSにおける$\Lambda$は，Algorithm\ref{algorithm:huristic}によって導出できる（1行目）\cite{yamauchi:KBSE2024}．
 Algorithm\ref{algorithm:huristic}では，全監視モデルのうち$\mu$が最小となる監視モデル$r \in R$を$r^*$として導出し（2-7行目），全環境モデルのうち$r^*$の事象を含む全ての環境モデルを$E^*$として導出する（8行目）．
 そして，$r^*$と$E^*$から$i^*$ステップ目に部分合成する合成プロセスを構築する（9行目）．
 その後，$r^*$と$E^*$を部分合成した際に合成される制御器$c^*$を以降の合成プロセスの導出で必要な情報（$id_{c^*}$，$A_{c^*}$）だけ埋めて仮に構築し（10行目），$i^*+1$ステップ目の合成プロセスの導出する（14行目）．これを監視対象モデル数の数だけ繰り返し実施する（11-13行目）．
@@ -167,7 +167,7 @@ CDCSやSDCSを用いて，basic DCSよりも効率よく制御器を合成する
 制約2は、SDCSにおいて計算空間の削減効果が限定的な場合，段階的なゲーム空間$g^{*}$の構築・分析を繰り返すオーバヘッドが相対的に大きくなり，全体の計算時間が悪化することに起因する．
 
 以上の制約を踏まえて，CDCSとSDCSの適用選択は慎重に判断する必要がある．
-しかし，判断には，各手法により生成される中間生成LTS（$m$，$g$，$g^{*}$）の構造を詳細に把握する必要があり，これを手作業で行うことは実運用上の大きな障壁となっている．
+しかし，判断には，各手法により生成される中間生成LTS，$m$，$g$，$g^{*}$の構造を詳細に把握する必要があり，これを手作業で行うことは実運用上の大きな障壁となっている．
 本論文では，このSDCSとCDCSの適用選択の課題を解消することを目的とする．
 
 % しかし，現状でこれらの制約を考慮するには，各手法で生成される複雑な中間生成LTS（$m$，$g$，$g^{*}$）をシステムごとに手作業で把握するほかなく，CDCSやSDCSのどちらを適用するか判断する上で障壁となっている．
