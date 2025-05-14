@@ -13,7 +13,7 @@ CDCSは$g^{*}$の構築過程をConsolidated Game Compositionに統合するこ�
 このConsolidated Game Compositionは，SDCSにおいて繰り返し行われるゲーム空間$g^{*}$の構築処理にも適用可能であり，
 SDCSの段階的な計算空間削減アプローチと整合的に機能する．
 SDCSの構造にCDCSの手法を統合することにより，CDCSおよびSDCSの両手法が対象とする適用可能範囲を包含でき，CSDCSは適用範囲の不一致に起因する制約1の克服を実現する．
-そのCSDCSアルゴリズムがAlgorithm~\ref{algorithm:CSDCS}である．
+そのCSDCSアルゴリズムがAlgorithm\ref{algorithm:CSDCS}である．
 
 \begin{algorithm}[h]
 \caption{CSDCS}
@@ -90,12 +90,15 @@ $eids_{\lambda}$に含まれる$cid$が2つ以上，もしくは$cid$が含ま�
 以上の工程を全ての$\lambda \in \Lambda$において繰り返し実行し， $n(eids_{\lambda} \cap cids) = 1$である$\lambda$の統合を行う．
 
 {\color{red}
-このとき，Algorithm\ref{algorithm:CSDCS_huristic}では$n(eids_{\lambda} \cap cids) = 1$となる$\lambda$を統合した．
-その結果，CSDCS（Algorithm\ref{algorithm:CSDCS}）において1つの部分制御器を入力とする部分合成がCSDCSの合成過程から全て存在しなくなる．
-2つ以上の部分制御器を入力とする部分合成の場合，入力の部分制御器を合成する部分合成は完全に問題が分離できているため，SDCSによる計算空間削減効果が保証される．
-対して，1つの部分制御器を入力とする部分合成の場合，〜によって，SDCSによる計算空間削減効果は保証されない．
-% 対して，1つの部分制御器を入力とする部分合成の場合，
-% 確実にSDCSによる計算空間削減効果が得られる場合のみ適用する
+【パターン1】
+$\forall\lambda \in \Lambda$において，$eids_{\lambda}$に$cid \in cids$（部分制御器の$id$）が含まれる場合，Algorithm\ref{algorithm:CSDCS}では$\lambda$の部分合成が実施される前に，$cid$を合成する$\lambda^* \in \Lambda$の部分合成が実施される．
+2つ以上の部分制御器を入力としてConsolidated Game Compositionでゲーム空間を構築すると，部分合成で安全性を違反すると判明した状態が部分制御器の数の組み合わせだけ増加し，安全性を違反すると判明した状態は全てがひとつの抽象化されるため，計算空間削減効果が大きくなる．
+よって，Algorithm\ref{algorithm:CSDCS_huristic}の$\Lambda$をAlgorithm\ref{algorithm:CSDCS}で用いることで，計算空間削減効果の低下をConsolidated Game Compositionで抑制しつつ，部分合成回数の削減を実現する．
+
+【パターン2】
+$\forall\lambda \in \Lambda$において，$eids_{\lambda}$に$cid \in cids$（部分制御器の$id$）が含まれる場合，Algorithm\ref{algorithm:CSDCS}では$\lambda$の部分合成が実施される前に，$cid$を合成する$\lambda^* \in \Lambda$の部分合成が実施される．
+よって，$n(eids_{\lambda} \cap cids)$は，$\lambda$の部分合成する上で，事前に並列実行される部分合成の数を表す．
+すると，Algorithm\ref{algorithm:CSDCS_huristic}を用いることで$\Lambda$から$n(eids_{\lambda} \cap cids) = 1$となる$\lambda$は全て統合されるため，Algorithm\ref{algorithm:CSDCS}では並列で部分合成可能な場合のみ部分合成を適用する．
 }
 
 \subsection{機能の妥当性証明}

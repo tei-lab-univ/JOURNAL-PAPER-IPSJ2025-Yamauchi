@@ -67,7 +67,7 @@
 想定される動作環境下で安全性が保証された動作仕様を自動合成するDiscrete Controller Synthesis（DCS）において，計算空間の指数爆発の課題はその実践的な適用を阻む主要因となっている．
 本課題に対処するため，本論文では先行の計算空間削減手法を相補的に組み合わせたConsolidated Stepwise Discrete Controller Synthesis（CSDCS）を提案する．段階的なゲーム空間構築アプローチに違反状態空間の抽象化処理を採用することで，計算空間削減効果を維持したまま計算空間の構築回数を抑えることができる．
 結果，従来トレードオフの関係にあった計算空間削減と計算時間削減の両方を高い水準で両立を可能にした．
-その性能を形式的な妥当性証明と7つのシナリオを通して確認した結果，計算時間を平均-43.6，計算空間を平均51.8\%削減しつつ従来のDCSと同じ機能を果たすことが可能であることがわかった．
+その性能を形式的な妥当性証明と7つのシナリオを通して確認した結果，計算時間を平均43.6\%，計算空間を平均51.8\%削減しつつ従来のDCSと同じ機能を果たすことが可能であることがわかった．
 \end{abstract}
 \begin{jkeyword}
 離散制御器合成，二人型対戦ゲーム理論，ラベル付き遷移システム
@@ -76,10 +76,12 @@
 
 \begin{eabstract}
 % 再度翻訳
-In Discrete Controller Synthesis, a technique for automatically generating operational specifications that ensure safety under assumed environments, state-space explosion remains a major obstacle to practical application.
-To address this issue, this paper proposes Consolidated Stepwise Discrete Controller Synthesis (CSDCS), which combines existing state-space reduction techniques in a complementary manner.
-CSDCS incorporates violation-state abstraction into the stepwise game-space construction approach proposed in prior work, thereby reducing the number of game constructions while maintaining the space reduction effect. This enables a balance between state-space reduction and computational efficiency.
-To evaluate CSDCS, we formally prove its correctness and conduct experiments based on seven scenarios. The results confirm that CSDCS achieves an average of 43.6\% reduction in computation time while maintaining a high state-space reduction effect of 51.8\% on average.
+% In Discrete Controller Synthesis, a technique for automatically generating operational specifications that ensure safety under assumed environments, state-space explosion remains a major obstacle to practical application.
+% To address this issue, this paper proposes Consolidated Stepwise Discrete Controller Synthesis (CSDCS), which combines existing state-space reduction techniques in a complementary manner.
+% CSDCS incorporates violation-state abstraction into the stepwise game-space construction approach proposed in prior work, thereby reducing the number of game constructions while maintaining the space reduction effect. This enables a balance between state-space reduction and computational efficiency.
+% To evaluate CSDCS, we formally prove its correctness and conduct experiments based on seven scenarios. The results confirm that CSDCS achieves an average of 43.6\% reduction in computation time while maintaining a high state-space reduction effect of 51.8\% on average.
+
+In Discrete Controller Synthesis (DCS), which automatically synthesizes behavior specifications that guarantee safety under assumed environments, the issue of state space explosion remains a major obstacle to its practical application.To address this issue, this paper proposes Consolidated Stepwise Discrete Controller Synthesis (CSDCS), which complements and integrates prior state space reduction techniques. By incorporating violation-state abstraction into a stepwise game space construction approach, the number of game space constructions can be reduced while maintaining the effectiveness of state space reduction. As a result, CSDCS achieves a high level of both state space reduction and computation time reduction, which were previously in a trade-off relationship. Formal validation and evaluations on seven scenarios demonstrated that CSDCS can achieve the same functionality as conventional DCS while reducing computation time by an average of 43.6\% and state space by an average of 51.8\%.
 \end{eabstract}
 \begin{ekeyword}
 Discrete Controller Synthesis, Two-players Game Theory, Labeled Transition System
