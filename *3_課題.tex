@@ -80,7 +80,7 @@ CDCSを実現するConsolidated Game Compositionは定義\ref{def:consolidated_g
 \label{subsection:SDCS}
 SDCS\cite{yamauchi:IEICEJ2023}は，部分合成を段階的に行うことで，DCSの計算空間を削減する．
 部分合成とは，システムの部分的な制御器を合成する工程を意味し，システムを構成する一部の環境モデルと監視モデルにParallel Composition，Modified Parallel Composition，Error State Abstraction，Safety Game Solvingを適用することで実現される．
-部分制御器を用いてゲーム空間の構築と分析を段階的に行うことで，先の分析で安全性非充足となった状態空間の構築を以降全ての分析で回避できるため，計算空間削減を実現する．
+部分制御器を用いてゲーム空間の構築と分析を段階的に行うことで，部分違反状態（先の分析で安全性を違反すると判明した状態）の構築を以降全てのゲーム空間の構築・分析で回避でき，計算空間削減を実現する．
 SDCSのアルゴリズムをAlgorithm\ref{algorithm:SDCS}に示す．
 
 \begin{algorithm}[h]
@@ -148,7 +148,8 @@ Algorithm\ref{algorithm:huristic}では，全監視モデルのうち$\mu$が最
 そして，$r^*$と$E^*$から$i^*$ステップ目に部分合成する合成プロセスを構築する（9行目）．
 その後，$r^*$と$E^*$を部分合成した際に合成される制御器$c^*$を以降の合成プロセスの導出で必要な情報（$id_{c^*}$，$A_{c^*}$）だけ埋めて仮に構築し（10行目），$i^*+1$ステップ目の合成プロセスの導出する（14行目）．これを監視対象モデル数の数だけ繰り返し実施する（11-13行目）．
 
-以上のようにして導出された$\Lambda$に基づいて，Algorithm\ref{algorithm:huristic}では$i_{\lambda}$が1の$\lambda \in \Lambda$から順に繰り返し部分合成を行う（2-12行目）．部分合成では，はじめに，入力された$R$のうち$rids_{\lambda}$に$id_{r}$が含まれる$r$の集合を$R^*$とし（4行目），$R^*$と$E$から部分合成の適用可能条件式$A_{r} \subseteq A_{E^*} \backslash A_{E \backslash E^*}$を満たす$e \in E$の集合を$E^*$として導出する（5行目）．その後，導出された$R^*$と$E^*$を用いてParallel Composition（6行目），Modified Parallel Composition（7行目），Error State Abstraction（8行目），Safety Game Solving（9行目）を適用し$c$を合成する．そして，合成された$c$の$id$に$cid_{\lambda}$を割り当て$c^*$を用意する（10行目）．最後に，次の$\lambda$で使用する$R$と$E$から使用した$R^*$と$E^*$を取り除き，$c^*$を$E$に加える（11行目）．これにより，$i^*+1$ステップ目以降の部分合成において，$i^*$ステップ目の$R^*$を違反する状態空間の構築を回避することができる．
+以上のようにして導出された$\Lambda$に基づいて，Algorithm\ref{algorithm:huristic}では$i_{\lambda}$が1の$\lambda \in \Lambda$から順に繰り返し部分合成を行う（2-12行目）．部分合成では，はじめに，入力された$R$のうち$rids_{\lambda}$に$id_{r}$が含まれる$r$の集合を$R^*$とし（4行目），$R^*$と$E$から部分合成の適用可能条件式$A_{r} \subseteq A_{E^*} \backslash A_{E \backslash E^*}$を満たす$e \in E$の集合を$E^*$として導出する（5行目）．その後，導出された$R^*$と$E^*$を用いてParallel Composition（6行目），Modified Parallel Composition（7行目），Error State Abstraction（8行目），Safety Game Solving（9行目）を適用し$c$を合成する．そして，合成された$c$の$id$に$cid_{\lambda}$を割り当て$c^*$を用意する（10行目）．最後に，次の$\lambda$で使用する$R$と$E$から使用した$R^*$と$E^*$を取り除き，$c^*$を$E$に加える（11行目）．これにより，$i^*+1$ステップ目以降の部分合成において，$i^*$ステップ目の$R^*$を違反する状態（部分違反状態）
+の構築を回避することができる．
 
 % ---------------------------------------------------------------------------------------------------------- %
 

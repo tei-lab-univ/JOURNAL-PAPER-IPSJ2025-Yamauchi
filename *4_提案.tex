@@ -90,15 +90,22 @@ $eids_{\lambda}$に含まれる$cid$が2つ以上，もしくは$cid$が含ま�
 以上の工程を全ての$\lambda \in \Lambda$において繰り返し実行し， $n(eids_{\lambda} \cap cids) = 1$である$\lambda$の統合を行う．
 
 {\color{red}
-【パターン1】
-$\forall\lambda \in \Lambda$において，$eids_{\lambda}$に$cid \in cids$（部分制御器の$id$）が含まれる場合，Algorithm\ref{algorithm:CSDCS}では$\lambda$の部分合成が実施される前に，$cid$を合成する$\lambda^* \in \Lambda$の部分合成が実施される．
-2つ以上の部分制御器を入力としてConsolidated Game Compositionでゲーム空間を構築すると，部分合成で安全性を違反すると判明した状態が部分制御器の数の組み合わせだけ増加し，安全性を違反すると判明した状態は全てがひとつの抽象化されるため，計算空間削減効果が大きくなる．
-よって，Algorithm\ref{algorithm:CSDCS_huristic}の$\Lambda$をAlgorithm\ref{algorithm:CSDCS}で用いることで，計算空間削減効果の低下をConsolidated Game Compositionで抑制しつつ，部分合成回数の削減を実現する．
+このとき，$n(eids_{\lambda} \cap cids)$は，$\lambda$の部分合成で入力される環境モデル$E^*$に含まれる部分制御器（以前の合成プロセスで合成された$c^*$）の数を表す．
+部分制御器には，その部分制御器の合成過程で安全性を違反すると判明した状態（部分違反状態）は，Safety Game Solvingによって含まれない．
+$E^*$に部分制御器を含む部分合成において，$E^*$に含まれる部分制御器の部分違反状態は考慮する必要なく，$g^*$構築時に状態が重ね合わされず，状態削減される．
+すると，$E^*$に複数の部分制御器を含むほど，その部分合成の$g^*$構築時に重ね合わせによって構築回避される状態数は，指数的に増加する．
+つまり，Algorithm\ref{algorithm:CSDCS_huristic}において，$\lambda$の部分合成で削減される状態数は$n(eids_{\lambda} \cap cids)$に対して指数増加する．
+CSDCSでは，この$n(eids_{\lambda} \cap cids)$の数に着目し，部分合成による計算空間削減効果が特に大きくなる$n(eids_{\lambda} \cap cids) >= 2$の時のみ部分合成を適用することで，Algorithm\ref{algorithm:CSDCS_huristic}における部分合成回数を減らした．
 
-【パターン2】
-$\forall\lambda \in \Lambda$において，$eids_{\lambda}$に$cid \in cids$（部分制御器の$id$）が含まれる場合，Algorithm\ref{algorithm:CSDCS}では$\lambda$の部分合成が実施される前に，$cid$を合成する$\lambda^* \in \Lambda$の部分合成が実施される．
-よって，$n(eids_{\lambda} \cap cids)$は，$\lambda$の部分合成する上で，事前に並列実行される部分合成の数を表す．
-すると，Algorithm\ref{algorithm:CSDCS_huristic}を用いることで$\Lambda$から$n(eids_{\lambda} \cap cids) = 1$となる$\lambda$は全て統合されるため，Algorithm\ref{algorithm:CSDCS}では並列で部分合成可能な場合のみ部分合成を適用する．
+% 【パターン1】
+% $\forall\lambda \in \Lambda$において，$eids_{\lambda}$に$cid \in cids$（部分制御器の$id$）が含まれる場合，Algorithm\ref{algorithm:CSDCS}では$\lambda$の部分合成が実施される前に，$cid$を合成する$\lambda^* \in \Lambda$の部分合成が実施される．
+% 2つ以上の部分制御器を入力としてConsolidated Game Compositionでゲーム空間を構築すると，部分合成で安全性を違反すると判明した状態が部分制御器の数の組み合わせだけ増加し，安全性を違反すると判明した状態は全てがひとつの抽象化されるため，計算空間削減効果が大きくなる．
+% よって，Algorithm\ref{algorithm:CSDCS_huristic}の$\Lambda$をAlgorithm\ref{algorithm:CSDCS}で用いることで，計算空間削減効果の低下をConsolidated Game Compositionで抑制しつつ，部分合成回数の削減を実現する．
+
+% 【パターン2】
+% $\forall\lambda \in \Lambda$において，$eids_{\lambda}$に$cid \in cids$（部分制御器の$id$）が含まれる場合，Algorithm\ref{algorithm:CSDCS}では$\lambda$の部分合成が実施される前に，$cid$を合成する$\lambda^* \in \Lambda$の部分合成が実施される．
+% よって，$n(eids_{\lambda} \cap cids)$は，$\lambda$の部分合成する上で，事前に並列実行される部分合成の数を表す．
+% すると，Algorithm\ref{algorithm:CSDCS_huristic}を用いることで$\Lambda$から$n(eids_{\lambda} \cap cids) = 1$となる$\lambda$は全て統合されるため，Algorithm\ref{algorithm:CSDCS}では並列で部分合成可能な場合のみ部分合成を適用する．
 }
 
 \subsection{機能の妥当性証明}
