@@ -22,12 +22,12 @@ CDCSを評価するにあたって，本論文ではbasic DCS，SDCS，CDCS，CS
 Headcount Control（HC）\cite{paper:ArtGallery}は，複数の部屋の人数を管理することを目的としたシステムであり，入室の許可/拒否を制御する．$N$には制御する部屋の数，$K$には管理可能なひと部屋あたりの最大収容人数が該当する．
 Auto Warehouse（AW）\cite{paper:KIVA_System}は倉庫の荷物運搬業務の自動化を目的としたシステムであり，同じ機能を持つ荷物運搬ロボットを在庫管理や出荷作業など複数の役割に分けつつ協調制御する．
 $N$には制御するロボットの数，$K$には在庫管理する棚の数が該当する．
-Air Trafﬁc（AT）は，空路と滑走路の混雑管理を目的としたシステムであり，複数の飛行機の離着陸，空路での待機，空路の移動を制御する．$N$には制御する飛行機の数，$K$には管理可能な空路の数が該当する．
-Bidding Workflow（BW）は，申請書ごとの複雑な承認手続きの自動管理を目的としたシステムであり，受け取った申請書の提出先・提出順を制御する．
+Air Trafﬁc（AT）\cite{paper:DES}は，空路と滑走路の混雑管理を目的としたシステムであり，複数の飛行機の離着陸，空路での待機，空路の移動を制御する．$N$には制御する飛行機の数，$K$には管理可能な空路の数が該当する．
+Bidding Workflow（BW）\cite{paper:DES}は，申請書ごとの複雑な承認手続きの自動管理を目的としたシステムであり，受け取った申請書の提出先・提出順を制御する．
 $N$は承認をおこなう提出先となる管理部署数，$K$は申請が否認された場合に再申請できる回数$K$が該当する．
-Cat \& Mouse（CM）は，制限されたフィールド上で自由に動く捕獲対象の捕獲を目的とするシステムであり，捕獲ロボットの移動を制御する．$N$は捕獲ロボットの数，$K$は捕獲対象が逃げ回るフィールドの区画数が該当する．
-Drone Control（DC）は，制限されたフィールドを巡回監視する警備ドローンの飛行管理を目的としたシステムであり，複数のドローンの移動，充電を制御する．$N$は管理するドローンの数，$K$はフィールドの区画数が該当する．
-Access Control（AC）は，複数サーバ内の情報閲覧をアクセス元に応じて管理することを目的としたシステムであり，管理サーバの情報開示処理，情報加工処理，応答処理を管理する．$N$も$K$もシステムが管理するサーバ数が該当し，本シナリオでは常に同じ値を取る．
+Cat \& Mouse（CM）\cite{paper:DES}は，制限されたフィールド上で自由に動く捕獲対象の捕獲を目的とするシステムであり，捕獲ロボットの移動を制御する．$N$は捕獲ロボットの数，$K$は捕獲対象が逃げ回るフィールドの区画数が該当する．
+Drone Control（DC）\cite{yamauchi:ICCSCE2023}\cite{yamauchi:SESOS2023}は，制限されたフィールドを巡回監視する警備ドローンの飛行管理を目的としたシステムであり，複数のドローンの移動，充電を制御する．$N$は管理するドローンの数，$K$はフィールドの区画数が該当する．
+Access Control（AC）\cite{yamauchi:AIKE2020}は，複数サーバ内の情報閲覧をアクセス元に応じて管理することを目的としたシステムであり，管理サーバの情報開示処理，情報加工処理，応答処理を管理する．$N$も$K$もシステムが管理するサーバ数が該当し，本シナリオでは常に同じ値を取る．
 
 実験には，OSがWindows 10 Pro (64bit)，CPUがIntel Xeon W-2265，RAMが256GB(64GB×4)の計算機で，制御器合成ツール Modal Transition Synstem Analyzer\cite{paper:MTSA}を使用した．
 以上の実験設定で評価実験をおこなった結果が，表\ref{table:space}と表\ref{table:cost}である．
@@ -36,7 +36,7 @@ Access Control（AC）は，複数サーバ内の情報閲覧をアクセス元�
 \scriptsize
 \caption{DCSにおける最大の状態数と遷移数(削減率:\%)}
 \ecaption{Maximum number of states and transitions in DCS (Reduction rate: \%)}
-\label{table:space}
+\label{table:space}{}
 \begin{tabular}{c|cc|rr|rr|rr|rr}
 \toprule
 \multicolumn{3}{c|}{} &\multicolumn{2}{c|}{basic DCS} &\multicolumn{2}{c|}{CDCS} &\multicolumn{2}{c|}{SDCS} &\multicolumn{2}{c}{DCDCS}\\

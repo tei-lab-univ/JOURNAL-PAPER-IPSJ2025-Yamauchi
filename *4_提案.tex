@@ -12,7 +12,7 @@ CSDCSでは，SDCS（Algorithm\ref{algorithm:SDCS}）を基盤にしつつ，$g^
 CDCSは$g^{*}$の構築過程をConsolidated Game Compositionに統合することで$s_{err}$の抽象化を通じた計算空間削減を実現する．
 このConsolidated Game Compositionは，SDCSにおいて繰り返し行われるゲーム空間$g^{*}$の構築処理にも適用可能であり，
 SDCSの段階的な計算空間削減アプローチと整合的に機能する．
-SDCSの構造にCDCSの手法を統合することにより，CDCSおよびSDCSの両手法が対象とする適用可能範囲を包含でき，CSDCSは適用範囲の不一致に起因する制約1の克服を実現する．
+SDCSの構造にCDCSの手法を統合することにより，CDCSおよびSDCSの両手法が対象とする適用可能範囲を包含し，CSDCSは適用範囲の不一致に起因する制約1の克服を実現する．
 そのCSDCSアルゴリズムがAlgorithm\ref{algorithm:CSDCS}である．
 
 \begin{algorithm}[h]
@@ -42,12 +42,12 @@ Algorithm\ref{algorithm:CSDCS}では，はじめに，任意のヒューリス�
 その後，導出された$\Lambda$において$i_{\lambda}$が1の$\lambda$から順に繰り返しConsolidated Game Compositionを用いた部分合成を行う（3-11行目）．部分合成では，入力された$R$のうち$rids_{\lambda}$に$id_{r}$が含まれる$r$の集合を$R^*$とし（5行目），$R^*$と$E$から部分合成の適用可能条件式$A_{r} \subseteq A_{E^*} \backslash A_{E \backslash E^*}$を満たす$e \in E$の集合を$E^*$として導出する（6行目）．その後，導出された$R^*$と$E^*$を入力としてConsolidated Game Compositionを実行することでゲーム空間$g^*$を合成する（7行目）．その後，$g^*$を入力としてSafety Game Solvingを実行することで部分制御器$c$を合成し（8行目），合成された$c$の$id$に$cid_{\lambda}$を割り当てる（9行目）．最後に，次の$\lambda$で使用する$R$と$E$から使用した$R^*$と$E^*$を取り除き，$cid_{\lambda}$が割り当てられた部分制御器$c^*$を$E$に加える（10行目）．この部分合成を全ての$\Lambda$において$i_{\lambda}$の小さい方から順に繰り返し適用し，制御器$c$を合成する．
 
 このとき，Algorithm\ref{algorithm:CSDCS}は，各監視モデルに対して個別に繰り返し部分合成を実施するため，SDCSと同様にbasic DCSと比較して計算時間が増加する可能性（制約2）を内在する．
+この計算時間の増加に対処するため，CSDCSでは複数の監視モデルを対象とした部分合成手法を導入し，部分合成の繰り返し回数を削減する．
 
-この計算時間の増加に対処するため，CSDCSでは複数の監視モデルを同時に対象とした部分合成手法を導入し，部分合成の繰り返し回数を削減する．
-SDCSは，部分合成の回数を減少させるほど，各回で構築される状態空間が大規模化するため，計算空間削減性能が低下する特性を持つ．
-対して，Consolidated Game Compositionは，同時に入力される監視モデルの数が増加するにつれて，抽象化される違反状態に該当する状態が増え，計算空間削減性能が向上する特性を持つ．
-この特性を活用し，複数の監視モデルを同時に対象とした部分合成にConsolidated Game Compositionを適用することで，SDCS特有の計算空間削減効果を損なうことなく計算時間の増加を抑制でき，制約2を克服を実現する．
-
+SDCSは，部分合成の回数を減少させるほど，各回で構築される状態空間が大規模化するため，計算空間削減性能が低下する．
+対して，Consolidated Game Compositionは，同時に入力される監視モデルの数が増加するにつれて，抽象化される違反状態に該当する状態が増え，計算空間削減性能が向上する傾向を持つ．
+CSDCSでは，Consolidated Game Compositionのこの傾向を活用する．
+複数の監視モデルを対象とした部分合成にConsolidated Game Compositionを適用することで，SDCS特有の計算空間削減効果を損なうことなく計算時間の増加を抑制し，制約2の克服を実現する．
 複数の監視モデルを同時に部分合成するため，CSDCSではAlgorithm\ref{algorithm:CSDCS}における$\Lambda$導出過程（1行目）を改良する．
 $\lambda \in \Lambda$の$rids_{\lambda}$に複数の監視モデルの$id$を格納することで，同一ステップ内で複数の監視モデルを同時に対象とする部分合成が実現される．
 そのCSDCSのための$\Lambda$導出アルゴリズムがAlgorithm\ref{algorithm:CSDCS_huristic}である．
@@ -89,12 +89,12 @@ $rids^*$は$rids_{\lambda}$と$rid_{\lambda^*}$の和集合で表される（9�
 $eids_{\lambda}$に含まれる$cid$が2つ以上，もしくは$cid$が含まれない場合は，統合で減った$\lambda$に合わせて$i_{\lambda}$を振り直す（11-14行目）．
 以上の工程を全ての$\lambda \in \Lambda$において繰り返し実行し， $n(eids_{\lambda} \cap cids) = 1$である$\lambda$の統合を行う．
 
-このとき，$n(eids_{\lambda} \cap cids)$は，$\lambda$の部分合成で入力される環境モデル$E^*$に含まれる部分制御器（以前の合成プロセスで合成された$c^*$）の数を表す．
-部分制御器には，その部分制御器の合成過程で安全性を違反すると判明した状態（部分違反状態）は，Safety Game Solvingによって含まれない．
-$E^*$に部分制御器を含む部分合成において，$E^*$に含まれる部分制御器の部分違反状態は考慮する必要なく，$g^*$構築時に状態が重ね合わされず，状態削減される．
-すると，$E^*$に複数の部分制御器を含むほど，その部分合成の$g^*$構築時に重ね合わせによって構築回避される状態数は，指数的に増加する．
-つまり，Algorithm\ref{algorithm:CSDCS_huristic}において，$\lambda$の部分合成で削減される状態数は$n(eids_{\lambda} \cap cids)$に対して指数増加する．
-CSDCSでは，この$n(eids_{\lambda} \cap cids)$の数に着目し，部分合成による計算空間削減効果が特に大きくなる$n(eids_{\lambda} \cap cids) >= 2$の時のみ部分合成を適用することで，Algorithm\ref{algorithm:CSDCS_huristic}における部分合成回数を減らした．
+このとき，$n(eids_{\lambda} \cap cids)$は，$\lambda$の部分合成で入力される環境モデル$E^*$に含まれる部分制御器（以前の部分合成で合成された$c^*$）の数を表す．
+部分制御器には，その部分制御器の部分合成過程で安全性を違反すると判明した部分違反状態は含まれない．
+部分制御器を$E^*$に含む部分合成では，$g^*$構築時であっても，部分制御器の部分違反状態は重ね合わされないため，構築回避され，状態削減される．
+すると，複数の部分制御器を$E^*$に含む部分合成ほど，重ね合わせによって状態削減される状態数は指数的に増加するため，Algorithm\ref{algorithm:CSDCS_huristic}において，$\lambda$の部分合成で削減される状態数は$n(eids_{\lambda} \cap cids)$に対して指数増加する傾向がある．
+
+そこで，CSDCSでは，この$n(eids_{\lambda} \cap cids)$の数に着目し，部分合成による計算空間削減効果が特に大きくなる$n(eids_{\lambda} \cap cids) >= 2$の時のみ部分合成を適用する．そして，比較的効果の小さい$n(eids_{\lambda} \cap cids) = 1$の時はConsolidated Game Compositionが効果的に働くように複数の監視モデルを同時に部分合成することで，高い計算空間削減効果を維持したまま，Algorithm\ref{algorithm:CSDCS_huristic}における部分合成回数を抑制した．
 
 % 【パターン1】
 % $\forall\lambda \in \Lambda$において，$eids_{\lambda}$に$cid \in cids$（部分制御器の$id$）が含まれる場合，Algorithm\ref{algorithm:CSDCS}では$\lambda$の部分合成が実施される前に，$cid$を合成する$\lambda^* \in \Lambda$の部分合成が実施される．
