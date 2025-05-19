@@ -87,9 +87,9 @@ $eids_{\lambda}$に$cid$が2つ以上含まれる，もしくは1つも含まれ
 以上の工程を全ての$\lambda \in \Lambda$において繰り返し実行し，$n(eids_{\lambda} \cap cids)$が1である$\lambda$の統合を行う．
 
 このとき，$n(eids_{\lambda} \cap cids)$は，$\lambda$の部分合成で環境モデル$E^*$として入力される部分制御器（以前の部分合成で合成された$c^*$）の数を表す．
-部分制御器には，その部分制御器の部分合成過程で安全性を違反すると判明した部分違反状態は含まれない．
+部分制御器には，その部分制御器の合成過程で安全性を違反すると判明した部分違反状態は含まれない．
 部分制御器を$E^*$に含む部分合成では，$g^*$構築時であっても，部分制御器の部分違反状態は重ね合わされないため，構築回避され，状態削減される．
-すると，複数の部分制御器を$E^*$に含む部分合成ほど，重ね合わせによって状態削減される状態数は指数的に増加するため，Algorithm\ref{algorithm:CSDCS_huristic}において，$\lambda$の部分合成で削減される状態数は$n(eids_{\lambda} \cap cids)$に対して指数増加する傾向がある．
+すると，複数の部分制御器を$E^*$に含む部分合成ほど，重ね合わせにより，削減される状態数は指数関数的に増加するため，Algorithm\ref{algorithm:CSDCS_huristic}において，$\lambda$の部分合成で削減される状態数は$n(eids_{\lambda} \cap cids)$に対して指数関数的に増加する傾向がある．
 
 そこで，CSDCSでは，この$n(eids_{\lambda} \cap cids)$の数に着目し，部分合成による計算空間削減効果が特に大きくなる$n(eids_{\lambda} \cap cids)$が2以上の時のみ部分合成を適用する．そして，比較的効果の小さい$n(eids_{\lambda} \cap cids)$が1の時はConsolidated Game Compositionが効果的に働くように複数の監視モデルを同時に部分合成することで，高い計算空間削減効果を維持したまま，Algorithm\ref{algorithm:CSDCS_huristic}における部分合成回数を抑制した．
 

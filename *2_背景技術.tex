@@ -18,9 +18,9 @@ DCSを用いた動作仕様設計は次の手順で行われる．はじめに�
     LTSの集合は大文字で$X$と表され，LTSの要素に下付き$X$と表記した$S_{X}$,$A_{X}$,$\Delta_{X}$,$s^0_{X}$は，$X$に含まれる全LTS$x \in X$の要素（$S_{x}$,$A_{x}$,$\Delta_{x}$,$s^0_{x}$）の和集合を表す．
 \end{dfn}
 
-本論文では，LTSを区別するために，一部のLTSにユニークな記号$id$を付与する．
+本論文では，LTSを区別するため，一部のLTSにユニークな記号$id$を付与する．
 例えば，環境モデルは決定性LTS $e = (id_{e}, S_{e}, A_{e}, \Delta_{e}, s^0_{e})$，監視モデルは決定性LTS $r = (id_{r}, S_{r}, A_{r}, \Delta_{r}, s^0_{r})$で表す．また，環境モデルの集合は$e \in E$，監視モデルの集合は$r \in R$で表される．
-このとき，DCSで与えられる$E$と$R$は常に次の関係式全てを満たす．
+この時，DCSで与えられる$E$と$R$は常に次の関係式全てを満たす．
 \begin{enumerate}[\bf 関係式A]
 \item $s_{err} \in S_{r}$
 \item $A_{R} \subset A_{E}$
@@ -127,7 +127,7 @@ Safety Game Solvingは定義\ref{def:safety_game_solving}で定義される．
 \label{def:safety_game_solving}
     ゲーム空間$g^* = (S_{g^*}, A_{g^*}, \Delta_{g^*}, s^0_{g^*})$を入力とし，制御器$c$を出力する．
     二人型対戦ゲーム理論を用いて$s_{err} \in S_{g^*}$から逆伝搬的に$g^*$の状態の探索を行い，
-    $A^+$をどのように発生させたとしても$A^-$次第で$s_{err}$に遷移しうる状態である全ての状態を見つけ，$S_{err}$に分類する．
+    $A^+$をどのように発生させたとしても$A^-$次第で$s_{err}$に遷移しうる全ての状態を見つけ，$S_{err}$に分類する．
     その後，$S_{g^*}$のうち，$S_{err}$に含まれない全状態を状態の集合$S_{safe}$に分類し，$\Delta_{g}$のうち$S_{safe}$に含まれる状態のみで構築された遷移$\Delta_{safe}$を特定する．
     そして，$\Delta_{safe}$を構成する全ての事象を$A_{safe}$とする．
     特定した$S_{safe}$，$\Delta_{safe}$，$A_{safe}$から制御器$c=\{S_{safe}, A_{c}, \Delta_{safe}, s^0_{g^*}\}$を構築し出力する．
@@ -135,7 +135,7 @@ Safety Game Solvingは定義\ref{def:safety_game_solving}で定義される．
 \end{dfn}
 
 以上のParallel Composition，Modified Parallel Composition，Error State Abstraction，Safety Game Solvingを通して$c$は合成される．
-このとき，$c$の導出過程で構築される$m$，$g$，$g^*$の状態数は入力される環境モデルの数に応じて指数増加する．
-その結果，DCSに必要となる主記憶量や計算時間も指数的に増大するため，DCSを実践規模のシステムへ適用していく上で，この計算空間の指数増加を抑制することは重要な課題だとされてきた\cite{paper:DirectedControllerSyntehsis}\cite{aizawa:IEICEJ2020}\cite{aizawa:SmartWorld}．
+このとき，$c$の導出過程で構築される$m$，$g$，$g^*$の状態数は入力される環境モデルの数に応じて指数関数的に増加する．
+その結果，DCSに必要となる主記憶量や計算時間も指数関数的に増大するため，DCSを実践規模のシステムへ適用していく上で，この計算空間の指数関数的増加を抑制することは重要な課題だとされてきた\cite{paper:DirectedControllerSyntehsis}\cite{aizawa:IEICEJ2020}\cite{aizawa:SmartWorld}．
 この課題に対し，SDCS\cite{yamauchi:IEICEJ2023}とCDCS\cite{yamauchi:IPSJ2024}は，$c$合成過程の冗長な計算空間を特定し，構築を回避するDCSアルゴリズムを提案することで，計算空間の指数爆発の抑制に取り組んだ．
 
