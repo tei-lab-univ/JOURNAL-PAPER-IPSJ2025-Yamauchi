@@ -27,7 +27,7 @@ CDCSのアルゴリズムをAlgorithm\ref{algorithm:CDCS}に示す．
 \end{algorithmic}
 \end{algorithm}
 
-Algorithm\ref{algorithm:CDCS}では，Algorithm\ref{algorithm:basic_controller_synthesis}におけるParallel Composition，Modified Parallel Composition，Error State Abstraction全てを一括で行うConsolidated Game Compositionを用いて，$E$と$R$から直接$g^*$を構築する（1行目）．その後，basic DCSと同様に$g^*$を入力としてSafety Game Solvingを用いて$c$を導出する．
+Algorithm\ref{algorithm:CDCS}では，basic DCSにおけるParallel Composition，Modified Parallel Composition，Error State Abstractionを全て一括で行うConsolidated Game Compositionを用いて，$E$と$R$から直接$g^*$を構築する（1行目）．その後，basic DCSと同様に$g^*$を入力としてSafety Game Solvingを用いて$c$を導出する．
 CDCSを実現するConsolidated Game Compositionは定義\ref{def:consolidated_game_composition}で定義される．
 
 \begin{dfn}{\textbf{Consolidated Game Composition}}
@@ -119,7 +119,7 @@ Algorithm\ref{algorithm:SDCS}では，$\Lambda$に則って，繰り返し部分
 \end{dfn}
 
 \begin{algorithm}[h]
-\caption{監視対象モデル数を考慮した$\Lambda$の合成}
+\caption{監視対象モデル数$\mu$を考慮した$\Lambda$の合成}
 \label{algorithm:huristic}
 \begin{algorithmic}[1]
 \renewcommand{\algorithmicrequire}{\textbf{Input:}}
@@ -144,9 +144,10 @@ Algorithm\ref{algorithm:SDCS}では，$\Lambda$に則って，繰り返し部分
 \end{algorithmic}
 \end{algorithm}
 
-Algorithm\ref{algorithm:huristic}では，全監視モデルのうち$\mu$が最小となる監視モデル$r \in R$を$r^*$として導出し（2-7行目），全環境モデルのうち$r^*$の事象を含む全ての環境モデルを$E^*$として導出する（8行目）．
+Algorithm\ref{algorithm:huristic}では，全監視モデルのうち監視対象モデル数$\mu$が最小となる監視モデル$r \in R$を$r^*$として導出し（2-7行目），全環境モデルのうち$r^*$の事象を含む全ての環境モデルを$E^*$として導出する（8行目）．
 そして，$r^*$と$E^*$から$i^*$ステップ目に部分合成する合成プロセスを構築する（9行目）．
-その後，$r^*$と$E^*$を部分合成した際に合成される制御器$c^*$を以降の合成プロセスの導出で必要な情報（$id_{c^*}$，$A_{c^*}$）だけ埋めて仮に構築し（10行目），$i^*+1$ステップ目の合成プロセスを導出する（14行目）．これを監視対象モデル数の数だけ繰り返し実施する（11-13行目）．
+その後，$r^*$と$E^*$を部分合成した際に合成される制御器$c^*$を以降の合成プロセスの導出で必要な情報（$id_{c^*}$，$A_{c^*}$）だけ埋めて仮に構築し（10行目），$i^*+1$ステップ目の合成プロセスを導出する（14行目）．
+これを監視モデルの数だけ繰り返し実施する（11-13行目）．
 
 以上のようにして導出された$\Lambda$に基づいて，Algorithm\ref{algorithm:huristic}では$i_{\lambda}$が1の$\lambda \in \Lambda$から順に繰り返し部分合成を行う（2-12行目）．部分合成では，はじめに，入力された$R$のうち$rids_{\lambda}$に$id_{r}$が含まれる$r$の集合を$R^*$とし（4行目），$R^*$と$E$から部分合成の適用可能条件式$A_{r} \subseteq A_{E^*} \backslash A_{E \backslash E^*}$を満たす$e \in E$の集合を$E^*$として導出する（5行目）．その後，導出された$R^*$と$E^*$を用いてParallel Composition（6行目），Modified Parallel Composition（7行目），Error State Abstraction（8行目），Safety Game Solving（9行目）を適用し$c$を合成する．そして，合成された$c$の$id$に$cid_{\lambda}$を割り当て$c^*$を用意する（10行目）．最後に，次の$\lambda$で使用する$R$と$E$から使用した$R^*$と$E^*$を取り除き，$c^*$を$E$に加える（11行目）．これにより，$i^*+1$ステップ目以降の部分合成において，$i^*$ステップ目の$R^*$を違反する状態（部分違反状態）
 の構築を回避することができる．
@@ -166,6 +167,6 @@ CDCSやSDCSを用いて，basic DCSよりも効率よく制御器を合成する
 制約2は、SDCSにおいて計算空間の削減効果が限定的な場合，段階的なゲーム空間$g^{*}$の構築・分析を繰り返すオーバヘッドが相対的に大きくなり，全体の計算時間が悪化することに起因する．
 
 以上の制約を踏まえて，CDCSとSDCSの適用選択は慎重に判断する必要がある．
-しかし，判断には，各手法により生成される中間生成LTS，$m$，$g$，$g^{*}$の構造を詳細に把握する必要があり，これを入力される環境モデルと監視モデルの組み合わせに応じて手作業で行うことは実運用上の大きな障壁となっている．
+しかし，この判断には，各手法により生成される中間生成LTS，$m$，$g$，$g^{*}$の構造を詳細に把握する必要があるが，環境モデルと監視モデルの組み合わせごとに手作業で把握する必要があり，実運用において大きな障壁となっている。
 本論文では，このSDCSとCDCSの適用選択の課題を解消することを目的とする．
 

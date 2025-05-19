@@ -8,7 +8,7 @@ CSDCSのように，検証時の計算空間爆発を抑制するために，シ
 
 CSDCS以外にも，DCS分野では計算空間爆発に対処するアプローチとして，On-the-fly SynthesisやAbstraction Synthesisが研究されてきた．
 
-On-the-fly Synthesisを用いたDCS\cite{paper:On-the-flySyntehsis_1}\cite{paper:On-the-flySyntehsis_2}\cite{paper:On-the-flySyntehsis_3}\cite{paper:On-the-flySyntehsis_4}では，環境モデルと監視モデルに加えて目標状態が与えられ，安全性を違反することなく初期状態から目標状態に到達可能な状態遷移列を制御器として合成する．安全性を違反することのない状態空間を初期状態から逐次探索かつ構築し，目標状態に到達次第探索を終了する．これによりシステムの全状態空間の構築を回避し，計算空間削減を実現した．
+On-the-fly Synthesisを用いたDCS\cite{paper:On-the-flySyntehsis_1}\cite{paper:On-the-flySyntehsis_2}\cite{paper:On-the-flySyntehsis_3}\cite{paper:On-the-flySyntehsis_4}では，環境モデルと監視モデルに加えて目標状態が与えられ，安全性を違反することなく初期状態から目標状態に到達可能な状態遷移を制御器として合成する．安全性を違反することのない状態空間を初期状態から逐次探索かつ構築し，目標状態に到達次第探索を終了する．これによりシステムの全状態空間の構築を回避し，計算空間削減を実現した．
 しかし，初期状態から目標状態までの制御器しか導出できないため，On-the-fly Synthesisでは目標状態のない継続的な稼動を目的とするシステムの制御器の合成はできない限界が存在する．
 対してCSDCSは，安全性を充足するシステムの全状態空間を制御器として導出できることから，このような限界は存在しない．
 

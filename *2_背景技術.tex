@@ -85,7 +85,7 @@ $m$を合成するParallel Compositionは定義\ref{def:parallel_composition}で
 \end{dfn}
 
 次に，Modified Parallel Compositionを用いて，決定性LTSであるゲーム空間 $g = (S_{g}, A_{g}, \Delta_{g}, s^0_{g})$を構築する（2行目）．
-$g$は$m$において保証したい安全性$r$を違反する状態を重ね合わせたLTSであり，$g$において二人型対戦ゲーム理論に基づいた安全性ゲームを解くことで制御器 $c$を導出できる．この$g$を合成するModified Parallel Compositionは定義\ref{def:modified_parallel_composition}で定義される．
+$g$は$m$において保証したい安全性を違反する$r$の違反状態$s_{err}$を重ね合わせたLTSであり，$g$において二人型対戦ゲーム理論に基づいた安全性ゲームを解くことで制御器 $c$を導出できる．この$g$を合成するModified Parallel Compositionは定義\ref{def:modified_parallel_composition}で定義される．
 \begin{dfn}{\textbf{Modified Parallel Composition}}
 \label{def:modified_parallel_composition}
     記号$\parallel_*$で表され，監視モデル$R$とその監視対象である監視対象モデル$m$からゲーム空間$g$を合成する．

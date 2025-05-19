@@ -34,8 +34,8 @@ Access Control（AC）\cite{yamauchi:AIKE2020}は，複数サーバ内の情報�
 
 \begin{table*}[ht]
 \scriptsize
-\caption{DCSにおける最大の状態数と遷移数(削減率:\%)}
-\ecaption{Maximum number of states and transitions in DCS (Reduction rate: \%)}
+\caption{DCSにおける状態数と遷移数(basic DCSに対する削減率:\%)}
+\ecaption{Number of states and transitions in DCS (Reduction rate from basic DCS: \%)}
 \label{table:space}{}
 \begin{tabular}{c|cc|rr|rr|rr|rr}
 \toprule
@@ -122,8 +122,8 @@ Access Control（AC）\cite{yamauchi:AIKE2020}は，複数サーバ内の情報�
 \begin{table*}[ht]
 \centering
 \scriptsize
-\caption{DCSにおける主記憶量と計算時間(削減率:\%)}
-\ecaption{Memory and computation time in DCS (Reduction rate: \%)}
+\caption{DCSにおける主記憶量と計算時間(basic DCSに対する削減率:\%)}
+\ecaption{Memory and computation time in DCS (Reduction rate from basic DCS: \%)}
 \label{table:cost}
 \begin{tabular}{c|cc|rr|rr|rr|rr}
 \toprule
@@ -252,7 +252,7 @@ Access Control（AC）\cite{yamauchi:AIKE2020}は，複数サーバ内の情報�
 この結果は，DCにおいて，SDCSおよびCDCSのそれぞれのアプローチでなければ削減できない状態が存在し，CSDCSが両者の手法を統合することで，それらの状態を同時に削減できたためであると考えられる．
 今後は，SDCSとCDCSの統合手法をさらに改良し，削減効果を一層高められる可能性について検討を進める．
 
-また，SDCSとCDCSの両方において削減効果が得られなかった全てのケースでは，CSDCSでも削減効果は見られなかった．
+また，SDCSとCDCSの両方において計算空間削減効果が得られなかった全てのケースでは，CSDCSでも計算空間削減効果は見られなかった．
 今後は，CSDCSがSDCSやCDCSを超えて，さらに広い適用範囲を持ちうるかどうかについて，追加実験や理論的検証を通じて調査する．
 
 \subsection{妥当性への脅威}
