@@ -7,8 +7,8 @@
 \subsection{CDCS}
 \label{subsection:CDCS}
 CDCS\cite{yamauchi:IPSJ2024}は，監視モデルの$s_{err}$に該当する全ての状態を，ひとつの$s_{err}$に抽象化しつつ，ゲーム空間構築することで，DCSの計算空間を削減する．
-安全性ゲームを解く上で，ゲーム空間の$s_{err}$から伸びる遷移は探索する必要がない．
-そこで，ゲーム空間構築過程で複雑な$s_{err}$の構築を回避することで，計算空間削減を実現する．
+Safety Game Solgvingにおいて，$g^*$の$s_{err}$から伸びる遷移は探索する必要がない．
+そこで，$g^*$構築過程で$s_{err}$から遷移できる全状態の構築を回避することで，計算空間削減を実現する．
 CDCSのアルゴリズムをAlgorithm\ref{algorithm:CDCS}に示す．
 
 \begin{algorithm}[h]
@@ -35,34 +35,34 @@ CDCSを実現するConsolidated Game Compositionは定義\ref{def:consolidated_g
     記号$\between$で表され，環境モデル群$E$と監視モデル群$R$に含まれる全てのLTSの集合 $E \cup R$を入力とし，$g^*$を直接構築し，出力する．
     LTS $x,y \in E \cup R$が入力される時，$x = (S_{x}, A_{x}, \Delta_{x}, s^0_{x})$,
     $y = (S_{y}, A_{y}, \Delta_{y}, s^0_{y})$とする．
-    $g^* = x \between y = (S, A, \Delta, s^0)$の時，初期状態$s^0$は状態の集合$\{ s^0_{x}, s^0_{y} \}$で表され，遷移$(s,a,s')\in\Delta$は式\ref{formula:pc1}，\ref{formula:pc2}，\ref{formula:pc3}を満たす初期状態$s^0$から到達可能な全状態間を結ぶ全遷移の集合である．
+    $g^* = x \between y = (S, A, \Delta, s^0)$の時，初期状態$s^0$は状態の集合$\{ s^0_{x}, s^0_{y} \}$で表され，遷移$(s,a,s')\in\Delta$は式\ref{formula:cgs1}-\ref{formula:cgs6}を満たす初期状態$s^0$から到達可能な全状態間を結ぶ全遷移の集合である．
     \begin{multline}
-    \label{formula:pc1}
+    \label{formula:cgs1}
     \Delta_x \langle s_{x} \overset{a}{\rightarrow} s'_{x} \rangle, \Delta_y \langle s_{y} \overset{a}{\nrightarrow} s'_{y} \rangle, a \in A_{x} \backslash A_{y}, s_{err} \notin s'_{x}\\
     \Rightarrow (\{ s_{x},s_{y} \},a,\{ s'_{x},s_{y} \} ) \in \Delta
     \end{multline}
     \begin{multline}
-    \label{formula:pc2}
+    \label{formula:cgs2}
     \Delta_x \langle s_{x} \overset{a}{\nrightarrow} s'_{x} \rangle, \Delta_y \langle s_{y} \overset{a}{\rightarrow} s'_{y} \rangle, a \in A_{y} \backslash A_{x}, s_{err} \notin s'_{y}\\
     \Rightarrow (\{ s_{x},s_{y} \},a,\{ s_{x},s'_{y} \}) \in \Delta
     \end{multline}
     \begin{multline}
-    \label{formula:pc3}
+    \label{formula:cgs3}
     \Delta_x \langle s_{x} \overset{a}{\rightarrow} s'_{x} \rangle, \Delta_y \langle s_{y} \overset{a}{\rightarrow} s'_{y} \rangle, a \in A_{x} \cap A_{y}, s_{err} \notin s'_{x} \cup s'_{y}\\
     \Rightarrow (\{ s_{x},s_{y} \},a,\{ s'_{x},s'_{y} \}) \in \Delta
     \end{multline}
     \begin{multline}
-    \label{formula:pc4}
+    \label{formula:cgs4}
     \Delta_x \langle s_{x} \overset{a}{\rightarrow} s'_{x} \rangle, \Delta_y \langle s_{y} \overset{a}{\nrightarrow} s'_{y} \rangle, a \in A_{x} \backslash A_{y}, s_{err} \in s'_{x}\\
     \Rightarrow (\{ s_{x},s_{y} \},a,s_{err}) \in \Delta
     \end{multline}
     \begin{multline}
-    \label{formula:pc5}
+    \label{formula:cgs5}
     \Delta_x \langle s_{x} \overset{a}{\nrightarrow} s'_{x} \rangle, \Delta_y \langle s_{y} \overset{a}{\rightarrow} s'_{y} \rangle, a \in A_{y} \backslash A_{x}, s_{err} \in s'_{y}\\
     \Rightarrow (\{ s_{x},s_{y} \},a,s_{err}) \in \Delta
     \end{multline}
     \begin{multline}
-    \label{formula:pc6}
+    \label{formula:cgs6}
     \Delta_x \langle s_{x} \overset{a}{\rightarrow} s'_{x} \rangle, \Delta_y \langle s_{y} \overset{a}{\rightarrow} s'_{y} \rangle, a \in A_{x} \cap A_{y}, s_{err} \in s'_{x} \cup s'_{y}\\
     \Rightarrow (\{ s_{x},s_{y} \},a,s_{err}) \in \Delta
     \end{multline}
@@ -80,7 +80,7 @@ CDCSを実現するConsolidated Game Compositionは定義\ref{def:consolidated_g
 \label{subsection:SDCS}
 SDCS\cite{yamauchi:IEICEJ2023}は，部分合成を段階的に行うことで，DCSの計算空間を削減する．
 部分合成とは，システムの部分的な制御器を合成する工程を意味し，システムを構成する一部の環境モデルと監視モデルにParallel Composition，Modified Parallel Composition，Error State Abstraction，Safety Game Solvingを適用することで実現される．
-部分制御器を用いてゲーム空間の構築と分析を段階的に行うことで，部分違反状態（先の分析で安全性を違反すると判明した状態）の構築を以降全てのゲーム空間の構築・分析で回避でき，計算空間削減を実現する．
+部分合成を用いてゲーム空間の構築と分析を段階的に行うことで，先の分析で安全性を違反すると判明した部分違反状態の構築を以降全てのゲーム空間の構築・分析で回避でき，計算空間削減を実現する．
 SDCSのアルゴリズムをAlgorithm\ref{algorithm:SDCS}に示す．
 
 \begin{algorithm}[h]
