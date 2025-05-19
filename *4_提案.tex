@@ -10,7 +10,7 @@ CSDCSでは，SDCS（Algorithm\ref{algorithm:SDCS}）を基盤にしつつ，$g^
 CDCSは$g^{*}$の構築過程をConsolidated Game Compositionに統合することで$s_{err}$の抽象化を通じた計算空間削減を実現する．
 このConsolidated Game Compositionは，SDCSにおいて繰り返し行われるゲーム空間$g^{*}$の構築処理にも適用可能であり，
 SDCSの段階的な計算空間削減アプローチと整合的に機能する．
-SDCSの構造にCDCSの手法を統合することにより，CDCS，SDCS，両手法の削減可能対象を包含し，CSDCSは削減可能対象の不一致に起因する制約1を克服する．
+SDCSの構造にCDCSの手法を統合することにより，CDCS，SDCS，両手法の適用範囲を包含し，CSDCSは適用範囲の不一致に起因する制約1を克服する．
 そのCSDCSアルゴリズムがAlgorithm\ref{algorithm:CSDCS}である．
 
 \begin{algorithm}[h]

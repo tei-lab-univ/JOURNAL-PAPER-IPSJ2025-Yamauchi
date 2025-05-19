@@ -39,7 +39,7 @@ Access Control（AC）\cite{yamauchi:AIKE2020}は，複数サーバ内の情報�
 \label{table:space}{}
 \begin{tabular}{c|cc|rr|rr|rr|rr}
 \toprule
-\multicolumn{3}{c|}{} &\multicolumn{2}{c|}{basic DCS} &\multicolumn{2}{c|}{CDCS} &\multicolumn{2}{c|}{SDCS} &\multicolumn{2}{c}{DCDCS}\\
+\multicolumn{3}{c|}{} &\multicolumn{2}{c|}{basic DCS} &\multicolumn{2}{c|}{CDCS} &\multicolumn{2}{c|}{SDCS} &\multicolumn{2}{c}{CSDCS}\\
 \multicolumn{1}{c}{} &\multicolumn{1}{c}{N} &\multicolumn{1}{c|}{K}
 &\multicolumn{1}{c}{$|S|$} &\multicolumn{1}{c|}{$|\Delta|$}
 &\multicolumn{1}{c}{$|S|$} &\multicolumn{1}{c|}{$|\Delta|$}
@@ -127,7 +127,7 @@ Access Control（AC）\cite{yamauchi:AIKE2020}は，複数サーバ内の情報�
 \label{table:cost}
 \begin{tabular}{c|cc|rr|rr|rr|rr}
 \toprule
-\multicolumn{3}{c|}{} &\multicolumn{2}{c|}{basic DCS} &\multicolumn{2}{c|}{CDCS} &\multicolumn{2}{c|}{SDCS} &\multicolumn{2}{c}{DCDCS}\\
+\multicolumn{3}{c|}{} &\multicolumn{2}{c|}{basic DCS} &\multicolumn{2}{c|}{CDCS} &\multicolumn{2}{c|}{SDCS} &\multicolumn{2}{c}{CSDCS}\\
 \multicolumn{1}{c}{} &\multicolumn{1}{c}{N} &\multicolumn{1}{c|}{K}
 &\multicolumn{1}{c}{$M$} &\multicolumn{1}{c|}{$T$}
 &\multicolumn{1}{c}{$M$} &\multicolumn{1}{c|}{$T$}
@@ -214,35 +214,35 @@ Access Control（AC）\cite{yamauchi:AIKE2020}は，複数サーバ内の情報�
 表\ref{table:space}と表\ref{table:cost}より，CSDCSはbasic DCSに対して$|S|$は平均-51.8\%，$|\Delta|$は平均-58.3，$M$は平均-45.1\%，$T$は平均-43.6\%の削減効果が確認された．$|S|$，$|\Delta|$，$M$，$T$全てにおいて，CSDCSは常にbasic DCSと同じかそれ以下となることが確認でき，basic DCSより効率的に制御器を合成できることが確認された．
 
 \subsubsection{CDCSと同等以上の削減効果を持つか（RQ2）}
-削減可能対象について，CDCSで計算空間削減効果が確認されたHC，AW（一部），AT，CM，DCの全ての場合においてCSDCSでも計算空間削減効果が確認された．
+適用範囲について，CDCSで計算空間削減効果が確認されたHC，AW（一部），AT，CM，DCの全ての場合においてCSDCSでも計算空間削減効果が確認された．
 また，CSDCSはCDCSで削減効果が確認されなかったAW（一部），ACにおいても計算空間削減効果が確認された．
-以上の結果から，表\ref{table:space}と表\ref{table:cost}においてCSDCSはCDCSの削減可能対象を包括しつつも，より広い削減可能対象を持つことがわかる．
+以上の結果から，表\ref{table:space}と表\ref{table:cost}においてCSDCSはCDCSの適用範囲を包括しつつも，より広い適用範囲を持つことがわかる．
 
 削減効果量について，CSDCSはCDCSと比較して$|S|$で平均-28.4\%，$|\Delta|$で平均-21.9\%，$M$で平均-21.7\%，$T$で平均-13.5\%の性能向上が確認された．削減効果の標準偏差は，SDCSと比較して$|S|$が-1.6，$|S|$が-3.1だけCSDCSが低い値となっており，CSDCSはCDCSより安定して高い削減効果を$|S|$と$|\Delta|$において発揮できたことが確認された．$M$と$T$の標準偏差は，$M$が+4.5，$T$が+2.1とCSDCSよりもCDCSの方が削減効果が安定していることが確認されたが，CSDCSの方が削減効果の平均値が$M$で-22.0\%，$T$で-13.5\%だけ高い性能を上げており，性能差に比べると標準偏差の差は小さい．
 以上の結果から，表\ref{table:space}と表\ref{table:cost}においてCSDCSはCDCSより高い削減効果を同程度安定して発揮できていることがわかる．
 
-以上より，表\ref{table:space}と表\ref{table:cost}において，CSDCSはCDCS以上の削減可能対象を持ちつつ，より高い削減効果量を安定して発揮していることがわかった．この結果より，CSDCSはCDCS以上の削減効果を持つと推察される．
+以上より，表\ref{table:space}と表\ref{table:cost}において，CSDCSはCDCS以上の適用範囲を持ちつつ，より高い削減効果量を安定して発揮していることがわかった．この結果より，CSDCSはCDCS以上の削減効果を持つと推察される．
 
 \subsubsection{SDCSと同等以上の削減効果を持つか（RQ3）}
-削減可能対象について，SDCSで計算空間削減効果が確認されたHC，AW，DC，ACの全ての場合においてCSDCSでも計算空間削減効果が確認された．
+適用範囲について，SDCSで計算空間削減効果が確認されたHC，AW，DC，ACの全ての場合においてCSDCSでも計算空間削減効果が確認された．
 また，CSDCSはSDCSで削減効果が確認されなかったAT，CMにおいても計算空間削減効果が確認された．
-以上の結果から，表\ref{table:space}と表\ref{table:cost}においてCSDCSはSDCSの削減可能対象を包括しつつも，より広い削減可能対象を持つことがわかる．
+以上の結果から，表\ref{table:space}と表\ref{table:cost}においてCSDCSはSDCSの適用範囲を包括しつつも，より広い適用範囲を持つことがわかる．
 
 削減効果量について，CSDCSはSDCSと比較して$|\Delta|$で平均-4.0\%，$M$で平均-57.0\%，$T$で平均-553.6\%の性能向上が確認された．$|S|$は平均+8.6\%と性能が悪化したが，削減率の標準偏差はSDCSと比較して全てCSDCSが低い値となっており，CSDCSはSDCSより安定して高い削減率を発揮できたことが確認された．特に$T$の削減率は，SDCSでは標準偏差953.3とシステムによって大きくばらついていたが，CSDCSはそのばらつきを標準偏差36.0まで抑制できていることが確認された．
 以上の結果から，表\ref{table:space}と表\ref{table:cost}においてCSDCSはSDCSより高い削減効果量をより安定して発揮できていることがわかる．
 
-以上より，表\ref{table:space}と表\ref{table:cost}において，CSDCSはSDCS以上の削減可能対象を持ちつつ，より高い削減効果量を安定して発揮していることがわかった．この結果より，CSDCSはSDCS以上の削減効果を持つと推察される．
+以上より，表\ref{table:space}と表\ref{table:cost}において，CSDCSはSDCS以上の適用範囲を持ちつつ，より高い削減効果量を安定して発揮していることがわかった．この結果より，CSDCSはSDCS以上の削減効果を持つと推察される．
 
 \subsubsection{適用選択の課題を解消できるか（RQ4）}
-本課題を解決する上で，CSDCSはSDCSとCDCSの両手法の削減可能対象を包括し，両手法と同等以上の削減効果量を持つ必要がある．
+本課題を解決する上で，CSDCSはSDCSとCDCSの両手法の適用範囲を包括し，両手法と同等以上の削減効果量を持つ必要がある．
 
-削減可能対象について，表\ref{table:space}と表\ref{table:cost}において，CSDCSはSDCSとCDCSのどちらかにおいて計算空間削減効果を持つ場合，常にCSDCSも空間削減効果を持つことがRQ2とRQ3の実験結果よりわかった．
-この結果から，CSDCSはSDCSとCDCSの削減可能対象を包括すると考えられる．
+適用範囲について，表\ref{table:space}と表\ref{table:cost}において，CSDCSはSDCSとCDCSのどちらかにおいて計算空間削減効果を持つ場合，常にCSDCSも空間削減効果を持つことがRQ2とRQ3の実験結果よりわかった．
+この結果から，CSDCSはSDCSとCDCSの適用範囲を包括すると考えられる．
 
 削減効果量に関して，表\ref{table:space}と表\ref{table:cost}において，CSDCSはSDCSとCDCSのどちらよりも削減効果（削減率）の平均値が高いことがRQ2とRQ3の実験結果よりわかった．
 また，CSDCSの標準偏差は，SDCSより低い値，CDCSと同程度であることがRQ2とRQ3の実験結果よりわかった．
 この結果から，CSDCSはSDCSとCDCSより高い削減効果量を同程度以上安定して発揮できると考えられる．
-以上より，CSDCSは，SDCSとCDCSの削減可能対象を包括し，SDCSとCDCSと同程度以上安定して高い削減効果量を持つと推察する．
+以上より，CSDCSは，SDCSとCDCSの適用範囲を包括し，SDCSとCDCSと同程度以上安定して高い削減効果量を持つと推察する．
 よってCSDCSは，SDCSとCDCSの適用選択の課題を解決しうると考える．
 
 
@@ -253,7 +253,7 @@ Access Control（AC）\cite{yamauchi:AIKE2020}は，複数サーバ内の情報�
 今後は，SDCSとCDCSの統合手法をさらに改良し，削減効果を一層高められる可能性について検討を進める．
 
 また，SDCSとCDCSの両方において削減効果が得られなかった全てのケースでは，CSDCSでも削減効果は見られなかった．
-今後は，CSDCSがSDCSやCDCSを超えて，さらに広い削減可能対象を持ちうるかどうかについて，追加実験や理論的検証を通じて調査する．
+今後は，CSDCSがSDCSやCDCSを超えて，さらに広い適用範囲を持ちうるかどうかについて，追加実験や理論的検証を通じて調査する．
 
 \subsection{妥当性への脅威}
 本実験では，$|S|$，$|\Delta|$の計測に関して，basic DCS，SDCS，CDCS，CSDCSにおいて合成アルゴリズム以外の差分がないため，削減効果の内的妥当性を脅かす要因は存在しない．
@@ -263,7 +263,7 @@ $M$，$T$の計測に関しては，OSが制御するバックグラウンドプ
 
 
 % 両立による更なる削減効果について（なぜか）
-% SDCSとCDCSと両方において計算空間削減効果を持たない場合，CSDCSが空間削減効果を持つことはなかった．削減可能対象については将来研究とする
+% SDCSとCDCSと両方において計算空間削減効果を持たない場合，CSDCSが空間削減効果を持つことはなかった．適用範囲については将来研究とする
 
 
 % {\color{red}
