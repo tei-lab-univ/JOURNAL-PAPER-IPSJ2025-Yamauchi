@@ -10,7 +10,7 @@ CSDCSでは，SDCS（Algorithm\ref{algorithm:SDCS}）を基盤にしつつ，$g^
 CDCSは$g^{*}$の構築過程をConsolidated Game Compositionに統合することで$s_{err}$の抽象化を通じた計算空間削減を実現する．
 このConsolidated Game Compositionは，SDCSにおいて繰り返し行われるゲーム空間$g^{*}$の構築処理にも適用可能であり，
 SDCSの段階的な計算空間削減アプローチと整合的に機能する．
-SDCSの構造にCDCSの手法を統合することにより，CDCSおよびSDCSの両手法が対象とする適用可能範囲を包含し，CSDCSは適用範囲の不一致に起因する制約1の克服を実現する．
+SDCSの構造にCDCSの手法を統合することにより，CDCS，SDCS，両手法の削減可能対象を包含し，CSDCSは削減可能対象の不一致に起因する制約1を克服する．
 そのCSDCSアルゴリズムがAlgorithm\ref{algorithm:CSDCS}である．
 
 \begin{algorithm}[h]
@@ -45,7 +45,7 @@ Algorithm\ref{algorithm:CSDCS}では，はじめに，任意のヒューリス�
 SDCSは，部分合成の回数を減少させるほど，各回で構築される状態空間が大規模化するため，計算空間削減性能が低下する．
 対して，Consolidated Game Compositionは，同時に入力される監視モデルの数が増加するにつれて，抽象化される違反状態に該当する状態が増え，計算空間削減性能が向上する傾向を持つ．
 CSDCSでは，Consolidated Game Compositionのこの傾向を活用する．
-複数の監視モデルを対象とした部分合成にConsolidated Game Compositionを適用することで，SDCS特有の計算空間削減効果を損なうことなく計算時間の増加を抑制し，制約2の克服を実現する．
+複数の監視モデルを対象とした部分合成にConsolidated Game Compositionを適用することで，SDCS特有の計算空間削減効果を損なうことなく計算時間の増加を抑制し，制約2を克服する．
 複数の監視モデルを同時に部分合成するため，CSDCSではAlgorithm\ref{algorithm:CSDCS}における$\Lambda$導出過程（1行目）を改良する．
 $\lambda \in \Lambda$の$rids_{\lambda}$に複数の監視モデルの$id$を格納することで，同一ステップ内で複数の監視モデルを同時に対象とする部分合成が実現される．
 そのCSDCSのための$\Lambda$導出アルゴリズムがAlgorithm\ref{algorithm:CSDCS_huristic}である．
@@ -78,14 +78,13 @@ $\lambda \in \Lambda$の$rids_{\lambda}$に複数の監視モデルの$id$を格
 \end{algorithmic}
 \end{algorithm}
 
-Algorithm\ref{algorithm:CSDCS_huristic}では，Algorithm\ref{algorithm:huristic}を用いて各監視モデルごとに部分合成する$\Lambda$を導出する（1行目）．その後，$\Lambda$で合成される全ての部分制御器の$cid$を$cids$として用意し（2行目），$i_{\lambda}$が1の$\lambda \in \Lambda$から順に$eids_{\lambda}$に$cid$がいくつ含まれるか確認する（3-15行目）．
-$eids_{\lambda}$に$cid$が1つ含まれる時（5行目），その$cid$を合成する$\lambda^*$と$\lambda$を統合する（6-10行目）．
-統合された$\lambda$は$\{i_{\lambda^*}, eids^*, rids^*, cid_{\lambda}\}$で表さる．
-$eids^*$は$eids_{\lambda}$に含まれる$cid_{\lambda^*}$と$eid_{\lambda^*}$を置き換えた$id$の集合で表される（8行目）．
-$rids^*$は$rids_{\lambda}$と$rid_{\lambda^*}$の和集合で表される（9行目）．
-その後，統合された$\lambda$と，統合元となった$\lambda$と$\lambda^*$を，$\Lambda$において置き換える（10行目）．
-$eids_{\lambda}$に含まれる$cid$が2つ以上，もしくは$cid$が含まれない場合は，統合で減った$\lambda$に合わせて$i_{\lambda}$を振り直す（11-14行目）．
-以上の工程を全ての$\lambda \in \Lambda$において繰り返し実行し， $n(eids_{\lambda} \cap cids)$が1である$\lambda$の統合を行う．
+Algorithm\ref{algorithm:CSDCS_huristic}では，Algorithm\ref{algorithm:huristic}を用いて監視モデルごとに部分合成する$\Lambda$を導出する（1行目）．その後，$\Lambda$で合成される全ての部分制御器の$cid$を$cids$として用意し（2行目），$i_{\lambda}$が1の$\lambda \in \Lambda$から順に$eids_{\lambda}$に$cid$がいくつ含まれるか確認する（3-15行目）．
+$eids_{\lambda}$に$cid$が1つ含まれる時（5行目），その$cid$を合成する$\lambda^*$と$\lambda$を統合し，$\{i_{\lambda^*}, eids^*, rids^*, cid_{\lambda}\}$を構築する（6-10行目）．
+$eids^*$は$eids_{\lambda}$に含まれる$cid_{\lambda^*}$と$eid_{\lambda^*}$を置き換えた$id$の集合（8行目），
+$rids^*$は$rids_{\lambda}$と$rid_{\lambda^*}$の和集合（9行目）となる．
+その後，統合された$\{i^{**}, eids_{\lambda}, rids_{\lambda}, cid_{\lambda}\}$と，統合元となった$\lambda$と$\lambda^*$を，$\Lambda$において置き換える（10行目）．
+$eids_{\lambda}$に$cid$が2つ以上含まれる，もしくは1つも含まれない場合は，統合で減った$\lambda$の数に合わせて$i_{\lambda}$を振り直す（11-14行目）．
+以上の工程を全ての$\lambda \in \Lambda$において繰り返し実行し，$n(eids_{\lambda} \cap cids)$が1である$\lambda$の統合を行う．
 
 このとき，$n(eids_{\lambda} \cap cids)$は，$\lambda$の部分合成で環境モデル$E^*$として入力される部分制御器（以前の部分合成で合成された$c^*$）の数を表す．
 部分制御器には，その部分制御器の部分合成過程で安全性を違反すると判明した部分違反状態は含まれない．
