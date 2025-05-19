@@ -29,7 +29,7 @@ Cat \& Mouse（CM）\cite{paper:DES}は，制限されたフィールド上で�
 Drone Control（DC）\cite{yamauchi:ICCSCE2023}\cite{yamauchi:SESOS2023}は，制限されたフィールドを巡回監視する警備ドローンの飛行管理を目的としたシステムであり，複数のドローンの移動，充電を制御する．$N$は管理するドローンの数，$K$はフィールドの区画数が該当する．
 Access Control（AC）\cite{yamauchi:AIKE2020}は，複数サーバ内の情報閲覧をアクセス元に応じて管理することを目的としたシステムであり，管理サーバの情報開示処理，情報加工処理，応答処理を管理する．$N$も$K$もシステムが管理するサーバ数が該当し，本シナリオでは常に同じ値を取る．
 
-実験には，OSがWindows 10 Pro (64bit)，CPUがIntel Xeon W-2265，RAMが256GB(64GB×4)の計算機で，制御器合成ツール Modal Transition Synstem Analyzer\cite{paper:MTSA}を使用した．
+実験には，OSがWindows 10 Pro (64bit)，CPUがIntel Xeon W-2265，RAMが256GB(64GB×4)の計算機で，制御器合成ツール Modal Transition System Analyzer\cite{paper:MTSA}を使用した．
 以上の実験設定で評価実験をおこなった結果が，表\ref{table:space}と表\ref{table:cost}である．
 
 \begin{table*}[ht]
@@ -234,7 +234,7 @@ Access Control（AC）\cite{yamauchi:AIKE2020}は，複数サーバ内の情報�
 以上より，表\ref{table:space}と表\ref{table:cost}において，CSDCSはSDCS以上の削減可能対象を持ちつつ，より高い削減効果量を安定して発揮していることがわかった．この結果より，CSDCSはSDCS以上の削減効果を持つと推察される．
 
 \subsubsection{適用選択の課題を解消できるか（RQ4）}
-本課題を解決する上で，CSDCSはSDCSとCDCSの両方の削減可能対象を包括し，SDCSとCDCSと同等以上の削減効果量を持つ必要がある．
+本課題を解決する上で，CSDCSはSDCSとCDCSの両手法の削減可能対象を包括し，両手法と同等以上の削減効果量を持つ必要がある．
 
 削減可能対象について，表\ref{table:space}と表\ref{table:cost}において，CSDCSはSDCSとCDCSのどちらかにおいて計算空間削減効果を持つ場合，常にCSDCSも空間削減効果を持つことがRQ2とRQ3の実験結果よりわかった．
 この結果から，CSDCSはSDCSとCDCSの削減可能対象を包括すると考えられる．
@@ -247,13 +247,13 @@ Access Control（AC）\cite{yamauchi:AIKE2020}は，複数サーバ内の情報�
 
 
 \subsubsection{議論}
-実験結果より，CSDCSはSDCSとCDCSの適用選択の課題を解決しうることがわかった．
-その上で，表\ref{table:space}のDCを通して，CSDCSがSDCSとCDCSのどちらよりも高い計算空間削減効果を持つことも確認された．
-本結果は，DCにおいて，SDCSとCDCSそれぞれのアプローチでないと削減できない状態が存在し，その状態をCSDCSが同時に削減できたためだと思われる．
-今後は，SDCSとCDCSをよりうまく組みあわせ，削減効果をさらに向上させることができないかについて調査する．
+実験結果より，CSDCSはSDCSとCDCSの適用選択の課題を解決しうることが確認された．
+加えて，表\ref{table:space}に示すDCの結果から，CSDCSがSDCSおよびCDCSのいずれよりも高い計算空間削減効果を有することも明らかとなった．
+この結果は，DCにおいて，SDCSおよびCDCSのそれぞれのアプローチでなければ削減できない状態が存在し，CSDCSが両者の手法を統合することで，それらの状態を同時に削減できたためであると考えられる．
+今後は，SDCSとCDCSの統合手法をさらに改良し，削減効果を一層高められる可能性について検討を進める．
 
-また，本実験では，SDCS，CDCSの両方が計算空間削減効果を持たない全ての場合で，CSDCSが空間削減効果を持つことはなかった．
-今後は，CSDCSの限界として，SDCSとCDCS以上の削減可能対象を持ちうることはないか，追加実験や証明を通して調査する．
+また，SDCSとCDCSの両方において削減効果が得られなかった全てのケースでは，CSDCSでも削減効果は見られなかった．
+今後は，CSDCSがSDCSやCDCSを超えて，さらに広い削減可能対象を持ちうるかどうかについて，追加実験や理論的検証を通じて調査する．
 
 \subsection{妥当性への脅威}
 本実験では，$|S|$，$|\Delta|$の計測に関して，basic DCS，SDCS，CDCS，CSDCSにおいて合成アルゴリズム以外の差分がないため，削減効果の内的妥当性を脅かす要因は存在しない．

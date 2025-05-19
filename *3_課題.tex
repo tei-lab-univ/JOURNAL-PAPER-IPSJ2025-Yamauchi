@@ -7,7 +7,7 @@
 \subsection{CDCS}
 \label{subsection:CDCS}
 CDCS\cite{yamauchi:IPSJ2024}は，監視モデルの$s_{err}$に該当する全ての状態を，ひとつの$s_{err}$に抽象化しつつ，ゲーム空間構築することで，DCSの計算空間を削減する．
-Safety Game Solgvingにおいて，$g^*$の$s_{err}$から伸びる遷移は探索する必要がない．
+Safety Game Solvingにおいて，$g^*$の$s_{err}$から伸びる遷移は探索しない．
 そこで，$g^*$構築過程で$s_{err}$から遷移できる全状態の構築を回避することで，計算空間削減を実現する．
 CDCSのアルゴリズムをAlgorithm\ref{algorithm:CDCS}に示す．
 
